@@ -1,0 +1,12 @@
+# Composer files
+composer.lock
+/vendor/
+
+# storage files
+# storage/
+
+# Todo file
+# .todo
+
+# Vscode
+# .vscode/

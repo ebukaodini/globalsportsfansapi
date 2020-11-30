@@ -1,0 +1,47 @@
+{
+    "name": "initframework/initframework",
+    "description": "A simple and fast php framework for PHP developers.",
+    "type": "project",
+    "version": "2.0.0",
+    "homepage": "http://initframework.com",
+    "keywords": [
+        "php",
+        "framework",
+        "fast"
+    ],
+    "require": {
+        "phpmailer/phpmailer": "^6.1",
+        "league/oauth2-google": "^3.0",
+        "hayageek/oauth2-yahoo": "^2.0",
+        "stevenmaguire/oauth2-microsoft": "^2.2",
+        "symfony/polyfill-mbstring": "^1.18"
+    },
+    "require-dev": {
+        "php": ">=7.3.0",
+        "symfony/dotenv": "^5.1",
+        "phpunit/phpunit": "^9.3"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ebuka Odini",
+            "email": "ebukaodini@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app",
+            "Library\\": ".lib",
+            "Models\\": "app\\models",
+            "Services\\": "app\\services",
+            "Middlewares\\": "app\\middlewares",
+            "Controllers\\": "app\\controllers"
+        },
+        "files": [
+            ".lib/Http/Response.php",
+            ".lib/ErrorHandler.php",
+            "app/config.php"
+        ]
+    }
+}
