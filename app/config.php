@@ -4,9 +4,9 @@
 define('SERVER', 'http://localhost:8080');
 
 // APPLICATION
-define('APP_NAME', 'Init Framework');
+define('APP_NAME', 'Global Sports Fans');
 define('APP_BASEDIR', \dirname(__DIR__) . '/');
-define('APP_KEY', 'enter-your-key');
+define('APP_KEY', 'f14df4c3d9532ea7705c9dc044ed2cd934cf7e8e5a0a9122d4be6880f41c8fc4');
 define('ENV', 'dev'); // test, live
 
 // RESOURCES
@@ -38,9 +38,9 @@ define('DB_DRIVER', 'mysql');
 define('DB_HOST', 'localhost');
 define('DB_USERNAME', 'root');
 define('DB_PASSWORD', '');
-define('DB_DATABASE', 'test');
+define('DB_DATABASE', 'globalsports');
 define('DB_PORT', '3306');
-define('DB_PREFIX', 'init_');
+define('DB_PREFIX', '');
 define('DB_ENGINE', 'MyISAM');
 define('DB_DEFAULT_CHARSET', 'latin1');
 define('DB_COLLATION', 'latin1_swedish_ci');

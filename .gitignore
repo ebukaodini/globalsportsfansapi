@@ -3,7 +3,7 @@ composer.lock
 /vendor/
 
 # storage files
-# storage/
+storage/session/sess_*
 
 # Todo file
 # .todo
