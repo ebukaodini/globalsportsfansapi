@@ -149,6 +149,11 @@
         "prefix": "medium_int",
         "body": "medium_int('${1:field}', ${2:size})$0"
     },
+    "Schema Text": {
+        "scope": "php",
+        "prefix": "text",
+        "body": "text('${1:field}')$0"
+    },
     "Schema Medium Text": {
         "scope": "php",
         "prefix": "medium_text",

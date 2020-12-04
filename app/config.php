@@ -43,10 +43,10 @@ define('DB_PORT', '3306');
 define('DB_PREFIX', '');
 define('DB_ENGINE', 'MyISAM');
 define('DB_DEFAULT_CHARSET', 'latin1');
-define('DB_COLLATION', 'latin1_swedish_ci');
+define('DB_COLLATION', 'utf8mb4_general_ci');
 
 // MAIL
-define('MAIL_DRIVER', 'mail'); // mail, smtp, sendmail
+define('MAIL_DRIVER', 'smtp'); // mail, smtp, sendmail
 define('MAIL_SMTP_HOST', '');
 define('MAIL_SMTP_PORT', 25);
 define('MAIL_SMTP_AUTH', false);
