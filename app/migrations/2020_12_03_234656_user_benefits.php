@@ -7,8 +7,13 @@ function migrate()
    // this is where the user's accrued benefit should come to
    Schema::create('user_benefits', function(Schema $schema) {
       $schema->int('id')->auto_increment()->primary();
-      $schema->varchar('status', 10)->default('');
+      $schema->double('user_id');
+      $schema->varchar('achievement', 200);
+      $schema->double('cash')->default('0');
+      $schema->text('benefit')->nullable();
+      $schema->varchar('status', 10)->default('pending'); // cancelled, given
       $schema->timestamp('created_at');
       $schema->datetime('updated_at')->attribute("ON UPDATE CURRENT_TIMESTAMP");
-   }, false, 'user_benefits');
+      $schema->foreign('user_id', 'users', 'id', 'ON DELETE RESTRICT', 'ON UPDATE CASCADE');
+   }, false, 'UserBenefits');
 }
