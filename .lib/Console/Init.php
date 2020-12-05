@@ -148,19 +148,19 @@ class Init extends Database
          // if migration does not exist
          $stmt = $conn->prepare("SELECT * FROM " . DB_PREFIX . "schema_migration WHERE migration = '$migration'"); $stmt->execute();
          if ($stmt->rowCount() > 0) continue;
-         $func = "migrate";
          include_once APP_BASEDIR . "app/migrations/$file";
+         $method = "migrate";
          $namespace = "\\Migrations\\";
-         $func = $namespace.$func;
-         if (function_exists($func)){
+         $class = $namespace."migration_$migration";
+         if (method_exists($class, $method)){
             echo "$migration: ";
-            $func();
+            (new $class())->$method();
             $migrated++;
             // add migration to db
             $stmt = $conn->prepare("INSERT INTO " . DB_PREFIX . "schema_migration (migration) VALUES('$migration')"); $stmt->execute();
             echo "migrated successfully!\n";
          } else {
-            echo "Function does not exit. $func\n";
+            echo "Method ($method) does not exist in $class.\n";
          }
       }
       if ($migrated == 0) echo "Error: No migration was migrated;\nmigrations have either been migrated or no migration exists.\n";
@@ -179,6 +179,7 @@ class Init extends Database
       // get migration files
       $files = array_diff(scandir(APP_BASEDIR . "app/migrations/"), array('.', '..', '.gitignore'));
       $conn = parent::getInstance();
+      $migrated = 0;
       foreach ($files as $file) {
          $filename = substr($file, 18);
          if ($filename != $migrationname . ".php") continue;
@@ -187,21 +188,23 @@ class Init extends Database
          // if migration does not exist
          $stmt = $conn->prepare("SELECT * FROM " . DB_PREFIX . "schema_migration WHERE migration = '$migration'"); $stmt->execute();
          if ($stmt->rowCount() > 0) continue;
-         $func = "migrate";
          include_once APP_BASEDIR . "app/migrations/$file";
+         $method = "migrate";
          $namespace = "\\Migrations\\";
-         $func = $namespace.$func;
-         if (function_exists($func)){
+         $class = $namespace."migration_$migration";
+         if (method_exists($class, $method)){
             echo "$migration: ";
-            $func();
+            (new $class())->$method();
+            $migrated++;
             // add migration to db
             $stmt = $conn->prepare("INSERT INTO " . DB_PREFIX . "schema_migration (migration) VALUES('$migration')"); $stmt->execute();
-            exit("migrated successfully!\n");
+            echo "migrated successfully!\n";
          } else {
-            exit("Function does not exit. $func\n");
+            echo "Method ($method) does not exist in $class.\n";
          }
       }
-      exit("Error: migration '$migrationname' was not migrated\n");
+      if ($migrated == 0) echo "Error: migration '$migrationname' was not migrated;\nmigration have either been migrated or does migration exists.\n";
+      exit;
    }
 
    private function _init_help($init): void
@@ -377,33 +380,37 @@ PHP;
 namespace Migrations;
 use Library\Database\Schema;
 
-function migrate()
-{
-   Schema::create('$migration', function(Schema \$schema) {
-      \$schema->int('id')->auto_increment()->primary();
-      \$schema->timestamp('created_at')->attribute();
-      \$schema->datetime('updated_at')->attribute("ON UPDATE CURRENT_TIMESTAMP");
-   }, false, '$migration');
+class migration_$prefix$migration {
 
-   // Schema::seed('$migration', 
-   //    [
-   //       'field' => 'value',
-   //       'field' => 'value',
-   //    ],
-   //    [
-   //       'field' => 'value',
-   //       'field' => 'value',
-   //    ],
-   //    ...
-   // );
+   function migrate()
+   {
+      Schema::create('$migration', function(Schema \$schema) {
+         \$schema->int('id')->auto_increment()->primary();
+         \$schema->timestamp('created_at')->attribute();
+         \$schema->datetime('updated_at')->attribute("ON UPDATE CURRENT_TIMESTAMP");
+      }, false, '$migration');
 
-   // Schema::alter('$migration', function(Schema \$schema) {
-   //    \$schema->change('id')->double('id');
-   //    \$schema->change('created_at')->datetime('created_at');
-   //    \$schema->change('updated_at')->datetime('updated_at');
-   // }, false);
+      // Schema::seed('$migration', 
+      //    [
+      //       'field' => 'value',
+      //       'field' => 'value',
+      //    ],
+      //    [
+      //       'field' => 'value',
+      //       'field' => 'value',
+      //    ],
+      //    ...
+      // );
 
-   // Schema::drop('$migration');
+      // Schema::alter('$migration', function(Schema \$schema) {
+      //    \$schema->change('id')->double('id');
+      //    \$schema->change('created_at')->datetime('created_at');
+      //    \$schema->change('updated_at')->datetime('updated_at');
+      // }, false);
+
+      // Schema::drop('$migration');
+   }
+
 }
 
 PHP;

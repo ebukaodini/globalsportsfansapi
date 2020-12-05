@@ -43,7 +43,7 @@ define('DB_PORT', '3306');
 define('DB_PREFIX', '');
 define('DB_ENGINE', 'MyISAM');
 define('DB_DEFAULT_CHARSET', 'latin1');
-define('DB_COLLATION', 'utf8mb4_general_ci');
+define('DB_COLLATION', 'latin1_general_ci');
 
 // MAIL
 define('MAIL_DRIVER', 'smtp'); // mail, smtp, sendmail

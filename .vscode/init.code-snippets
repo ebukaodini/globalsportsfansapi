@@ -1,7 +1,10 @@
 {
     "Router": {
         "scope": "php",
-        "prefix": ["Router","Router::"],
+        "prefix": [
+            "Router",
+            "Router::"
+        ],
         "body": "Router::${1|get,post,put,patch,delete,command|}('\/${2:route}', function(Request \\$req) {\r\t${3|Controller::Method($req);,Middleware::Method($req);\rController::Method($req);|}\r})${4:->name('${5:name}')};\r"
     },
     "Schema Create": {
@@ -17,7 +20,7 @@
     "Schema Seed": {
         "scope": "php",
         "prefix": "Schema::seed",
-        "body": "Schema::seed('${1:table}', \r\t[\r\t\t'field' => 'value',\r\t\t'field' => 'value'\r\t],\r\t[\r\t\t'field' => 'value',\r\t\t'field' => 'value'\r\t]\r\t// ...\r);\r"
+        "body": "Schema::seed('${1:table}', \r\t[\r\t\t'field' => 'value',\r\t\t'field' => 'value'\r\t],\r\t[\r\t\t'field' => 'value',\r\t\t'field' => 'value'\r\t]\r\t\/\/ ...\r);\r"
     },
     "Schema Drop": {
         "scope": "php",
@@ -256,12 +259,18 @@
     },
     "View Form CSRF": {
         "scope": "html",
-        "prefix": ["@_csrftoken","@csrf"],
+        "prefix": [
+            "@_csrftoken",
+            "@csrf"
+        ],
         "body": "@_csrftoken\r"
     },
     "View Javascript CSRF": {
         "scope": "html",
-        "prefix": ["@csrftoken","@csrf"],
+        "prefix": [
+            "@csrftoken",
+            "@csrf"
+        ],
         "body": "@csrftoken\r"
     },
     "View Form HTTP Method": {
@@ -327,7 +336,7 @@
     "Response Asset": {
         "scope": "html",
         "prefix": "asset",
-        "body": "asset('${1|js,css,imgs|}/filename')"
+        "body": "asset('${1|js,css,imgs|}\/filename')"
     },
     "Response Storage": {
         "scope": "html",
@@ -553,5 +562,410 @@
         "scope": "php",
         "prefix": "Validate::$",
         "body": "Validate::\\$${1|status,error|}"
+    },
+    "Users create": {
+        "scope": "php",
+        "prefix": "Users::create",
+        "body": "Users::create([\r\t\"id\" => $1,\r\t\"telephone\" => $2,\r\t\"email\" => $3,\r\t\"password\" => $4,\r\t\"token\" => $5,\r\t\"role\" => $6,\r\t\"permissions\" => $7,\r\t\"firstname\" => $8,\r\t\"lastname\" => $9,\r\t\"middlename\" => $10,\r\t\"residential_address\" => $11,\r\t\"occupation\" => $12,\r\t\"profile_picture\" => $13,\r\t\"mou\" => $14,\r\t\"nextofkin_name\" => $15,\r\t\"nextofkin_telephone\" => $16,\r\t\"nextofkin_residential_address\" => $17,\r\t\"accountnumber\" => $18,\r\t\"accountname\" => $19,\r\t\"bankname\" => $20,\r\t\"favorite_sport\" => $21,\r\t\"favorite_team\" => $22,\r\t\"member_id\" => $23,\r\t\"verification_status\" => $24,\r\t\"created_at\" => $25,\r\t\"updated_at\" => $26\r]);"
+    },
+    "Users create many": {
+        "scope": "php",
+        "prefix": "Users::createMany",
+        "body": "Users::createMany([\r\t\"id\" => $1,\r\t\"telephone\" => $2,\r\t\"email\" => $3,\r\t\"password\" => $4,\r\t\"token\" => $5,\r\t\"role\" => $6,\r\t\"permissions\" => $7,\r\t\"firstname\" => $8,\r\t\"lastname\" => $9,\r\t\"middlename\" => $10,\r\t\"residential_address\" => $11,\r\t\"occupation\" => $12,\r\t\"profile_picture\" => $13,\r\t\"mou\" => $14,\r\t\"nextofkin_name\" => $15,\r\t\"nextofkin_telephone\" => $16,\r\t\"nextofkin_residential_address\" => $17,\r\t\"accountnumber\" => $18,\r\t\"accountname\" => $19,\r\t\"bankname\" => $20,\r\t\"favorite_sport\" => $21,\r\t\"favorite_team\" => $22,\r\t\"member_id\" => $23,\r\t\"verification_status\" => $24,\r\t\"created_at\" => $25,\r\t\"updated_at\" => $26\r],\r${27:[]}\r);"
+    },
+    "Users update": {
+        "scope": "php",
+        "prefix": "Users::update",
+        "body": "Users::update([\r\t\"id\" => $1,\r\t\"telephone\" => $2,\r\t\"email\" => $3,\r\t\"password\" => $4,\r\t\"token\" => $5,\r\t\"role\" => $6,\r\t\"permissions\" => $7,\r\t\"firstname\" => $8,\r\t\"lastname\" => $9,\r\t\"middlename\" => $10,\r\t\"residential_address\" => $11,\r\t\"occupation\" => $12,\r\t\"profile_picture\" => $13,\r\t\"mou\" => $14,\r\t\"nextofkin_name\" => $15,\r\t\"nextofkin_telephone\" => $16,\r\t\"nextofkin_residential_address\" => $17,\r\t\"accountnumber\" => $18,\r\t\"accountname\" => $19,\r\t\"bankname\" => $20,\r\t\"favorite_sport\" => $21,\r\t\"favorite_team\" => $22,\r\t\"member_id\" => $23,\r\t\"verification_status\" => $24,\r\t\"created_at\" => $25,\r\t\"updated_at\" => $26\r], \"WHERE ${27|id,telephone,email,password,token,role,permissions,firstname,lastname,middlename,residential_address,occupation,profile_picture,mou,nextofkin_name,nextofkin_telephone,nextofkin_residential_address,accountnumber,accountname,bankname,favorite_sport,favorite_team,member_id,verification_status,created_at,updated_at|} = 1\");"
+    },
+    "Users delete": {
+        "scope": "php",
+        "prefix": "Users::delete",
+        "body": "Users::delete(\"WHERE ${1|id,telephone,email,password,token,role,permissions,firstname,lastname,middlename,residential_address,occupation,profile_picture,mou,nextofkin_name,nextofkin_telephone,nextofkin_residential_address,accountnumber,accountname,bankname,favorite_sport,favorite_team,member_id,verification_status,created_at,updated_at|} = 1\");"
+    },
+    "Users exist": {
+        "scope": "php",
+        "prefix": "Users::exist",
+        "body": "Users::exist(\"WHERE ${1|id,telephone,email,password,token,role,permissions,firstname,lastname,middlename,residential_address,occupation,profile_picture,mou,nextofkin_name,nextofkin_telephone,nextofkin_residential_address,accountnumber,accountname,bankname,favorite_sport,favorite_team,member_id,verification_status,created_at,updated_at|} = 1\");"
+    },
+    "Users findAll": {
+        "scope": "php",
+        "prefix": "Users::findAll",
+        "body": "Users::findAll(\"${1:id, telephone, email, password, token, role, permissions, firstname, lastname, middlename, residential_address, occupation, profile_picture, mou, nextofkin_name, nextofkin_telephone, nextofkin_residential_address, accountnumber, accountname, bankname, favorite_sport, favorite_team, member_id, verification_status, created_at, updated_at}\", \"WHERE ${2|id,telephone,email,password,token,role,permissions,firstname,lastname,middlename,residential_address,occupation,profile_picture,mou,nextofkin_name,nextofkin_telephone,nextofkin_residential_address,accountnumber,accountname,bankname,favorite_sport,favorite_team,member_id,verification_status,created_at,updated_at|} = 1\");"
+    },
+    "Users findOne": {
+        "scope": "php",
+        "prefix": "Users::findOne",
+        "body": "Users::findOne(\"${1:id, telephone, email, password, token, role, permissions, firstname, lastname, middlename, residential_address, occupation, profile_picture, mou, nextofkin_name, nextofkin_telephone, nextofkin_residential_address, accountnumber, accountname, bankname, favorite_sport, favorite_team, member_id, verification_status, created_at, updated_at}\", \"WHERE ${2|id,telephone,email,password,token,role,permissions,firstname,lastname,middlename,residential_address,occupation,profile_picture,mou,nextofkin_name,nextofkin_telephone,nextofkin_residential_address,accountnumber,accountname,bankname,favorite_sport,favorite_team,member_id,verification_status,created_at,updated_at|} = 1\");"
+    },
+    "Users findJoin": {
+        "scope": "php",
+        "prefix": "Users::findJoin",
+        "body": "\/\/ Note: When joining, specify fieldnames as tablename.fieldname;\r\/\/ Prefix the every tablename with DB_PREFIX\r\\$prefix = DB_PREFIX;\rUsers::findJoin(${1:\"{\\$prefix\\}users.${2|id,telephone,email,password,token,role,permissions,firstname,lastname,middlename,residential_address,occupation,profile_picture,mou,nextofkin_name,nextofkin_telephone,nextofkin_residential_address,accountnumber,accountname,bankname,favorite_sport,favorite_team,member_id,verification_status,created_at,updated_at|}\"}, \"WHERE ${3|id,telephone,email,password,token,role,permissions,firstname,lastname,middlename,residential_address,occupation,profile_picture,mou,nextofkin_name,nextofkin_telephone,nextofkin_residential_address,accountnumber,accountname,bankname,favorite_sport,favorite_team,member_id,verification_status,created_at,updated_at|} = 1\")\r\t->${4|leftJoin,rightJoin,innerJoin,fullJoin|}(\"{\\$prefix\\}tablename\", \"{\\$prefix\\}users.${6|id,telephone,email,password,token,role,permissions,firstname,lastname,middlename,residential_address,occupation,profile_picture,mou,nextofkin_name,nextofkin_telephone,nextofkin_residential_address,accountnumber,accountname,bankname,favorite_sport,favorite_team,member_id,verification_status,created_at,updated_at|} = {\\$prefix\\}tablename.field\")\r\t->join();"
+    },
+    "Users fields": {
+        "scope": "php",
+        "prefix": "users.",
+        "body": "\". DB_PREFIX .\"users.${1|id,telephone,email,password,token,role,permissions,firstname,lastname,middlename,residential_address,occupation,profile_picture,mou,nextofkin_name,nextofkin_telephone,nextofkin_residential_address,accountnumber,accountname,bankname,favorite_sport,favorite_team,member_id,verification_status,created_at,updated_at|}"
+    },
+    "Slots create": {
+        "scope": "php",
+        "prefix": "Slots::create",
+        "body": "Slots::create([\r\t\"id\" => $1,\r\t\"program\" => $2,\r\t\"no_slots\" => $3,\r\t\"cost\" => $4,\r\t\"benefits\" => $5,\r\t\"created_at\" => $6,\r\t\"updated_at\" => $7\r]);"
+    },
+    "Slots create many": {
+        "scope": "php",
+        "prefix": "Slots::createMany",
+        "body": "Slots::createMany([\r\t\"id\" => $1,\r\t\"program\" => $2,\r\t\"no_slots\" => $3,\r\t\"cost\" => $4,\r\t\"benefits\" => $5,\r\t\"created_at\" => $6,\r\t\"updated_at\" => $7\r],\r${8:[]}\r);"
+    },
+    "Slots update": {
+        "scope": "php",
+        "prefix": "Slots::update",
+        "body": "Slots::update([\r\t\"id\" => $1,\r\t\"program\" => $2,\r\t\"no_slots\" => $3,\r\t\"cost\" => $4,\r\t\"benefits\" => $5,\r\t\"created_at\" => $6,\r\t\"updated_at\" => $7\r], \"WHERE ${8|id,program,no_slots,cost,benefits,created_at,updated_at|} = 1\");"
+    },
+    "Slots delete": {
+        "scope": "php",
+        "prefix": "Slots::delete",
+        "body": "Slots::delete(\"WHERE ${1|id,program,no_slots,cost,benefits,created_at,updated_at|} = 1\");"
+    },
+    "Slots exist": {
+        "scope": "php",
+        "prefix": "Slots::exist",
+        "body": "Slots::exist(\"WHERE ${1|id,program,no_slots,cost,benefits,created_at,updated_at|} = 1\");"
+    },
+    "Slots findAll": {
+        "scope": "php",
+        "prefix": "Slots::findAll",
+        "body": "Slots::findAll(\"${1:id, program, no_slots, cost, benefits, created_at, updated_at}\", \"WHERE ${2|id,program,no_slots,cost,benefits,created_at,updated_at|} = 1\");"
+    },
+    "Slots findOne": {
+        "scope": "php",
+        "prefix": "Slots::findOne",
+        "body": "Slots::findOne(\"${1:id, program, no_slots, cost, benefits, created_at, updated_at}\", \"WHERE ${2|id,program,no_slots,cost,benefits,created_at,updated_at|} = 1\");"
+    },
+    "Slots findJoin": {
+        "scope": "php",
+        "prefix": "Slots::findJoin",
+        "body": "\/\/ Note: When joining, specify fieldnames as tablename.fieldname;\r\/\/ Prefix the every tablename with DB_PREFIX\r\\$prefix = DB_PREFIX;\rSlots::findJoin(${1:\"{\\$prefix\\}slots.${2|id,program,no_slots,cost,benefits,created_at,updated_at|}\"}, \"WHERE ${3|id,program,no_slots,cost,benefits,created_at,updated_at|} = 1\")\r\t->${4|leftJoin,rightJoin,innerJoin,fullJoin|}(\"{\\$prefix\\}tablename\", \"{\\$prefix\\}slots.${6|id,program,no_slots,cost,benefits,created_at,updated_at|} = {\\$prefix\\}tablename.field\")\r\t->join();"
+    },
+    "Slots fields": {
+        "scope": "php",
+        "prefix": "slots.",
+        "body": "\". DB_PREFIX .\"slots.${1|id,program,no_slots,cost,benefits,created_at,updated_at|}"
+    },
+    "Invoice create": {
+        "scope": "php",
+        "prefix": "Invoice::create",
+        "body": "Invoice::create([\r\t\"id\" => $1,\r\t\"user_id\" => $2,\r\t\"invoice_number\" => $3,\r\t\"invoice_description\" => $4,\r\t\"amount_due\" => $5,\r\t\"amount_paid\" => $6,\r\t\"payment_method\" => $7,\r\t\"payment_evidence\" => $8,\r\t\"status\" => $9,\r\t\"created_at\" => $10,\r\t\"updated_at\" => $11\r]);"
+    },
+    "Invoice create many": {
+        "scope": "php",
+        "prefix": "Invoice::createMany",
+        "body": "Invoice::createMany([\r\t\"id\" => $1,\r\t\"user_id\" => $2,\r\t\"invoice_number\" => $3,\r\t\"invoice_description\" => $4,\r\t\"amount_due\" => $5,\r\t\"amount_paid\" => $6,\r\t\"payment_method\" => $7,\r\t\"payment_evidence\" => $8,\r\t\"status\" => $9,\r\t\"created_at\" => $10,\r\t\"updated_at\" => $11\r],\r${12:[]}\r);"
+    },
+    "Invoice update": {
+        "scope": "php",
+        "prefix": "Invoice::update",
+        "body": "Invoice::update([\r\t\"id\" => $1,\r\t\"user_id\" => $2,\r\t\"invoice_number\" => $3,\r\t\"invoice_description\" => $4,\r\t\"amount_due\" => $5,\r\t\"amount_paid\" => $6,\r\t\"payment_method\" => $7,\r\t\"payment_evidence\" => $8,\r\t\"status\" => $9,\r\t\"created_at\" => $10,\r\t\"updated_at\" => $11\r], \"WHERE ${12|id,user_id,invoice_number,invoice_description,amount_due,amount_paid,payment_method,payment_evidence,status,created_at,updated_at|} = 1\");"
+    },
+    "Invoice delete": {
+        "scope": "php",
+        "prefix": "Invoice::delete",
+        "body": "Invoice::delete(\"WHERE ${1|id,user_id,invoice_number,invoice_description,amount_due,amount_paid,payment_method,payment_evidence,status,created_at,updated_at|} = 1\");"
+    },
+    "Invoice exist": {
+        "scope": "php",
+        "prefix": "Invoice::exist",
+        "body": "Invoice::exist(\"WHERE ${1|id,user_id,invoice_number,invoice_description,amount_due,amount_paid,payment_method,payment_evidence,status,created_at,updated_at|} = 1\");"
+    },
+    "Invoice findAll": {
+        "scope": "php",
+        "prefix": "Invoice::findAll",
+        "body": "Invoice::findAll(\"${1:id, user_id, invoice_number, invoice_description, amount_due, amount_paid, payment_method, payment_evidence, status, created_at, updated_at}\", \"WHERE ${2|id,user_id,invoice_number,invoice_description,amount_due,amount_paid,payment_method,payment_evidence,status,created_at,updated_at|} = 1\");"
+    },
+    "Invoice findOne": {
+        "scope": "php",
+        "prefix": "Invoice::findOne",
+        "body": "Invoice::findOne(\"${1:id, user_id, invoice_number, invoice_description, amount_due, amount_paid, payment_method, payment_evidence, status, created_at, updated_at}\", \"WHERE ${2|id,user_id,invoice_number,invoice_description,amount_due,amount_paid,payment_method,payment_evidence,status,created_at,updated_at|} = 1\");"
+    },
+    "Invoice findJoin": {
+        "scope": "php",
+        "prefix": "Invoice::findJoin",
+        "body": "\/\/ Note: When joining, specify fieldnames as tablename.fieldname;\r\/\/ Prefix the every tablename with DB_PREFIX\r\\$prefix = DB_PREFIX;\rInvoice::findJoin(${1:\"{\\$prefix\\}invoice.${2|id,user_id,invoice_number,invoice_description,amount_due,amount_paid,payment_method,payment_evidence,status,created_at,updated_at|}\"}, \"WHERE ${3|id,user_id,invoice_number,invoice_description,amount_due,amount_paid,payment_method,payment_evidence,status,created_at,updated_at|} = 1\")\r\t->${4|leftJoin,rightJoin,innerJoin,fullJoin|}(\"{\\$prefix\\}tablename\", \"{\\$prefix\\}invoice.${6|id,user_id,invoice_number,invoice_description,amount_due,amount_paid,payment_method,payment_evidence,status,created_at,updated_at|} = {\\$prefix\\}tablename.field\")\r\t->join();"
+    },
+    "Invoice fields": {
+        "scope": "php",
+        "prefix": "invoice.",
+        "body": "\". DB_PREFIX .\"invoice.${1|id,user_id,invoice_number,invoice_description,amount_due,amount_paid,payment_method,payment_evidence,status,created_at,updated_at|}"
+    },
+    "OrganisationInfo create": {
+        "scope": "php",
+        "prefix": "OrganisationInfo::create",
+        "body": "OrganisationInfo::create([\r\t\"id\" => $1,\r\t\"about_us\" => $2,\r\t\"disclaimer\" => $3,\r\t\"how_it_works\" => $4,\r\t\"terms_and_condition\" => $5,\r\t\"membership\" => $6,\r\t\"rewards_and_benefits\" => $7,\r\t\"tournaments_and_leagues\" => $8,\r\t\"board_of_trustees\" => $9,\r\t\"contact_telephone\" => $10,\r\t\"contact_address\" => $11,\r\t\"contact_email\" => $12,\r\t\"faq\" => $13,\r\t\"created_at\" => $14,\r\t\"updated_at\" => $15\r]);"
+    },
+    "OrganisationInfo create many": {
+        "scope": "php",
+        "prefix": "OrganisationInfo::createMany",
+        "body": "OrganisationInfo::createMany([\r\t\"id\" => $1,\r\t\"about_us\" => $2,\r\t\"disclaimer\" => $3,\r\t\"how_it_works\" => $4,\r\t\"terms_and_condition\" => $5,\r\t\"membership\" => $6,\r\t\"rewards_and_benefits\" => $7,\r\t\"tournaments_and_leagues\" => $8,\r\t\"board_of_trustees\" => $9,\r\t\"contact_telephone\" => $10,\r\t\"contact_address\" => $11,\r\t\"contact_email\" => $12,\r\t\"faq\" => $13,\r\t\"created_at\" => $14,\r\t\"updated_at\" => $15\r],\r${16:[]}\r);"
+    },
+    "OrganisationInfo update": {
+        "scope": "php",
+        "prefix": "OrganisationInfo::update",
+        "body": "OrganisationInfo::update([\r\t\"id\" => $1,\r\t\"about_us\" => $2,\r\t\"disclaimer\" => $3,\r\t\"how_it_works\" => $4,\r\t\"terms_and_condition\" => $5,\r\t\"membership\" => $6,\r\t\"rewards_and_benefits\" => $7,\r\t\"tournaments_and_leagues\" => $8,\r\t\"board_of_trustees\" => $9,\r\t\"contact_telephone\" => $10,\r\t\"contact_address\" => $11,\r\t\"contact_email\" => $12,\r\t\"faq\" => $13,\r\t\"created_at\" => $14,\r\t\"updated_at\" => $15\r], \"WHERE ${16|id,about_us,disclaimer,how_it_works,terms_and_condition,membership,rewards_and_benefits,tournaments_and_leagues,board_of_trustees,contact_telephone,contact_address,contact_email,faq,created_at,updated_at|} = 1\");"
+    },
+    "OrganisationInfo delete": {
+        "scope": "php",
+        "prefix": "OrganisationInfo::delete",
+        "body": "OrganisationInfo::delete(\"WHERE ${1|id,about_us,disclaimer,how_it_works,terms_and_condition,membership,rewards_and_benefits,tournaments_and_leagues,board_of_trustees,contact_telephone,contact_address,contact_email,faq,created_at,updated_at|} = 1\");"
+    },
+    "OrganisationInfo exist": {
+        "scope": "php",
+        "prefix": "OrganisationInfo::exist",
+        "body": "OrganisationInfo::exist(\"WHERE ${1|id,about_us,disclaimer,how_it_works,terms_and_condition,membership,rewards_and_benefits,tournaments_and_leagues,board_of_trustees,contact_telephone,contact_address,contact_email,faq,created_at,updated_at|} = 1\");"
+    },
+    "OrganisationInfo findAll": {
+        "scope": "php",
+        "prefix": "OrganisationInfo::findAll",
+        "body": "OrganisationInfo::findAll(\"${1:id, about_us, disclaimer, how_it_works, terms_and_condition, membership, rewards_and_benefits, tournaments_and_leagues, board_of_trustees, contact_telephone, contact_address, contact_email, faq, created_at, updated_at}\", \"WHERE ${2|id,about_us,disclaimer,how_it_works,terms_and_condition,membership,rewards_and_benefits,tournaments_and_leagues,board_of_trustees,contact_telephone,contact_address,contact_email,faq,created_at,updated_at|} = 1\");"
+    },
+    "OrganisationInfo findOne": {
+        "scope": "php",
+        "prefix": "OrganisationInfo::findOne",
+        "body": "OrganisationInfo::findOne(\"${1:id, about_us, disclaimer, how_it_works, terms_and_condition, membership, rewards_and_benefits, tournaments_and_leagues, board_of_trustees, contact_telephone, contact_address, contact_email, faq, created_at, updated_at}\", \"WHERE ${2|id,about_us,disclaimer,how_it_works,terms_and_condition,membership,rewards_and_benefits,tournaments_and_leagues,board_of_trustees,contact_telephone,contact_address,contact_email,faq,created_at,updated_at|} = 1\");"
+    },
+    "OrganisationInfo findJoin": {
+        "scope": "php",
+        "prefix": "OrganisationInfo::findJoin",
+        "body": "\/\/ Note: When joining, specify fieldnames as tablename.fieldname;\r\/\/ Prefix the every tablename with DB_PREFIX\r\\$prefix = DB_PREFIX;\rOrganisationInfo::findJoin(${1:\"{\\$prefix\\}organisation_info.${2|id,about_us,disclaimer,how_it_works,terms_and_condition,membership,rewards_and_benefits,tournaments_and_leagues,board_of_trustees,contact_telephone,contact_address,contact_email,faq,created_at,updated_at|}\"}, \"WHERE ${3|id,about_us,disclaimer,how_it_works,terms_and_condition,membership,rewards_and_benefits,tournaments_and_leagues,board_of_trustees,contact_telephone,contact_address,contact_email,faq,created_at,updated_at|} = 1\")\r\t->${4|leftJoin,rightJoin,innerJoin,fullJoin|}(\"{\\$prefix\\}tablename\", \"{\\$prefix\\}organisation_info.${6|id,about_us,disclaimer,how_it_works,terms_and_condition,membership,rewards_and_benefits,tournaments_and_leagues,board_of_trustees,contact_telephone,contact_address,contact_email,faq,created_at,updated_at|} = {\\$prefix\\}tablename.field\")\r\t->join();"
+    },
+    "OrganisationInfo fields": {
+        "scope": "php",
+        "prefix": "organisation_info.",
+        "body": "\". DB_PREFIX .\"organisation_info.${1|id,about_us,disclaimer,how_it_works,terms_and_condition,membership,rewards_and_benefits,tournaments_and_leagues,board_of_trustees,contact_telephone,contact_address,contact_email,faq,created_at,updated_at|}"
+    },
+    "UserSlots create": {
+        "scope": "php",
+        "prefix": "UserSlots::create",
+        "body": "UserSlots::create([\r\t\"id\" => $1,\r\t\"user_id\" => $2,\r\t\"slot_id\" => $3,\r\t\"slot_program\" => $4,\r\t\"referral_code\" => $5,\r\t\"referrals_required\" => $6,\r\t\"referrals_acquired\" => $7,\r\t\"referredby\" => $8,\r\t\"referral_level\" => $9,\r\t\"rank\" => $10,\r\t\"status\" => $11,\r\t\"created_at\" => $12,\r\t\"updated_at\" => $13\r]);"
+    },
+    "UserSlots create many": {
+        "scope": "php",
+        "prefix": "UserSlots::createMany",
+        "body": "UserSlots::createMany([\r\t\"id\" => $1,\r\t\"user_id\" => $2,\r\t\"slot_id\" => $3,\r\t\"slot_program\" => $4,\r\t\"referral_code\" => $5,\r\t\"referrals_required\" => $6,\r\t\"referrals_acquired\" => $7,\r\t\"referredby\" => $8,\r\t\"referral_level\" => $9,\r\t\"rank\" => $10,\r\t\"status\" => $11,\r\t\"created_at\" => $12,\r\t\"updated_at\" => $13\r],\r${14:[]}\r);"
+    },
+    "UserSlots update": {
+        "scope": "php",
+        "prefix": "UserSlots::update",
+        "body": "UserSlots::update([\r\t\"id\" => $1,\r\t\"user_id\" => $2,\r\t\"slot_id\" => $3,\r\t\"slot_program\" => $4,\r\t\"referral_code\" => $5,\r\t\"referrals_required\" => $6,\r\t\"referrals_acquired\" => $7,\r\t\"referredby\" => $8,\r\t\"referral_level\" => $9,\r\t\"rank\" => $10,\r\t\"status\" => $11,\r\t\"created_at\" => $12,\r\t\"updated_at\" => $13\r], \"WHERE ${14|id,user_id,slot_id,slot_program,referral_code,referrals_required,referrals_acquired,referredby,referral_level,rank,status,created_at,updated_at|} = 1\");"
+    },
+    "UserSlots delete": {
+        "scope": "php",
+        "prefix": "UserSlots::delete",
+        "body": "UserSlots::delete(\"WHERE ${1|id,user_id,slot_id,slot_program,referral_code,referrals_required,referrals_acquired,referredby,referral_level,rank,status,created_at,updated_at|} = 1\");"
+    },
+    "UserSlots exist": {
+        "scope": "php",
+        "prefix": "UserSlots::exist",
+        "body": "UserSlots::exist(\"WHERE ${1|id,user_id,slot_id,slot_program,referral_code,referrals_required,referrals_acquired,referredby,referral_level,rank,status,created_at,updated_at|} = 1\");"
+    },
+    "UserSlots findAll": {
+        "scope": "php",
+        "prefix": "UserSlots::findAll",
+        "body": "UserSlots::findAll(\"${1:id, user_id, slot_id, slot_program, referral_code, referrals_required, referrals_acquired, referredby, referral_level, rank, status, created_at, updated_at}\", \"WHERE ${2|id,user_id,slot_id,slot_program,referral_code,referrals_required,referrals_acquired,referredby,referral_level,rank,status,created_at,updated_at|} = 1\");"
+    },
+    "UserSlots findOne": {
+        "scope": "php",
+        "prefix": "UserSlots::findOne",
+        "body": "UserSlots::findOne(\"${1:id, user_id, slot_id, slot_program, referral_code, referrals_required, referrals_acquired, referredby, referral_level, rank, status, created_at, updated_at}\", \"WHERE ${2|id,user_id,slot_id,slot_program,referral_code,referrals_required,referrals_acquired,referredby,referral_level,rank,status,created_at,updated_at|} = 1\");"
+    },
+    "UserSlots findJoin": {
+        "scope": "php",
+        "prefix": "UserSlots::findJoin",
+        "body": "\/\/ Note: When joining, specify fieldnames as tablename.fieldname;\r\/\/ Prefix the every tablename with DB_PREFIX\r\\$prefix = DB_PREFIX;\rUserSlots::findJoin(${1:\"{\\$prefix\\}user_slots.${2|id,user_id,slot_id,slot_program,referral_code,referrals_required,referrals_acquired,referredby,referral_level,rank,status,created_at,updated_at|}\"}, \"WHERE ${3|id,user_id,slot_id,slot_program,referral_code,referrals_required,referrals_acquired,referredby,referral_level,rank,status,created_at,updated_at|} = 1\")\r\t->${4|leftJoin,rightJoin,innerJoin,fullJoin|}(\"{\\$prefix\\}tablename\", \"{\\$prefix\\}user_slots.${6|id,user_id,slot_id,slot_program,referral_code,referrals_required,referrals_acquired,referredby,referral_level,rank,status,created_at,updated_at|} = {\\$prefix\\}tablename.field\")\r\t->join();"
+    },
+    "UserSlots fields": {
+        "scope": "php",
+        "prefix": "user_slots.",
+        "body": "\". DB_PREFIX .\"user_slots.${1|id,user_id,slot_id,slot_program,referral_code,referrals_required,referrals_acquired,referredby,referral_level,rank,status,created_at,updated_at|}"
+    },
+    "ReferralLevels create": {
+        "scope": "php",
+        "prefix": "ReferralLevels::create",
+        "body": "ReferralLevels::create([\r\t\"id\" => $1,\r\t\"referrals_required\" => $2,\r\t\"rank\" => $3,\r\t\"cash_benefit\" => $4,\r\t\"benefits\" => $5,\r\t\"created_at\" => $6,\r\t\"updated_at\" => $7\r]);"
+    },
+    "ReferralLevels create many": {
+        "scope": "php",
+        "prefix": "ReferralLevels::createMany",
+        "body": "ReferralLevels::createMany([\r\t\"id\" => $1,\r\t\"referrals_required\" => $2,\r\t\"rank\" => $3,\r\t\"cash_benefit\" => $4,\r\t\"benefits\" => $5,\r\t\"created_at\" => $6,\r\t\"updated_at\" => $7\r],\r${8:[]}\r);"
+    },
+    "ReferralLevels update": {
+        "scope": "php",
+        "prefix": "ReferralLevels::update",
+        "body": "ReferralLevels::update([\r\t\"id\" => $1,\r\t\"referrals_required\" => $2,\r\t\"rank\" => $3,\r\t\"cash_benefit\" => $4,\r\t\"benefits\" => $5,\r\t\"created_at\" => $6,\r\t\"updated_at\" => $7\r], \"WHERE ${8|id,referrals_required,rank,cash_benefit,benefits,created_at,updated_at|} = 1\");"
+    },
+    "ReferralLevels delete": {
+        "scope": "php",
+        "prefix": "ReferralLevels::delete",
+        "body": "ReferralLevels::delete(\"WHERE ${1|id,referrals_required,rank,cash_benefit,benefits,created_at,updated_at|} = 1\");"
+    },
+    "ReferralLevels exist": {
+        "scope": "php",
+        "prefix": "ReferralLevels::exist",
+        "body": "ReferralLevels::exist(\"WHERE ${1|id,referrals_required,rank,cash_benefit,benefits,created_at,updated_at|} = 1\");"
+    },
+    "ReferralLevels findAll": {
+        "scope": "php",
+        "prefix": "ReferralLevels::findAll",
+        "body": "ReferralLevels::findAll(\"${1:id, referrals_required, rank, cash_benefit, benefits, created_at, updated_at}\", \"WHERE ${2|id,referrals_required,rank,cash_benefit,benefits,created_at,updated_at|} = 1\");"
+    },
+    "ReferralLevels findOne": {
+        "scope": "php",
+        "prefix": "ReferralLevels::findOne",
+        "body": "ReferralLevels::findOne(\"${1:id, referrals_required, rank, cash_benefit, benefits, created_at, updated_at}\", \"WHERE ${2|id,referrals_required,rank,cash_benefit,benefits,created_at,updated_at|} = 1\");"
+    },
+    "ReferralLevels findJoin": {
+        "scope": "php",
+        "prefix": "ReferralLevels::findJoin",
+        "body": "\/\/ Note: When joining, specify fieldnames as tablename.fieldname;\r\/\/ Prefix the every tablename with DB_PREFIX\r\\$prefix = DB_PREFIX;\rReferralLevels::findJoin(${1:\"{\\$prefix\\}referral_levels.${2|id,referrals_required,rank,cash_benefit,benefits,created_at,updated_at|}\"}, \"WHERE ${3|id,referrals_required,rank,cash_benefit,benefits,created_at,updated_at|} = 1\")\r\t->${4|leftJoin,rightJoin,innerJoin,fullJoin|}(\"{\\$prefix\\}tablename\", \"{\\$prefix\\}referral_levels.${6|id,referrals_required,rank,cash_benefit,benefits,created_at,updated_at|} = {\\$prefix\\}tablename.field\")\r\t->join();"
+    },
+    "ReferralLevels fields": {
+        "scope": "php",
+        "prefix": "referral_levels.",
+        "body": "\". DB_PREFIX .\"referral_levels.${1|id,referrals_required,rank,cash_benefit,benefits,created_at,updated_at|}"
+    },
+    "UserBenefits create": {
+        "scope": "php",
+        "prefix": "UserBenefits::create",
+        "body": "UserBenefits::create([\r\t\"id\" => $1,\r\t\"user_id\" => $2,\r\t\"achievement\" => $3,\r\t\"cash\" => $4,\r\t\"benefit\" => $5,\r\t\"status\" => $6,\r\t\"created_at\" => $7,\r\t\"updated_at\" => $8\r]);"
+    },
+    "UserBenefits create many": {
+        "scope": "php",
+        "prefix": "UserBenefits::createMany",
+        "body": "UserBenefits::createMany([\r\t\"id\" => $1,\r\t\"user_id\" => $2,\r\t\"achievement\" => $3,\r\t\"cash\" => $4,\r\t\"benefit\" => $5,\r\t\"status\" => $6,\r\t\"created_at\" => $7,\r\t\"updated_at\" => $8\r],\r${9:[]}\r);"
+    },
+    "UserBenefits update": {
+        "scope": "php",
+        "prefix": "UserBenefits::update",
+        "body": "UserBenefits::update([\r\t\"id\" => $1,\r\t\"user_id\" => $2,\r\t\"achievement\" => $3,\r\t\"cash\" => $4,\r\t\"benefit\" => $5,\r\t\"status\" => $6,\r\t\"created_at\" => $7,\r\t\"updated_at\" => $8\r], \"WHERE ${9|id,user_id,achievement,cash,benefit,status,created_at,updated_at|} = 1\");"
+    },
+    "UserBenefits delete": {
+        "scope": "php",
+        "prefix": "UserBenefits::delete",
+        "body": "UserBenefits::delete(\"WHERE ${1|id,user_id,achievement,cash,benefit,status,created_at,updated_at|} = 1\");"
+    },
+    "UserBenefits exist": {
+        "scope": "php",
+        "prefix": "UserBenefits::exist",
+        "body": "UserBenefits::exist(\"WHERE ${1|id,user_id,achievement,cash,benefit,status,created_at,updated_at|} = 1\");"
+    },
+    "UserBenefits findAll": {
+        "scope": "php",
+        "prefix": "UserBenefits::findAll",
+        "body": "UserBenefits::findAll(\"${1:id, user_id, achievement, cash, benefit, status, created_at, updated_at}\", \"WHERE ${2|id,user_id,achievement,cash,benefit,status,created_at,updated_at|} = 1\");"
+    },
+    "UserBenefits findOne": {
+        "scope": "php",
+        "prefix": "UserBenefits::findOne",
+        "body": "UserBenefits::findOne(\"${1:id, user_id, achievement, cash, benefit, status, created_at, updated_at}\", \"WHERE ${2|id,user_id,achievement,cash,benefit,status,created_at,updated_at|} = 1\");"
+    },
+    "UserBenefits findJoin": {
+        "scope": "php",
+        "prefix": "UserBenefits::findJoin",
+        "body": "\/\/ Note: When joining, specify fieldnames as tablename.fieldname;\r\/\/ Prefix the every tablename with DB_PREFIX\r\\$prefix = DB_PREFIX;\rUserBenefits::findJoin(${1:\"{\\$prefix\\}user_benefits.${2|id,user_id,achievement,cash,benefit,status,created_at,updated_at|}\"}, \"WHERE ${3|id,user_id,achievement,cash,benefit,status,created_at,updated_at|} = 1\")\r\t->${4|leftJoin,rightJoin,innerJoin,fullJoin|}(\"{\\$prefix\\}tablename\", \"{\\$prefix\\}user_benefits.${6|id,user_id,achievement,cash,benefit,status,created_at,updated_at|} = {\\$prefix\\}tablename.field\")\r\t->join();"
+    },
+    "UserBenefits fields": {
+        "scope": "php",
+        "prefix": "user_benefits.",
+        "body": "\". DB_PREFIX .\"user_benefits.${1|id,user_id,achievement,cash,benefit,status,created_at,updated_at|}"
+    },
+    "Notifications create": {
+        "scope": "php",
+        "prefix": "Notifications::create",
+        "body": "Notifications::create([\r\t\"id\" => $1,\r\t\"user_id\" => $2,\r\t\"message\" => $3,\r\t\"route\" => $4,\r\t\"status\" => $5,\r\t\"created_at\" => $6,\r\t\"updated_at\" => $7\r]);"
+    },
+    "Notifications create many": {
+        "scope": "php",
+        "prefix": "Notifications::createMany",
+        "body": "Notifications::createMany([\r\t\"id\" => $1,\r\t\"user_id\" => $2,\r\t\"message\" => $3,\r\t\"route\" => $4,\r\t\"status\" => $5,\r\t\"created_at\" => $6,\r\t\"updated_at\" => $7\r],\r${8:[]}\r);"
+    },
+    "Notifications update": {
+        "scope": "php",
+        "prefix": "Notifications::update",
+        "body": "Notifications::update([\r\t\"id\" => $1,\r\t\"user_id\" => $2,\r\t\"message\" => $3,\r\t\"route\" => $4,\r\t\"status\" => $5,\r\t\"created_at\" => $6,\r\t\"updated_at\" => $7\r], \"WHERE ${8|id,user_id,message,route,status,created_at,updated_at|} = 1\");"
+    },
+    "Notifications delete": {
+        "scope": "php",
+        "prefix": "Notifications::delete",
+        "body": "Notifications::delete(\"WHERE ${1|id,user_id,message,route,status,created_at,updated_at|} = 1\");"
+    },
+    "Notifications exist": {
+        "scope": "php",
+        "prefix": "Notifications::exist",
+        "body": "Notifications::exist(\"WHERE ${1|id,user_id,message,route,status,created_at,updated_at|} = 1\");"
+    },
+    "Notifications findAll": {
+        "scope": "php",
+        "prefix": "Notifications::findAll",
+        "body": "Notifications::findAll(\"${1:id, user_id, message, route, status, created_at, updated_at}\", \"WHERE ${2|id,user_id,message,route,status,created_at,updated_at|} = 1\");"
+    },
+    "Notifications findOne": {
+        "scope": "php",
+        "prefix": "Notifications::findOne",
+        "body": "Notifications::findOne(\"${1:id, user_id, message, route, status, created_at, updated_at}\", \"WHERE ${2|id,user_id,message,route,status,created_at,updated_at|} = 1\");"
+    },
+    "Notifications findJoin": {
+        "scope": "php",
+        "prefix": "Notifications::findJoin",
+        "body": "\/\/ Note: When joining, specify fieldnames as tablename.fieldname;\r\/\/ Prefix the every tablename with DB_PREFIX\r\\$prefix = DB_PREFIX;\rNotifications::findJoin(${1:\"{\\$prefix\\}notifications.${2|id,user_id,message,route,status,created_at,updated_at|}\"}, \"WHERE ${3|id,user_id,message,route,status,created_at,updated_at|} = 1\")\r\t->${4|leftJoin,rightJoin,innerJoin,fullJoin|}(\"{\\$prefix\\}tablename\", \"{\\$prefix\\}notifications.${6|id,user_id,message,route,status,created_at,updated_at|} = {\\$prefix\\}tablename.field\")\r\t->join();"
+    },
+    "Notifications fields": {
+        "scope": "php",
+        "prefix": "notifications.",
+        "body": "\". DB_PREFIX .\"notifications.${1|id,user_id,message,route,status,created_at,updated_at|}"
+    },
+    "Permissions create": {
+        "scope": "php",
+        "prefix": "Permissions::create",
+        "body": "Permissions::create([\r\t\"id\" => $1,\r\t\"role\" => $2,\r\t\"permissions\" => $3,\r\t\"created_at\" => $4,\r\t\"updated_at\" => $5\r]);"
+    },
+    "Permissions create many": {
+        "scope": "php",
+        "prefix": "Permissions::createMany",
+        "body": "Permissions::createMany([\r\t\"id\" => $1,\r\t\"role\" => $2,\r\t\"permissions\" => $3,\r\t\"created_at\" => $4,\r\t\"updated_at\" => $5\r],\r${6:[]}\r);"
+    },
+    "Permissions update": {
+        "scope": "php",
+        "prefix": "Permissions::update",
+        "body": "Permissions::update([\r\t\"id\" => $1,\r\t\"role\" => $2,\r\t\"permissions\" => $3,\r\t\"created_at\" => $4,\r\t\"updated_at\" => $5\r], \"WHERE ${6|id,role,permissions,created_at,updated_at|} = 1\");"
+    },
+    "Permissions delete": {
+        "scope": "php",
+        "prefix": "Permissions::delete",
+        "body": "Permissions::delete(\"WHERE ${1|id,role,permissions,created_at,updated_at|} = 1\");"
+    },
+    "Permissions exist": {
+        "scope": "php",
+        "prefix": "Permissions::exist",
+        "body": "Permissions::exist(\"WHERE ${1|id,role,permissions,created_at,updated_at|} = 1\");"
+    },
+    "Permissions findAll": {
+        "scope": "php",
+        "prefix": "Permissions::findAll",
+        "body": "Permissions::findAll(\"${1:id, role, permissions, created_at, updated_at}\", \"WHERE ${2|id,role,permissions,created_at,updated_at|} = 1\");"
+    },
+    "Permissions findOne": {
+        "scope": "php",
+        "prefix": "Permissions::findOne",
+        "body": "Permissions::findOne(\"${1:id, role, permissions, created_at, updated_at}\", \"WHERE ${2|id,role,permissions,created_at,updated_at|} = 1\");"
+    },
+    "Permissions findJoin": {
+        "scope": "php",
+        "prefix": "Permissions::findJoin",
+        "body": "\/\/ Note: When joining, specify fieldnames as tablename.fieldname;\r\/\/ Prefix the every tablename with DB_PREFIX\r\\$prefix = DB_PREFIX;\rPermissions::findJoin(${1:\"{\\$prefix\\}permissions.${2|id,role,permissions,created_at,updated_at|}\"}, \"WHERE ${3|id,role,permissions,created_at,updated_at|} = 1\")\r\t->${4|leftJoin,rightJoin,innerJoin,fullJoin|}(\"{\\$prefix\\}tablename\", \"{\\$prefix\\}permissions.${6|id,role,permissions,created_at,updated_at|} = {\\$prefix\\}tablename.field\")\r\t->join();"
+    },
+    "Permissions fields": {
+        "scope": "php",
+        "prefix": "permissions.",
+        "body": "\". DB_PREFIX .\"permissions.${1|id,role,permissions,created_at,updated_at|}"
     }
 }
