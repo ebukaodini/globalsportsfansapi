@@ -2,19 +2,17 @@
 namespace Controllers;
 use Library\Http\Request;
 
-class User
+class Member
 {
 
-   public static function index(Request $req)
+   public static function dashboard(Request $req)
    {
-      // return all resources
+      success("Hello, Goodbye");
    }
 
-   // create a new user
    public static function create(Request $req)
    {
-      // $firstname = 
-      exit(json_encode($req->body));
+      // create a resource
    }
 
    public static function read(Request $req)

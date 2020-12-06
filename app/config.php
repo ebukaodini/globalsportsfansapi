@@ -16,9 +16,11 @@ define('STORAGE_PATH', 'storage/public/');
 define('STORAGE_DIR', APP_BASEDIR . STORAGE_PATH);
 
 // ERROR LOG
+define('LOG_ERROR', true);
 define('LOG_FILE', APP_BASEDIR . 'storage/logs/error.log');
-define('LOG_EMAIL', false);
-define('LOG_ADDRESS', 'postmaster@localhost');
+define('DISPLAY_ERROR', false);
+define('SEND_EMAIL_LOG', false);
+define('SEND_EMAIL_LOG_ADDRESS', 'postmaster@localhost');
 
 // AUTHENTICATION
 define('AUTH_LIFETIME', 60); // Minutes
@@ -61,3 +63,5 @@ define("TIMEZONE", "UTC");
 // CUSTOM
 // define your custom configurations...
 // define('CONFIG', 'VALUE');
+
+define('ORG_EMAIL', 'info@initframework.com');

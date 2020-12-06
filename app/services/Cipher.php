@@ -61,8 +61,7 @@ class Cipher
    public static function hashPassword(string $password)
    {
       $options = [
-         'cost' => 10,
-         'salt' => openssl_random_pseudo_bytes(22),
+         'cost' => 10
       ];
    
       $password =  password_hash($password, PASSWORD_BCRYPT, $options);

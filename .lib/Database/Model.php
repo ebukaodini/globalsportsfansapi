@@ -278,7 +278,7 @@ class Model extends Database
     * @param string $fields is a string of fields delimited by commas(,)
     * @return array $response is an associative array: flag - a boolean to indicate if data was read; data - an associative array of the selected records OR the error message
     */
-   public static function findAll(string $fields = "*", string $condition = "WHERE 1") : array
+   public static function findAll(string $fields = "*", string $condition = "WHERE 1")
    {
       self::instance();
       try {
@@ -293,7 +293,7 @@ class Model extends Database
 
          $data = $stmt->fetchAll();
 
-         return $data;
+         return $data ?: false;
          
       }
       catch(PDOException $ex) {
@@ -307,7 +307,7 @@ class Model extends Database
     * @param string $fields is a string of fields delimited by commas(,)
     * @return array $response is an associative array: flag - a boolean to indicate if data was read; data - an associative array of the selected records OR the error message
     */
-   public static function findOne(string $fields = "*", string $condition = "WHERE 1") : array
+   public static function findOne(string $fields = "*", string $condition = "WHERE 1")
    {
       self::instance();
       try {
@@ -320,9 +320,9 @@ class Model extends Database
    
          $stmt->setFetchMode(PDO::FETCH_ASSOC);
 
-         $data = $stmt->fetchAll();
+         $data = $stmt->fetch();
 
-         return $data[0];
+         return $data ?: false;
          
       }
       catch(PDOException $ex) {

@@ -1,0 +1,110 @@
+[Sat 05-12-2020 08:45:45 AM UTC] [8] Undefined variable: password
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 23
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 140
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 335
+[Sat 05-12-2020 09:12:20 AM UTC] [8] Undefined offset: 0
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 23
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 140
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 335
+[Sat 05-12-2020 10:40:37 AM UTC] [8192] password_hash(): Use of the 'salt' option to password_hash is deprecated
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\services\Cipher.php on line 68
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\controllers\User.php on line 38
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 23
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 140
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 335
+[Sat 05-12-2020 12:28:41 PM UTC] [1024] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it.
+
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Database\Database.php on line 29
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Database\Model.php on line 25
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Database\Model.php on line 250
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\controllers\User.php on line 41
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 23
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 140
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 335
+[Sat 05-12-2020 02:08:14 PM UTC] [8] Undefined offset: 52
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\controllers\User.php on line 21
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 23
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 140
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 335
+[Sat 05-12-2020 02:08:19 PM UTC] [8] Undefined offset: 52
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\controllers\User.php on line 21
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 23
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 140
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 335
+[Sat 05-12-2020 03:26:43 PM UTC] [8] Undefined offset: 0
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\controllers\User.php on line 75
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 27
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 140
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 335
+[Sat 05-12-2020 03:32:33 PM UTC] [8] Undefined index: email
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 27
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 140
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 335
+[Sat 05-12-2020 03:32:54 PM UTC] [8] Undefined index: email
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 27
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 140
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 335
+[Sat 05-12-2020 03:33:18 PM UTC] [8] Array to string conversion
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 27
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 140
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 335
+[Sat 05-12-2020 03:39:43 PM UTC] [8] Undefined index: email
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 27
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 140
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 335
+[Sun 06-12-2020 04:32:10 AM UTC] [8] Undefined property: stdClass::$role
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 35
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 140
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 335
+[Sun 06-12-2020 04:44:13 AM UTC] [2] in_array() expects parameter 2 to be array, string given
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\services\User.php on line 27
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\middlewares\Guard.php on line 21
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 35
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 140
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 335
+[Sun 06-12-2020 05:42:41 AM UTC] [1024] Error: mail not sent.
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\services\Mail.php on line 72
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\controllers\Auth.php on line 121
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 42
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 140
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 335
+[Sun 06-12-2020 05:57:16 AM UTC] [1024] Error: mail not sent.
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\services\Mail.php on line 72
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\controllers\Auth.php on line 121
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 42
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 140
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 335
+[Sun 06-12-2020 05:57:49 AM UTC] [1024] Error: mail not sent.
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\services\Mail.php on line 72
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\controllers\Auth.php on line 121
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 42
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 140
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 335
+[Sun 06-12-2020 05:59:33 AM UTC] [8] Array to string conversion
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\controllers\Auth.php on line 121
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 42
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 140
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 335
+[Sun 06-12-2020 05:59:33 AM UTC] [8] Array to string conversion
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\controllers\Auth.php on line 121
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 42
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 140
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 335
+[Sun 06-12-2020 05:59:33 AM UTC] [1024] Error: mail not sent (Array -> Array).
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\services\Mail.php on line 72
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\controllers\Auth.php on line 121
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 42
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 140
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 335
+[Sun 06-12-2020 06:01:07 AM UTC] [1024] Error: mail not sent (info@initframework.com -> ebukaodini@gmail.com).
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\services\Mail.php on line 72
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\controllers\Auth.php on line 121
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 42
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 140
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 335
+[Sun 06-12-2020 06:13:21 AM UTC] [1024] Error: mail not sent. (info@initframework.com -> ebukaodini@gmail.com)
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\services\Mail.php on line 72
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\controllers\Auth.php on line 121
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 42
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 140
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 335

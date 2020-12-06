@@ -356,14 +356,14 @@
     "JWT encode": {
         "scope": "php",
         "prefix": "JWT::encode",
-        "body": "JWT::encode(${1:payload}, ${2:key}, ${3|HS256,HS384,HS512,RS256|}, ${4:keyId}, ${4:head})$0"
+        "body": "JWT::encode(${1:payload}, ${2:key}, ${3|HS256,HS384,HS512,RS256|}, ${4:keyId}, ${5:head})$0"
     },
-    "Upload Minsize": {
+    "JWT decode": {
         "scope": "php",
         "prefix": "JWT::decode",
         "body": "JWT::decode(${1:token}, ${2:key}, [${3|HS256,HS384,HS512,RS256|}])$0"
     },
-    "Upload Sign": {
+    "JWT sign": {
         "scope": "php",
         "prefix": "JWT::sign",
         "body": "JWT::sign(${1:msg}, ${2:key}, [${3|HS256,HS384,HS512,RS256|}])$0"
@@ -385,13 +385,13 @@
     },
     "Mail Send": {
         "scope": "php",
-        "prefix": "send",
-        "body": "send('${1:from}', '${2:to}', '${3:subject}', '${4:reply}');"
+        "prefix": "->send",
+        "body": "->send('${1:from}', '${2:to}', '${3:subject}', '${4:reply}');"
     },
     "Mail Send Multiple": {
         "scope": "php",
-        "prefix": "sendMultiple",
-        "body": "sendMultiple('${1:from}', '${2:to}', '${3:subject}', '${4:reply}');"
+        "prefix": "->sendMultiple",
+        "body": "->sendMultiple('${1:from}', '${2:to}', '${3:subject}', '${4:reply}');"
     },
     "Cipher Hash": {
         "scope": "php",
@@ -421,12 +421,12 @@
     "Cipher Hash Password": {
         "scope": "php",
         "prefix": "Cipher::hashPassword",
-        "body": "Cipher::hashPassword('${1:length}');"
+        "body": "Cipher::hashPassword('${1:password}');"
     },
-    "Cipher Verify PAssword": {
+    "Cipher Verify Password": {
         "scope": "php",
         "prefix": "Cipher::verifyPassword",
-        "body": "Cipher::verifyPassword('${1:password}', '${1:hash}');"
+        "body": "Cipher::verifyPassword('${1:password}', '${2:hash}');"
     },
     "Cipher Encrypt AES": {
         "scope": "php",
@@ -566,47 +566,47 @@
     "Users create": {
         "scope": "php",
         "prefix": "Users::create",
-        "body": "Users::create([\r\t\"id\" => $1,\r\t\"telephone\" => $2,\r\t\"email\" => $3,\r\t\"password\" => $4,\r\t\"token\" => $5,\r\t\"role\" => $6,\r\t\"permissions\" => $7,\r\t\"firstname\" => $8,\r\t\"lastname\" => $9,\r\t\"middlename\" => $10,\r\t\"residential_address\" => $11,\r\t\"occupation\" => $12,\r\t\"profile_picture\" => $13,\r\t\"mou\" => $14,\r\t\"nextofkin_name\" => $15,\r\t\"nextofkin_telephone\" => $16,\r\t\"nextofkin_residential_address\" => $17,\r\t\"accountnumber\" => $18,\r\t\"accountname\" => $19,\r\t\"bankname\" => $20,\r\t\"favorite_sport\" => $21,\r\t\"favorite_team\" => $22,\r\t\"member_id\" => $23,\r\t\"verification_status\" => $24,\r\t\"created_at\" => $25,\r\t\"updated_at\" => $26\r]);"
+        "body": "Users::create([\r\t\"id\" => $1,\r\t\"telephone\" => $2,\r\t\"email\" => $3,\r\t\"password\" => $4,\r\t\"token\" => $5,\r\t\"role\" => $6,\r\t\"permissions\" => $7,\r\t\"firstname\" => $8,\r\t\"lastname\" => $9,\r\t\"middlename\" => $10,\r\t\"residential_address\" => $11,\r\t\"occupation\" => $12,\r\t\"profile_picture\" => $13,\r\t\"mou\" => $14,\r\t\"nextofkin_name\" => $15,\r\t\"nextofkin_telephone\" => $16,\r\t\"nextofkin_residential_address\" => $17,\r\t\"accountnumber\" => $18,\r\t\"accountname\" => $19,\r\t\"bankname\" => $20,\r\t\"favorite_sport\" => $21,\r\t\"favorite_team\" => $22,\r\t\"referredby\" => $23,\r\t\"member_id\" => $24,\r\t\"verification_status\" => $25,\r\t\"created_at\" => $26,\r\t\"updated_at\" => $27\r]);"
     },
     "Users create many": {
         "scope": "php",
         "prefix": "Users::createMany",
-        "body": "Users::createMany([\r\t\"id\" => $1,\r\t\"telephone\" => $2,\r\t\"email\" => $3,\r\t\"password\" => $4,\r\t\"token\" => $5,\r\t\"role\" => $6,\r\t\"permissions\" => $7,\r\t\"firstname\" => $8,\r\t\"lastname\" => $9,\r\t\"middlename\" => $10,\r\t\"residential_address\" => $11,\r\t\"occupation\" => $12,\r\t\"profile_picture\" => $13,\r\t\"mou\" => $14,\r\t\"nextofkin_name\" => $15,\r\t\"nextofkin_telephone\" => $16,\r\t\"nextofkin_residential_address\" => $17,\r\t\"accountnumber\" => $18,\r\t\"accountname\" => $19,\r\t\"bankname\" => $20,\r\t\"favorite_sport\" => $21,\r\t\"favorite_team\" => $22,\r\t\"member_id\" => $23,\r\t\"verification_status\" => $24,\r\t\"created_at\" => $25,\r\t\"updated_at\" => $26\r],\r${27:[]}\r);"
+        "body": "Users::createMany([\r\t\"id\" => $1,\r\t\"telephone\" => $2,\r\t\"email\" => $3,\r\t\"password\" => $4,\r\t\"token\" => $5,\r\t\"role\" => $6,\r\t\"permissions\" => $7,\r\t\"firstname\" => $8,\r\t\"lastname\" => $9,\r\t\"middlename\" => $10,\r\t\"residential_address\" => $11,\r\t\"occupation\" => $12,\r\t\"profile_picture\" => $13,\r\t\"mou\" => $14,\r\t\"nextofkin_name\" => $15,\r\t\"nextofkin_telephone\" => $16,\r\t\"nextofkin_residential_address\" => $17,\r\t\"accountnumber\" => $18,\r\t\"accountname\" => $19,\r\t\"bankname\" => $20,\r\t\"favorite_sport\" => $21,\r\t\"favorite_team\" => $22,\r\t\"referredby\" => $23,\r\t\"member_id\" => $24,\r\t\"verification_status\" => $25,\r\t\"created_at\" => $26,\r\t\"updated_at\" => $27\r],\r${28:[]}\r);"
     },
     "Users update": {
         "scope": "php",
         "prefix": "Users::update",
-        "body": "Users::update([\r\t\"id\" => $1,\r\t\"telephone\" => $2,\r\t\"email\" => $3,\r\t\"password\" => $4,\r\t\"token\" => $5,\r\t\"role\" => $6,\r\t\"permissions\" => $7,\r\t\"firstname\" => $8,\r\t\"lastname\" => $9,\r\t\"middlename\" => $10,\r\t\"residential_address\" => $11,\r\t\"occupation\" => $12,\r\t\"profile_picture\" => $13,\r\t\"mou\" => $14,\r\t\"nextofkin_name\" => $15,\r\t\"nextofkin_telephone\" => $16,\r\t\"nextofkin_residential_address\" => $17,\r\t\"accountnumber\" => $18,\r\t\"accountname\" => $19,\r\t\"bankname\" => $20,\r\t\"favorite_sport\" => $21,\r\t\"favorite_team\" => $22,\r\t\"member_id\" => $23,\r\t\"verification_status\" => $24,\r\t\"created_at\" => $25,\r\t\"updated_at\" => $26\r], \"WHERE ${27|id,telephone,email,password,token,role,permissions,firstname,lastname,middlename,residential_address,occupation,profile_picture,mou,nextofkin_name,nextofkin_telephone,nextofkin_residential_address,accountnumber,accountname,bankname,favorite_sport,favorite_team,member_id,verification_status,created_at,updated_at|} = 1\");"
+        "body": "Users::update([\r\t\"id\" => $1,\r\t\"telephone\" => $2,\r\t\"email\" => $3,\r\t\"password\" => $4,\r\t\"token\" => $5,\r\t\"role\" => $6,\r\t\"permissions\" => $7,\r\t\"firstname\" => $8,\r\t\"lastname\" => $9,\r\t\"middlename\" => $10,\r\t\"residential_address\" => $11,\r\t\"occupation\" => $12,\r\t\"profile_picture\" => $13,\r\t\"mou\" => $14,\r\t\"nextofkin_name\" => $15,\r\t\"nextofkin_telephone\" => $16,\r\t\"nextofkin_residential_address\" => $17,\r\t\"accountnumber\" => $18,\r\t\"accountname\" => $19,\r\t\"bankname\" => $20,\r\t\"favorite_sport\" => $21,\r\t\"favorite_team\" => $22,\r\t\"referredby\" => $23,\r\t\"member_id\" => $24,\r\t\"verification_status\" => $25,\r\t\"created_at\" => $26,\r\t\"updated_at\" => $27\r], \"WHERE ${28|id,telephone,email,password,token,role,permissions,firstname,lastname,middlename,residential_address,occupation,profile_picture,mou,nextofkin_name,nextofkin_telephone,nextofkin_residential_address,accountnumber,accountname,bankname,favorite_sport,favorite_team,referredby,member_id,verification_status,created_at,updated_at|} = 1\");"
     },
     "Users delete": {
         "scope": "php",
         "prefix": "Users::delete",
-        "body": "Users::delete(\"WHERE ${1|id,telephone,email,password,token,role,permissions,firstname,lastname,middlename,residential_address,occupation,profile_picture,mou,nextofkin_name,nextofkin_telephone,nextofkin_residential_address,accountnumber,accountname,bankname,favorite_sport,favorite_team,member_id,verification_status,created_at,updated_at|} = 1\");"
+        "body": "Users::delete(\"WHERE ${1|id,telephone,email,password,token,role,permissions,firstname,lastname,middlename,residential_address,occupation,profile_picture,mou,nextofkin_name,nextofkin_telephone,nextofkin_residential_address,accountnumber,accountname,bankname,favorite_sport,favorite_team,referredby,member_id,verification_status,created_at,updated_at|} = 1\");"
     },
     "Users exist": {
         "scope": "php",
         "prefix": "Users::exist",
-        "body": "Users::exist(\"WHERE ${1|id,telephone,email,password,token,role,permissions,firstname,lastname,middlename,residential_address,occupation,profile_picture,mou,nextofkin_name,nextofkin_telephone,nextofkin_residential_address,accountnumber,accountname,bankname,favorite_sport,favorite_team,member_id,verification_status,created_at,updated_at|} = 1\");"
+        "body": "Users::exist(\"WHERE ${1|id,telephone,email,password,token,role,permissions,firstname,lastname,middlename,residential_address,occupation,profile_picture,mou,nextofkin_name,nextofkin_telephone,nextofkin_residential_address,accountnumber,accountname,bankname,favorite_sport,favorite_team,referredby,member_id,verification_status,created_at,updated_at|} = 1\");"
     },
     "Users findAll": {
         "scope": "php",
         "prefix": "Users::findAll",
-        "body": "Users::findAll(\"${1:id, telephone, email, password, token, role, permissions, firstname, lastname, middlename, residential_address, occupation, profile_picture, mou, nextofkin_name, nextofkin_telephone, nextofkin_residential_address, accountnumber, accountname, bankname, favorite_sport, favorite_team, member_id, verification_status, created_at, updated_at}\", \"WHERE ${2|id,telephone,email,password,token,role,permissions,firstname,lastname,middlename,residential_address,occupation,profile_picture,mou,nextofkin_name,nextofkin_telephone,nextofkin_residential_address,accountnumber,accountname,bankname,favorite_sport,favorite_team,member_id,verification_status,created_at,updated_at|} = 1\");"
+        "body": "Users::findAll(\"${1:id, telephone, email, password, token, role, permissions, firstname, lastname, middlename, residential_address, occupation, profile_picture, mou, nextofkin_name, nextofkin_telephone, nextofkin_residential_address, accountnumber, accountname, bankname, favorite_sport, favorite_team, referredby, member_id, verification_status, created_at, updated_at}\", \"WHERE ${2|id,telephone,email,password,token,role,permissions,firstname,lastname,middlename,residential_address,occupation,profile_picture,mou,nextofkin_name,nextofkin_telephone,nextofkin_residential_address,accountnumber,accountname,bankname,favorite_sport,favorite_team,referredby,member_id,verification_status,created_at,updated_at|} = 1\");"
     },
     "Users findOne": {
         "scope": "php",
         "prefix": "Users::findOne",
-        "body": "Users::findOne(\"${1:id, telephone, email, password, token, role, permissions, firstname, lastname, middlename, residential_address, occupation, profile_picture, mou, nextofkin_name, nextofkin_telephone, nextofkin_residential_address, accountnumber, accountname, bankname, favorite_sport, favorite_team, member_id, verification_status, created_at, updated_at}\", \"WHERE ${2|id,telephone,email,password,token,role,permissions,firstname,lastname,middlename,residential_address,occupation,profile_picture,mou,nextofkin_name,nextofkin_telephone,nextofkin_residential_address,accountnumber,accountname,bankname,favorite_sport,favorite_team,member_id,verification_status,created_at,updated_at|} = 1\");"
+        "body": "Users::findOne(\"${1:id, telephone, email, password, token, role, permissions, firstname, lastname, middlename, residential_address, occupation, profile_picture, mou, nextofkin_name, nextofkin_telephone, nextofkin_residential_address, accountnumber, accountname, bankname, favorite_sport, favorite_team, referredby, member_id, verification_status, created_at, updated_at}\", \"WHERE ${2|id,telephone,email,password,token,role,permissions,firstname,lastname,middlename,residential_address,occupation,profile_picture,mou,nextofkin_name,nextofkin_telephone,nextofkin_residential_address,accountnumber,accountname,bankname,favorite_sport,favorite_team,referredby,member_id,verification_status,created_at,updated_at|} = 1\");"
     },
     "Users findJoin": {
         "scope": "php",
         "prefix": "Users::findJoin",
-        "body": "\/\/ Note: When joining, specify fieldnames as tablename.fieldname;\r\/\/ Prefix the every tablename with DB_PREFIX\r\\$prefix = DB_PREFIX;\rUsers::findJoin(${1:\"{\\$prefix\\}users.${2|id,telephone,email,password,token,role,permissions,firstname,lastname,middlename,residential_address,occupation,profile_picture,mou,nextofkin_name,nextofkin_telephone,nextofkin_residential_address,accountnumber,accountname,bankname,favorite_sport,favorite_team,member_id,verification_status,created_at,updated_at|}\"}, \"WHERE ${3|id,telephone,email,password,token,role,permissions,firstname,lastname,middlename,residential_address,occupation,profile_picture,mou,nextofkin_name,nextofkin_telephone,nextofkin_residential_address,accountnumber,accountname,bankname,favorite_sport,favorite_team,member_id,verification_status,created_at,updated_at|} = 1\")\r\t->${4|leftJoin,rightJoin,innerJoin,fullJoin|}(\"{\\$prefix\\}tablename\", \"{\\$prefix\\}users.${6|id,telephone,email,password,token,role,permissions,firstname,lastname,middlename,residential_address,occupation,profile_picture,mou,nextofkin_name,nextofkin_telephone,nextofkin_residential_address,accountnumber,accountname,bankname,favorite_sport,favorite_team,member_id,verification_status,created_at,updated_at|} = {\\$prefix\\}tablename.field\")\r\t->join();"
+        "body": "\/\/ Note: When joining, specify fieldnames as tablename.fieldname;\r\/\/ Prefix the every tablename with DB_PREFIX\r\\$prefix = DB_PREFIX;\rUsers::findJoin(${1:\"{\\$prefix\\}users.${2|id,telephone,email,password,token,role,permissions,firstname,lastname,middlename,residential_address,occupation,profile_picture,mou,nextofkin_name,nextofkin_telephone,nextofkin_residential_address,accountnumber,accountname,bankname,favorite_sport,favorite_team,referredby,member_id,verification_status,created_at,updated_at|}\"}, \"WHERE ${3|id,telephone,email,password,token,role,permissions,firstname,lastname,middlename,residential_address,occupation,profile_picture,mou,nextofkin_name,nextofkin_telephone,nextofkin_residential_address,accountnumber,accountname,bankname,favorite_sport,favorite_team,referredby,member_id,verification_status,created_at,updated_at|} = 1\")\r\t->${4|leftJoin,rightJoin,innerJoin,fullJoin|}(\"{\\$prefix\\}tablename\", \"{\\$prefix\\}users.${6|id,telephone,email,password,token,role,permissions,firstname,lastname,middlename,residential_address,occupation,profile_picture,mou,nextofkin_name,nextofkin_telephone,nextofkin_residential_address,accountnumber,accountname,bankname,favorite_sport,favorite_team,referredby,member_id,verification_status,created_at,updated_at|} = {\\$prefix\\}tablename.field\")\r\t->join();"
     },
     "Users fields": {
         "scope": "php",
         "prefix": "users.",
-        "body": "\". DB_PREFIX .\"users.${1|id,telephone,email,password,token,role,permissions,firstname,lastname,middlename,residential_address,occupation,profile_picture,mou,nextofkin_name,nextofkin_telephone,nextofkin_residential_address,accountnumber,accountname,bankname,favorite_sport,favorite_team,member_id,verification_status,created_at,updated_at|}"
+        "body": "\". DB_PREFIX .\"users.${1|id,telephone,email,password,token,role,permissions,firstname,lastname,middlename,residential_address,occupation,profile_picture,mou,nextofkin_name,nextofkin_telephone,nextofkin_residential_address,accountnumber,accountname,bankname,favorite_sport,favorite_team,referredby,member_id,verification_status,created_at,updated_at|}"
     },
     "Slots create": {
         "scope": "php",

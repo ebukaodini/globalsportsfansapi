@@ -4,7 +4,7 @@ namespace Services;
 class User
 {
    public static $isAuthenticated = false;
-   public static $username = '';
+   public static $email = '';
    public static $role = 'Guest';
    public static $privileges = [];
 
@@ -12,7 +12,7 @@ class User
    {
       return json_encode([
          "auth"=>self::$isAuthenticated,
-         "username"=>self::$username,
+         "email"=>self::$email,
          "role"=>self::$role,
       ]);
    }
@@ -20,6 +20,24 @@ class User
    public static function has(string $privilege)
    {
       return in_array($privilege, self::$privileges);
+   }
+
+   public static function hasAll(array $privileges)
+   {
+      $count = 0;
+      foreach ($privileges as $privilege) {
+         if (in_array($privilege, self::$privileges)) $count++;
+      }
+      return $count == count($privileges);
+   }
+
+   public static function hasAny(array $privileges)
+   {
+      $count = 0;
+      foreach ($privileges as $privilege) {
+         if (in_array($privilege, self::$privileges)) $count++;
+      }
+      return $count > 0;
    }
 
    public static function is(string $role)

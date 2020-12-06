@@ -65,7 +65,8 @@ class Schema
       {
          try {
             if (!empty($table)) {
-               $body = $schema(new Schema());
+               $schema(new Schema());
+               $body = self::$schema;
 
                // Create query for table
                $query = []; $count = 0;
@@ -78,7 +79,7 @@ class Schema
                   $query[] = $key;
                }
                $sqlMode = $strict == false ? "SET SQL_MODE = ' '; " : "SET SQL_MODE = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION'; ";
-               $sql = $sqlMode . "ALTER TABLE IF EXISTS " . DB_PREFIX . $table . " " . implode(", ", $query) . " ";
+               $sql = $sqlMode . "ALTER TABLE " . DB_PREFIX . $table . " " . implode(", ", $query) . " ";
                // ALTER TABLE `lesson_tbl` CHANGE `lesson` `lesson` VARCHAR(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL, CHANGE `description` `description` VARCHAR(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'No Description';
 
                // $mdl = new Model();
@@ -142,6 +143,15 @@ class Schema
       {
          // field to be altered
          $this->change = "CHANGE $field ";
+         return $this;
+      }
+
+      // when altering tables
+      public function add()
+      {
+         $this->change = "ADD ";
+         // ALTER TABLE `init_a_b_c` ADD `stat` INT NOT NULL AFTER `status`;
+         // SET SQL_MODE = ' '; ALTER TABLE IF EXISTS users ADD referredby VARCHAR(10)
          return $this;
       }
 
@@ -672,6 +682,18 @@ class Schema
    
    // Attribute Section
    
+      // After
+      // when altering tables
+      public function after(string $field)
+      {
+         // restrict from being the first attribute
+         if ($this->open == false){
+            return $this;
+         }
+         $this->fields[$this->field_index][] = "AFTER $field";
+         return $this;
+      }
+
       // Default
       public function default(string $default = "NONE")
       {

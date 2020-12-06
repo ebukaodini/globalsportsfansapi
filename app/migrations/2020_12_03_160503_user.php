@@ -36,7 +36,7 @@ class migration_2020_12_03_160503_user {
          $schema->varchar('favorite_team', 50)->nullable();
          // meta data
          $schema->varchar('member_id', 10)->unique();
-         $schema->varchar('verification_status', 10)->default('unverified'); // verified
+         $schema->varchar('verification_status', 10)->default('unverified'); // unverified, verified/active, blocked, closed
          $schema->timestamp('created_at');
          $schema->datetime('updated_at')->attribute("ON UPDATE CURRENT_TIMESTAMP");
       }, false, 'Users');

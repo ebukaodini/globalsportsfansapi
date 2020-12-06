@@ -2,9 +2,13 @@
 
 namespace App;
 
-use Controllers\User;
+use Controllers\Member;
+use Controllers\Auth;
 use Library\Http\Request;
 use Library\Http\Router;
+use Middlewares\JWT;
+use Middlewares\Guard;
+use Services\User;
 
 // autoloader
 include_once 'vendor/autoload.php';
@@ -20,5 +24,29 @@ Router::get('/', function () {
 })->name('home');
 
 Router::post('/api/register', function(Request $req) {
-   User::create($req);
+   Auth::register($req);
 })->name('register');
+
+Router::post('/api/login', function(Request $req) {
+   Auth::login($req);
+})->name('login');
+
+Router::post('/api/sendtoken', function(Request $req) {
+   JWT::auth($req);
+   Auth::sendToken($req);
+});
+
+Router::post('/api/verifytoken', function(Request $req) {
+   JWT::auth($req);
+   Auth::verifyToken($req);
+});
+
+// Member
+
+Router::get('/api/dashboard', function(Request $req) {
+   JWT::auth($req);
+   Guard::has('dashboard');
+   Member::dashboard($req);
+});
+
+

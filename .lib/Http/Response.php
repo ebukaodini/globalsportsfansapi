@@ -139,7 +139,7 @@ function error($message = "error", array $data = null, int $code = 400)
    __validateCode($code);
    header("Content-Type: application/json; charset=UTF-8", true, $code);
    exit(json_encode([
-      "status" => true,
+      "status" => false,
       "message" => $message,
       "data" => $data
    ]));
