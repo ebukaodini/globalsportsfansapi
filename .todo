@@ -26,9 +26,9 @@ Member WorkFlow:
    ✔ user verifies account (optional) @done(20-12-06 08:35)
    ✔ provide slots for user to select from @done(20-12-06 08:35)
    ☐ new user registers with a selected slot
-   ☐ logged in user selects slot
+   ✔ logged in user selects slot @done(20-12-07 07:04)
       ✔ generate invoice for the user @done(20-12-07 04:39)
-      ☐ invoice is sent to the user
+      ✔ invoice is sent to the user @done(20-12-07 07:04)
    ☐ user completes profile
    ☐ user makes payment and upload payment evidence
    ☐ payment is verified
