@@ -9,7 +9,7 @@ class Model extends Database
 {
    private static $conn;
    private static $affected;
-   private static $table;
+   public static $table;
 
    private static $joinFields;
    private static $joinCondition;

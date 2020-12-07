@@ -16,6 +16,11 @@ class Guard
       if (!User::is($role)) error('Access denied', null, 403);
    }
 
+   public static function isAny(array $roles)
+   {
+      if (!User::isAny($roles)) error('Access denied', null, 403);
+   }
+
    public static function hasAll(array $privileges)
    {
       if (!User::hasAll($privileges)) error('Access denied', null, 403);

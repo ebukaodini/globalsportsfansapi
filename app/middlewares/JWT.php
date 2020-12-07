@@ -4,6 +4,7 @@ use Library\Http\Request;
 // use Library\Http\Router;
 use Services\User;
 use Services\JWT as JWTService;
+use Services\Cipher;
 
 class JWT
 {
@@ -15,19 +16,21 @@ class JWT
          error('Please login', null, 401);
       }
 
-      try {
-         $payload = JWTService::decode($token, APP_KEY, ['HS256', 'HS384', 'HS512', 'RS256']);
+      // try {
          
          // retrieve credentials
+         $ciphertext = JWTService::decode($token, APP_KEY, ['HS256', 'HS384', 'HS512', 'RS256']);         
+         $payload = json_decode(Cipher::decryptAES(APP_KEY, $ciphertext));
+
+         // set the users details
          User::$isAuthenticated = true;
+         User::$id = $payload->id;
          User::$email = $payload->email;
          User::$role = $payload->role;
          User::$privileges = explode(",", $payload->permissions);
-
-         // set the users details
-
-      } catch (\Exception $e) {
-         error('Please login', null, 401);
-      }
+         
+      // } catch (\Exception $e) {
+      //    error('Please login', null, 401);
+      // }
    }
 }

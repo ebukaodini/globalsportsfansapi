@@ -82,11 +82,14 @@ class Auth
          if (Cipher::verifyPassword($password, $user['password']) == true) {
 
             // generate token payload
-            $payload = [
-               'email' => $user['email'],
-               'role' => $user['role'],
-               'permissions' => $user['permissions']
-            ];
+            $payload = Cipher::encryptAES(APP_KEY, json_encode(
+               [
+                  'id' => $user['id'],
+                  'email' => $user['email'],
+                  'role' => $user['role'],
+                  'permissions' => $user['permissions']
+               ]
+            ));
 
             // create a jwt token for the user
             $token = JWT::encode($payload, APP_KEY, 'HS256');

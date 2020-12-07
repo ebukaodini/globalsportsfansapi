@@ -8,6 +8,8 @@ use Library\Http\Request;
 use Library\Http\Router;
 use Middlewares\JWT;
 use Middlewares\Guard;
+use Models\OrganisationInfo;
+use Models\Slots;
 use Services\User;
 
 // autoloader
@@ -41,7 +43,20 @@ Router::post('/api/verifytoken', function(Request $req) {
    Auth::verifyToken($req);
 });
 
-// Member
+Router::get('/organisationinfo', function(Request $req) {
+   success('success', OrganisationInfo::findOne("about_us, disclaimer, how_it_works, terms_and_condition, membership, rewards_and_benefits, tournaments_and_leagues, contact_telephone, contact_address, contact_email, faq") ?: []);
+});
+
+Router::get('/slots', function(Request $req) {
+   $slots = Slots::findAll("id, program, no_slots, cost, benefits");
+   if ($slots == false) error("No slots", null, 200);
+   else success('success', $slots);
+});
+
+// Admin
+
+
+// Members
 
 Router::get('/api/dashboard', function(Request $req) {
    JWT::auth($req);
@@ -49,4 +64,8 @@ Router::get('/api/dashboard', function(Request $req) {
    Member::dashboard($req);
 });
 
-
+Router::post('/api/choose-slot', function(Request $req) {
+   JWT::auth($req);
+   Guard::isAny(['member','admin']);
+   Member::chooseSlot($req);
+});

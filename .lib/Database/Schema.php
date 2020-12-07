@@ -82,7 +82,7 @@ class Schema
                $sql = $sqlMode . "ALTER TABLE " . DB_PREFIX . $table . " " . implode(", ", $query) . " ";
                // ALTER TABLE `lesson_tbl` CHANGE `lesson` `lesson` VARCHAR(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL, CHANGE `description` `description` VARCHAR(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'No Description';
 
-               // $mdl = new Model();
+               // exit($sql);
                Model::query($sql);
                
                // clear properties
@@ -114,8 +114,8 @@ class Schema
          try {
             if (!empty($table)) {
               
-               $mdl = new Model($table);
-               $mdl->createMany(...$inputs);
+               Model::$table = $table;
+               Model::createMany(...$inputs);
             
             }
          } catch(\Throwable $ex) {
@@ -150,8 +150,19 @@ class Schema
       public function add()
       {
          $this->change = "ADD ";
-         // ALTER TABLE `init_a_b_c` ADD `stat` INT NOT NULL AFTER `status`;
-         // SET SQL_MODE = ' '; ALTER TABLE IF EXISTS users ADD referredby VARCHAR(10)
+         return $this;
+      }
+
+      // when altering tables
+      public function dropfield(string $field)
+      {
+         // increment the field count
+         $this->field_index++;
+         // field to be dropped
+         $this->fields[$this->field_index][] = "DROP $field ";
+         // No nulls
+         $this->nulls[$this->field_index] = true;
+         // this is expected to be a single query operation
          return $this;
       }
 

@@ -108,3 +108,63 @@
 	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 42
 	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 140
 	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 335
+[Mon 07-12-2020 01:34:51 AM UTC] [8] Undefined offset: 1
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\middlewares\JWT.php on line 23
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 68
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 140
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 335
+[Mon 07-12-2020 01:35:51 AM UTC] [8] Undefined offset: 1
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\middlewares\JWT.php on line 23
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 68
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 140
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 335
+[Mon 07-12-2020 01:36:07 AM UTC] [8] Undefined offset: 1
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\middlewares\JWT.php on line 23
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 68
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 140
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 335
+[Mon 07-12-2020 01:36:35 AM UTC] [8] Undefined offset: 1
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\middlewares\JWT.php on line 23
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 68
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 140
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 335
+[Mon 07-12-2020 01:38:59 AM UTC] [8] Undefined offset: 1
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\middlewares\JWT.php on line 23
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 68
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 140
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 335
+[Mon 07-12-2020 01:39:17 AM UTC] [8] Undefined offset: 1
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\middlewares\JWT.php on line 23
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 68
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 140
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 335
+[Mon 07-12-2020 01:40:19 AM UTC] [8] Undefined offset: 1
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\middlewares\JWT.php on line 21
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 68
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 140
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 335
+[Mon 07-12-2020 01:43:20 AM UTC] [2] json_decode() expects parameter 1 to be string, object given
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\middlewares\JWT.php on line 26
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 68
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 140
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 335
+[Mon 07-12-2020 02:48:04 AM UTC] [8] Undefined variable: selectedSlot
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 70
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 140
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 335
+[Mon 07-12-2020 02:56:36 AM UTC] [8] Undefined variable: selectedSlot
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 70
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 140
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 335
+[Mon 07-12-2020 02:56:45 AM UTC] [8] Undefined variable: selectedSlot
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 70
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 140
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 335
+[Mon 07-12-2020 03:38:20 AM UTC] [2] A non-numeric value encountered
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 70
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 140
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 335
+[Mon 07-12-2020 03:38:20 AM UTC] [2] A non-numeric value encountered
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 70
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 140
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 335

@@ -1,20 +1,41 @@
+Global Sports Fans:
+   ✔ Organisation info @done(20-12-06 08:25)
+
 Auth:
-   ☐ Modify Auth Middleware @started(20-12-06 05:06)
-   ☐ Modify Auth Guard @started(20-12-06 05:06)
+   ✔ Modify Auth Middleware @started(20-12-06 05:06) @done(20-12-06 07:34) @lasted(2h28m36s)
+   ✔ Modify Auth Guard @started(20-12-06 05:06) @done(20-12-06 07:34) @lasted(2h28m36s)
    ✔ Modify User @started(20-12-06 05:06) @done(20-12-06 05:08) @lasted(2m53s)
-   Member:
-      ✔ register new user @done(20-12-05 15:51)
-      ✔ register user with referral @started(20-12-05 15:51) @done(20-12-05 15:51) @lasted(47s)
-      ✔ user login @done(20-12-06 04:31)
-   Admin:
-      ☐ register admin
-      ☐ admin login
+   ✔ register new user @done(20-12-05 15:51)
+   ✔ register user with referral @started(20-12-05 15:51) @done(20-12-05 15:51) @lasted(47s)
+   ✔ user login @done(20-12-06 04:31)
+   ✔ Send token @done(20-12-06 08:37)
+   ✔ Verify Token @done(20-12-06 08:37)
 
 Admin:
+   ☐ update organisation info
+   ☐ update slots, costs and benefits
+   ☐ update referral level benefits
    ☐ get all users
    ☐ create admin
    ☐ update user's status
-   ☐ 
 
-Members:
-   ☐ 
+Member WorkFlow:
+
+   ✔ user registers with authentication detail @done(20-12-06 08:35)
+   ✔ user logs in @done(20-12-06 08:35)
+   ✔ user verifies account (optional) @done(20-12-06 08:35)
+   ✔ provide slots for user to select from @done(20-12-06 08:35)
+   ☐ new user registers with a selected slot
+   ☐ logged in user selects slot
+      ✔ generate invoice for the user @done(20-12-07 04:39)
+      ☐ invoice is sent to the user
+   ☐ user completes profile
+   ☐ user makes payment and upload payment evidence
+   ☐ payment is verified
+   ☐ membership id card is generated for the user
+   ☐ user is given a referral code to share to users and invite them in
+   ☐ user monitors downlines
+   ☐ user gets notified by new referrals
+   ☐ user monitors his benefits
+   ☐ user can follow up on favourite team competitions and fixtures
+   
