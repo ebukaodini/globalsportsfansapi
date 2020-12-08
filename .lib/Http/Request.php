@@ -6,13 +6,11 @@ class Request
 {
    public function __construct()
    {
+      // Set Timezone
+      date_default_timezone_set(TIMEZONE);
       if (PHP_SAPI == 'cli') {
-         // Set Timezone
-         date_default_timezone_set(TIMEZONE);
          $this->bootstrapConsole();
       } else {
-         // Set Timezone
-         date_default_timezone_set(TIMEZONE);
          $this->bootstrapApp();
       }
 

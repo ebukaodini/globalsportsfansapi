@@ -177,3 +177,17 @@
 	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 29
 	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 140
 	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 335
+[Tue 08-12-2020 11:38:23 AM UTC] [2] extract() expects parameter 1 to be array, null given
+	>> C:\Users\USER\Desktop\projects\globalsportsfans\app\controllers\Auth.php on line 163
+	>> C:\Users\USER\Desktop\projects\globalsportsfans\index.php on line 83
+	>> C:\Users\USER\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 140
+	>> C:\Users\USER\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 335
+[Tue 08-12-2020 02:34:58 PM UTC] [8] Undefined variable: HTTP_RAW_POST_DATA
+	>> C:\Users\USER\Desktop\projects\globalsportsfans\.lib\Http\Request.php on line 14
+	>> C:\Users\USER\Desktop\projects\globalsportsfans\index.php on line 19
+[Tue 08-12-2020 02:35:10 PM UTC] [8] Undefined variable: HTTP_RAW_POST_DATA
+	>> C:\Users\USER\Desktop\projects\globalsportsfans\.lib\Http\Request.php on line 14
+	>> C:\Users\USER\Desktop\projects\globalsportsfans\index.php on line 19
+[Tue 08-12-2020 02:44:31 PM UTC] [8] Undefined property: Library\Http\Request::$body
+	>> C:\Users\USER\Desktop\projects\globalsportsfans\.lib\Http\Request.php on line 14
+	>> C:\Users\USER\Desktop\projects\globalsportsfans\index.php on line 19

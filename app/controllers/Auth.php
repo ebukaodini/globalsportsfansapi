@@ -27,9 +27,9 @@ class Auth
       // validate password
       Validate::isValidPassword('Password', $password, true, true, true, false, 8);
       // validate the referral code if it is not empty
-      // if (empty($referralcode) == false) {
-      //    Validate::hasExactLength('Referral code', $referralcode, 7);
-      // }
+      if (empty($referralcode) == false) {
+         Validate::hasExactLength('Referral code', $referralcode, 7);
+      }
       // validate slot id if it is sent as well
       if (empty($slot) == false) {
          Validate::isInteger('Slot', $slot);
@@ -63,7 +63,7 @@ class Auth
          "password" => $hpassword,
          "referredby" => $referralcode
       ]) == true) {
-         Member::chooseSlot($req);
+         // Member::chooseSlot($req);
          success('Registeration successful', [
             'slot' => $slot
          ]);
@@ -160,27 +160,65 @@ class Auth
 
    public static function profile(Request $req)
    {
-      extract($req->bio);
+      extract($req->body);
    }
 
    public static function updatePassword(Request $req)
    {
-      extract($req->bio);
+      extract($req->body);
+      $opassword = $opassword ?? '';
+      $npassword = $npassword ?? '';
+      $cpassword = $cpassword ?? '';
+      // exit(json_encode($_POST));
+
+      // Validate the password
+      Validate::isValidPassword('New Password', $npassword, true, true, true, false, 8);
+      if (Validate::$status == false) {
+         error("Password update failed", array_values(Validate::$error));
+      }
+
+      if ($npassword != $cpassword) {
+         error("Password update failed", ['Password and confirm password must be the same']);
+      }
+
+      // verify the old password
+
+      $email = User::$email;
+      
+      // get the password in the database or use ''
+      $dbpassword = Users::findOne("password", "WHERE email = '$email'")['password'] ?: '';
+      
+      // return error if password fails
+      if (Cipher::verifyPassword($opassword, $dbpassword) == false) error("Password update failed", ["Invalid Password"]);
+
+      // hash the password
+      $hpassword = Cipher::hashPassword($npassword);
+
+      // update the user's password
+      $passwordUpdate = Users::update([
+         "password" => $hpassword,
+      ], "WHERE email = '$email'");
+
+      if ($passwordUpdate) {
+         success("Password updated successful");
+      } else {
+         error("Password update failed");
+      }
    }
 
    public static function updateProfilePicture(Request $req)
    {
-      extract($req->bio);
+      extract($req->body);
    }
 
    public static function updateBankDetails(Request $req)
    {
-      extract($req->bio);
+      extract($req->body);
    }
 
    public static function updateBio(Request $req)
    {
-      extract($req->bio);
+      extract($req->body);
    }
 
 }

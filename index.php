@@ -43,35 +43,35 @@ Router::post('/api/verifytoken', function(Request $req) {
    Auth::verifyToken($req);
 });
 
-Router::get('/organisationinfo', function(Request $req) {
+Router::get('/api/organisationinfo', function(Request $req) {
    success('success', OrganisationInfo::findOne("about_us, disclaimer, how_it_works, terms_and_condition, membership, rewards_and_benefits, tournaments_and_leagues, contact_telephone, contact_address, contact_email, faq") ?: []);
 });
 
-Router::get('/slots', function(Request $req) {
+Router::get('/api/slots', function(Request $req) {
    $slots = Slots::findAll("id, program, no_slots, cost, benefits");
    if ($slots == false) error("No slots", null, 200);
    else success('success', $slots);
 });
 
-Router::patch('/api/profile/update-bio', function(Request $req) {
+Router::post('/api/profile/update-bio', function(Request $req) {
    JWT::auth($req);
    Guard::isAny(['member', 'admin']);
    Auth::updateBio($req);
 });
 
-Router::patch('/api/profile/update-bank-details', function(Request $req) {
+Router::post('/api/profile/update-bank-details', function(Request $req) {
    JWT::auth($req);
    Guard::isAny(['member', 'admin']);
    Auth::updateBankDetails($req);
 });
 
-Router::patch('/api/profile/update-password', function(Request $req) {
+Router::post('/api/profile/update-password', function(Request $req) {
    JWT::auth($req);
    Guard::isAny(['member', 'admin']);
    Auth::updatePassword($req);
 });
 
-Router::patch('/api/profile/update-profile-picture', function(Request $req) {
+Router::post('/api/profile/update-profile-picture', function(Request $req) {
    JWT::auth($req);
    Guard::isAny(['member', 'admin']);
    Auth::updateProfilePicture($req);

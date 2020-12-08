@@ -28,7 +28,7 @@ class Member
       $email = User::$email;
       $slotId = $slot ?? '';
 
-      Validate::mustContainNumberOnly('Slot Id', $slotId);
+      Validate::isInteger('Slot Id', $slotId);
       if (Validate::$status == false) {
          error('Invalid slot');
       }
