@@ -104,6 +104,7 @@ class Model extends Database
          }
 
          // execute the query
+         if ($_ENV['show_query'] == true) echo "\n" . $query . "\n";
          $stmt->execute();
 
          self::$affected = $stmt->rowCount();

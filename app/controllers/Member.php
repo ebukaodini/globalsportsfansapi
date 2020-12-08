@@ -89,7 +89,7 @@ class Member
          Users::commit();
 
          // send email to the member to let him/her know sha has an invoice
-         Mail::asText("Good day, An invoice was created for you.")->send(ORG_EMAIL, User::$email, "Payment Invoice", ORG_EMAIL);
+         Mail::asHTML("<h4>Good day,</h4><p>A payment invoice has been created for you.<br>Slot progam: {$slot['program']}</br>Invoice number: $invoicenumber</p>")->send(ORG_EMAIL, User::$email, "Payment Invoice [#$invoicenumber]", ORG_EMAIL);
 
          // send back response
          success('Slot has been created for the user');

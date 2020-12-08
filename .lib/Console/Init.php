@@ -78,17 +78,19 @@ class Init extends Database
          
          case 'run':
             // switch components
-            $componentName = $args[0];
             switch ($component) {
                case 'app':
                   $this->_init_run_app();
                break;
 
                case 'migrations':
+                  $_ENV['show_query'] = isset($args[0]) && $args[0] == "--show-query";
                   $this->_init_run_migrations();
                break;
 
                case 'migration':
+                  $componentName = $args[0];
+                  $_ENV['show_query'] = isset($args[1]) && $args[1] == "--show-query";
                   $this->_init_run_migration(str_replace(".php", "", preg_replace("/ +/", "_", $componentName)));
                break;
                
@@ -254,10 +256,10 @@ creates a new key that you can use for your application
 starts your application
 Example: '$init run app' starts your application
 
->_ $init run migrations
+>_ $init run migrations [--show-query]
 migrates schemas that have not been migrated
 
->_ $init run migration <migration>
+>_ $init run migration <migration> [--show-query]
 migrates a specific migration class if it has not been migrated
 
 >_ $init update snippet <model> <database-table>

@@ -18,6 +18,8 @@ Admin:
    ☐ get all users
    ☐ create admin
    ☐ update user's status
+   ☐ verify user's payment
+   ☐ monitors user's downline
 
 Member WorkFlow:
 
@@ -25,11 +27,11 @@ Member WorkFlow:
    ✔ user logs in @done(20-12-06 08:35)
    ✔ user verifies account (optional) @done(20-12-06 08:35)
    ✔ provide slots for user to select from @done(20-12-06 08:35)
-   ☐ new user registers with a selected slot
+   ✔ new user registers with a selected slot @done(20-12-08 06:47)
    ✔ logged in user selects slot @done(20-12-07 07:04)
       ✔ generate invoice for the user @done(20-12-07 04:39)
       ✔ invoice is sent to the user @done(20-12-07 07:04)
-   ☐ user completes profile
+   ☐ user updates profile @started(20-12-08 06:49)
    ☐ user makes payment and upload payment evidence
    ☐ payment is verified
    ☐ membership id card is generated for the user

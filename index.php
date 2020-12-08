@@ -53,6 +53,36 @@ Router::get('/slots', function(Request $req) {
    else success('success', $slots);
 });
 
+Router::patch('/api/profile/update-bio', function(Request $req) {
+   JWT::auth($req);
+   Guard::isAny(['member', 'admin']);
+   Auth::updateBio($req);
+});
+
+Router::patch('/api/profile/update-bank-details', function(Request $req) {
+   JWT::auth($req);
+   Guard::isAny(['member', 'admin']);
+   Auth::updateBankDetails($req);
+});
+
+Router::patch('/api/profile/update-password', function(Request $req) {
+   JWT::auth($req);
+   Guard::isAny(['member', 'admin']);
+   Auth::updatePassword($req);
+});
+
+Router::patch('/api/profile/update-profile-picture', function(Request $req) {
+   JWT::auth($req);
+   Guard::isAny(['member', 'admin']);
+   Auth::updateProfilePicture($req);
+});
+
+Router::get('/api/profile', function(Request $req) {
+   JWT::auth($req);
+   Guard::isAny(['member', 'admin']);
+   Auth::profile($req);
+});
+
 // Admin
 
 

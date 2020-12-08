@@ -42,7 +42,7 @@ class Schema
                $sqlMode = $strict == false ? "SET SQL_MODE = ' '; " : "SET SQL_MODE = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION'; ";
                $sql = $sqlMode . "CREATE TABLE IF NOT EXISTS " . DB_PREFIX . $table . " ( " . implode(", ", $query) . " ) ENGINE=" . DB_ENGINE . " DEFAULT CHARSET=" . DB_DEFAULT_CHARSET . " COLLATE=" . DB_COLLATION;
 
-               // $mdl = new Model();
+               if ($_ENV['show_query'] == true) echo "\n" . $sql . "\n";
                Model::query($sql);
 
                if (!is_null($model) && !empty($model))
@@ -82,7 +82,7 @@ class Schema
                $sql = $sqlMode . "ALTER TABLE " . DB_PREFIX . $table . " " . implode(", ", $query) . " ";
                // ALTER TABLE `lesson_tbl` CHANGE `lesson` `lesson` VARCHAR(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL, CHANGE `description` `description` VARCHAR(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'No Description';
 
-               // exit($sql);
+               if ($_ENV['show_query'] == true) echo "\n" . $sql . "\n";
                Model::query($sql);
                
                // clear properties
@@ -100,7 +100,7 @@ class Schema
                
                $sql = "DROP TABLE IF EXISTS " . DB_PREFIX . $table;
 
-               // $mdl = new Model();
+               if ($_ENV['show_query'] == true) echo "\n" . $sql . "\n";
                Model::query($sql);
             
             }

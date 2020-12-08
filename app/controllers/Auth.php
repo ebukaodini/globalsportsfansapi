@@ -20,14 +20,19 @@ class Auth
       $password = $password ?? '';
       $cpassword = $cpassword ?? '';
       $referralcode = $referralcode ?? '';
+      $slot = $slot ?? '';
       // validate email
       Validate::isValidEmail('Email', $email);
       Validate::hasMaxLength('Email', $email, 100);
       // validate password
       Validate::isValidPassword('Password', $password, true, true, true, false, 8);
       // validate the referral code if it is not empty
-      if (empty($referralcode) == false) {
-         Validate::hasExactLength('Referral code', $referralcode, 7);
+      // if (empty($referralcode) == false) {
+      //    Validate::hasExactLength('Referral code', $referralcode, 7);
+      // }
+      // validate slot id if it is sent as well
+      if (empty($slot) == false) {
+         Validate::isInteger('Slot', $slot);
       }
       // verify validation
       if (Validate::$status == false) {
@@ -58,7 +63,10 @@ class Auth
          "password" => $hpassword,
          "referredby" => $referralcode
       ]) == true) {
-         success('Registeration successful');
+         Member::chooseSlot($req);
+         success('Registeration successful', [
+            'slot' => $slot
+         ]);
       } else {
          error('Registeration failed, please try again');
       }
@@ -150,9 +158,29 @@ class Auth
       }
    }
 
-   public static function delete(Request $req)
+   public static function profile(Request $req)
    {
-      // remove a resouce
+      extract($req->bio);
+   }
+
+   public static function updatePassword(Request $req)
+   {
+      extract($req->bio);
+   }
+
+   public static function updateProfilePicture(Request $req)
+   {
+      extract($req->bio);
+   }
+
+   public static function updateBankDetails(Request $req)
+   {
+      extract($req->bio);
+   }
+
+   public static function updateBio(Request $req)
+   {
+      extract($req->bio);
    }
 
 }

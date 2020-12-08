@@ -701,47 +701,47 @@
     "OrganisationInfo create": {
         "scope": "php",
         "prefix": "OrganisationInfo::create",
-        "body": "OrganisationInfo::create([\r\t\"id\" => $1,\r\t\"about_us\" => $2,\r\t\"disclaimer\" => $3,\r\t\"how_it_works\" => $4,\r\t\"terms_and_condition\" => $5,\r\t\"membership\" => $6,\r\t\"rewards_and_benefits\" => $7,\r\t\"tournaments_and_leagues\" => $8,\r\t\"board_of_trustees\" => $9,\r\t\"contact_telephone\" => $10,\r\t\"contact_address\" => $11,\r\t\"contact_email\" => $12,\r\t\"faq\" => $13,\r\t\"created_at\" => $14,\r\t\"updated_at\" => $15\r]);"
+        "body": "OrganisationInfo::create([\r\t\"id\" => $1,\r\t\"about_us\" => $2,\r\t\"disclaimer\" => $3,\r\t\"how_it_works\" => $4,\r\t\"terms_and_condition\" => $5,\r\t\"membership\" => $6,\r\t\"rewards_and_benefits\" => $7,\r\t\"tournaments_and_leagues\" => $8,\r\t\"contact_telephone\" => $9,\r\t\"contact_address\" => $10,\r\t\"contact_email\" => $11,\r\t\"faq\" => $12,\r\t\"created_at\" => $13,\r\t\"updated_at\" => $14\r]);"
     },
     "OrganisationInfo create many": {
         "scope": "php",
         "prefix": "OrganisationInfo::createMany",
-        "body": "OrganisationInfo::createMany([\r\t\"id\" => $1,\r\t\"about_us\" => $2,\r\t\"disclaimer\" => $3,\r\t\"how_it_works\" => $4,\r\t\"terms_and_condition\" => $5,\r\t\"membership\" => $6,\r\t\"rewards_and_benefits\" => $7,\r\t\"tournaments_and_leagues\" => $8,\r\t\"board_of_trustees\" => $9,\r\t\"contact_telephone\" => $10,\r\t\"contact_address\" => $11,\r\t\"contact_email\" => $12,\r\t\"faq\" => $13,\r\t\"created_at\" => $14,\r\t\"updated_at\" => $15\r],\r${16:[]}\r);"
+        "body": "OrganisationInfo::createMany([\r\t\"id\" => $1,\r\t\"about_us\" => $2,\r\t\"disclaimer\" => $3,\r\t\"how_it_works\" => $4,\r\t\"terms_and_condition\" => $5,\r\t\"membership\" => $6,\r\t\"rewards_and_benefits\" => $7,\r\t\"tournaments_and_leagues\" => $8,\r\t\"contact_telephone\" => $9,\r\t\"contact_address\" => $10,\r\t\"contact_email\" => $11,\r\t\"faq\" => $12,\r\t\"created_at\" => $13,\r\t\"updated_at\" => $14\r],\r${15:[]}\r);"
     },
     "OrganisationInfo update": {
         "scope": "php",
         "prefix": "OrganisationInfo::update",
-        "body": "OrganisationInfo::update([\r\t\"id\" => $1,\r\t\"about_us\" => $2,\r\t\"disclaimer\" => $3,\r\t\"how_it_works\" => $4,\r\t\"terms_and_condition\" => $5,\r\t\"membership\" => $6,\r\t\"rewards_and_benefits\" => $7,\r\t\"tournaments_and_leagues\" => $8,\r\t\"board_of_trustees\" => $9,\r\t\"contact_telephone\" => $10,\r\t\"contact_address\" => $11,\r\t\"contact_email\" => $12,\r\t\"faq\" => $13,\r\t\"created_at\" => $14,\r\t\"updated_at\" => $15\r], \"WHERE ${16|id,about_us,disclaimer,how_it_works,terms_and_condition,membership,rewards_and_benefits,tournaments_and_leagues,board_of_trustees,contact_telephone,contact_address,contact_email,faq,created_at,updated_at|} = 1\");"
+        "body": "OrganisationInfo::update([\r\t\"id\" => $1,\r\t\"about_us\" => $2,\r\t\"disclaimer\" => $3,\r\t\"how_it_works\" => $4,\r\t\"terms_and_condition\" => $5,\r\t\"membership\" => $6,\r\t\"rewards_and_benefits\" => $7,\r\t\"tournaments_and_leagues\" => $8,\r\t\"contact_telephone\" => $9,\r\t\"contact_address\" => $10,\r\t\"contact_email\" => $11,\r\t\"faq\" => $12,\r\t\"created_at\" => $13,\r\t\"updated_at\" => $14\r], \"WHERE ${15|id,about_us,disclaimer,how_it_works,terms_and_condition,membership,rewards_and_benefits,tournaments_and_leagues,contact_telephone,contact_address,contact_email,faq,created_at,updated_at|} = 1\");"
     },
     "OrganisationInfo delete": {
         "scope": "php",
         "prefix": "OrganisationInfo::delete",
-        "body": "OrganisationInfo::delete(\"WHERE ${1|id,about_us,disclaimer,how_it_works,terms_and_condition,membership,rewards_and_benefits,tournaments_and_leagues,board_of_trustees,contact_telephone,contact_address,contact_email,faq,created_at,updated_at|} = 1\");"
+        "body": "OrganisationInfo::delete(\"WHERE ${1|id,about_us,disclaimer,how_it_works,terms_and_condition,membership,rewards_and_benefits,tournaments_and_leagues,contact_telephone,contact_address,contact_email,faq,created_at,updated_at|} = 1\");"
     },
     "OrganisationInfo exist": {
         "scope": "php",
         "prefix": "OrganisationInfo::exist",
-        "body": "OrganisationInfo::exist(\"WHERE ${1|id,about_us,disclaimer,how_it_works,terms_and_condition,membership,rewards_and_benefits,tournaments_and_leagues,board_of_trustees,contact_telephone,contact_address,contact_email,faq,created_at,updated_at|} = 1\");"
+        "body": "OrganisationInfo::exist(\"WHERE ${1|id,about_us,disclaimer,how_it_works,terms_and_condition,membership,rewards_and_benefits,tournaments_and_leagues,contact_telephone,contact_address,contact_email,faq,created_at,updated_at|} = 1\");"
     },
     "OrganisationInfo findAll": {
         "scope": "php",
         "prefix": "OrganisationInfo::findAll",
-        "body": "OrganisationInfo::findAll(\"${1:id, about_us, disclaimer, how_it_works, terms_and_condition, membership, rewards_and_benefits, tournaments_and_leagues, board_of_trustees, contact_telephone, contact_address, contact_email, faq, created_at, updated_at}\", \"WHERE ${2|id,about_us,disclaimer,how_it_works,terms_and_condition,membership,rewards_and_benefits,tournaments_and_leagues,board_of_trustees,contact_telephone,contact_address,contact_email,faq,created_at,updated_at|} = 1\");"
+        "body": "OrganisationInfo::findAll(\"${1:id, about_us, disclaimer, how_it_works, terms_and_condition, membership, rewards_and_benefits, tournaments_and_leagues, contact_telephone, contact_address, contact_email, faq, created_at, updated_at}\", \"WHERE ${2|id,about_us,disclaimer,how_it_works,terms_and_condition,membership,rewards_and_benefits,tournaments_and_leagues,contact_telephone,contact_address,contact_email,faq,created_at,updated_at|} = 1\");"
     },
     "OrganisationInfo findOne": {
         "scope": "php",
         "prefix": "OrganisationInfo::findOne",
-        "body": "OrganisationInfo::findOne(\"${1:id, about_us, disclaimer, how_it_works, terms_and_condition, membership, rewards_and_benefits, tournaments_and_leagues, board_of_trustees, contact_telephone, contact_address, contact_email, faq, created_at, updated_at}\", \"WHERE ${2|id,about_us,disclaimer,how_it_works,terms_and_condition,membership,rewards_and_benefits,tournaments_and_leagues,board_of_trustees,contact_telephone,contact_address,contact_email,faq,created_at,updated_at|} = 1\");"
+        "body": "OrganisationInfo::findOne(\"${1:id, about_us, disclaimer, how_it_works, terms_and_condition, membership, rewards_and_benefits, tournaments_and_leagues, contact_telephone, contact_address, contact_email, faq, created_at, updated_at}\", \"WHERE ${2|id,about_us,disclaimer,how_it_works,terms_and_condition,membership,rewards_and_benefits,tournaments_and_leagues,contact_telephone,contact_address,contact_email,faq,created_at,updated_at|} = 1\");"
     },
     "OrganisationInfo findJoin": {
         "scope": "php",
         "prefix": "OrganisationInfo::findJoin",
-        "body": "\/\/ Note: When joining, specify fieldnames as tablename.fieldname;\r\/\/ Prefix the every tablename with DB_PREFIX\r\\$prefix = DB_PREFIX;\rOrganisationInfo::findJoin(${1:\"{\\$prefix\\}organisation_info.${2|id,about_us,disclaimer,how_it_works,terms_and_condition,membership,rewards_and_benefits,tournaments_and_leagues,board_of_trustees,contact_telephone,contact_address,contact_email,faq,created_at,updated_at|}\"}, \"WHERE ${3|id,about_us,disclaimer,how_it_works,terms_and_condition,membership,rewards_and_benefits,tournaments_and_leagues,board_of_trustees,contact_telephone,contact_address,contact_email,faq,created_at,updated_at|} = 1\")\r\t->${4|leftJoin,rightJoin,innerJoin,fullJoin|}(\"{\\$prefix\\}tablename\", \"{\\$prefix\\}organisation_info.${6|id,about_us,disclaimer,how_it_works,terms_and_condition,membership,rewards_and_benefits,tournaments_and_leagues,board_of_trustees,contact_telephone,contact_address,contact_email,faq,created_at,updated_at|} = {\\$prefix\\}tablename.field\")\r\t->join();"
+        "body": "\/\/ Note: When joining, specify fieldnames as tablename.fieldname;\r\/\/ Prefix the every tablename with DB_PREFIX\r\\$prefix = DB_PREFIX;\rOrganisationInfo::findJoin(${1:\"{\\$prefix\\}organisation_info.${2|id,about_us,disclaimer,how_it_works,terms_and_condition,membership,rewards_and_benefits,tournaments_and_leagues,contact_telephone,contact_address,contact_email,faq,created_at,updated_at|}\"}, \"WHERE ${3|id,about_us,disclaimer,how_it_works,terms_and_condition,membership,rewards_and_benefits,tournaments_and_leagues,contact_telephone,contact_address,contact_email,faq,created_at,updated_at|} = 1\")\r\t->${4|leftJoin,rightJoin,innerJoin,fullJoin|}(\"{\\$prefix\\}tablename\", \"{\\$prefix\\}organisation_info.${6|id,about_us,disclaimer,how_it_works,terms_and_condition,membership,rewards_and_benefits,tournaments_and_leagues,contact_telephone,contact_address,contact_email,faq,created_at,updated_at|} = {\\$prefix\\}tablename.field\")\r\t->join();"
     },
     "OrganisationInfo fields": {
         "scope": "php",
         "prefix": "organisation_info.",
-        "body": "\". DB_PREFIX .\"organisation_info.${1|id,about_us,disclaimer,how_it_works,terms_and_condition,membership,rewards_and_benefits,tournaments_and_leagues,board_of_trustees,contact_telephone,contact_address,contact_email,faq,created_at,updated_at|}"
+        "body": "\". DB_PREFIX .\"organisation_info.${1|id,about_us,disclaimer,how_it_works,terms_and_condition,membership,rewards_and_benefits,tournaments_and_leagues,contact_telephone,contact_address,contact_email,faq,created_at,updated_at|}"
     },
     "UserSlots create": {
         "scope": "php",
