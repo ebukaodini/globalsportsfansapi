@@ -343,15 +343,15 @@
         "prefix": "storage",
         "body": "storage('filename')"
     },
+    "Upload Fields": {
+        "scope": "php",
+        "prefix": "Upload::$",
+        "body": "Upload::${1|$field = 'Field name';,$unit = 'Kb'; // Mb // Gb|}$0"
+    },
     "Upload Tmp": {
         "scope": "php",
         "prefix": "Upload::tmp",
-        "body": "Upload::tmp('${1:filename}', '${2:destination}', Upload::\\$${3|imagefiles,videofiles,audiofiles,zipfiles,documentfiles,fontfiles,textfiles|}, ${4:minsize}, ${5:maxsize})$0"
-    },
-    "Upload Maxsize": {
-        "scope": "php",
-        "prefix": "maxsize",
-        "body": "maxsize(${1:filesize}, ${2:size})$0"
+        "body": "Upload::tmp('${1:filename}', '${2:destination}', ${3|Upload::$imagefiles,Upload::$videofiles,Upload::$audiofiles,Upload::$zipfiles,Upload::$documentfiles,Upload::$fontfiles,Upload::$textfiles,['your-custom-content-types']|}, ${4:minsize}, ${5:maxsize});\n$0"
     },
     "JWT encode": {
         "scope": "php",

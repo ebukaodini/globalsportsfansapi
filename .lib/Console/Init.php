@@ -321,7 +321,7 @@ namespace Services;
 
 class $service
 {
-   public function __construct()
+   public static function service()
    {
       // Services codes...
    }
@@ -352,7 +352,7 @@ use Library\Http\Request;
 
 class $middleware
 {
-   public function __construct(Request \$request)
+   public static function check(Request \$request)
    {
       // Middleware codes...
    }
@@ -595,6 +595,7 @@ class $controller
    public static function create(Request \$req)
    {
       // create a resource
+      extract(\$req->body);
    }
 
    public static function read(Request \$req)
@@ -605,6 +606,7 @@ class $controller
    public static function update(Request \$req)
    {
       // update a resource
+      extract(\$req->body);
    }
 
    public static function delete(Request \$req)

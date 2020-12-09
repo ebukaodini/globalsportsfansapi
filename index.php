@@ -3,7 +3,7 @@
 namespace App;
 
 use Controllers\Member;
-use Controllers\Auth;
+use Controllers\UserController;
 use Library\Http\Request;
 use Library\Http\Router;
 use Middlewares\JWT;
@@ -25,24 +25,6 @@ Router::get('/', function () {
    render('welcome.html', ['org_name' => APP_NAME]);
 })->name('home');
 
-Router::post('/api/register', function(Request $req) {
-   Auth::register($req);
-})->name('register');
-
-Router::post('/api/login', function(Request $req) {
-   Auth::login($req);
-})->name('login');
-
-Router::post('/api/sendtoken', function(Request $req) {
-   JWT::auth($req);
-   Auth::sendToken($req);
-});
-
-Router::post('/api/verifytoken', function(Request $req) {
-   JWT::auth($req);
-   Auth::verifyToken($req);
-});
-
 Router::get('/api/organisationinfo', function(Request $req) {
    success('success', OrganisationInfo::findOne("about_us, disclaimer, how_it_works, terms_and_condition, membership, rewards_and_benefits, tournaments_and_leagues, contact_telephone, contact_address, contact_email, faq") ?: []);
 });
@@ -53,34 +35,62 @@ Router::get('/api/slots', function(Request $req) {
    else success('success', $slots);
 });
 
+Router::post('/api/register', function(Request $req) {
+   UserController::register($req);
+})->name('register');
+
+Router::post('/api/login', function(Request $req) {
+   UserController::login($req);
+})->name('login');
+
+// Authenticated Routes
+
+Router::post('/api/sendtoken', function(Request $req) {
+   JWT::auth($req);
+   Guard::isAny(['member', 'admin']);
+   UserController::sendToken($req);
+});
+
+Router::post('/api/verifytoken', function(Request $req) {
+   JWT::auth($req);
+   Guard::isAny(['member', 'admin']);
+   UserController::verifyToken($req);
+});
+
 Router::post('/api/profile/update-bio', function(Request $req) {
    JWT::auth($req);
    Guard::isAny(['member', 'admin']);
-   Auth::updateBio($req);
+   UserController::updateBio($req);
 });
 
 Router::post('/api/profile/update-bank-details', function(Request $req) {
    JWT::auth($req);
    Guard::isAny(['member', 'admin']);
-   Auth::updateBankDetails($req);
+   UserController::updateBankDetails($req);
 });
 
 Router::post('/api/profile/update-password', function(Request $req) {
    JWT::auth($req);
    Guard::isAny(['member', 'admin']);
-   Auth::updatePassword($req);
+   UserController::updatePassword($req);
 });
 
 Router::post('/api/profile/update-profile-picture', function(Request $req) {
    JWT::auth($req);
    Guard::isAny(['member', 'admin']);
-   Auth::updateProfilePicture($req);
+   UserController::updateProfilePicture($req);
 });
 
 Router::get('/api/profile', function(Request $req) {
    JWT::auth($req);
    Guard::isAny(['member', 'admin']);
-   Auth::profile($req);
+   UserController::profile($req);
+});
+
+Router::post('/api/choose-slot', function(Request $req) {
+   JWT::auth($req);
+   Guard::isAny(['member','admin']);
+   Member::chooseSlot($req);
 });
 
 // Admin
@@ -94,8 +104,3 @@ Router::get('/api/dashboard', function(Request $req) {
    Member::dashboard($req);
 });
 
-Router::post('/api/choose-slot', function(Request $req) {
-   JWT::auth($req);
-   Guard::isAny(['member','admin']);
-   Member::chooseSlot($req);
-});

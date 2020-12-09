@@ -62,6 +62,17 @@ class Validate
       return true;
    }
 
+   // is not empty
+   public static function isNotEmpty(string $field, string $value)
+   {
+      if (empty($value) == true) {
+         self::$status = false;
+         self::$error[$field] = "$field cannot be empty";
+         return false;
+      }
+      return true;
+   }
+
    // must contain numbers
    public static function mustContainNumber(string $field, string $value)
    {

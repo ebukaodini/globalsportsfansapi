@@ -5,12 +5,12 @@ use Services\Validate;
 use Services\Cipher;
 use Models\Users;
 use Models\UserSlots;
-use Services\Common;
+use Services\Upload;
 use Services\JWT;
 use Services\User;
 use Services\Mail;
 
-class Auth
+class UserController
 {
    // create a new user
    public static function register(Request $req)
@@ -21,6 +21,11 @@ class Auth
       $cpassword = $cpassword ?? '';
       $referralcode = $referralcode ?? '';
       $slot = $slot ?? '';
+      $mou = $mou ?? false;
+
+      // stop user from registering if he/she refuse to agree to the mou
+      if ($mou == false) error('Accept the Memorandum of Understanding to continue');
+
       // validate email
       Validate::isValidEmail('Email', $email);
       Validate::hasMaxLength('Email', $email, 100);
@@ -151,8 +156,11 @@ class Auth
          error("Invalid token");
       }
 
-      if (Users::exist("WHERE email = '$email' AND ". DB_PREFIX ."users.token = '$token'")) {
-         success('Valid token');
+      if (Users::exist("WHERE email = '$email' AND token = '$token' LIMIT 1")) {
+         $statusupdate = Users::update([
+            "verification_status" => "verified"
+         ], "WHERE email = '$email'");
+         if ($statusupdate == true) success('Valid token. Account is verified'); else error("Account not verified");
       } else {
          error('Invalid token');
       }
@@ -160,7 +168,15 @@ class Auth
 
    public static function profile(Request $req)
    {
-      extract($req->body);
+      $email = User::$email;
+      // get the users profile details
+      $profile = Users::findOne("telephone, email, firstname, lastname, middlename, residential_address, occupation, profile_picture, mou, nextofkin_name, nextofkin_telephone, nextofkin_residential_address, accountnumber, accountname, bankname, favorite_sport, favorite_team, referral_code, member_id, verification_status, created_at", "WHERE email = '$email'");
+
+      if ($profile == false) {
+         error("No profile for this user"); // no obvious chance of this accuring
+      } else {
+         success('User profile', $profile);
+      }
    }
 
    public static function updatePassword(Request $req)
@@ -209,16 +225,124 @@ class Auth
    public static function updateProfilePicture(Request $req)
    {
       extract($req->body);
+      $email = User::$email;
+
+      Upload::$field = 'Profile Picture';
+      Upload::$unit = 'Mb';
+      Upload::tmp('profile-picture', 'profile_picture', Upload::$imagefiles, null, 2);
+
+      if (Upload::$status == false) {
+         error('Profile picture not updated', array_values(Upload::$error));
+      } else {
+         $pictureupdate = Users::update([
+            "profile_picture" => Upload::$path,
+         ], "WHERE email = '$email'");
+         success("Profile picture updated successfully");
+      }
+
    }
 
    public static function updateBankDetails(Request $req)
    {
       extract($req->body);
+      $accountnumber = $accountnumber ?? '';
+      $accountname = $accountname ?? '';
+      $bankname = $bankname ?? '';
+
+      // validate the bank details
+      if (Validate::mustContainNumberOnly("Account Number", $accountnumber) == false) {
+         error('Bank details not updated', ["Invalid Account Number"]);
+      }
+      
+      if (empty($accountname) == true || empty($bankname) == true) {
+         error("Bank details not updated", ['Account details cannot be empty']);
+      }
+
+      $email = User::$email;
+
+      // update the user's bank details
+      $bankdetailupdate = Users::update([
+         "accountnumber" => $accountnumber,
+         "accountname" => $accountname,
+         "bankname" => $bankname
+      ], "WHERE email = '$email'");
+
+      if ($bankdetailupdate == true) {
+         success("Bank details updated successfully");
+      } else {
+         error("Bank details not updated");
+      }
    }
 
    public static function updateBio(Request $req)
    {
       extract($req->body);
+      
+      $telephone = $telephone ?? '';
+      $firstname = $firstname ?? '';
+      $lastname = $lastname ?? '';
+      $middlename = $middlename ?? '';
+      $residential_address = $residential_address ?? '';
+      $occupation = $occupation ?? '';
+      $nextofkin_name = $nextofkin_name ?? '';
+      $nextofkin_telephone = $nextofkin_telephone ?? '';
+      $nextofkin_residential_address = $nextofkin_residential_address ?? '';
+      $favorite_sport = $favorite_sport ?? '';
+      $favorite_team = $favorite_team ?? '';
+
+      // validation
+      Validate::isNotEmpty("Telephone", $telephone);
+      Validate::isValidTelephone("Telephone", $telephone);
+      Validate::hasMaxLength("Telephone", $telephone, 20);
+      Validate::isNotEmpty("Firstname", $firstname);
+      Validate::hasMaxLength("Firstname", $firstname, 50);
+      Validate::isNotEmpty("Lastname", $lastname);
+      Validate::hasMaxLength("Lastname", $lastname, 50);
+      Validate::isNotEmpty("Middlename", $middlename);
+      Validate::hasMaxLength("Middlename", $middlename, 50);
+      Validate::isNotEmpty("Residential Address", $residential_address);
+      Validate::hasMaxLength("Residential Address", $residential_address, 200);
+      Validate::isNotEmpty("Occupation", $occupation);
+      Validate::hasMaxLength("Occupation", $occupation, 50);
+      Validate::isNotEmpty("Next of Kin Name", $nextofkin_name);
+      Validate::hasMaxLength("Next of Kin Name", $nextofkin_name, 100);
+      Validate::isNotEmpty("Next of Kin Telephone", $nextofkin_telephone);
+      Validate::isValidTelephone("Next of Kin Telephone", $nextofkin_telephone);
+      Validate::hasMaxLength("Next of Kin Telephone", $nextofkin_telephone, 20);
+      Validate::isNotEmpty("Next of Kin Residential Address", $nextofkin_residential_address);
+      Validate::hasMaxLength("Next of Kin Residential Address", $nextofkin_residential_address, 200);
+      Validate::isNotEmpty("Favorite Sport", $favorite_sport);
+      Validate::hasMaxLength("Favoite Sport", $favorite_sport, 50);
+      Validate::isNotEmpty("Favorite Team", $favorite_team);
+      Validate::hasMaxLength("Favoite Team", $favorite_team, 50);
+
+      if (Validate::$status == false) {
+         error("Profile not updated", Validate::$error);
+      }
+
+      $email = User::$email;
+
+      // update the user profile
+      $updateprofile = Users::update([
+         "telephone" => $telephone,
+         "firstname" => $firstname,
+         "lastname" => $lastname,
+         "middlename" => $middlename,
+         "residential_address" => $residential_address,
+         "occupation" => $occupation,
+         "nextofkin_name" => $nextofkin_name,
+         "nextofkin_telephone" => $nextofkin_telephone,
+         "nextofkin_residential_address" => $nextofkin_residential_address,
+         "favorite_sport" => $favorite_sport,
+         "favorite_team" => $favorite_team
+      ], "WHERE email = '$email'");
+      
+      if ($updateprofile == true) {
+         success("Profile updated successfully");
+      } else {
+         error("Profile not updated");
+      }
+
    }
 
 }
