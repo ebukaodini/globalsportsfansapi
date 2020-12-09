@@ -229,7 +229,7 @@ class UserController
 
       Upload::$field = 'Profile Picture';
       Upload::$unit = 'Mb';
-      Upload::tmp('profile-picture', 'profile_picture', Upload::$imagefiles, null, 2);
+      Upload::tmp('profile-picture', User::$id.".".date('ymdhis'), Upload::$imagefiles, null, 2);
 
       if (Upload::$status == false) {
          error('Profile picture not updated', array_values(Upload::$error));
@@ -237,7 +237,10 @@ class UserController
          $pictureupdate = Users::update([
             "profile_picture" => Upload::$path,
          ], "WHERE email = '$email'");
-         success("Profile picture updated successfully");
+         if ($pictureupdate == true)
+         success("Profile picture updated successfully", ['path' => Upload::$path]);
+         else
+         error("Profile picture not updated");
       }
 
    }

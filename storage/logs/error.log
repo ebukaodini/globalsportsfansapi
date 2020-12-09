@@ -232,3 +232,19 @@
 	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 51
 	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 141
 	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 339
+[Wed 09-12-2020 01:51:12 PM UTC] [8] Undefined variable: id
+	>> C:\Users\USER\Desktop\projects\globalsportsfans\index.php on line 81
+	>> C:\Users\USER\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 141
+	>> C:\Users\USER\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 339
+[Wed 09-12-2020 01:51:12 PM UTC] [2] move_uploaded_file(C:\Users\USER\Desktop\projects\globalsportsfans/storage/public/{date('ymdhis')}_{User::}.jpg): failed to open stream: No such file or directory
+	>> C:\Users\USER\Desktop\projects\globalsportsfans\app\services\Upload.php on line 143
+	>> C:\Users\USER\Desktop\projects\globalsportsfans\app\controllers\UserController.php on line 232
+	>> C:\Users\USER\Desktop\projects\globalsportsfans\index.php on line 81
+	>> C:\Users\USER\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 141
+	>> C:\Users\USER\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 339
+[Wed 09-12-2020 01:51:12 PM UTC] [2] move_uploaded_file(): Unable to move 'C:\xampp\tmp\phpA0FD.tmp' to 'C:\Users\USER\Desktop\projects\globalsportsfans/storage/public/{date('ymdhis')}_{User::}.jpg'
+	>> C:\Users\USER\Desktop\projects\globalsportsfans\app\services\Upload.php on line 143
+	>> C:\Users\USER\Desktop\projects\globalsportsfans\app\controllers\UserController.php on line 232
+	>> C:\Users\USER\Desktop\projects\globalsportsfans\index.php on line 81
+	>> C:\Users\USER\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 141
+	>> C:\Users\USER\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 339
