@@ -232,3 +232,32 @@
 	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 51
 	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 141
 	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 339
+[Fri 11-12-2020 08:22:00 PM UTC] [1024] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it.
+
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Database\Database.php on line 29
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Database\Model.php on line 25
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Database\Model.php on line 161
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\controllers\UserController.php on line 239
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 81
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 141
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 339
+[Fri 11-12-2020 08:22:04 PM UTC] [1024] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it.
+
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Database\Database.php on line 29
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Database\Model.php on line 25
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Database\Model.php on line 193
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Database\Model.php on line 164
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\controllers\UserController.php on line 239
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 81
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 141
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 339
+[Fri 11-12-2020 08:22:08 PM UTC] [1024] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it.
+
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Database\Database.php on line 29
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Database\Model.php on line 25
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Database\Model.php on line 525
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Database\Model.php on line 197
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Database\Model.php on line 164
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\controllers\UserController.php on line 239
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 81
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 141

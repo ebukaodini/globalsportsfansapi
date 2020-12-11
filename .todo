@@ -32,7 +32,7 @@ Member WorkFlow:
       ✔ generate invoice for the user @done(20-12-07 04:39)
       ✔ invoice is sent to the user @done(20-12-07 07:04)
    ✔ user updates password @started(20-12-08 06:49) @done(20-12-08 23:25) @lasted(16h36m23s)
-   ☐ user updates profile picture @started(20-12-09 03:10)
+   ✔ user updates profile picture @done(20-12-11 21:16)
    ✔ user updates bio info @started(20-12-09 01:19) @done(20-12-09 01:19) @lasted(17s)
    ✔ user updates bank details @started(20-12-08 23:40) @done(20-12-09 00:04) @lasted(24m53s)
    ✔ get users profile @started(20-12-09 00:05) @done(20-12-09 00:12) @lasted(7m27s)
