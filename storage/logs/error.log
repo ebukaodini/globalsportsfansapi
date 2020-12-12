@@ -261,3 +261,101 @@
 	>> C:\Users\user\Desktop\projects\globalsportsfans\app\controllers\UserController.php on line 239
 	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 81
 	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 141
+[Fri 11-12-2020 08:47:27 PM UTC] [2] A non-numeric value encountered
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 93
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 141
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 339
+[Fri 11-12-2020 08:47:27 PM UTC] [2] A non-numeric value encountered
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 93
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 141
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 339
+[Fri 11-12-2020 08:47:28 PM UTC] [1024] Error: mail not sent. (info@initframework.com -> ebukaodini@gmail.com)
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\services\Mail.php on line 72
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\controllers\Member.php on line 92
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 93
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 141
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 339
+[Fri 11-12-2020 08:48:09 PM UTC] [2] A non-numeric value encountered
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 93
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 141
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 339
+[Fri 11-12-2020 08:48:09 PM UTC] [2] A non-numeric value encountered
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 93
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 141
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 339
+[Fri 11-12-2020 08:48:09 PM UTC] [1024] Error: mail not sent. (info@initframework.com -> ebukaodini@gmail.com)
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\services\Mail.php on line 72
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\controllers\Member.php on line 92
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 93
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 141
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 339
+[Fri 11-12-2020 08:50:02 PM UTC] [2] A non-numeric value encountered
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 93
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 141
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 339
+[Fri 11-12-2020 08:50:02 PM UTC] [2] A non-numeric value encountered
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 93
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 141
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 339
+[Fri 11-12-2020 08:50:02 PM UTC] [1024] Error: mail not sent. (info@initframework.com -> ebukaodini@gmail.com)
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\services\Mail.php on line 72
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\controllers\Member.php on line 92
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 93
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 141
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 339
+[Sat 12-12-2020 08:04:17 AM UTC] [2] A non-numeric value encountered
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 93
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 141
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 339
+[Sat 12-12-2020 08:04:17 AM UTC] [2] A non-numeric value encountered
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 93
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 141
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 339
+[Sat 12-12-2020 08:04:18 AM UTC] [1024] Error: mail not sent. (info@initframework.com -> ebukaodini@gmail.com)
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\services\Mail.php on line 72
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\controllers\Member.php on line 97
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 93
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 141
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 339
+[Sat 12-12-2020 08:30:30 AM UTC] [1024] Error: mail not sent. (info@initframework.com -> ebukaodini@gmail.com)
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\services\Mail.php on line 72
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\controllers\Member.php on line 97
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 93
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 141
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 339
+[Sat 12-12-2020 08:48:26 AM UTC] [1024] Error: mail not sent. (info@initframework.com -> ebukaodini@gmail.com)
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\services\Mail.php on line 72
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\controllers\Member.php on line 100
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 93
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 141
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 339
+[Sat 12-12-2020 08:53:39 AM UTC] [1024] Error: mail not sent. (info@initframework.com -> ebukaodini@gmail.com)
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\services\Mail.php on line 72
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\controllers\Member.php on line 100
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 93
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 141
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 339
+[Sat 12-12-2020 11:37:29 AM UTC] [1024] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'referral_code' in 'where clause'
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Database\Model.php on line 272
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\controllers\UserController.php on line 61
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 47
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 141
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 339
+[Sat 12-12-2020 11:50:38 AM UTC] [1024] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'referral_code' in 'where clause'
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Database\Model.php on line 276
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\controllers\UserController.php on line 61
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 47
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 141
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 339
+[Sat 12-12-2020 11:51:07 AM UTC] [1024] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'referrallevel' in 'field list'
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Database\Model.php on line 66
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\controllers\UserController.php on line 79
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 47
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 141
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 339
+[Sat 12-12-2020 11:53:28 AM UTC] [1024] SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'member_id'
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Database\Model.php on line 66
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\controllers\UserController.php on line 79
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 47
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 141
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 339

@@ -62,6 +62,7 @@ class Init extends Database
                break;
 
                case 'migration':
+                  // TODO: replace any non-variable character with underscore
                   if (!preg_match("/([A-Z0-9a-z_\/])+/", $componentName)) exit("Invalid migration name ($componentName); only lower case, upper case, numbers and underscore allowed\n");
                   $this->_init_new_migration(str_replace(".php", "", preg_replace("/ +/", "_", $componentName)));
                break;

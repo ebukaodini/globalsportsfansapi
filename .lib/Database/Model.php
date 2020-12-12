@@ -64,6 +64,7 @@ class Model extends Database
       }
       catch(PDOException $ex) {
          trigger_error($ex->getMessage());
+         return false;
       }
 
    }
@@ -117,6 +118,7 @@ class Model extends Database
       }
       catch(PDOException $ex) {
          trigger_error($ex->getMessage());
+         return false;
       }
 
    }
@@ -179,6 +181,7 @@ class Model extends Database
    
       } catch(PDOException $ex) {
          trigger_error($ex->getMessage());
+         return false;
       }
    }
  
@@ -227,6 +230,7 @@ class Model extends Database
 
       } catch(PDOException $ex) {
          trigger_error($ex->getMessage());
+         return false;
       }
    }
 
@@ -270,6 +274,7 @@ class Model extends Database
       }
       catch(PDOException $ex) {
          trigger_error($ex->getMessage());
+         return false;
       }
    }
 
@@ -299,6 +304,7 @@ class Model extends Database
       }
       catch(PDOException $ex) {
          trigger_error($ex->getMessage());
+         return false;
       }
    }
 
@@ -328,6 +334,7 @@ class Model extends Database
       }
       catch(PDOException $ex) {
          trigger_error($ex->getMessage());
+         return false;
       }
    }
 
@@ -417,7 +424,7 @@ class Model extends Database
       }
    }
 
-   public static function join() : array
+   public static function join()
    {
       self::instance();
       try {
@@ -434,11 +441,12 @@ class Model extends Database
 
          $data = $stmt->fetchAll();
 
-         return $data;
+         return $data ?: false;
          
       }
       catch(PDOException $ex) {
          trigger_error($ex->getMessage());
+         return false;
       }
    }
 
@@ -448,8 +456,8 @@ class Model extends Database
     * @param string $query is the raw sql query
     * @param bool $returnResult is a flag to tell if the user is expecting a response array or a boolean
     * @return array|bool $response is either an associative array of returned records or a boolean value
-    */
-   public static function query(string $query, bool $results = false)
+    *///return false;
+   public static function query(string $query, bool $returnResult = false)
    {
       self::instance();
       try {
@@ -462,12 +470,12 @@ class Model extends Database
          }
          
          // if returned result is expected
-         if ($results == true) {
+         if ($returnResult == true) {
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
 
             $response = $stmt->fetchAll();
 
-            return $response;
+            return $response ?: false;
 
          } else {
             
@@ -484,6 +492,7 @@ class Model extends Database
       }
       catch(\Throwable $ex) {
          trigger_error($ex->getMessage());
+         return false;
       }
    }
 

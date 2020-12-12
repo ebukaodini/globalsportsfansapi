@@ -109,6 +109,21 @@ class Schema
          }
       }
 
+      public static function truncate(string $table)
+      {
+         try {
+            if (!empty($table)) {
+               
+               $sql = "TRUNCATE " . DB_PREFIX . $table;
+
+               if ($_ENV['show_query'] == true) echo "\n" . $sql . "\n";
+               Model::query($sql);
+            }
+         } catch(\Throwable $ex) {
+            trigger_error($ex->getMessage());
+         }
+      }
+
       public static function seed(string $table, array ...$inputs)
       {
          try {
@@ -624,7 +639,7 @@ class Schema
          return $this;
       }
 
-      public function timestamp(string $name)
+      public function timestamp(string $name, bool $onUpdateCurrentTimestamp = true)
       {
          // increment the field count
          $this->field_index++;
@@ -635,6 +650,7 @@ class Schema
             // Current field 
             $this->field = $name;
             $this->fields[$this->field_index][] = $this->change . "$name TIMESTAMP";
+            $this->fields[$this->field_index][] = $onUpdateCurrentTimestamp == true ? "ON UPDATE CURRENT_TIMESTAMP" : "";
          }
 
          return $this;

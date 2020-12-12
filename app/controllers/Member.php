@@ -8,6 +8,7 @@ use Models\Slots;
 use Models\UserSlots;
 use Models\Users;
 use Models\Invoice;
+use Services\Cipher;
 use Services\Common;
 use Services\Mail;
 
@@ -39,6 +40,11 @@ class Member
          // turn on transaction for multiple step insertions
          Users::transaction();
 
+         // check if user has an uncompleted slot before opening another
+         $userHaveUncompletedSlot = UserSlots::exist("WHERE user_id = ".User::$id." AND status <> 'completed'");
+
+         if ($userHaveUncompletedSlot) error("User have a slot already");
+
          // create slot for user
          $slotcreate = UserSlots::create([
             "user_id" => User::$id,
@@ -47,6 +53,7 @@ class Member
          ]);
 
          if ($slotcreate == false) error("Slot was not created. Please try again");
+         // TODO: Notify user, referredby and admin of new slot created
 
          // generate referral code
          $referralcode = Common::generateReferralCode(7);
@@ -58,6 +65,8 @@ class Member
          $referralupdate = Users::update([
             "referral_code" => $referralcode
          ], "WHERE email = '$email'");
+
+         // TODO: notify user of their referral code
 
          if ($referralupdate == false) {
             Users::rollback();
@@ -77,7 +86,7 @@ class Member
          $invoicecreation = Invoice::create([
             "user_id" => User::$id,
             "invoice_number" => $invoicenumber,
-            "invoice_description" => "Invoice generated for the acquisition of slot program: " + $slot['program'],
+            "invoice_description" => "Invoice generated for the acquisition of slot program: " . $slot['program'],
             "amount_due" => $slot['cost']
          ]);
 
@@ -91,6 +100,9 @@ class Member
          // send email to the member to let him/her know sha has an invoice
          Mail::asHTML("<h4>Good day,</h4><p>A payment invoice has been created for you.<br>Slot progam: {$slot['program']}</br>Invoice number: $invoicenumber</p>")->send(ORG_EMAIL, User::$email, "Payment Invoice [#$invoicenumber]", ORG_EMAIL);
 
+         // TODO: Notify user of new invoice
+         // TODO: Notify admin of new invoice
+         
          // send back response
          success('Slot has been created for the user');
         
@@ -100,9 +112,44 @@ class Member
 
    }
 
-   public static function read(Request $req)
+   public static function getUnpaidInvoices(Request $req)
    {
-      // return a resource
+      $unpaidInvoices = Invoice::findAll("id, invoice_number, invoice_description, amount_due, status, created_at", "WHERE status = 'unpaid' AND user_id = ".User::$id);
+
+      if ($unpaidInvoices == false) error('No unpaid invoice');
+      else success('All unpaid invoices', $unpaidInvoices);
+   }
+
+   public static function submitPaymentDetails($req)
+   {
+      extract($req->body);
+      $invoicenumber = $invoicenumber ?? '';
+      $paymentmethod = $paymentmethod ?? '';
+      $amountpaid = $amountpaid ?? '';
+
+      // Validate
+      Validate::isNotEmpty('Invoice number', $invoicenumber);
+      Validate::hasMaxLength('Invoice number', $invoicenumber, 10);
+      Validate::mustContainNumberOnly('Invoice number', $invoicenumber);
+      Validate::isNotEmpty('Payment method', $paymentmethod);
+      Validate::hasMaxLength('Payment method', $paymentmethod, 20);
+      Validate::isNotEmpty('Amount paid', $amountpaid);
+      Validate::mustContainNumberOnly('Amount Paid', $amountpaid);
+
+      if (Validate::$status == false) error('Payment details not submitted', array_values(Validate::$error));
+
+      // whether paymentevidence was uploaded or not, upload it
+      Upload::$field = 'Payment Evidence';
+      Upload::$unit = 'Mb';
+      Upload::tmp('paymentevidence', 'payments/' . User::$id.".".date('ymdhis'), Upload::$imagefiles, null, 2);
+      $path = Upload::$path ?? '';
+
+      if (Invoice::update([
+         "amount_paid" => $amountpaid,
+         "payment_method" => $paymentmethod,
+         "payment_evidence" => $path
+      ], "WHERE invoice_number = '$invoicenumber'")) success('Payment details submitted'); else error('Payment details not submitted; Please try again');
+
    }
 
    public static function update(Request $req)

@@ -12,6 +12,7 @@ Auth:
    ✔ Verify Token @done(20-12-06 08:37)
 
 Admin:
+   ☐ Add a user and register a slot for the organisation
    ☐ update organisation info
    ☐ update slots, costs and benefits
    ☐ update referral level benefits
@@ -30,13 +31,14 @@ Member WorkFlow:
    ✔ new user registers with a selected slot @done(20-12-08 06:47)
    ✔ logged in user selects slot @done(20-12-07 07:04)
       ✔ generate invoice for the user @done(20-12-07 04:39)
-      ✔ invoice is sent to the user @done(20-12-07 07:04)
+      ✔ invoice is sent to the user's email address ✘ @done(20-12-07 07:04)
    ✔ user updates password @started(20-12-08 06:49) @done(20-12-08 23:25) @lasted(16h36m23s)
    ✔ user updates profile picture @done(20-12-11 21:16)
    ✔ user updates bio info @started(20-12-09 01:19) @done(20-12-09 01:19) @lasted(17s)
    ✔ user updates bank details @started(20-12-08 23:40) @done(20-12-09 00:04) @lasted(24m53s)
    ✔ get users profile @started(20-12-09 00:05) @done(20-12-09 00:12) @lasted(7m27s)
-   ☐ user makes payment and upload payment evidence
+   ✔ get user's unpaid invoice @done(20-12-12 11:25)
+   ✔ user makes payment for invoice and upload payment evidence @done(20-12-12 13:49)
    ☐ payment is verified by admin
    ☐ membership id card is generated for the user
    ☐ user is given a referral code to share to users and invite them in

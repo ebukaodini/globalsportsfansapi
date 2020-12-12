@@ -58,20 +58,29 @@ class UserController
       // if referral code is not empty
       // confirm that the referral code exist before using it
       if (!empty($referralcode)) {
-         if (UserSlots::exist("WHERE referral_code = '$referralcode'") == false) {
+         if (Users::exist("WHERE referral_code = '$referralcode'") == false) {
             error("Registeration failed. Referral code is incorrect");
          }
+      } else {
+         // else use the referral code of the organisation
+         $referralcode = "SPORTSFANS";
       }
+
+      // get the referral level of the user
+      $referrallevel = Users::findOne("referral_level", "WHERE referral_code = '$referralcode'")['referral_level'] ?? '1'; // 1 assuming that this is the topmost parent in the referral tree
+      if ($referrallevel == "1") $referralcode = "SPORTSFANS"; // i assume there should be no need for this as it has already been considered
+      // and increment by one to generate referrallevel for this user
+      $referrallevel = intval($referrallevel) + 1;
 
       if (Users::create([
          "email" => $email,
          "password" => $hpassword,
-         "referredby" => $referralcode
+         "referredby" => $referralcode,
+         "referral_level" => $referrallevel
       ]) == true) {
-         // Member::chooseSlot($req);
-         success('Registeration successful', [
-            'slot' => $slot
-         ]);
+         success('Registeration successful', 
+            $slot == '' ? null : ['slot' => $slot]
+         );
       } else {
          error('Registeration failed, please try again');
       }
@@ -229,7 +238,7 @@ class UserController
 
       Upload::$field = 'Profile Picture';
       Upload::$unit = 'Mb';
-      Upload::tmp('profile-picture', 'profile_picture', Upload::$imagefiles, null, 2);
+      Upload::tmp('profile-picture', "profile_pictures/" . User::$id.".".date('ymdhis'), Upload::$imagefiles, null, 2);
 
       if (Upload::$status == false) {
          error('Profile picture not updated', array_values(Upload::$error));
@@ -237,7 +246,10 @@ class UserController
          $pictureupdate = Users::update([
             "profile_picture" => Upload::$path,
          ], "WHERE email = '$email'");
-         success("Profile picture updated successfully");
+         if ($pictureupdate == true)
+         success("Profile picture updated successfully", ['path' => Upload::$path]);
+         else
+         error("Profile picture not updated");
       }
 
    }

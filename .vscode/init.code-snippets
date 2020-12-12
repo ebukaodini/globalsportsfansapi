@@ -346,7 +346,7 @@
     "Upload Fields": {
         "scope": "php",
         "prefix": "Upload::$",
-        "body": "Upload::${1|$field = 'Field name';,$unit = 'Kb'; // Mb // Gb|}$0"
+        "body": "Upload::${1|$field = 'Field name';,$unit = 'Kb'; \/\/ Mb \/\/ Gb|}$0"
     },
     "Upload Tmp": {
         "scope": "php",
@@ -496,7 +496,7 @@
     "Validate Is Decimal": {
         "scope": "php",
         "prefix": "Validate::isDecimal",
-        "body": "Validate::isDecimal(${1:field}, ${2:value}, ${3:length});"
+        "body": "Validate::isDecimal(${1:field}, ${2:value});"
     },
     "Validate Must Contain Number": {
         "scope": "php",
