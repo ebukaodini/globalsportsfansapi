@@ -56,10 +56,10 @@ class Member
          // TODO: Notify user, referredby and admin of new slot created
 
          // generate referral code
-         $referralcode = Common::generateReferralCode(7);
+         $referralcode = Cipher::hash(7);
          // check if exist everytime
          while (Users::exist("WHERE referral_code = '$referralcode'") == true) {
-            $referralcode = Common::generateReferralCode(7);
+            $referralcode = Cipher::hash(7);
          }
          // update user's referral code
          $referralupdate = Users::update([
@@ -147,14 +147,21 @@ class Member
       if (Invoice::update([
          "amount_paid" => $amountpaid,
          "payment_method" => $paymentmethod,
-         "payment_evidence" => $path
+         "payment_evidence" => $path,
+         "status" => "unverified payment"
       ], "WHERE invoice_number = '$invoicenumber'")) success('Payment details submitted'); else error('Payment details not submitted; Please try again');
 
    }
 
-   public static function update(Request $req)
+   public static function getDownlines(Request $req)
    {
-      // update a resource
+      // get the users registered under this users
+      // i.e the users whose referredby is the users referral_code
+
+      $email = User::$email;
+      $downlines = Users::findAll("telephone, email, firstname, lastname, middlename, referredby, referral_code, referral_level", "WHERE referredby = (SELECT referral_code FROM users WHERE email = '$email') GROUP BY referral_level");
+
+      
    }
 
    public static function delete(Request $req)

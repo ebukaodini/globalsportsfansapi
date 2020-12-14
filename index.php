@@ -12,6 +12,8 @@ use Middlewares\Guard;
 use Models\OrganisationInfo;
 use Models\ReferralLevels;
 use Models\Slots;
+use Services\Cipher;
+use Services\Common;
 use Services\User;
 
 // autoloader
@@ -120,6 +122,12 @@ Router::post('/api/submit-payment-details', function(Request $req) {
    Member::submitPaymentDetails($req);
 });
 
+Router::get('/api/get-downlines', function(Request $req) {
+   JWT::auth($req);
+   Guard::isAny(['admin','member']);
+   Member::getDownlines($req);
+});
+
 
 // Admin
 Router::post('/api/admin/register', function(Request $req) {
@@ -151,4 +159,10 @@ Router::get('/api/admin/get-unpaid-invoices', function(Request $req) {
    JWT::auth($req);
    // Guard::is('admin');
    Admin::getAllUnpaidInvoice($req);
+});
+
+Router::post('/api/verify-payment', function(Request $req) {
+   JWT::auth($req);
+   // Guard::is('admin');
+   Admin::verifyPayment($req);
 });

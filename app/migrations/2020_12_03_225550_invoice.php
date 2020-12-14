@@ -15,7 +15,7 @@ class migration_2020_12_03_225550_invoice {
          $schema->double('amount_paid')->default('0');
          $schema->varchar('payment_method', 20); // banktransfer, 
          $schema->varchar('payment_evidence', 100)->nullable();
-         $schema->varchar('status', 10)->default('unpaid'); //paid
+         $schema->varchar('status', 10)->default('unpaid'); //paid 
          $schema->timestamp('created_at');
          $schema->datetime('updated_at')->attribute("ON UPDATE CURRENT_TIMESTAMP");
          $schema->foreign('user_id', 'users', 'id', 'ON DELETE RESTRICT', 'ON UPDATE CASCADE');

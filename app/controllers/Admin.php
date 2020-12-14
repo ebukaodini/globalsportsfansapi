@@ -3,6 +3,9 @@ namespace Controllers;
 use Library\Http\Request;
 use Models\Invoice;
 use Models\Users;
+use Services\Cipher;
+use Services\User;
+use Services\Validate;
 
 class Admin
 {
@@ -39,6 +42,51 @@ class Admin
       $allusers = Users::findAll("*");
       if ($allusers) success("All users", $allusers);
       else error("No user");
+   }
+
+   public static function verifyPayment(Request $req)
+   {
+      extract($req->body);
+      $invoicenumber = $invoicenumber ?? '';
+      $status = $status ?? '';
+
+      // Validate
+      Validate::isNotEmpty('Invoice number', $invoicenumber);
+      Validate::hasMaxLength('Invoice number', $invoicenumber, 10);
+      Validate::mustContainNumberOnly('Invoice number', $invoicenumber);
+      Validate::isNotEmpty('Status', $status);
+      Validate::hasMaxLength('Status', $status, 20);
+
+      $updatestatus = Invoice::update([
+         "status" => $status
+      ], "WHERE invoice_number = '$invoicenumber'");
+
+      if ($updatestatus) {
+         
+         if ($status == 'paid') {
+            // generate and update the members id
+            $memberId = Cipher::token(10);
+   
+            while (Users::exist("WHERE member_id = '$memberId'") == true) {
+               $memberId = Cipher::token(10);
+            }
+
+            // get the id of the member whose invoice was updated
+
+            $memberUserId = Invoice::findOne("user_id", "WHERE invoice_number = '$invoicenumber'")['user_id'];
+
+            if ($memberUserId != false) {
+               Users::update([
+                  "member_id" => $memberId
+               ], "WHERE id = $memberUserId");
+            }
+
+         }
+
+         // TODO: notify member
+         success('Invoice status updated successfully');
+      } else error('Invoice status not updated');
+
    }
 
    public static function update(Request $req)

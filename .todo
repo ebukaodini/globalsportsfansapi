@@ -39,9 +39,9 @@ Member WorkFlow:
    ✔ get users profile @started(20-12-09 00:05) @done(20-12-09 00:12) @lasted(7m27s)
    ✔ get user's unpaid invoice @done(20-12-12 11:25)
    ✔ user makes payment for invoice and upload payment evidence @done(20-12-12 13:49)
-   ☐ payment is verified by admin
-   ☐ membership id card is generated for the user
-   ☐ user is given a referral code to share to users and invite them in
+   ✔ payment is verified by admin @started(20-12-13 23:55) @done(20-12-14 01:35) @lasted(1h40m50s)
+   ✔ membership id card is generated for the user @started(20-12-14 01:43) @done(20-12-14 02:42) @lasted(59m29s)
+   ✔ user is given a referral code to share to users and invite them in @done(20-12-14 02:42)
    ☐ user monitors downlines
    ☐ user gets notified by new referrals
    ☐ user monitors his benefits
