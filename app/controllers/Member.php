@@ -159,7 +159,18 @@ class Member
       // i.e the users whose referredby is the users referral_code
 
       $email = User::$email;
-      $downlines = Users::findAll("telephone, email, firstname, lastname, middlename, referredby, referral_code, referral_level", "WHERE referredby = (SELECT referral_code FROM users WHERE email = '$email') GROUP BY referral_level");
+      $referralCode = Users::findOne("referral_code", "WHERE email = '$email'")['referral_code'] ?? null;
+
+      if (!is_null($referralCode)) {
+         $downlines = Common::generateDownline($referralCode, 1);
+
+         success("Yoour downlines", $downlines);
+
+      } else error("You don't have a referral code, contact the support team.");
+      
+      // this can only provide the direct downline
+      // how do i get the downlines for thes ones 
+      // the right way would be to have a function that would return a multi-dimension array
 
       
    }
