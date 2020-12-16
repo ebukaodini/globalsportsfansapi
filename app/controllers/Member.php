@@ -164,7 +164,7 @@ class Member
       if (!is_null($referralCode)) {
          $downlines = Common::generateDownline($referralCode, 1);
 
-         success("Yoour downlines", $downlines);
+         success("Your downlines", $downlines);
 
       } else error("You don't have a referral code, contact the support team.");
       
