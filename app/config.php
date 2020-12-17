@@ -65,3 +65,5 @@ define("TIMEZONE", "UTC");
 // define('CONFIG', 'VALUE');
 
 define('ORG_EMAIL', 'info@initframework.com');
+
+define('ORG_REFERRAL_CODE', 'SPORTSFANS');

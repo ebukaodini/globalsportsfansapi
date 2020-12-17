@@ -6,6 +6,8 @@ use Models\Users;
 use Services\Cipher;
 use Services\User;
 use Services\Validate;
+use Models\ReferralLevels;
+use Models\UserBenefits;
 
 class Admin
 {
@@ -72,14 +74,26 @@ class Admin
             }
 
             // get the id of the member whose invoice was updated
-
             $memberUserId = Invoice::findOne("user_id", "WHERE invoice_number = '$invoicenumber'")['user_id'];
-
+            // then update
             if ($memberUserId != false) {
                Users::update([
                   "member_id" => $memberId
                ], "WHERE id = $memberUserId");
             }
+
+            // TODO: give the user who made payment his accrued benefits
+            $currentReferralLevel = 1;
+
+            $referralLevel = ReferralLevels::findOne("cash_benefit, benefits, rank", "WHERE id = $currentReferralLevel");
+            UserBenefits::create([
+               "user_id" => $memberUserId,
+               "achievement" => "Attained " . $referralLevel['rank'] . " Level.",
+               "cash" => $referralLevel['cash_benefit'],
+               "benefit" => $referralLevel['benefits']
+            ]);
+
+            // TODO: notify the user of his new benefits
 
          }
 

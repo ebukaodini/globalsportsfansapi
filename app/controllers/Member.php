@@ -6,8 +6,10 @@ use Services\Validate;
 use Services\Upload;
 use Models\Slots;
 use Models\UserSlots;
+use Models\UserBenefits;
 use Models\Users;
 use Models\Invoice;
+use Models\ReferralLevels;
 use Services\Cipher;
 use Services\Common;
 use Services\Mail;
@@ -42,14 +44,24 @@ class Member
 
          // check if user has an uncompleted slot before opening another
          $userHaveUncompletedSlot = UserSlots::exist("WHERE user_id = ".User::$id." AND status <> 'completed'");
-
          if ($userHaveUncompletedSlot) error("User have a slot already");
 
+         // get the current referral level and the next referral level
+         // and also use them in creating the user's slot
+         $currentReferralLevel = 1;
+         $nextReferralLevel = $currentReferralLevel + 1;
+         $referralLevel = ReferralLevels::findOne("rank", "WHERE id = $currentReferralLevel");
+         $nextReferralLevel = ReferralLevels::findOne("referrals_required, rank", "WHERE id = $nextReferralLevel");
+         
          // create slot for user
          $slotcreate = UserSlots::create([
             "user_id" => User::$id,
             "slot_id" => $slot['id'],
-            "slot_program" => $slot['program']
+            "slot_program" => $slot['program'],
+            "initial_referrals_required" => (intval($slot['no_slots']) * intval($nextReferralLevel['referrals_required'])), // the initial referrals required to form the user's direct downlink
+            "referrals_required" => (intval($slot['no_slots']) * intval($nextReferralLevel['referrals_required'])), // referrals required to attain next level
+            "target_rank" => $nextReferralLevel['rank'],
+            "rank" => $referralLevel['rank']
          ]);
 
          if ($slotcreate == false) error("Slot was not created. Please try again");
@@ -159,25 +171,25 @@ class Member
       // i.e the users whose referredby is the users referral_code
 
       $email = User::$email;
-      $referralCode = Users::findOne("referral_code", "WHERE email = '$email'")['referral_code'] ?? null;
-
-      if (!is_null($referralCode)) {
-         $downlines = Common::generateDownline($referralCode, 1);
+      $my = Users::findOne("referral_code, referral_level", "WHERE email = '$email'");
+      $referralCode = $my['referral_code'] ?? null;
+      $referralLevel = intval($my['referral_level']) ?? null;
+      
+      if (!is_null($referralCode) && !is_null($referralLevel)) {
+         $downlines = Common::generateDownline($referralCode, $referralLevel, 1);
 
          success("Your downlines", $downlines);
 
       } else error("You don't have a referral code, contact the support team.");
       
-      // this can only provide the direct downline
-      // how do i get the downlines for thes ones 
-      // the right way would be to have a function that would return a multi-dimension array
-
-      
    }
 
-   public static function delete(Request $req)
+   public static function myBenefits(Request $req)
    {
-      // remove a resouce
+      $userId = User::$id;
+      $benefits = UserBenefits::findAll("id, achievement, cash, benefit, status, created_at, updated_at", "WHERE user_id = $userId");
+      
+      if ($benefits != false) success('Your accrued benefits', $benefits); else error('No accrued benefits');
    }
 
 }
