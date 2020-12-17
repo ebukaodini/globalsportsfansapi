@@ -1,0 +1,50 @@
+[09-Dec-2020 07:55:05 Africa/Lagos] PHP Warning:  include_once(vendor/autoload.php): failed to open stream: No such file or directory in /home2/initfram/public_html/globalsportsfans/index.php on line 16
+[09-Dec-2020 07:55:05 Africa/Lagos] PHP Warning:  include_once(): Failed opening 'vendor/autoload.php' for inclusion (include_path='.:/opt/alt/php73/usr/share/pear') in /home2/initfram/public_html/globalsportsfans/index.php on line 16
+[09-Dec-2020 07:55:05 Africa/Lagos] PHP Fatal error:  Uncaught Error: Class 'Library\Http\Request' not found in /home2/initfram/public_html/globalsportsfans/index.php:19
+Stack trace:
+#0 {main}
+  thrown in /home2/initfram/public_html/globalsportsfans/index.php on line 19
+[09-Dec-2020 07:55:06 Africa/Lagos] PHP Warning:  include_once(vendor/autoload.php): failed to open stream: No such file or directory in /home2/initfram/public_html/globalsportsfans/index.php on line 16
+[09-Dec-2020 07:55:06 Africa/Lagos] PHP Warning:  include_once(): Failed opening 'vendor/autoload.php' for inclusion (include_path='.:/opt/alt/php73/usr/share/pear') in /home2/initfram/public_html/globalsportsfans/index.php on line 16
+[09-Dec-2020 07:55:06 Africa/Lagos] PHP Fatal error:  Uncaught Error: Class 'Library\Http\Request' not found in /home2/initfram/public_html/globalsportsfans/index.php:19
+Stack trace:
+#0 {main}
+  thrown in /home2/initfram/public_html/globalsportsfans/index.php on line 19
+[09-Dec-2020 07:55:44 Africa/Lagos] PHP Warning:  include_once(vendor/autoload.php): failed to open stream: No such file or directory in /home2/initfram/public_html/globalsportsfans/index.php on line 16
+[09-Dec-2020 07:55:44 Africa/Lagos] PHP Warning:  include_once(): Failed opening 'vendor/autoload.php' for inclusion (include_path='.:/opt/alt/php73/usr/share/pear') in /home2/initfram/public_html/globalsportsfans/index.php on line 16
+[09-Dec-2020 07:55:44 Africa/Lagos] PHP Fatal error:  Uncaught Error: Class 'Library\Http\Request' not found in /home2/initfram/public_html/globalsportsfans/index.php:19
+Stack trace:
+#0 {main}
+  thrown in /home2/initfram/public_html/globalsportsfans/index.php on line 19
+[09-Dec-2020 07:55:45 Africa/Lagos] PHP Warning:  include_once(vendor/autoload.php): failed to open stream: No such file or directory in /home2/initfram/public_html/globalsportsfans/index.php on line 16
+[09-Dec-2020 07:55:45 Africa/Lagos] PHP Warning:  include_once(): Failed opening 'vendor/autoload.php' for inclusion (include_path='.:/opt/alt/php73/usr/share/pear') in /home2/initfram/public_html/globalsportsfans/index.php on line 16
+[09-Dec-2020 07:55:45 Africa/Lagos] PHP Fatal error:  Uncaught Error: Class 'Library\Http\Request' not found in /home2/initfram/public_html/globalsportsfans/index.php:19
+Stack trace:
+#0 {main}
+  thrown in /home2/initfram/public_html/globalsportsfans/index.php on line 19
+[09-Dec-2020 07:57:48 Africa/Lagos] PHP Warning:  include_once(vendor/autoload.php): failed to open stream: No such file or directory in /home2/initfram/public_html/globalsportsfans/index.php on line 16
+[09-Dec-2020 07:57:48 Africa/Lagos] PHP Warning:  include_once(): Failed opening 'vendor/autoload.php' for inclusion (include_path='.:/opt/alt/php73/usr/share/pear') in /home2/initfram/public_html/globalsportsfans/index.php on line 16
+[09-Dec-2020 07:57:48 Africa/Lagos] PHP Fatal error:  Uncaught Error: Class 'Library\Http\Request' not found in /home2/initfram/public_html/globalsportsfans/index.php:19
+Stack trace:
+#0 {main}
+  thrown in /home2/initfram/public_html/globalsportsfans/index.php on line 19
+[09-Dec-2020 07:57:51 Africa/Lagos] PHP Warning:  include_once(vendor/autoload.php): failed to open stream: No such file or directory in /home2/initfram/public_html/globalsportsfans/index.php on line 16
+[09-Dec-2020 07:57:51 Africa/Lagos] PHP Warning:  include_once(): Failed opening 'vendor/autoload.php' for inclusion (include_path='.:/opt/alt/php73/usr/share/pear') in /home2/initfram/public_html/globalsportsfans/index.php on line 16
+[09-Dec-2020 07:57:51 Africa/Lagos] PHP Fatal error:  Uncaught Error: Class 'Library\Http\Request' not found in /home2/initfram/public_html/globalsportsfans/index.php:19
+Stack trace:
+#0 {main}
+  thrown in /home2/initfram/public_html/globalsportsfans/index.php on line 19
+[09-Dec-2020 08:07:38 Africa/Lagos] PHP Parse error:  syntax error, unexpected '...' (T_ELLIPSIS), expecting ']' in /home2/initfram/public_html/globalsportsfans/.lib/Http/Request.php on line 96
+[09-Dec-2020 08:07:38 Africa/Lagos] PHP Parse error:  syntax error, unexpected '...' (T_ELLIPSIS), expecting ']' in /home2/initfram/public_html/globalsportsfans/.lib/Http/Request.php on line 96
+[09-Dec-2020 08:07:41 Africa/Lagos] PHP Parse error:  syntax error, unexpected '...' (T_ELLIPSIS), expecting ']' in /home2/initfram/public_html/globalsportsfans/.lib/Http/Request.php on line 96
+[09-Dec-2020 08:07:42 Africa/Lagos] PHP Parse error:  syntax error, unexpected '...' (T_ELLIPSIS), expecting ']' in /home2/initfram/public_html/globalsportsfans/.lib/Http/Request.php on line 96
+[09-Dec-2020 08:07:49 Africa/Lagos] PHP Parse error:  syntax error, unexpected '...' (T_ELLIPSIS), expecting ']' in /home2/initfram/public_html/globalsportsfans/.lib/Http/Request.php on line 96
+[09-Dec-2020 08:07:50 Africa/Lagos] PHP Parse error:  syntax error, unexpected '...' (T_ELLIPSIS), expecting ']' in /home2/initfram/public_html/globalsportsfans/.lib/Http/Request.php on line 96
+[09-Dec-2020 08:08:39 Africa/Lagos] PHP Parse error:  syntax error, unexpected '...' (T_ELLIPSIS), expecting ']' in /home2/initfram/public_html/globalsportsfans/.lib/Http/Request.php on line 96
+[09-Dec-2020 08:08:40 Africa/Lagos] PHP Parse error:  syntax error, unexpected '...' (T_ELLIPSIS), expecting ']' in /home2/initfram/public_html/globalsportsfans/.lib/Http/Request.php on line 96
+[09-Dec-2020 08:10:03 Africa/Lagos] PHP Parse error:  syntax error, unexpected '...' (T_ELLIPSIS), expecting ']' in /home2/initfram/public_html/globalsportsfans/.lib/Http/Request.php on line 96
+[09-Dec-2020 08:10:26 Africa/Lagos] PHP Parse error:  syntax error, unexpected '...' (T_ELLIPSIS), expecting ']' in /home2/initfram/public_html/globalsportsfans/.lib/Http/Request.php on line 96
+[09-Dec-2020 08:10:27 Africa/Lagos] PHP Parse error:  syntax error, unexpected '...' (T_ELLIPSIS), expecting ']' in /home2/initfram/public_html/globalsportsfans/.lib/Http/Request.php on line 96
+[09-Dec-2020 08:10:28 Africa/Lagos] PHP Parse error:  syntax error, unexpected '...' (T_ELLIPSIS), expecting ']' in /home2/initfram/public_html/globalsportsfans/.lib/Http/Request.php on line 96
+[09-Dec-2020 08:10:39 Africa/Lagos] PHP Parse error:  syntax error, unexpected '...' (T_ELLIPSIS), expecting ']' in /home2/initfram/public_html/globalsportsfans/.lib/Http/Request.php on line 96
+[09-Dec-2020 08:10:40 Africa/Lagos] PHP Parse error:  syntax error, unexpected '...' (T_ELLIPSIS), expecting ']' in /home2/initfram/public_html/globalsportsfans/.lib/Http/Request.php on line 96

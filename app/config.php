@@ -1,13 +1,13 @@
 <?php
 
 // SERVER
-define('SERVER', 'http://localhost:8080');
+define('SERVER', 'https://globalsportsfans.initframework.com');
 
 // APPLICATION
 define('APP_NAME', 'Global Sports Fans');
 define('APP_BASEDIR', \dirname(__DIR__) . '/');
 define('APP_KEY', 'f14df4c3d9532ea7705c9dc044ed2cd934cf7e8e5a0a9122d4be6880f41c8fc4');
-define('ENV', 'dev'); // test, live
+define('ENV', 'test'); // test, live
 
 // RESOURCES
 define('TEMPLATE_DIR', APP_BASEDIR . 'app/views/');
@@ -38,9 +38,9 @@ define('SESSION_EXPIRE', 'AUTH_LIFETIME');
 // DB
 define('DB_DRIVER', 'mysql');
 define('DB_HOST', 'localhost');
-define('DB_USERNAME', 'root');
-define('DB_PASSWORD', '');
-define('DB_DATABASE', 'globalsports');
+define('DB_USERNAME', 'initfram_globalsports');
+define('DB_PASSWORD', 'Ni2E5YoY5kER');
+define('DB_DATABASE', 'initfram_globalsports');
 define('DB_PORT', '3306');
 define('DB_PREFIX', '');
 define('DB_ENGINE', 'MyISAM');
@@ -49,12 +49,12 @@ define('DB_COLLATION', 'latin1_general_ci');
 
 // MAIL
 define('MAIL_DRIVER', 'smtp'); // mail, smtp, sendmail
-define('MAIL_SMTP_HOST', '');
-define('MAIL_SMTP_PORT', 25);
-define('MAIL_SMTP_AUTH', false);
-define('MAIL_SMTP_USERNAME', '');
-define('MAIL_SMTP_PASSWORD', '');
-define('MAIL_SMTP_SECURE', 'none'); // none, tls, ssl
+define('MAIL_SMTP_HOST', 'mail.globalsportsfans.initframework.com');
+define('MAIL_SMTP_PORT', 26);
+define('MAIL_SMTP_AUTH', true);
+define('MAIL_SMTP_USERNAME', 'info@globalsportsfans.initframework.com');
+define('MAIL_SMTP_PASSWORD', 'ND&pZVv.bDQz');
+define('MAIL_SMTP_SECURE', 'ssl'); // none, tls, ssl
 define('MAIL_SMTP_TIMEOUT', 10);
 
 // TIMEZONE
@@ -64,4 +64,4 @@ define("TIMEZONE", "UTC");
 // define your custom configurations...
 // define('CONFIG', 'VALUE');
 
-define('ORG_EMAIL', 'info@initframework.com');
+define('ORG_EMAIL', 'info@globalsportsfans.initframework.com');
