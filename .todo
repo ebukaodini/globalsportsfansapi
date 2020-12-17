@@ -42,8 +42,9 @@ Member WorkFlow:
    ✔ payment is verified by admin @started(20-12-13 23:55) @done(20-12-14 01:35) @lasted(1h40m50s)
    ✔ membership id card is generated for the user @started(20-12-14 01:43) @done(20-12-14 02:42) @lasted(59m29s)
    ✔ user is given a referral code to share to users and invite them in @done(20-12-14 02:42)
-   ☐ user monitors downlines
+   ✔ user monitors downlines
    ☐ user gets notified by new referrals
-   ☐ user monitors his benefits
+   ☐ add benefits for users as they attain new levels
+   ✔ user monitors his benefits
    ☐ user can follow up on favourite team competitions and fixtures
    

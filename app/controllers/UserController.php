@@ -9,6 +9,7 @@ use Services\Upload;
 use Services\JWT;
 use Services\User;
 use Services\Mail;
+use Services\Common;
 
 class UserController
 {
@@ -63,12 +64,21 @@ class UserController
          }
       } else {
          // else use the referral code of the organisation
-         $referralcode = "SPORTSFANS";
+         $referralcode = ORG_REFERRAL_CODE;
+      }
+
+      $referralCodeUserId;
+      if ($referralcode != ORG_REFERRAL_CODE) {
+         $referralCodeUserId = Users::findOne("id", "WHERE referral_code = '$referralcode'")['id'];
+         // NB: if the users whose referral code is being used has already gotten his initial_referrals_required
+         // i.e referrals_acquired >= initial_referrals_required
+         // then do not use his referral code, rather use the organisations code
+         if (UserSlots::exist("WHERE user_id = $referralCodeUserId AND referrals_acquired >= initial_referrals_required ") == true) $referralcode = ORG_REFERRAL_CODE;
       }
 
       // get the referral level of the user
       $referrallevel = Users::findOne("referral_level", "WHERE referral_code = '$referralcode'")['referral_level'] ?? '1'; // 1 assuming that this is the topmost parent in the referral tree
-      if ($referrallevel == "1") $referralcode = "SPORTSFANS"; // i assume there should be no need for this as it has already been considered
+      if ($referrallevel == "1") $referralcode = ORG_REFERRAL_CODE; // i assume there should be no need for this as it has already been considered
       // and increment by one to generate referrallevel for this user
       $referrallevel = intval($referrallevel) + 1;
 
@@ -78,6 +88,20 @@ class UserController
          "referredby" => $referralcode,
          "referral_level" => $referrallevel
       ]) == true) {
+
+         // before returning success
+         // increment the referrals acquired for the users slot whose referral code is used to register (i.e if referral code is not ORG_REFERRAL_CODE)
+         if ($referralcode != ORG_REFERRAL_CODE) {
+            UserSlots::update([
+               "referrals_acquired" => intval((UserSlots::findOne("referrals_acquired", "WHERE user_id = $referralCodeUserId")['referrals_acquired'] ?: 0) + 1),
+            ], "WHERE user_id = $referralCodeUserId");
+
+            // TODO: TEST
+            // update all uplinks with status still active
+            // this is going to be a recursive function
+            Common::updateAllUplinks($referralcode);
+         }
+
          success('Registeration successful', 
             $slot == '' ? null : ['slot' => $slot]
          );
@@ -333,6 +357,9 @@ class UserController
       }
 
       $email = User::$email;
+
+      // telephone must be unique
+      if (Users::exist("WHERE telephone = '$telephone' AND email <> '$email'") == true) error('Telephone number already exist');
 
       // update the user profile
       $updateprofile = Users::update([

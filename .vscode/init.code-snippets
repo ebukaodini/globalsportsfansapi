@@ -746,47 +746,47 @@
     "UserSlots create": {
         "scope": "php",
         "prefix": "UserSlots::create",
-        "body": "UserSlots::create([\r\t\"id\" => $1,\r\t\"user_id\" => $2,\r\t\"slot_id\" => $3,\r\t\"slot_program\" => $4,\r\t\"referral_code\" => $5,\r\t\"referrals_required\" => $6,\r\t\"referrals_acquired\" => $7,\r\t\"referredby\" => $8,\r\t\"referral_level\" => $9,\r\t\"rank\" => $10,\r\t\"status\" => $11,\r\t\"created_at\" => $12,\r\t\"updated_at\" => $13\r]);"
+        "body": "UserSlots::create([\r\t\"id\" => $1,\r\t\"user_id\" => $2,\r\t\"slot_id\" => $3,\r\t\"slot_program\" => $4,\r\t\"initial_referrals_required\" => $5,\r\t\"referrals_required\" => $6,\r\t\"target_rank\" => $7,\r\t\"referrals_acquired\" => $8,\r\t\"rank\" => $9,\r\t\"status\" => $10,\r\t\"created_at\" => $11,\r\t\"updated_at\" => $12\r]);"
     },
     "UserSlots create many": {
         "scope": "php",
         "prefix": "UserSlots::createMany",
-        "body": "UserSlots::createMany([\r\t\"id\" => $1,\r\t\"user_id\" => $2,\r\t\"slot_id\" => $3,\r\t\"slot_program\" => $4,\r\t\"referral_code\" => $5,\r\t\"referrals_required\" => $6,\r\t\"referrals_acquired\" => $7,\r\t\"referredby\" => $8,\r\t\"referral_level\" => $9,\r\t\"rank\" => $10,\r\t\"status\" => $11,\r\t\"created_at\" => $12,\r\t\"updated_at\" => $13\r],\r${14:[]}\r);"
+        "body": "UserSlots::createMany([\r\t\"id\" => $1,\r\t\"user_id\" => $2,\r\t\"slot_id\" => $3,\r\t\"slot_program\" => $4,\r\t\"initial_referrals_required\" => $5,\r\t\"referrals_required\" => $6,\r\t\"target_rank\" => $7,\r\t\"referrals_acquired\" => $8,\r\t\"rank\" => $9,\r\t\"status\" => $10,\r\t\"created_at\" => $11,\r\t\"updated_at\" => $12\r],\r${13:[]}\r);"
     },
     "UserSlots update": {
         "scope": "php",
         "prefix": "UserSlots::update",
-        "body": "UserSlots::update([\r\t\"id\" => $1,\r\t\"user_id\" => $2,\r\t\"slot_id\" => $3,\r\t\"slot_program\" => $4,\r\t\"referral_code\" => $5,\r\t\"referrals_required\" => $6,\r\t\"referrals_acquired\" => $7,\r\t\"referredby\" => $8,\r\t\"referral_level\" => $9,\r\t\"rank\" => $10,\r\t\"status\" => $11,\r\t\"created_at\" => $12,\r\t\"updated_at\" => $13\r], \"WHERE ${14|id,user_id,slot_id,slot_program,referral_code,referrals_required,referrals_acquired,referredby,referral_level,rank,status,created_at,updated_at|} = 1\");"
+        "body": "UserSlots::update([\r\t\"id\" => $1,\r\t\"user_id\" => $2,\r\t\"slot_id\" => $3,\r\t\"slot_program\" => $4,\r\t\"initial_referrals_required\" => $5,\r\t\"referrals_required\" => $6,\r\t\"target_rank\" => $7,\r\t\"referrals_acquired\" => $8,\r\t\"rank\" => $9,\r\t\"status\" => $10,\r\t\"created_at\" => $11,\r\t\"updated_at\" => $12\r], \"WHERE ${13|id,user_id,slot_id,slot_program,initial_referrals_required,referrals_required,target_rank,referrals_acquired,rank,status,created_at,updated_at|} = 1\");"
     },
     "UserSlots delete": {
         "scope": "php",
         "prefix": "UserSlots::delete",
-        "body": "UserSlots::delete(\"WHERE ${1|id,user_id,slot_id,slot_program,referral_code,referrals_required,referrals_acquired,referredby,referral_level,rank,status,created_at,updated_at|} = 1\");"
+        "body": "UserSlots::delete(\"WHERE ${1|id,user_id,slot_id,slot_program,initial_referrals_required,referrals_required,target_rank,referrals_acquired,rank,status,created_at,updated_at|} = 1\");"
     },
     "UserSlots exist": {
         "scope": "php",
         "prefix": "UserSlots::exist",
-        "body": "UserSlots::exist(\"WHERE ${1|id,user_id,slot_id,slot_program,referral_code,referrals_required,referrals_acquired,referredby,referral_level,rank,status,created_at,updated_at|} = 1\");"
+        "body": "UserSlots::exist(\"WHERE ${1|id,user_id,slot_id,slot_program,initial_referrals_required,referrals_required,target_rank,referrals_acquired,rank,status,created_at,updated_at|} = 1\");"
     },
     "UserSlots findAll": {
         "scope": "php",
         "prefix": "UserSlots::findAll",
-        "body": "UserSlots::findAll(\"${1:id, user_id, slot_id, slot_program, referral_code, referrals_required, referrals_acquired, referredby, referral_level, rank, status, created_at, updated_at}\", \"WHERE ${2|id,user_id,slot_id,slot_program,referral_code,referrals_required,referrals_acquired,referredby,referral_level,rank,status,created_at,updated_at|} = 1\");"
+        "body": "UserSlots::findAll(\"${1:id, user_id, slot_id, slot_program, initial_referrals_required, referrals_required, target_rank, referrals_acquired, rank, status, created_at, updated_at}\", \"WHERE ${2|id,user_id,slot_id,slot_program,initial_referrals_required,referrals_required,target_rank,referrals_acquired,rank,status,created_at,updated_at|} = 1\");"
     },
     "UserSlots findOne": {
         "scope": "php",
         "prefix": "UserSlots::findOne",
-        "body": "UserSlots::findOne(\"${1:id, user_id, slot_id, slot_program, referral_code, referrals_required, referrals_acquired, referredby, referral_level, rank, status, created_at, updated_at}\", \"WHERE ${2|id,user_id,slot_id,slot_program,referral_code,referrals_required,referrals_acquired,referredby,referral_level,rank,status,created_at,updated_at|} = 1\");"
+        "body": "UserSlots::findOne(\"${1:id, user_id, slot_id, slot_program, initial_referrals_required, referrals_required, target_rank, referrals_acquired, rank, status, created_at, updated_at}\", \"WHERE ${2|id,user_id,slot_id,slot_program,initial_referrals_required,referrals_required,target_rank,referrals_acquired,rank,status,created_at,updated_at|} = 1\");"
     },
     "UserSlots findJoin": {
         "scope": "php",
         "prefix": "UserSlots::findJoin",
-        "body": "\/\/ Note: When joining, specify fieldnames as tablename.fieldname;\r\/\/ Prefix the every tablename with DB_PREFIX\r\\$prefix = DB_PREFIX;\rUserSlots::findJoin(${1:\"{\\$prefix\\}user_slots.${2|id,user_id,slot_id,slot_program,referral_code,referrals_required,referrals_acquired,referredby,referral_level,rank,status,created_at,updated_at|}\"}, \"WHERE ${3|id,user_id,slot_id,slot_program,referral_code,referrals_required,referrals_acquired,referredby,referral_level,rank,status,created_at,updated_at|} = 1\")\r\t->${4|leftJoin,rightJoin,innerJoin,fullJoin|}(\"{\\$prefix\\}tablename\", \"{\\$prefix\\}user_slots.${6|id,user_id,slot_id,slot_program,referral_code,referrals_required,referrals_acquired,referredby,referral_level,rank,status,created_at,updated_at|} = {\\$prefix\\}tablename.field\")\r\t->join();"
+        "body": "\/\/ Note: When joining, specify fieldnames as tablename.fieldname;\r\/\/ Prefix the every tablename with DB_PREFIX\r\\$prefix = DB_PREFIX;\rUserSlots::findJoin(${1:\"{\\$prefix\\}user_slots.${2|id,user_id,slot_id,slot_program,initial_referrals_required,referrals_required,target_rank,referrals_acquired,rank,status,created_at,updated_at|}\"}, \"WHERE ${3|id,user_id,slot_id,slot_program,initial_referrals_required,referrals_required,target_rank,referrals_acquired,rank,status,created_at,updated_at|} = 1\")\r\t->${4|leftJoin,rightJoin,innerJoin,fullJoin|}(\"{\\$prefix\\}tablename\", \"{\\$prefix\\}user_slots.${6|id,user_id,slot_id,slot_program,initial_referrals_required,referrals_required,target_rank,referrals_acquired,rank,status,created_at,updated_at|} = {\\$prefix\\}tablename.field\")\r\t->join();"
     },
     "UserSlots fields": {
         "scope": "php",
         "prefix": "user_slots.",
-        "body": "\". DB_PREFIX .\"user_slots.${1|id,user_id,slot_id,slot_program,referral_code,referrals_required,referrals_acquired,referredby,referral_level,rank,status,created_at,updated_at|}"
+        "body": "\". DB_PREFIX .\"user_slots.${1|id,user_id,slot_id,slot_program,initial_referrals_required,referrals_required,target_rank,referrals_acquired,rank,status,created_at,updated_at|}"
     },
     "ReferralLevels create": {
         "scope": "php",

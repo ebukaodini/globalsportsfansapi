@@ -128,6 +128,12 @@ Router::get('/api/get-downlines', function(Request $req) {
    Member::getDownlines($req);
 });
 
+Router::get('/api/my-benefits', function(Request $req) {
+   JWT::auth($req);
+   Guard::isAny(['admin', 'member']);
+   Member::myBenefits($req);
+});
+
 
 // Admin
 Router::post('/api/admin/register', function(Request $req) {

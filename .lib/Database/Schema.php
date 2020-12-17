@@ -649,7 +649,7 @@ class Schema
          if (!empty($name)) {
             // Current field 
             $this->field = $name;
-            $this->fields[$this->field_index][] = $this->change . "$name TIMESTAMP";
+            $this->fields[$this->field_index][] = $this->change . "$name TIMESTAMP DEFAULT CURRENT_TIMESTAMP";
             $this->fields[$this->field_index][] = $onUpdateCurrentTimestamp == true ? "ON UPDATE CURRENT_TIMESTAMP" : "";
          }
 
@@ -738,8 +738,15 @@ class Schema
       
          $accepted = ["NONE", "NULL", "CURRENT_TIMESTAMP"];
 
-         if ($default != "NONE") {
-            $this->fields[$this->field_index][] = (in_array($default, $accepted) == true) ? "DEFAULT $default" : "DEFAULT '$default'";
+         if ($default != "NONE" ) {
+
+            // some field types cannot have defaults
+            // TINYTEXT, TEXT, MEDIUMTEXT, LONGTEXT
+
+            $currentField = $this->fields[$this->field_index];
+            if (!in_array("TINYTEXT", $currentField) && !in_array("TINYTEXT", $currentField) && !in_array("TINYTEXT", $currentField) && !in_array("TINYTEXT", $currentField)) {
+               $this->fields[$this->field_index][] = (in_array($default, $accepted) == true) ? "DEFAULT $default" : "DEFAULT '$default'";
+            }
          }
 
          return $this;

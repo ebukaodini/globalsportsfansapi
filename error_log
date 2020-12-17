@@ -48,3 +48,7 @@ Stack trace:
 [09-Dec-2020 08:10:28 Africa/Lagos] PHP Parse error:  syntax error, unexpected '...' (T_ELLIPSIS), expecting ']' in /home2/initfram/public_html/globalsportsfans/.lib/Http/Request.php on line 96
 [09-Dec-2020 08:10:39 Africa/Lagos] PHP Parse error:  syntax error, unexpected '...' (T_ELLIPSIS), expecting ']' in /home2/initfram/public_html/globalsportsfans/.lib/Http/Request.php on line 96
 [09-Dec-2020 08:10:40 Africa/Lagos] PHP Parse error:  syntax error, unexpected '...' (T_ELLIPSIS), expecting ']' in /home2/initfram/public_html/globalsportsfans/.lib/Http/Request.php on line 96
+[17-Dec-2020 05:49:42 Africa/Lagos] PHP Parse error:  syntax error, unexpected '<<' (T_SL), expecting end of file in /home2/initfram/public_html/globalsportsfans/app/config.php on line 67
+[17-Dec-2020 05:49:42 Africa/Lagos] PHP Parse error:  syntax error, unexpected '<<' (T_SL), expecting end of file in /home2/initfram/public_html/globalsportsfans/app/config.php on line 67
+[17-Dec-2020 05:50:31 Africa/Lagos] PHP Parse error:  syntax error, unexpected '<<' (T_SL), expecting end of file in /home2/initfram/public_html/globalsportsfans/app/config.php on line 67
+[17-Dec-2020 05:50:41 Africa/Lagos] PHP Parse error:  syntax error, unexpected '<<' (T_SL), expecting end of file in /home2/initfram/public_html/globalsportsfans/app/config.php on line 67

@@ -359,3 +359,155 @@
 	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 47
 	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 141
 	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 339
+[Wed 16-12-2020 11:26:24 PM UTC] [1024] SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'telephone'
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Database\Model.php on line 66
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\controllers\UserController.php on line 79
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 49
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 141
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 339
+[Wed 16-12-2020 11:27:16 PM UTC] [1024] SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '' for key 'telephone'
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Database\Model.php on line 66
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\controllers\UserController.php on line 79
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 49
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 141
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 339
+[Thu 17-12-2020 12:24:43 AM UTC] [1024] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'status' in 'where clause'
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Database\Model.php on line 306
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\services\Common.php on line 31
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\controllers\Member.php on line 167
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 128
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 141
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 339
+[Thu 17-12-2020 12:24:44 AM UTC] [8] Undefined variable: downline
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\controllers\Member.php on line 167
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 128
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 141
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 339
+[Thu 17-12-2020 12:25:16 AM UTC] [1024] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'status' in 'where clause'
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Database\Model.php on line 306
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\services\Common.php on line 31
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\controllers\Member.php on line 167
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 128
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 141
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 339
+[Thu 17-12-2020 12:25:17 AM UTC] [8] Undefined variable: downline
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\controllers\Member.php on line 167
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 128
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 141
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 339
+[Thu 17-12-2020 12:27:09 AM UTC] [8] Undefined variable: downline
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\services\Common.php on line 39
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\services\Common.php on line 39
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\controllers\Member.php on line 167
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 128
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 141
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 339
+[Thu 17-12-2020 12:27:57 AM UTC] [8] Undefined variable: downline
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\services\Common.php on line 39
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\services\Common.php on line 39
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\controllers\Member.php on line 167
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 128
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 141
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 339
+[Thu 17-12-2020 12:30:32 AM UTC] [8] Undefined variable: downline
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\services\Common.php on line 39
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\services\Common.php on line 39
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\controllers\Member.php on line 167
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 128
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 141
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 339
+[Thu 17-12-2020 12:31:22 AM UTC] [8] Undefined variable: downline
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\services\Common.php on line 39
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\services\Common.php on line 39
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\services\Common.php on line 39
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\services\Common.php on line 39
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\controllers\Member.php on line 167
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 128
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 141
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 339
+[Thu 17-12-2020 12:32:21 AM UTC] [8] Undefined variable: downline
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\services\Common.php on line 40
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\services\Common.php on line 40
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\services\Common.php on line 40
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\services\Common.php on line 40
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\controllers\Member.php on line 167
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 128
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 141
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 339
+[Thu 17-12-2020 12:32:51 AM UTC] [8] Undefined variable: downline
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\services\Common.php on line 40
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\services\Common.php on line 40
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\services\Common.php on line 40
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\services\Common.php on line 40
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\controllers\Member.php on line 167
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 128
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 141
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 339
+[Thu 17-12-2020 12:35:54 AM UTC] [8] Undefined variable: downline
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\services\Common.php on line 40
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\services\Common.php on line 40
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\services\Common.php on line 40
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\services\Common.php on line 40
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\services\Common.php on line 40
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\controllers\Member.php on line 167
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 128
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 141
+[Thu 17-12-2020 01:50:00 AM UTC] [1024] Error: mail not sent. (info@initframework.com -> ebuka.odi@gmail.com)
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\services\Mail.php on line 72
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\controllers\Member.php on line 111
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 103
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 141
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 339
+[Thu 17-12-2020 03:02:27 AM UTC] [8] Trying to access array offset on value of type bool
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 49
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 141
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 339
+[Thu 17-12-2020 03:02:45 AM UTC] [8] Undefined variable: downline
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\controllers\Member.php on line 179
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 128
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 141
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 339
+[Thu 17-12-2020 03:06:46 AM UTC] [8] Trying to access array offset on value of type bool
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 49
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 141
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 339
+[Thu 17-12-2020 03:08:43 AM UTC] [8] Trying to access array offset on value of type bool
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 49
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 141
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 339
+[Thu 17-12-2020 04:16:42 AM UTC] [8] Undefined variable: referralcode
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\controllers\UserController.php on line 101
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 49
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 141
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 339
+[Thu 17-12-2020 04:16:42 AM UTC] [8] Trying to access array offset on value of type bool
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\controllers\UserController.php on line 101
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 49
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 141
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 339
+[Thu 17-12-2020 04:16:42 AM UTC] [1024] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'LIMIT 1' at line 1
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Database\Model.php on line 336
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\services\Common.php on line 61
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\controllers\UserController.php on line 101
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 49
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 141
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 339
+[Thu 17-12-2020 04:16:42 AM UTC] [8] Trying to access array offset on value of type bool
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\controllers\UserController.php on line 101
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 49
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 141
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 339
+[Thu 17-12-2020 04:16:42 AM UTC] [1024] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND status <> 'completed'' at line 1
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Database\Model.php on line 183
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\services\Common.php on line 62
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\controllers\UserController.php on line 101
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 49
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 141
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 339
+[Thu 17-12-2020 04:16:42 AM UTC] [1024] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND referrals_acquired = referrals_required' at line 1
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Database\Model.php on line 276
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\services\Common.php on line 65
+	>> C:\Users\user\Desktop\projects\globalsportsfans\app\controllers\UserController.php on line 101
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 49
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 141
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 339
