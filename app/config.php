@@ -64,6 +64,6 @@ define("TIMEZONE", "UTC");
 // define your custom configurations...
 // define('CONFIG', 'VALUE');
 
-define('ORG_EMAIL', 'info@initframework.com');
+define('ORG_EMAIL', 'info@globalsportsfans.initframework.com');
 
 define('ORG_REFERRAL_CODE', 'SPORTSFANS');
