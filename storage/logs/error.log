@@ -511,3 +511,39 @@
 	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 49
 	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 141
 	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 339
+[Fri 18-12-2020 05:47:44 AM UTC] [8] Undefined variable: referralcode
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/UserController.php on line 102
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 49
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Fri 18-12-2020 05:47:44 AM UTC] [8] Trying to access array offset on value of type bool
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/UserController.php on line 102
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 49
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Fri 18-12-2020 05:47:44 AM UTC] [1024] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'LIMIT 1' at line 1
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Database/Model.php on line 336
+	>> /home2/initfram/public_html/globalsportsfans/app/services/Common.php on line 61
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/UserController.php on line 102
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 49
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Fri 18-12-2020 05:47:44 AM UTC] [8] Trying to access array offset on value of type bool
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/UserController.php on line 102
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 49
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Fri 18-12-2020 05:47:44 AM UTC] [1024] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND status <> 'completed'' at line 1
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Database/Model.php on line 183
+	>> /home2/initfram/public_html/globalsportsfans/app/services/Common.php on line 62
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/UserController.php on line 102
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 49
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Fri 18-12-2020 05:47:44 AM UTC] [1024] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND referrals_acquired = referrals_required' at line 1
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Database/Model.php on line 276
+	>> /home2/initfram/public_html/globalsportsfans/app/services/Common.php on line 65
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/UserController.php on line 102
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 49
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
