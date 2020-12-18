@@ -68,6 +68,7 @@ class Request
       header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
       header("Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE");
       header("Access-Control-Allow-Origin: *");
+      header("Accept: */*");
       foreach($_SERVER as $key => $value)
       {
          $this->{$this->toCamelCase($key)} = $value;
