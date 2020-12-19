@@ -511,3 +511,94 @@
 	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 49
 	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 141
 	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 339
+[Sat 19-12-2020 12:33:52 PM UTC] [8] Undefined property: Library\Http\Request::$documentRoot
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Request.php on line 14
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 23
+[Sat 19-12-2020 12:33:52 PM UTC] [8] Undefined property: Library\Http\Request::$remoteAddr
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Request.php on line 14
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 23
+[Sat 19-12-2020 12:33:52 PM UTC] [8] Undefined property: Library\Http\Request::$remotePort
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Request.php on line 14
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 23
+[Sat 19-12-2020 12:33:52 PM UTC] [8] Undefined property: Library\Http\Request::$serverSoftware
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Request.php on line 14
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 23
+[Sat 19-12-2020 12:33:53 PM UTC] [8] Undefined property: Library\Http\Request::$serverProtocol
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Request.php on line 14
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 23
+[Sat 19-12-2020 12:33:53 PM UTC] [8] Undefined property: Library\Http\Request::$serverName
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Request.php on line 14
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 23
+[Sat 19-12-2020 12:33:53 PM UTC] [8] Undefined property: Library\Http\Request::$serverPort
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Request.php on line 14
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 23
+[Sat 19-12-2020 12:33:53 PM UTC] [8] Undefined property: Library\Http\Request::$requestUri
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Request.php on line 14
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 23
+[Sat 19-12-2020 12:33:53 PM UTC] [8] Undefined property: Library\Http\Request::$requestMethod
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Request.php on line 14
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 23
+[Sat 19-12-2020 12:33:53 PM UTC] [8] Undefined property: Library\Http\Request::$scriptName
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Request.php on line 14
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 23
+[Sat 19-12-2020 12:33:53 PM UTC] [8] Undefined property: Library\Http\Request::$scriptFilename
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Request.php on line 14
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 23
+[Sat 19-12-2020 12:33:53 PM UTC] [8] Undefined property: Library\Http\Request::$pathInfo
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Request.php on line 14
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 23
+[Sat 19-12-2020 12:33:53 PM UTC] [8] Undefined property: Library\Http\Request::$phpSelf
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Request.php on line 14
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 23
+[Sat 19-12-2020 12:33:53 PM UTC] [8] Undefined property: Library\Http\Request::$httpAuthtoken
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Request.php on line 14
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 23
+[Sat 19-12-2020 12:33:53 PM UTC] [8] Undefined property: Library\Http\Request::$contentType
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Request.php on line 14
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 23
+[Sat 19-12-2020 12:33:53 PM UTC] [8] Undefined property: Library\Http\Request::$httpContentType
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Request.php on line 14
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 23
+[Sat 19-12-2020 12:33:53 PM UTC] [8] Undefined property: Library\Http\Request::$httpUserAgent
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Request.php on line 14
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 23
+[Sat 19-12-2020 12:33:54 PM UTC] [8] Undefined property: Library\Http\Request::$httpAccept
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Request.php on line 14
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 23
+[Sat 19-12-2020 12:33:54 PM UTC] [8] Undefined property: Library\Http\Request::$httpPostmanToken
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Request.php on line 14
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 23
+[Sat 19-12-2020 12:33:54 PM UTC] [8] Undefined property: Library\Http\Request::$httpHost
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Request.php on line 14
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 23
+[Sat 19-12-2020 12:33:54 PM UTC] [8] Undefined property: Library\Http\Request::$httpAcceptEncoding
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Request.php on line 14
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 23
+[Sat 19-12-2020 12:33:54 PM UTC] [8] Undefined property: Library\Http\Request::$httpConnection
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Request.php on line 14
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 23
+[Sat 19-12-2020 12:33:54 PM UTC] [8] Undefined property: Library\Http\Request::$contentLength
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Request.php on line 14
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 23
+[Sat 19-12-2020 12:33:54 PM UTC] [8] Undefined property: Library\Http\Request::$httpContentLength
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Request.php on line 14
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 23
+[Sat 19-12-2020 12:33:54 PM UTC] [8] Undefined property: Library\Http\Request::$requestTimeFloat
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Request.php on line 14
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 23
+[Sat 19-12-2020 12:33:54 PM UTC] [8] Undefined property: Library\Http\Request::$requestTime
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Request.php on line 14
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 23
+[Sat 19-12-2020 12:35:36 PM UTC] [8] Array to string conversion
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Request.php on line 14
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 23
+[Sat 19-12-2020 12:53:56 PM UTC] [8] Array to string conversion
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Request.php on line 14
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 23
+[Sat 19-12-2020 12:58:34 PM UTC] [8] Undefined variable: email
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 53
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 141
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Router.php on line 339
+[Sat 19-12-2020 01:04:55 PM UTC] [8] Array to string conversion
+	>> C:\Users\user\Desktop\projects\globalsportsfans\.lib\Http\Request.php on line 14
+	>> C:\Users\user\Desktop\projects\globalsportsfans\index.php on line 23
