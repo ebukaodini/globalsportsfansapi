@@ -4,6 +4,7 @@ composer.lock
 
 # storage files
 storage/session/sess_*
+storage/logs/
 
 # Todo file
 # .todo
