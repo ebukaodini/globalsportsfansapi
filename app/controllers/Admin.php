@@ -15,21 +15,21 @@ class Admin
    public static function getAllInvoice(Request $req)
    {
       $allInvoice = Invoice::findAll("*");
-      if ($allInvoice == false) error("No invoice");
+      if ($allInvoice == false) error("No invoice", null, 200);
       else success('All invoice', $allInvoice);
    }
 
    public static function getAllPaidInvoice(Request $req)
    {
       $allInvoice = Invoice::findAll("*", "WHERE status = 'paid'");
-      if ($allInvoice == false) error("No paid invoice");
+      if ($allInvoice == false) error("No paid invoice", null, 200);
       else success('All paid invoice', $allInvoice);
    }
 
    public static function getAllUnpaidInvoice(Request $req)
    {
       $allInvoice = Invoice::findAll("*", "WHERE status = 'unpaid'");
-      if ($allInvoice == false) error("No unpaid invoice");
+      if ($allInvoice == false) error("No unpaid invoice", null, 200);
       else success('All unpaid invoice', $allInvoice);
    }
 
@@ -43,7 +43,7 @@ class Admin
    {
       $allusers = Users::findAll("*");
       if ($allusers) success("All users", $allusers);
-      else error("No user");
+      else error("No user", null, 200);
    }
 
    public static function verifyPayment(Request $req)
@@ -99,7 +99,7 @@ class Admin
 
          // TODO: notify member
          success('Invoice status updated successfully');
-      } else error('Invoice status not updated');
+      } else error('Invoice status not updated', null, 200);
 
    }
 
