@@ -110,6 +110,12 @@ Router::get('/api/dashboard', function(Request $req) {
    Member::dashboard($req);
 });
 
+Router::get('/api/myslots', function(Request $req) {
+   JWT::auth($req);
+   Guard::isAny(['member','admin']);
+   Member::getMySlots($req);
+});
+
 Router::get('/api/unpaid-invoice', function(Request $req) {
    JWT::auth($req);
    Guard::isAny(['member','admin']);

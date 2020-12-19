@@ -37,6 +37,7 @@ Member WorkFlow:
    ✔ user updates bio info @started(20-12-09 01:19) @done(20-12-09 01:19) @lasted(17s)
    ✔ user updates bank details @started(20-12-08 23:40) @done(20-12-09 00:04) @lasted(24m53s)
    ✔ get users profile @started(20-12-09 00:05) @done(20-12-09 00:12) @lasted(7m27s)
+   ☐ user can see his slots
    ✔ get user's unpaid invoice @done(20-12-12 11:25)
    ✔ user makes payment for invoice and upload payment evidence @done(20-12-12 13:49)
    ✔ payment is verified by admin @started(20-12-13 23:55) @done(20-12-14 01:35) @lasted(1h40m50s)
@@ -44,7 +45,7 @@ Member WorkFlow:
    ✔ user is given a referral code to share to users and invite them in @done(20-12-14 02:42)
    ✔ user monitors downlines
    ☐ user gets notified by new referrals
-   ☐ add benefits for users as they attain new levels
+   ✔ add benefits for users as they attain new levels @done(20-12-19 17:18)
    ✔ user monitors his benefits
    ☐ user can follow up on favourite team competitions and fixtures
    
