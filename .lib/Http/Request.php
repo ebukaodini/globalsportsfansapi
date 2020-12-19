@@ -82,7 +82,16 @@ class Request
       $this->query = $_GET;
       // request body
       if (in_array($this->requestMethod, ["POST", "PATCH", "PUT", "DELETE"])) {
-         $this->body = $_POST;
+         if ($this->contentType == "application/json") {
+            // get the raw input
+            $input = file_get_contents('php://input');
+            // replace the spaces and newlines
+            $parsedInputs = str_replace(" ", "", str_replace("\r", "", str_replace("\n", "", $input)));
+            // convertinto an associative array as a post
+            $this->body = json_decode($parsedInputs, true);
+         } else {
+            $this->body = $_POST;
+         }
       }
       // accomodating request methods from html forms (spoofing)
       if ($this->requestMethod == "POST" && isset($this->body['HTTP_REQUEST_METHOD']) && in_array($this->body['HTTP_REQUEST_METHOD'], ["PUT", "PATCH", "DELETE"]))
