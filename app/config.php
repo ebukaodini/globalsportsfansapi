@@ -49,8 +49,8 @@ define('DB_COLLATION', 'latin1_general_ci');
 
 // MAIL
 define('MAIL_DRIVER', 'smtp'); // mail, smtp, sendmail
-define('MAIL_SMTP_HOST', 'mail.globalsportsfans.initframework.com');
-define('MAIL_SMTP_PORT', 26);
+define('MAIL_SMTP_HOST', 'globalsportsfans.initframework.com');
+define('MAIL_SMTP_PORT', 465);
 define('MAIL_SMTP_AUTH', true);
 define('MAIL_SMTP_USERNAME', 'info@globalsportsfans.initframework.com');
 define('MAIL_SMTP_PASSWORD', 'ND&pZVv.bDQz');
