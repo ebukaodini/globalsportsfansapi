@@ -192,4 +192,12 @@ class Member
       if ($benefits != false) success('Your accrued benefits', $benefits); else error('No accrued benefits', null, 200);
    }
 
+
+   public static function getMySlots(Request $req)
+   {
+      $userId = User::$id;
+      $mySlots = UserSlots::findAll("slot_id, slot_program, initial_referrals_required, referrals_required, target_rank, referrals_acquired, rank, status, created_at, updated_at", "WHERE user_id = $userId");
+
+      if ($mySlots != false) success('Your Slots', $mySlots); else error('No Slots', null, 200);
+   }
 }

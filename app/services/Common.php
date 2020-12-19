@@ -51,7 +51,7 @@ class Common
    public static function updateAllUplinks(string $referralCode)
    {
       // get the user that referred me
-      $referral = Users::findOne("id, referredby", "WHERE referral_code = '$referralcode'");
+      $referral = Users::findOne("id, referredby", "WHERE referral_code = '$referralCode'");
       // get his id and get who referred him
       $referralCodeUserId = $referral['id'];
       $referralReferredBy = $referral['referredby'] ?? null;
@@ -86,7 +86,7 @@ class Common
             // give the user his accrued benefits
             $referralLevel = ReferralLevels::findOne("cash_benefit, benefits, rank", "WHERE rank = '" . $referralSlot['rank'] . "'");
             UserBenefits::create([
-               "user_id" => $memberUserId,
+               "user_id" => $referralCodeUserId,
                "achievement" => "Attained " . $referralLevel['rank'] . " Level.",
                "cash" => $referralLevel['cash_benefit'],
                "benefit" => $referralLevel['benefits']
