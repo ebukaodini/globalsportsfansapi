@@ -25,7 +25,7 @@ class UserController
       $mou = $mou ?? false;
 
       // stop user from registering if he/she refuse to agree to the mou
-      if ($mou == false) error('Accept the Memorandum of Understanding to continue');
+      if ($mou == false) error('Accept the Memorandum of Understanding to continue', null, 200);
 
       // validate email
       Validate::isValidEmail('Email', $email);
@@ -42,10 +42,10 @@ class UserController
       }
       // verify validation
       if (Validate::$status == false) {
-         error('Registeration failed', array_values(Validate::$error));
+         error('Registeration failed', array_values(Validate::$error), 200);
       }
       if ($password != $cpassword) {
-         error('Registeration failed', ['Password and confirm password must be the same']);
+         error('Registeration failed', ['Password and confirm password must be the same'], 200);
       }
 
       // hash password
@@ -53,14 +53,14 @@ class UserController
 
       // Check if user exists
       if (Users::exist("WHERE email = '$email'") == true) {
-         error('Registeration failed. Email already exists');
+         error('Registeration failed. Email already exists', null, 200);
       }
 
       // if referral code is not empty
       // confirm that the referral code exist before using it
       if (!empty($referralcode)) {
          if (Users::exist("WHERE referral_code = '$referralcode'") == false) {
-            error("Registeration failed. Referral code is incorrect");
+            error("Registeration failed. Referral code is incorrect", null, 200);
          }
       } else {
          // else use the referral code of the organisation
@@ -106,7 +106,7 @@ class UserController
             $slot == '' ? null : ['slot' => $slot]
          );
       } else {
-         error('Registeration failed, please try again');
+         error('Registeration failed, please try again', null, 200);
       }
 
    }
@@ -118,7 +118,7 @@ class UserController
       $password = $password ?? '';
       // validate email and password
       if ( Validate::isValidEmail('Email', $email) == false || Validate::isValidPassword('Password', $password, true, true, true, false, 8) == false) {
-         error("Invalid Email / Password");
+         error("Invalid Email / Password", null, 200);
       }
 
       // get user with this email
@@ -147,10 +147,10 @@ class UserController
             ]);
 
          } else {
-            error("Invalid Email / Password");   
+            error("Invalid Email / Password", null, 200);   
          }
       } else {
-         error("Invalid Email / Password");
+         error("Invalid Email / Password", null, 200);
       }
    }
 
@@ -172,7 +172,7 @@ class UserController
       if ($sendMail == true) {
          success("A 5 digit token has been sent to $email");
       } else {
-         error("Token was not sent. Please logout and login again");
+         error("Token was not sent. Please logout and login again", null, 200);
       }
    }
 
@@ -186,16 +186,16 @@ class UserController
       Validate::mustContainNumberOnly('Token', $token);
       Validate::hasExactLength('Token', $token, 5);
       if (Validate::$status == false) {
-         error("Invalid token");
+         error("Invalid token", null, 200);
       }
 
       if (Users::exist("WHERE email = '$email' AND token = '$token' LIMIT 1")) {
          $statusupdate = Users::update([
             "verification_status" => "verified"
          ], "WHERE email = '$email'");
-         if ($statusupdate == true) success('Valid token. Account is verified'); else error("Account not verified");
+         if ($statusupdate == true) success('Valid token. Account is verified'); else error("Account not verified", null, 200);
       } else {
-         error('Invalid token');
+         error('Invalid token', null, 200);
       }
    }
 
@@ -206,7 +206,7 @@ class UserController
       $profile = Users::findOne("telephone, email, firstname, lastname, middlename, residential_address, occupation, profile_picture, mou, nextofkin_name, nextofkin_telephone, nextofkin_residential_address, accountnumber, accountname, bankname, favorite_sport, favorite_team, referral_code, member_id, verification_status, created_at", "WHERE email = '$email'");
 
       if ($profile == false) {
-         error("No profile for this user"); // no obvious chance of this accuring
+         error("No profile for this user", null, 200); // no obvious chance of this accuring
       } else {
          success('User profile', $profile);
       }
@@ -223,11 +223,11 @@ class UserController
       // Validate the password
       Validate::isValidPassword('New Password', $npassword, true, true, true, false, 8);
       if (Validate::$status == false) {
-         error("Password update failed", array_values(Validate::$error));
+         error("Password update failed", array_values(Validate::$error), 200);
       }
 
       if ($npassword != $cpassword) {
-         error("Password update failed", ['Password and confirm password must be the same']);
+         error("Password update failed", ['Password and confirm password must be the same'], 200);
       }
 
       // verify the old password
@@ -238,7 +238,7 @@ class UserController
       $dbpassword = Users::findOne("password", "WHERE email = '$email'")['password'] ?: '';
       
       // return error if password fails
-      if (Cipher::verifyPassword($opassword, $dbpassword) == false) error("Password update failed", ["Invalid Password"]);
+      if (Cipher::verifyPassword($opassword, $dbpassword) == false) error("Password update failed", ["Invalid Password"], 200);
 
       // hash the password
       $hpassword = Cipher::hashPassword($npassword);
@@ -265,7 +265,7 @@ class UserController
       Upload::tmp('profile-picture', "profile_pictures/" . User::$id.".".date('ymdhis'), Upload::$imagefiles, null, 2);
 
       if (Upload::$status == false) {
-         error('Profile picture not updated', array_values(Upload::$error));
+         error('Profile picture not updated', array_values(Upload::$error), 200);
       } else {
          $pictureupdate = Users::update([
             "profile_picture" => Upload::$path,
@@ -273,7 +273,7 @@ class UserController
          if ($pictureupdate == true)
          success("Profile picture updated successfully", ['path' => Upload::$path]);
          else
-         error("Profile picture not updated");
+         error("Profile picture not updated", null, 200);
       }
 
    }
@@ -287,11 +287,11 @@ class UserController
 
       // validate the bank details
       if (Validate::mustContainNumberOnly("Account Number", $accountnumber) == false) {
-         error('Bank details not updated', ["Invalid Account Number"]);
+         error('Bank details not updated', ["Invalid Account Number"], 200);
       }
       
       if (empty($accountname) == true || empty($bankname) == true) {
-         error("Bank details not updated", ['Account details cannot be empty']);
+         error("Bank details not updated", ['Account details cannot be empty'], 200);
       }
 
       $email = User::$email;
@@ -306,7 +306,7 @@ class UserController
       if ($bankdetailupdate == true) {
          success("Bank details updated successfully");
       } else {
-         error("Bank details not updated");
+         error("Bank details not updated", null, 200);
       }
    }
 
@@ -353,13 +353,13 @@ class UserController
       Validate::hasMaxLength("Favoite Team", $favorite_team, 50);
 
       if (Validate::$status == false) {
-         error("Profile not updated", Validate::$error);
+         error("Profile not updated", Validate::$error, 200);
       }
 
       $email = User::$email;
 
       // telephone must be unique
-      if (Users::exist("WHERE telephone = '$telephone' AND email <> '$email'") == true) error('Telephone number already exist');
+      if (Users::exist("WHERE telephone = '$telephone' AND email <> '$email'") == true) error('Telephone number already exist', null, 200);
 
       // update the user profile
       $updateprofile = Users::update([
@@ -379,7 +379,7 @@ class UserController
       if ($updateprofile == true) {
          success("Profile updated successfully");
       } else {
-         error("Profile not updated");
+         error("Profile not updated", null, 200);
       }
 
    }

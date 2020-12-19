@@ -33,7 +33,7 @@ class Member
 
       Validate::isInteger('Slot Id', $slotId);
       if (Validate::$status == false) {
-         error('Invalid slot');
+         error('Invalid slot', null, 200);
       }
 
       $slot = Slots::findOne("id, program, no_slots, cost, benefits", "WHERE id = $slotId");
@@ -44,7 +44,7 @@ class Member
 
          // check if user has an uncompleted slot before opening another
          $userHaveUncompletedSlot = UserSlots::exist("WHERE user_id = ".User::$id." AND status <> 'completed'");
-         if ($userHaveUncompletedSlot) error("User have a slot already");
+         if ($userHaveUncompletedSlot) error("User have a slot already", null, 200);
 
          // get the current referral level and the next referral level
          // and also use them in creating the user's slot
@@ -64,7 +64,7 @@ class Member
             "rank" => $referralLevel['rank']
          ]);
 
-         if ($slotcreate == false) error("Slot was not created. Please try again");
+         if ($slotcreate == false) error("Slot was not created. Please try again", null, 200);
          // TODO: Notify user, referredby and admin of new slot created
 
          // generate referral code
@@ -82,7 +82,7 @@ class Member
 
          if ($referralupdate == false) {
             Users::rollback();
-            error("Slot was not created. Please try again");
+            error("Slot was not created. Please try again", null, 200);
          }
 
          // generate invoice for the slot
@@ -104,7 +104,7 @@ class Member
 
          if ($invoicecreation == false) {
             Users::rollback();
-            error("Slot was not created. Please try again");
+            error("Slot was not created. Please try again", null, 200);
          }
 
          Users::commit();
@@ -119,7 +119,7 @@ class Member
          success('Slot has been created for the user');
         
       } else {
-         error('Slot not found');
+         error('Slot not found', null, 200);
       }
 
    }
@@ -128,7 +128,7 @@ class Member
    {
       $unpaidInvoices = Invoice::findAll("id, invoice_number, invoice_description, amount_due, status, created_at", "WHERE status = 'unpaid' AND user_id = ".User::$id);
 
-      if ($unpaidInvoices == false) error('No unpaid invoice');
+      if ($unpaidInvoices == false) error('No unpaid invoice', null, 200);
       else success('All unpaid invoices', $unpaidInvoices);
    }
 
@@ -148,7 +148,7 @@ class Member
       Validate::isNotEmpty('Amount paid', $amountpaid);
       Validate::mustContainNumberOnly('Amount Paid', $amountpaid);
 
-      if (Validate::$status == false) error('Payment details not submitted', array_values(Validate::$error));
+      if (Validate::$status == false) error('Payment details not submitted', array_values(Validate::$error), 200);
 
       // whether paymentevidence was uploaded or not, upload it
       Upload::$field = 'Payment Evidence';
@@ -161,7 +161,7 @@ class Member
          "payment_method" => $paymentmethod,
          "payment_evidence" => $path,
          "status" => "unverified payment"
-      ], "WHERE invoice_number = '$invoicenumber'")) success('Payment details submitted'); else error('Payment details not submitted; Please try again');
+      ], "WHERE invoice_number = '$invoicenumber'")) success('Payment details submitted'); else error('Payment details not submitted; Please try again', null, 200);
 
    }
 
@@ -180,7 +180,7 @@ class Member
 
          success("Your downlines", $downlines);
 
-      } else error("You don't have a referral code, contact the support team.");
+      } else error("You don't have a referral code, contact the support team.", null, 200);
       
    }
 
@@ -189,7 +189,7 @@ class Member
       $userId = User::$id;
       $benefits = UserBenefits::findAll("id, achievement, cash, benefit, status, created_at, updated_at", "WHERE user_id = $userId");
       
-      if ($benefits != false) success('Your accrued benefits', $benefits); else error('No accrued benefits');
+      if ($benefits != false) success('Your accrued benefits', $benefits); else error('No accrued benefits', null, 200);
    }
 
 }
