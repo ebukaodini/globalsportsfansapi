@@ -298,6 +298,11 @@
         "prefix": "@while",
         "body": "@while (${1:condition})\r\t$0\r@endwhile"
     },
+    "Controller Method": {
+        "scope": "php",
+        "prefix": "psf",
+        "body": "public static function ${1:method}(Request \\$req)\r{\r\t$0\r}\r"
+    },
     "response Render": {
         "scope": "php",
         "prefix": "render",

@@ -86,7 +86,10 @@ class Request
             // get the raw input
             $input = file_get_contents('php://input');
             // replace the spaces and newlines
-            $parsedInputs = str_replace(" ", "", str_replace("\r", "", str_replace("\n", "", $input)));
+            $parsedInputs = 
+               str_replace(" ", "", 
+                  str_replace("\r", "", 
+                     str_replace("\n", "", $input)));
             // convertinto an associative array as a post
             $this->body = json_decode($parsedInputs, true);
          } else {

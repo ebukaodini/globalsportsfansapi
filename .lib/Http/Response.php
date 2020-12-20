@@ -134,7 +134,7 @@ function success($message = "success", array $data = null, int $code = 200)
    exit(json_encode($data));
 }
 
-function error($message = "error", array $data = null, int $code = 400)
+function error($message = "error", array $data = null, int $code = 200)
 {
    __validateCode($code);
    header("Content-Type: application/json; charset=UTF-8", true, $code);

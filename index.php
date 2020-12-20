@@ -154,6 +154,41 @@ Router::get('/api/admin/all-users', function(Request $req) {
    Admin::getAllUsers($req);
 });
 
+Router::get('/api/admin/all-admin', function(Request $req) {
+   JWT::auth($req);
+   // Guard::is('admin');
+   Admin::getAllAdmin($req);
+});
+
+Router::post('/api/admin/update-user-status', function(Request $req) {
+   JWT::auth($req);
+   // Guard::is('admin');
+   Admin::updateUserStatus($req);
+});
+
+Router::get('/api/admin/user-downlines', function(Request $req) {
+   JWT::auth($req);
+   // Guard::is('admin');
+   Admin::getUserDownlines($req);
+});
+
+Router::get('/api/admin/user-benefits', function(Request $req) {
+   JWT::auth($req);
+   // Guard::is('admin');
+   Admin::getUserBenefits($req);
+});
+
+Router::get('/api/admin/all-benefits', function(Request $req) {
+   JWT::auth($req);
+   // Guard::is('admin');
+   Admin::getAllBenefits($req);
+});
+
+Router::post('/api/admin/update-benefit-status', function(Request $req) {
+   JWT::auth($req);
+   // Guard::is('admin');
+   Admin::updateUserBenefitStatus($req);
+});
 
 Router::get('/api/admin/get-all-invoices', function(Request $req) {
    JWT::auth($req);

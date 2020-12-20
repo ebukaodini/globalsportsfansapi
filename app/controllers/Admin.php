@@ -8,6 +8,7 @@ use Services\User;
 use Services\Validate;
 use Models\ReferralLevels;
 use Models\UserBenefits;
+use Services\Common;
 
 class Admin
 {
@@ -41,9 +42,16 @@ class Admin
 
    public static function getAllUsers(Request $req)
    {
-      $allusers = Users::findAll("*");
+      $allusers = Users::findAll("id, telephone, email, role, permissions, firstname, lastname, middlename, residential_address, occupation, profile_picture, mou, nextofkin_name, nextofkin_telephone, nextofkin_residential_address, accountnumber, accountname, bankname, favorite_sport, favorite_team, referredby, referral_code, referral_level, member_id, verification_status, created_at, updated_at", "WHERE role = 'member'");
       if ($allusers) success("All users", $allusers);
       else error("No user", null, 200);
+   }
+
+   public static function getAllAdmin(Request $req)
+   {
+      $allusers = Users::findAll("id, telephone, email, role, permissions, firstname, lastname, middlename, residential_address, occupation, profile_picture, mou, nextofkin_name, nextofkin_telephone, nextofkin_residential_address, accountnumber, accountname, bankname, favorite_sport, favorite_team, referredby, referral_code, referral_level, member_id, verification_status, created_at, updated_at", "WHERE role = 'admin'");
+      if ($allusers) success("All admin", $allusers);
+      else error("No admin", null, 200);
    }
 
    public static function verifyPayment(Request $req)
@@ -103,15 +111,89 @@ class Admin
 
    }
 
-   public static function update(Request $req)
+   public static function updateUserStatus(Request $req)
    {
-      // update a resource
       extract($req->body);
+      $status = $status ?? '';
+      $userId = $userId ?? '';
+
+      Validate::isNotEmpty('Status', $status);
+      Validate::mustContainLetters('Status', $status);
+      Validate::isNotEmpty('User ID', $userId);
+      Validate::mustContainNumberOnly('User ID', $userId);
+
+      if (Validate::$status == false) error("User status could not be updated", array_values(Validate::$error));
+
+      if (Users::update([
+         "verification_status" => $status
+      ], "WHERE id = $userId")== true) {
+         success("User status updated successfully");
+      } else error("User status could not be updated; Please try again");
    }
 
-   public static function delete(Request $req)
+   public static function getUserDownlines(Request $req)
    {
-      // remove a resouce
+      extract($req->query);
+      $email = $email ?? '';
+
+      // Validate email
+      Validate::isValidEmail('Email', $email);
+      Validate::hasMaxLength('Email', $email, 100);
+
+      if (Validate::$status == false) error("Could not get user's downlines", array_values(Validate::$error));
+
+      $my = Users::findOne("referral_code, referral_level", "WHERE email = '$email'");
+      $referralCode = $my['referral_code'] ?? null;
+      $referralLevel = intval($my['referral_level']) ?? null;
+      
+      if (!is_null($referralCode) && !is_null($referralLevel)) {
+         $downlines = Common::generateDownline($referralCode, $referralLevel, 1);
+
+         success("User downlines", $downlines);
+
+      } else error("User do not have a referral code, contact the support team.", null, 200);
    }
+
+   public static function getUserBenefits(Request $req)
+   {
+      extract($req->query);
+      $userId = $userId ?? '';
+
+      Validate::isNotEmpty('User ID', $userId);
+      Validate::mustContainNumberOnly('User ID', $userId);
+
+      if (Validate::$status == false) error("User benefits could not be gotten", array_values(Validate::$error));
+
+      $benefits = UserBenefits::findAll("id, achievement, cash, benefit, status, created_at, updated_at", "WHERE user_id = $userId");
+      
+      if ($benefits != false) success('User accrued benefits', $benefits); else error('No accrued benefits', null, 200);
+   }
+
+   public static function getAllBenefits(Request $req)
+   {
+      $benefits = UserBenefits::findAll("id, user_id, achievement, cash, benefit, status, created_at, updated_at");
+
+      if ($benefits !== false) success('All benefits', $benefits); else error('No benefits');
+   }
+   
+   public static function updateUserBenefitStatus(Request $req)
+   {
+      extract($req->body);
+      $status = $status ?? '';
+      $id = $id ?? '';
+
+      Validate::isNotEmpty('Status', $status);
+      Validate::mustContainLetters('Status', $status);
+      Validate::isNotEmpty('ID', $id);
+      Validate::mustContainNumberOnly('ID', $id);
+
+      if (Validate::$status == false) error("User benefits could not be updated", array_values(Validate::$error));
+
+      if (UserBenefits::update([
+         "status" => $status
+      ], "WHERE id = $id") == true) success("User benefit status is updated"); else error("User benefit status is not updated");
+
+   }
+   
 
 }
