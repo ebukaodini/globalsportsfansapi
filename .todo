@@ -10,17 +10,26 @@ Auth:
    ✔ user login @done(20-12-06 04:31)
    ✔ Send token @done(20-12-06 08:37)
    ✔ Verify Token @done(20-12-06 08:37)
+   ☐ Make the JWT expire
 
 Admin:
    ☐ Add a user and register a slot for the organisation
    ☐ update organisation info
    ☐ update slots, costs and benefits
    ☐ update referral level benefits
-   ☐ get all users
+   ✔ get all admin @done(20-12-20 06:44)
+   ✔ get all users @done(20-12-20 05:48)
+   ✔ get all benefits @done(20-12-20 07:02)
+   ✔ get user's benefits @done(20-12-20 07:04)
+   ✔ update the user benefits status @done(20-12-20 07:17)
    ☐ create admin
-   ☐ update user's status
-   ☐ verify user's payment
-   ☐ monitors user's downline
+   ✔ update user's status @done(20-12-20 06:08)
+   ✔ verify user's payment @done(20-12-20 05:48)
+   ✔ monitors user's downline @done(20-12-20 06:23)
+   ✔ Get all invoices @done(20-12-20 06:27)
+   ✔ Get all unpaid invoices @done(20-12-20 06:27)
+   ✔ Get all paid invoices @done(20-12-20 06:27)
+   ☐ View all transactions
 
 Member WorkFlow:
 
@@ -37,15 +46,18 @@ Member WorkFlow:
    ✔ user updates bio info @started(20-12-09 01:19) @done(20-12-09 01:19) @lasted(17s)
    ✔ user updates bank details @started(20-12-08 23:40) @done(20-12-09 00:04) @lasted(24m53s)
    ✔ get users profile @started(20-12-09 00:05) @done(20-12-09 00:12) @lasted(7m27s)
-   ☐ user can see his slots
+   ✔ user can see his slots @done(20-12-20 05:44)
    ✔ get user's unpaid invoice @done(20-12-12 11:25)
    ✔ user makes payment for invoice and upload payment evidence @done(20-12-12 13:49)
    ✔ payment is verified by admin @started(20-12-13 23:55) @done(20-12-14 01:35) @lasted(1h40m50s)
    ✔ membership id card is generated for the user @started(20-12-14 01:43) @done(20-12-14 02:42) @lasted(59m29s)
    ✔ user is given a referral code to share to users and invite them in @done(20-12-14 02:42)
-   ✔ user monitors downlines
+   ✔ user monitors downlines @done(20-12-20 07:01)
    ☐ user gets notified by new referrals
    ✔ add benefits for users as they attain new levels @done(20-12-19 17:18)
-   ✔ user monitors his benefits
+   ✔ user monitors his benefits @done(20-12-20 07:01)
    ☐ user can follow up on favourite team competitions and fixtures
    
+For Init:
+   ✔ Add psf => public static function ... to init snippets @done(20-12-20 06:56)
+   ☐ Make JWT tokens expire

@@ -192,7 +192,6 @@ class Member
       if ($benefits != false) success('Your accrued benefits', $benefits); else error('No accrued benefits', null, 200);
    }
 
-
    public static function getMySlots(Request $req)
    {
       $userId = User::$id;
@@ -200,4 +199,6 @@ class Member
 
       if ($mySlots != false) success('Your Slots', $mySlots); else error('No Slots', null, 200);
    }
+
+   
 }
