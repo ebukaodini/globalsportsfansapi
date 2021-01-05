@@ -213,3 +213,13 @@ Router::post('/api/verify-payment', function(Request $req) {
    // Guard::is('admin');
    Admin::verifyPayment($req);
 });
+
+// Testing group authentication
+// JWT::groupAuth($req, function(Request $req) {
+JWT::groupAuth($req, function() {
+   
+   Router::get('/test-group-auth/{name}', function(Request $req) {
+       success('Test is successful' . $req->param()->name);
+   });
+    
+});

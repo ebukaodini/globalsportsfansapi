@@ -143,3 +143,361 @@
 	>> /home2/initfram/public_html/globalsportsfans/index.php on line 61
 	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
 	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Mon 21-12-2020 02:25:14 AM UTC] [2] extract() expects parameter 1 to be array, null given
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/UserController.php on line 159
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 61
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Mon 21-12-2020 02:25:46 AM UTC] [2] extract() expects parameter 1 to be array, string given
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/UserController.php on line 181
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 67
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Mon 21-12-2020 02:26:17 AM UTC] [2] extract() expects parameter 1 to be array, string given
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/UserController.php on line 181
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 67
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Mon 21-12-2020 02:28:24 AM UTC] [2] extract() expects parameter 1 to be array, null given
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/UserController.php on line 159
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 61
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Mon 21-12-2020 02:28:47 AM UTC] [2] extract() expects parameter 1 to be array, string given
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/UserController.php on line 181
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 67
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Mon 21-12-2020 02:30:12 AM UTC] [2] extract() expects parameter 1 to be array, string given
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/UserController.php on line 181
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 67
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Mon 21-12-2020 02:30:30 AM UTC] [2] extract() expects parameter 1 to be array, null given
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/UserController.php on line 159
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 61
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Mon 21-12-2020 02:30:53 AM UTC] [2] extract() expects parameter 1 to be array, string given
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/UserController.php on line 181
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 67
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Mon 21-12-2020 02:32:45 AM UTC] [2] extract() expects parameter 1 to be array, int given
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/UserController.php on line 181
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 67
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Mon 21-12-2020 02:34:38 AM UTC] [2] extract() expects parameter 1 to be array, int given
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/UserController.php on line 181
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 67
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Mon 21-12-2020 02:36:12 AM UTC] [2] extract() expects parameter 1 to be array, int given
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/UserController.php on line 181
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 67
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Mon 21-12-2020 02:40:44 AM UTC] [2] extract() expects parameter 1 to be array, int given
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/UserController.php on line 181
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 67
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Mon 21-12-2020 02:41:27 AM UTC] [2] extract() expects parameter 1 to be array, int given
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/UserController.php on line 181
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 67
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Mon 21-12-2020 02:41:46 AM UTC] [2] extract() expects parameter 1 to be array, int given
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/UserController.php on line 181
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 67
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Mon 21-12-2020 02:42:30 AM UTC] [2] extract() expects parameter 1 to be array, int given
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/UserController.php on line 181
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 67
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Mon 21-12-2020 02:42:50 AM UTC] [2] extract() expects parameter 1 to be array, int given
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/UserController.php on line 181
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 67
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Mon 21-12-2020 02:43:42 AM UTC] [2] extract() expects parameter 1 to be array, int given
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/UserController.php on line 181
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 67
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Mon 21-12-2020 02:45:36 AM UTC] [2] extract() expects parameter 1 to be array, int given
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/UserController.php on line 181
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 67
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Mon 21-12-2020 02:47:32 AM UTC] [2] extract() expects parameter 1 to be array, null given
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/UserController.php on line 159
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 61
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Mon 21-12-2020 02:47:52 AM UTC] [2] extract() expects parameter 1 to be array, int given
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/UserController.php on line 181
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 67
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Mon 21-12-2020 02:48:03 AM UTC] [2] extract() expects parameter 1 to be array, int given
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/UserController.php on line 181
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 67
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Mon 21-12-2020 02:49:31 AM UTC] [2] extract() expects parameter 1 to be array, int given
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/UserController.php on line 181
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 67
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Mon 21-12-2020 02:50:44 AM UTC] [2] extract() expects parameter 1 to be array, int given
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/UserController.php on line 181
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 67
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Mon 21-12-2020 02:51:03 AM UTC] [2] extract() expects parameter 1 to be array, int given
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/UserController.php on line 181
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 67
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Mon 21-12-2020 02:51:20 AM UTC] [2] extract() expects parameter 1 to be array, int given
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/UserController.php on line 181
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 67
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Mon 21-12-2020 02:51:53 AM UTC] [2] extract() expects parameter 1 to be array, int given
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/UserController.php on line 181
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 67
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Mon 21-12-2020 02:52:02 AM UTC] [2] extract() expects parameter 1 to be array, int given
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/UserController.php on line 181
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 67
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Mon 21-12-2020 02:54:03 AM UTC] [2] extract() expects parameter 1 to be array, int given
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/UserController.php on line 181
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 67
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Mon 21-12-2020 02:54:30 AM UTC] [2] extract() expects parameter 1 to be array, int given
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/UserController.php on line 181
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 67
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Mon 21-12-2020 02:54:37 AM UTC] [2] extract() expects parameter 1 to be array, int given
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/UserController.php on line 181
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 67
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Mon 21-12-2020 02:54:52 AM UTC] [2] extract() expects parameter 1 to be array, int given
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/UserController.php on line 181
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 67
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Mon 21-12-2020 02:55:25 AM UTC] [2] extract() expects parameter 1 to be array, int given
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/UserController.php on line 181
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 67
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Mon 21-12-2020 02:55:43 AM UTC] [2] extract() expects parameter 1 to be array, int given
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/UserController.php on line 181
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 67
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Mon 21-12-2020 02:55:59 AM UTC] [2] extract() expects parameter 1 to be array, null given
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/UserController.php on line 159
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 61
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Mon 21-12-2020 02:56:25 AM UTC] [2] extract() expects parameter 1 to be array, int given
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/UserController.php on line 181
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 67
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Mon 21-12-2020 03:06:07 AM UTC] [2] extract() expects parameter 1 to be array, int given
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/UserController.php on line 181
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 67
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Mon 21-12-2020 08:17:51 AM UTC] [2] extract() expects parameter 1 to be array, null given
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/UserController.php on line 159
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 61
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Mon 21-12-2020 08:19:00 AM UTC] [2] extract() expects parameter 1 to be array, string given
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/UserController.php on line 181
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 67
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Mon 21-12-2020 08:27:24 AM UTC] [2] extract() expects parameter 1 to be array, null given
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/UserController.php on line 159
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 61
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Wed 23-12-2020 08:58:21 PM UTC] [2] extract() expects parameter 1 to be array, string given
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/UserController.php on line 315
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 73
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Wed 23-12-2020 08:59:33 PM UTC] [2] extract() expects parameter 1 to be array, string given
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/UserController.php on line 315
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 73
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Wed 23-12-2020 09:05:39 PM UTC] [2] extract() expects parameter 1 to be array, string given
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/UserController.php on line 260
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 91
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Wed 23-12-2020 09:11:40 PM UTC] [2] extract() expects parameter 1 to be array, null given
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/UserController.php on line 260
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 91
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Wed 23-12-2020 09:13:31 PM UTC] [2] extract() expects parameter 1 to be array, null given
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/UserController.php on line 260
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 91
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Wed 23-12-2020 09:15:13 PM UTC] [2] extract() expects parameter 1 to be array, null given
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/UserController.php on line 260
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 91
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Thu 24-12-2020 03:50:26 AM UTC] [2] extract() expects parameter 1 to be array, null given
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/UserController.php on line 260
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 91
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Thu 24-12-2020 03:56:33 AM UTC] [2] extract() expects parameter 1 to be array, null given
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/UserController.php on line 260
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 91
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Thu 24-12-2020 03:57:41 AM UTC] [2] extract() expects parameter 1 to be array, string given
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/UserController.php on line 260
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 91
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Thu 24-12-2020 05:04:47 AM UTC] [2] extract() expects parameter 1 to be array, string given
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/Member.php on line 30
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 103
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Thu 24-12-2020 05:05:36 AM UTC] [2] extract() expects parameter 1 to be array, string given
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/Member.php on line 30
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 103
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Thu 24-12-2020 05:06:32 AM UTC] [2] extract() expects parameter 1 to be array, int given
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/Member.php on line 30
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 103
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Thu 24-12-2020 05:43:58 AM UTC] [2] extract() expects parameter 1 to be array, null given
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/Member.php on line 30
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 103
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Thu 24-12-2020 05:54:50 AM UTC] [8] Undefined property: Library\Http\Request::$contentType
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Request.php on line 14
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 23
+[Thu 24-12-2020 03:18:17 PM UTC] [8] Undefined property: Library\Http\Request::$contentType
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Request.php on line 14
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 23
+[Thu 24-12-2020 03:19:23 PM UTC] [8] Undefined property: Library\Http\Request::$contentType
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Request.php on line 14
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 23
+[Thu 24-12-2020 03:22:24 PM UTC] [8] Undefined property: Library\Http\Request::$contentType
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Request.php on line 14
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 23
+[Thu 24-12-2020 03:22:24 PM UTC] [8] Undefined property: Library\Http\Request::$contentType
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Request.php on line 14
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 23
+[Thu 24-12-2020 03:22:24 PM UTC] [8] Undefined property: Library\Http\Request::$contentType
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Request.php on line 14
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 23
+[Thu 24-12-2020 03:23:52 PM UTC] [8] Undefined property: Library\Http\Request::$contentType
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Request.php on line 14
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 23
+[Thu 24-12-2020 03:23:58 PM UTC] [8] Undefined property: Library\Http\Request::$contentType
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Request.php on line 14
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 23
+[Thu 24-12-2020 07:44:31 PM UTC] [2] extract() expects parameter 1 to be array, null given
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/UserController.php on line 159
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 61
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Thu 24-12-2020 08:11:03 PM UTC] [8] Undefined property: Library\Http\Request::$contentType
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Request.php on line 14
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 23
+[Thu 24-12-2020 08:11:27 PM UTC] [8] Undefined property: Library\Http\Request::$contentType
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Request.php on line 14
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 23
+[Thu 24-12-2020 08:12:33 PM UTC] [8] Undefined property: Library\Http\Request::$contentType
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Request.php on line 14
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 23
+[Mon 28-12-2020 03:50:14 PM UTC] [8] Undefined variable: downline
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/Admin.php on line 150
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 172
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Mon 28-12-2020 03:51:29 PM UTC] [8] Undefined variable: downline
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/Admin.php on line 150
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 172
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Mon 28-12-2020 04:02:43 PM UTC] [8] Undefined variable: downline
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/Admin.php on line 150
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 172
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Mon 28-12-2020 04:05:15 PM UTC] [8] Undefined variable: downline
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/Admin.php on line 150
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 172
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Mon 28-12-2020 04:05:37 PM UTC] [8] Undefined variable: downline
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/Admin.php on line 150
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 172
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Mon 28-12-2020 04:06:38 PM UTC] [8] Undefined variable: downline
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/Admin.php on line 150
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 172
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Mon 28-12-2020 04:08:14 PM UTC] [8] Undefined variable: downline
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/Admin.php on line 150
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 172
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Mon 28-12-2020 04:49:12 PM UTC] [2] extract() expects parameter 1 to be array, null given
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/UserController.php on line 260
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 91
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Mon 28-12-2020 04:50:35 PM UTC] [2] extract() expects parameter 1 to be array, null given
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/UserController.php on line 260
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 91
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Wed 30-12-2020 12:07:26 PM UTC] [2] extract() expects parameter 1 to be array, null given
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/UserController.php on line 260
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 91
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Wed 30-12-2020 12:08:30 PM UTC] [2] extract() expects parameter 1 to be array, null given
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/UserController.php on line 260
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 91
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Wed 30-12-2020 11:20:18 PM UTC] [8] Undefined variable: downline
+	>> /home2/initfram/public_html/globalsportsfans/app/controllers/Admin.php on line 150
+	>> /home2/initfram/public_html/globalsportsfans/index.php on line 172
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339

@@ -1,7 +1,7 @@
 <?php
 
 // SERVER
-define('SERVER', 'https://globalsportsfans.initframework.com');
+define('SERVER', 'https://globalsportsfansapi.initframework.com');
 
 // APPLICATION
 define('APP_NAME', 'Global Sports Fans');
@@ -58,7 +58,7 @@ define('MAIL_SMTP_SECURE', 'ssl'); // none, tls, ssl
 define('MAIL_SMTP_TIMEOUT', 10);
 
 // TIMEZONE
-define("TIMEZONE", "UTC");
+define("TIMEZONE", "Africa/Lagos");
 
 // CUSTOM
 // define your custom configurations...

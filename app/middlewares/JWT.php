@@ -33,4 +33,12 @@ class JWT
       //    error('Please login', null, 401);
       // }
    }
+   
+   public static function groupAuth(Request $request, $callback)
+   {
+       if (1 == 1) {
+           $callback();
+       }
+   }
+   
 }
