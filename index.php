@@ -219,7 +219,7 @@ Router::post('/api/verify-payment', function(Request $req) {
 JWT::groupAuth($req, function() {
    
    Router::get('/test-group-auth/{name}', function(Request $req) {
-       success('Test is successful' . $req->param()->name);
+      success('Test is successful; Name: ' . $req->routeParams['name']);
    });
     
 });

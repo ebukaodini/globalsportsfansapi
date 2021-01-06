@@ -501,3 +501,24 @@
 	>> /home2/initfram/public_html/globalsportsfans/index.php on line 172
 	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 141
 	>> /home2/initfram/public_html/globalsportsfans/.lib/Http/Router.php on line 339
+[Wed 06-01-2021 12:57:10 AM WAT] [8] Undefined property: Library\Http\Request::$params
+	>> /home2/initfram/public_html/globalsportsfansapi/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfansapi/.lib/Http/Router.php on line 339
+[Wed 06-01-2021 12:58:04 AM WAT] [8] Undefined property: Library\Http\Request::$params
+	>> /home2/initfram/public_html/globalsportsfansapi/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfansapi/.lib/Http/Router.php on line 339
+[Wed 06-01-2021 12:58:37 AM WAT] [8] Undefined property: Library\Http\Request::$params
+	>> /home2/initfram/public_html/globalsportsfansapi/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfansapi/.lib/Http/Router.php on line 339
+[Wed 06-01-2021 01:00:20 AM WAT] [8] Undefined property: Library\Http\Request::$params
+	>> /home2/initfram/public_html/globalsportsfansapi/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfansapi/.lib/Http/Router.php on line 339
+[Wed 06-01-2021 01:01:54 AM WAT] [8] Undefined property: Library\Http\Request::$param
+	>> /home2/initfram/public_html/globalsportsfansapi/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfansapi/.lib/Http/Router.php on line 339
+[Wed 06-01-2021 01:02:08 AM WAT] [8] Undefined property: Library\Http\Request::$params
+	>> /home2/initfram/public_html/globalsportsfansapi/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfansapi/.lib/Http/Router.php on line 339
+[Wed 06-01-2021 01:06:53 AM WAT] [8] Trying to get property 'name' of non-object
+	>> /home2/initfram/public_html/globalsportsfansapi/.lib/Http/Router.php on line 141
+	>> /home2/initfram/public_html/globalsportsfansapi/.lib/Http/Router.php on line 339
