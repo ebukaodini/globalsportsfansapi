@@ -111,6 +111,94 @@ class UserController
 
    }
 
+   // create a new user
+   public static function registerAdmin(Request $req)
+   {
+      extract($req->body);
+      $email = $email ?? '';
+      $password = $password ?? '';
+      $cpassword = $cpassword ?? '';
+      $referralcode = $referralcode ?? '';
+
+      // validate email
+      Validate::isValidEmail('Email', $email);
+      Validate::hasMaxLength('Email', $email, 100);
+      // validate password
+      Validate::isValidPassword('Password', $password, true, true, true, false, 8);
+      // validate the referral code if it is not empty
+      if (empty($referralcode) == false) {
+         Validate::hasExactLength('Referral code', $referralcode, 7);
+      }
+      // verify validation
+      if (Validate::$status == false) {
+         error('Admin Registeration failed', array_values(Validate::$error), 200);
+      }
+      if ($password != $cpassword) {
+         error('Admin Registeration failed', ['Password and confirm password must be the same'], 200);
+      }
+
+      // hash password
+      $hpassword = Cipher::hashPassword($password);
+
+      // Check if user exists
+      if (Users::exist("WHERE email = '$email'") == true) {
+         error('Admin Registeration failed. Email already exists', null, 200);
+      }
+
+      // if referral code is not empty
+      // confirm that the referral code exist before using it
+      if (!empty($referralcode)) {
+         if (Users::exist("WHERE referral_code = '$referralcode'") == false) {
+            error("Admin Registeration failed. Referral code is incorrect", null, 200);
+         }
+      } else {
+         // else use the referral code of the organisation
+         $referralcode = ORG_REFERRAL_CODE;
+      }
+
+      $referralCodeUserId;
+      if ($referralcode != ORG_REFERRAL_CODE) {
+         $referralCodeUserId = Users::findOne("id", "WHERE referral_code = '$referralcode'")['id'];
+         // NB: if the users whose referral code is being used has already gotten his initial_referrals_required
+         // i.e referrals_acquired >= initial_referrals_required
+         // then do not use his referral code, rather use the organisations code
+         if (UserSlots::exist("WHERE user_id = $referralCodeUserId AND referrals_acquired >= initial_referrals_required ") == true) $referralcode = ORG_REFERRAL_CODE;
+      }
+
+      // get the referral level of the user
+      $referrallevel = Users::findOne("referral_level", "WHERE referral_code = '$referralcode'")['referral_level'] ?? '1'; // 1 assuming that this is the topmost parent in the referral tree
+      if ($referrallevel == "1") $referralcode = ORG_REFERRAL_CODE; // i assume there should be no need for this as it has already been considered
+      // and increment by one to generate referrallevel for this user
+      $referrallevel = intval($referrallevel) + 1;
+
+      if (Users::create([
+         "email" => $email,
+         "password" => $hpassword,
+         "referredby" => $referralcode,
+         "referral_level" => $referrallevel,
+         "role" => "admin"
+      ]) == true) {
+
+         // before returning success
+         // increment the referrals acquired for the users slot whose referral code is used to register (i.e if referral code is not ORG_REFERRAL_CODE)
+         if ($referralcode != ORG_REFERRAL_CODE) {
+            UserSlots::update([
+               "referrals_acquired" => intval((UserSlots::findOne("referrals_acquired", "WHERE user_id = $referralCodeUserId")['referrals_acquired'] ?: 0) + 1),
+            ], "WHERE user_id = $referralCodeUserId");
+
+            // TODO: TEST
+            // update all uplinks with status still active
+            // this is going to be a recursive function
+            Common::updateAllUplinks($referralcode);
+         }
+
+         success('Admin created successfully');
+      } else {
+         error('Admin creation failed, please try again', null, 200);
+      }
+
+   }
+
    public static function login(Request $req)
    {
       extract($req->body);

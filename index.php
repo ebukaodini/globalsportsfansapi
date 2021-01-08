@@ -145,6 +145,13 @@ Router::get('/api/my-benefits', function(Request $req) {
 Router::post('/api/admin/register', function(Request $req) {
    JWT::auth($req);
    // Guard::is('admin');
+   UserController::registerAdmin($req);
+});
+
+
+Router::post('/api/admin/register', function(Request $req) {
+   JWT::auth($req);
+   // Guard::is('admin');
    Admin::register($req);
 });
 
