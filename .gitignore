@@ -9,8 +9,7 @@ app/config.php
 storage/session/sess_*
 storage/logs/error.log
 
-# Todo file
-# .todo
+.todo
 
 # Vscode
 # .vscode/
