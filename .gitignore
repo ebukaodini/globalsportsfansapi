@@ -1,9 +1,9 @@
 # Composer files
 composer.lock
-/vendor/
+vendor/
 
 # Config file
-app\config.php
+app/config.php
 
 # storage files
 storage/session/sess_*
