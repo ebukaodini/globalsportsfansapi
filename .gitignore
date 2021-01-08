@@ -8,8 +8,3 @@ app/config.php
 # storage files
 storage/session/sess_*
 storage/logs/
-
-.todo
-
-# Vscode
-# .vscode/
