@@ -60,4 +60,5 @@ Global Sports Fans:
     
  For Init:
     ✔ Add psf => public static function ... to init snippets @done(20-12-20 06:56)
+    ✔ handle fatal error @done(21-01-09 17:29)
     ☐ Make JWT tokens expire

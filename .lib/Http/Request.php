@@ -69,17 +69,24 @@ class Request
       header("Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE");
       header("Access-Control-Allow-Origin: *");
       header("Accept: */*");
+      // set the default content type
+      $this->contentType = "text/html";
+      // get server properties
       foreach($_SERVER as $key => $value)
       {
          $this->{$this->toCamelCase($key)} = $value;
       }
-      // uri
+      // request uri
       $this->requestUri = preg_replace("/\?.+/m", "", $this->requestUri);
-      
       // route params would be defined by the router
       $this->routeParams = null;
       // request query
       $this->query = $_GET;
+      // accomodating request methods from html forms (spoofing)
+      if ($this->requestMethod == "POST" && isset($this->body['HTTP_REQUEST_METHOD']) && in_array($this->body['HTTP_REQUEST_METHOD'], ["PUT", "PATCH", "DELETE"]))
+      {
+         $this->requestMethod = $this->body['HTTP_REQUEST_METHOD'];
+      }
       // request body
       if (in_array($this->requestMethod, ["POST", "PATCH", "PUT", "DELETE"])) {
          if ($this->contentType == "application/json") {
@@ -95,11 +102,6 @@ class Request
          } else {
             $this->body = $_POST;
          }
-      }
-      // accomodating request methods from html forms (spoofing)
-      if ($this->requestMethod == "POST" && isset($this->body['HTTP_REQUEST_METHOD']) && in_array($this->body['HTTP_REQUEST_METHOD'], ["PUT", "PATCH", "DELETE"]))
-      {
-         $this->requestMethod = $this->body['HTTP_REQUEST_METHOD'];
       }
    }
 

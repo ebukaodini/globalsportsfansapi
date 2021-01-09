@@ -147,13 +147,13 @@ function error($message = "error", array $data = null, int $code = 200)
 
 function notFoundError($req)
 {
-   if (substr_compare($req->httpAccept, "text/html", 0) == true) {
+   http_response_code(404);
+   if ($req->contentType == "text/html") {
       render('framework/error.html', [
          "code" => 404,
          "message" => "Not Found"
       ], 404);
    } else {
-      http_response_code(404);
       exit("Not Found");
       // http_throttle()
    }
@@ -161,13 +161,13 @@ function notFoundError($req)
 
 function serverError($req)
 {
-   if (substr_compare($req->httpAccept, "text/html", 0) == true ) {
+   http_response_code(500);
+   if ($req->contentType == "text/html") {
       render('framework/error.html', [
          "code" => 500,
          "message" => "Server Error"
       ], 500);
    } else {
-      http_response_code(500);
       exit("Server Error");
       // http_throttle()
    }

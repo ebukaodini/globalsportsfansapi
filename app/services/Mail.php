@@ -65,7 +65,7 @@ class Mail
          if (self::$mail->Send()) {
             return true;
          } else {
-            throw new \Exception("Error: mail not sent. ($from -> $to)");
+            throw new \Exception(self::$mail->ErrorInfo);
             return false;
          }
       } catch (\Throwable $e) {
@@ -88,7 +88,7 @@ class Mail
          if (self::$mail->Send()) {
             return true;
          } else {
-            throw new \Exception("Error: mail not sent. ($from -> Multiple Emails)");
+            throw new \Exception(self::$mail->ErrorInfo);
             return false;
          }
       } catch (\Throwable $e) {
