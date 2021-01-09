@@ -1,9 +1,11 @@
 <?php
 
-register_shutdown_function( "fatal_handler" );
+set_error_handler("errorHandler", E_STRICT);
+set_error_handler("errorHandler", E_ALL);
 
-set_error_handler(function() {
+function errorHandler() {
    $backtraces = \debug_backtrace(DEBUG_BACKTRACE_PROVIDE_OBJECT,10);
+   if (file_exists(LOG_FILE) == false) touch(LOG_FILE);
    
    for ($i = 0; $i < count($backtraces); $i++) {
       $backtrace = $backtraces[$i];
@@ -25,8 +27,8 @@ set_error_handler(function() {
             }
          }
       } else {
-         $code = (string)$backtrace['args'][0];
-         $message = (string)$backtrace['args'][1];
+         $code = (string)$backtrace['args'][0] ?? "1";
+         $message = (string)$backtrace['args'][1] ?? "Unknown Error";
 
          if (DISPLAY_ERROR == true) {
             if (PHP_SAPI == 'cli') {
@@ -34,6 +36,8 @@ set_error_handler(function() {
             } else {
                echo sprintf("<strong>[%s] %s</strong><br><br>", $code, $message);
             }
+         } else {
+            echo "Internal Server Error";
          }
 
          if (LOG_ERROR == true) {
@@ -49,25 +53,7 @@ set_error_handler(function() {
    }
 
    if (DISPLAY_ERROR == true) {
-      echo (PHP_SAPI == 'cli') ? "\nA log of this error can be found at " . LOG_FILE . "\n" : "<br><small>A log of this error can be found at " . LOG_FILE . "</small><br><img align='top' width='25em' src='" . ASSETS_PATH . "imgs/favicon.ico'> InitFramework";
+      echo (PHP_SAPI == 'cli') ? "\nA log of this error can be found at " . LOG_FILE . "\n" : "<br><small>A log of this error can be found at " . str_replace('/', '\\', LOG_FILE) . "</small><br><img align='top' width='25em' src='" . SERVER ."/". ASSETS_PATH . "imgs/favicon.ico'> InitFramework";
       exit;
    }
-}, E_ALL);
-
-function fatal_handler() {
-    $errfile = "unknown file";
-    $errstr  = "shutdown";
-    $errno   = E_CORE_ERROR;
-    $errline = 0;
-
-    $error = error_get_last();
-
-    if($error !== NULL) {
-        $errno   = $error["type"];
-        $errfile = $error["file"];
-        $errline = $error["line"];
-        $errstr  = $error["message"];
-
-        exit("$errno, $errstr, $errfile, $errline");
-    }
 }

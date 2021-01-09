@@ -44,12 +44,12 @@ function toCamelCase($string)
 
 function asset(string $path)
 {
-   return ASSETS_PATH . ltrim($path, '/');
+   return SERVER ."/". ASSETS_PATH . ltrim($path, '/');
 }
 
 function storage(string $path)
 {
-   return STORAGE_PATH . ltrim($path, '/');
+   return SERVER ."/". STORAGE_PATH . ltrim($path, '/');
 }
 
 function UserIsAuthenticated()
