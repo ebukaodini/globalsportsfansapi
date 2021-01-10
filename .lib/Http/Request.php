@@ -65,10 +65,10 @@ class Request
       header("Access-Control-Allow-Origin: *");
       header("Accept: */*");
       if ($this->requestMethod == 'OPTIONS') {
-         http_response_code(200);
+         // http_response_code(200);
          header("Access-Control-Allow-Methods: OPTIONS, GET, POST, PUT, PATCH, DELETE");
          // header("Access-Control-Allow-Headers: Content-Type, Http-Auth-Token");
-         exit('OK');
+         // exit('OK');
       }
    }
 
