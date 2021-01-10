@@ -61,10 +61,7 @@ class Request
          ]
       );
       $_ENV['REQUEST'] = $this;
-   }
-
-   private function bootstrapApp()
-   {
+      // exit($this->requestMethod);
       header("Access-Control-Allow-Origin: *");
       header("Accept: */*");
       if ($this->requestMethod == 'OPTIONS') {
@@ -73,6 +70,10 @@ class Request
          header("Access-Control-Allow-Headers: Content-Type, Http-Auth-Token");
          exit('OK');
       }
+   }
+
+   private function bootstrapApp()
+   {
       // set the default content type
       $this->contentType = "text/html";
       // get server properties
