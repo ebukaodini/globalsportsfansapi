@@ -61,14 +61,14 @@ class Request
          ]
       );
       $_ENV['REQUEST'] = $this;
-      // exit($this->requestMethod);
+
       header("Access-Control-Allow-Origin: *");
+      header("Access-Control-Allow-Headers: Content-Type, X-Custom-Header, AuthToken");
+      header("Access-Control-Allow-Methods: OPTIONS, GET, POST, PUT, PATCH, DELETE");
       header("Accept: */*");
       if ($this->requestMethod == 'OPTIONS') {
-         // http_response_code(200);
-         header("Access-Control-Allow-Methods: OPTIONS, GET, POST, PUT, PATCH, DELETE");
-         // header("Access-Control-Allow-Headers: Content-Type, Http-Auth-Token");
-         // exit('OK');
+         http_response_code(200);
+         exit();
       }
    }
 
