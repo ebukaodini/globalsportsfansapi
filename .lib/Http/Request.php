@@ -66,8 +66,9 @@ class Request
    private function bootstrapApp()
    {
       header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
-      header("Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE");
+      header("Access-Control-Allow-Methods: OPTIONS, GET, POST, PUT, PATCH, DELETE");
       header("Access-Control-Allow-Origin: *");
+      header("Allow: OPTIONS, GET, POST, PUT, PATCH, DELETE");
       header("Accept: */*");
       // set the default content type
       $this->contentType = "text/html";
@@ -81,7 +82,7 @@ class Request
       // route params would be defined by the router
       $this->routeParams = null;
       // request query
-      $this->query = $_GET;
+      $this->query = $_GET ?? [];
       // accomodating request methods from html forms (spoofing)
       if ($this->requestMethod == "POST" && isset($this->body['HTTP_REQUEST_METHOD']) && in_array($this->body['HTTP_REQUEST_METHOD'], ["PUT", "PATCH", "DELETE"]))
       {
@@ -98,11 +99,19 @@ class Request
                   str_replace("\r", "", 
                      str_replace("\n", "", $input)));
             // convertinto an associative array as a post
-            $this->body = json_decode($parsedInputs, true);
+            $this->body = json_decode($parsedInputs, true) ?? [];
          } else {
-            $this->body = $_POST;
+            $this->body = $_POST ?? [];
          }
       }
+      if ($this->requestMethod == 'OPTIONS') {
+         exit(header('Allow: OPTIONS, GET, POST, PUT, PATCH, DELETE'));
+      }
+      // // do not accept some request method
+      // if (!in_array($this->requestMethod, ['GET', 'POST', 'PATCH', 'PUT', 'DELETE'])) {
+      //    http_response_code(405);
+      //    trigger_error("Unknown Request Method");
+      // }
    }
 
    private function bootstrapConsole()

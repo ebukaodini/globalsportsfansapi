@@ -244,7 +244,8 @@ class UserController
 
    public static function sendToken(Request $req)
    {
-      extract($req->body);
+      // extract($req->body);
+      exit(json_encode($req->body));
       $email = User::$email;
       $token = Cipher::token(5); // generate token for user
 
