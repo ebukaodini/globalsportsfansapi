@@ -65,11 +65,14 @@ class Request
 
    private function bootstrapApp()
    {
-      header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
-      header("Access-Control-Allow-Methods: OPTIONS, GET, POST, PUT, PATCH, DELETE");
       header("Access-Control-Allow-Origin: *");
-      header("Allow: OPTIONS, GET, POST, PUT, PATCH, DELETE");
       header("Accept: */*");
+      if ($this->requestMethod == 'OPTIONS') {
+         http_response_code(200);
+         header("Access-Control-Allow-Methods: OPTIONS, GET, POST, PUT, PATCH, DELETE");
+         header("Access-Control-Allow-Headers: Content-Type, Http-Auth-Token");
+         exit('OK');
+      }
       // set the default content type
       $this->contentType = "text/html";
       // get server properties
@@ -103,9 +106,6 @@ class Request
          } else {
             $this->body = $_POST ?? [];
          }
-      }
-      if ($this->requestMethod == 'OPTIONS') {
-         exit(header('Allow: OPTIONS, GET, POST, PUT, PATCH, DELETE'));
       }
       // // do not accept some request method
       // if (!in_array($this->requestMethod, ['GET', 'POST', 'PATCH', 'PUT', 'DELETE'])) {
