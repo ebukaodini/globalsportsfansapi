@@ -190,6 +190,7 @@ class Admin
 
    }
 
+   
    public static function updateOrganisationInfo(Request $req)
    {
       extract($req->body);
@@ -250,6 +251,4 @@ class Admin
       }
    }
    
-   
-
 }

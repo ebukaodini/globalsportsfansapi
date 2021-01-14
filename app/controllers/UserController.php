@@ -111,7 +111,7 @@ class UserController
 
    }
 
-   // create a new user
+   // create a new admin
    public static function registerAdmin(Request $req)
    {
       extract($req->body);
