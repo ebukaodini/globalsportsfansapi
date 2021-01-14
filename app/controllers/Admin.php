@@ -2,6 +2,7 @@
 namespace Controllers;
 use Library\Http\Request;
 use Models\Invoice;
+use Models\OrganisationInfo;
 use Models\Users;
 use Services\Cipher;
 use Services\User;
@@ -32,12 +33,6 @@ class Admin
       $allInvoice = Invoice::findAll("*", "WHERE status = 'unpaid'");
       if ($allInvoice == false) error("No unpaid invoice", null, 200);
       else success('All unpaid invoice', $allInvoice);
-   }
-
-   public static function register(Request $req)
-   {
-      // create a resource
-      extract($req->body);
    }
 
    public static function getAllUsers(Request $req)
@@ -194,6 +189,67 @@ class Admin
       ], "WHERE id = $id") == true) success("User benefit status is updated"); else error("User benefit status is not updated");
 
    }
+
+   public static function updateOrganisationInfo(Request $req)
+   {
+      extract($req->body);
+      $aboutUs = $aboutUs ?? '';
+      $disclaimer = $disclaimer ?? '';
+      $howItWorks = $howItWorks ?? '';
+      $termsAndCondition = $termsAndCondition ?? '';
+      $mou = $mou ?? '';
+      $membership = $membership ?? '';
+      $rewardsAndBenefits = $rewardsAndBenefits ?? '';
+      $tournamentAndLeagues = $tournamentAndLeagues ?? '';
+      $contactTelephone = $contactTelephone ?? '';
+      $contactAddress = $contactAddress ?? '';
+      $contactEmail = $contactEmail ?? '';
+      $faq = $faq ?? '';
+
+      // validation
+      Validate::isNotEmpty('About Us', $aboutUs);
+      Validate::isNotEmpty('Disclaimer', $disclaimer);
+      Validate::isNotEmpty('How it works', $howItWorks);
+      Validate::isNotEmpty('Terms and Condition', $termsAndCondition);
+      Validate::isNotEmpty('Memorandum of Understanding', $mou);
+      Validate::isNotEmpty('Membership', $membership);
+      Validate::isNotEmpty('Rewards and Benefits', $rewardsAndBenefits);
+      Validate::isNotEmpty('Tournament and Leagues', $tournamentAndLeagues);
+      Validate::isNotEmpty('Contact Telephone', $contactTelephone);
+      Validate::isNotEmpty('Contact Address', $contactAddress);
+      Validate::isNotEmpty('Contact Email', $contactEmail);
+      Validate::isNotEmpty('Frequently Asked Question', $faq);
+
+      Validate::isValidTelephone('Contact Telephone', $contactTelephone);
+      Validate::hasMaxLength('Contact Telephone', $contactTelephone, 50);
+      Validate::hasMaxLength('Contact Address', $contactAddress, 200);
+      Validate::isValidEmail('Contact Email', $contactEmail);
+      Validate::hasMaxLength('Contact Email', $contactEmail, 100);
+
+      if (Validate::$status == false) {
+         error('Info not updated', Validate::$error);
+      }
+
+      if (OrganisationInfo::update([
+         "about_us" => $aboutUs,
+         "disclaimer" => $disclaimer,
+         "how_it_works" => $howItWorks,
+         "terms_and_condition" => $termsAndCondition,
+         "mou" => $mou,
+         "membership" => $membership,
+         "rewards_and_benefits" => $rewardsAndBenefits,
+         "tournaments_and_leagues" => $tournamentAndLeagues,
+         "contact_telephone" => $contactTelephone,
+         "contact_address" => $contactAddress,
+         "contact_email" => $contactEmail,
+         "faq" => $faq,
+      ], "WHERE id = 1") == true) {
+         success('Info is updated');
+      } else {
+         error("Info is not updated");
+      }
+   }
+   
    
 
 }
