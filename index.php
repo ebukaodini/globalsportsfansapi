@@ -208,11 +208,18 @@ Router::get('/api/admin/get-unpaid-invoices', function(Request $req) {
    Admin::getAllUnpaidInvoice($req);
 });
 
-Router::post('/api/verify-payment', function(Request $req) {
+Router::post('/api/admin/verify-payment', function(Request $req) {
    JWT::auth($req);
    Guard::is('admin');
    Admin::verifyPayment($req);
 });
+
+Router::post('/api/admin/update-organisation-info', function(Request $req) {
+   JWT::auth($req);
+   // Guard::is('admin');
+   Admin::updateOrganisationInfo($req);
+});
+
 
 // Testing group authentication
 // JWT::groupAuth($req, function(Request $req) {

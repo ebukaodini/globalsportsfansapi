@@ -158,15 +158,18 @@ class Init extends Database
          if (method_exists($class, $method)){
             echo "$migration: ";
             (new $class())->$method();
-            $migrated++;
-            // add migration to db
-            $stmt = $conn->prepare("INSERT INTO " . DB_PREFIX . "schema_migration (migration) VALUES('$migration')"); $stmt->execute();
-            echo "migrated successfully!\n";
+
+            if (Schema::$result == true) {
+               $migrated++;
+               // add migration to db if all query executed successfully
+               $stmt = $conn->prepare("INSERT INTO " . DB_PREFIX . "schema_migration (migration) VALUES('$migration')"); $stmt->execute();
+               echo "\r\nmigrated successfully!\n";
+            }
          } else {
             echo "Method ($method) does not exist in $class.\n";
          }
       }
-      if ($migrated == 0) echo "Error: No migration was migrated;\nmigrations have either been migrated or no migration exists.\n";
+      if ($migrated == 0) echo "Error: No migration was migrated;\nmigrations have either been migrated or no migration exists or hace failed.\n";
       exit;
    }
 
@@ -198,15 +201,18 @@ class Init extends Database
          if (method_exists($class, $method)){
             echo "$migration: ";
             (new $class())->$method();
-            $migrated++;
-            // add migration to db
-            $stmt = $conn->prepare("INSERT INTO " . DB_PREFIX . "schema_migration (migration) VALUES('$migration')"); $stmt->execute();
-            echo "migrated successfully!\n";
+            
+            if (Schema::$result == true) {
+               $migrated++;
+               // add migration to db if all query executed successfully
+               $stmt = $conn->prepare("INSERT INTO " . DB_PREFIX . "schema_migration (migration) VALUES('$migration')"); $stmt->execute();
+               echo "\r\nmigrated successfully!\n";
+            }
          } else {
             echo "Method ($method) does not exist in $class.\n";
          }
       }
-      if ($migrated == 0) echo "Error: migration '$migrationname' was not migrated;\nmigration have either been migrated or does migration exists.\n";
+      if ($migrated == 0) echo "\r\nError: migration '$migrationname' was not migrated;\nmigration have either been migrated or does migration exists or have failed.\n";
       exit;
    }
 

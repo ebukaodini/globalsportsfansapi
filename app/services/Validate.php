@@ -167,7 +167,7 @@ class Validate
    {
       if (filter_var($value, FILTER_VALIDATE_EMAIL) == false) {
          self::$status = false;
-         self::$error[$field] = "$field is not a valid email";
+         self::$error[$field] = "$field is not a valid email address";
          return false;
       }
       return true;

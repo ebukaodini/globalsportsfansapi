@@ -2,6 +2,7 @@
 namespace Library\Database;
 use Library\Database\Model;
 use Closure;
+use PDOException;
 
 // class Schema extends Database
 // class Schema extends Model
@@ -18,6 +19,8 @@ class Schema
    private $key_index = 0;
    private $conn = null;
    private static $schema;
+   public static $resultArray;
+   public static $result;
 
    // Schema methods
    
@@ -27,12 +30,26 @@ class Schema
             if (!empty($table)) {
                $schema(new Schema());
                $body = self::$schema;
-
+               
                // Create query for table
                $query = []; $count = 0;
                foreach ($body->fields as $field) {
                   $null = (isset($body->nulls[$count]) && $body->nulls[$count] == true) ? "" : " NOT NULL" ;
-                  $query[] = implode(" ", $field) . $null;
+                  $subquery = implode(" ", $field) . $null;
+
+                  // the after attribute in a query is supposed to appear towards the end of a query, at least after the not null attribute
+                  // if both attribute exists in the query
+                  if (strpos($subquery, ' AFTER') != false && strpos($subquery, ' NOT NULL') != false) {
+                     // and the position of the not null appears after the after attribute
+                     if (strpos($subquery, ' NOT NULL') > strpos($subquery, ' AFTER')) {
+                        // move the not null attribute to the current position of the after
+                        // remove the current not null attribute and add it in the pos of the after attribute
+                        $subquery = str_replace(' NOT NULL', '', $subquery);
+                        $subquery = substr_replace($subquery, ' NOT NULL ', strpos($subquery, ' AFTER'), 1);
+                     }
+                  }
+
+                  $query[] = $subquery;
                   $count++;
                }
                foreach ($body->keys as $key) {
@@ -42,8 +59,13 @@ class Schema
                $sqlMode = $strict == false ? "SET SQL_MODE = ' '; " : "SET SQL_MODE = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION'; ";
                $sql = $sqlMode . "CREATE TABLE IF NOT EXISTS " . DB_PREFIX . $table . " ( " . implode(", ", $query) . " ) ENGINE=" . DB_ENGINE . " DEFAULT CHARSET=" . DB_DEFAULT_CHARSET . " COLLATE=" . DB_COLLATION;
 
-               if ($_ENV['show_query'] == true) echo "\n" . $sql . "\n";
-               Model::query($sql);
+               if ($_ENV['show_query'] == true && strpos($sql, 'schema_migration') == false) echo "\n" . $sql . "\n";
+               
+               if (strpos($sql, 'schema_migration') == false) {
+                  $result = Model::query($sql); self::$resultArray[] = $result;
+                  echo $result == true ? "\n\tCreate $table: successful" : "\n\tCreate $table: failed ";
+                  self::$result = in_array(false, self::$resultArray) ? false : true ;
+               }
 
                if (!is_null($model) && !empty($model))
                {
@@ -72,7 +94,21 @@ class Schema
                $query = []; $count = 0;
                foreach ($body->fields as $field) {
                   $null = (isset($body->nulls[$count]) && $body->nulls[$count] == true) ? "" : " NOT NULL" ;
-                  $query[] = implode(" ", $field) . $null;
+                  $subquery = implode(" ", $field) . $null;
+                  
+                  // the after attribute in a query is supposed to appear towards the end of a query, at least after the not null attribute
+                  // if both attribute exists in the query
+                  if (strpos($subquery, ' AFTER') != false && strpos($subquery, ' NOT NULL') != false) {
+                     // and the position of the not null appears after the after attribute
+                     if (strpos($subquery, ' NOT NULL') > strpos($subquery, ' AFTER')) {
+                        // move the not null attribute to the current position of the after
+                        // remove the current not null attribute and add it in the pos of the after attribute
+                        $subquery = str_replace(' NOT NULL', '', $subquery);
+                        $subquery = substr_replace($subquery, ' NOT NULL ', strpos($subquery, ' AFTER'), 1);
+                     }
+                  }
+
+                  $query[] = $subquery;
                   $count++;
                }
                foreach ($body->keys as $key) {
@@ -80,11 +116,13 @@ class Schema
                }
                $sqlMode = $strict == false ? "SET SQL_MODE = ' '; " : "SET SQL_MODE = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION'; ";
                $sql = $sqlMode . "ALTER TABLE " . DB_PREFIX . $table . " " . implode(", ", $query) . " ";
-               // ALTER TABLE `lesson_tbl` CHANGE `lesson` `lesson` VARCHAR(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL, CHANGE `description` `description` VARCHAR(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'No Description';
 
                if ($_ENV['show_query'] == true) echo "\n" . $sql . "\n";
-               Model::query($sql);
-               
+
+               $result = Model::query($sql); self::$resultArray[] = $result;
+               echo $result == true ? "\n\tAlter $table: successful" : "\n\tAlter $table: failed ";
+               self::$result = in_array(false, self::$resultArray) ? false : true ;
+
                // clear properties
                self::clear($body);
             }
@@ -101,7 +139,10 @@ class Schema
                $sql = "DROP TABLE IF EXISTS " . DB_PREFIX . $table;
 
                if ($_ENV['show_query'] == true) echo "\n" . $sql . "\n";
-               Model::query($sql);
+               
+               $result = Model::query($sql); self::$resultArray[] = $result;
+               echo $result == true ? "\n\tDrop $table: successful" : "\n\tDrop $table: failed ";
+               self::$result = in_array(false, self::$resultArray) ? false : true ;
             
             }
          } catch(\Throwable $ex) {
@@ -117,7 +158,10 @@ class Schema
                $sql = "TRUNCATE " . DB_PREFIX . $table;
 
                if ($_ENV['show_query'] == true) echo "\n" . $sql . "\n";
-               Model::query($sql);
+               
+               $result = Model::query($sql); self::$resultArray[] = $result;
+               echo $result == true ? "\n\tTruncate $table: successful" : "\n\tTruncate $table: failed ";
+               self::$result = in_array(false, self::$resultArray) ? false : true ;
             }
          } catch(\Throwable $ex) {
             trigger_error($ex->getMessage());
@@ -130,7 +174,10 @@ class Schema
             if (!empty($table)) {
               
                Model::$table = $table;
-               Model::createMany(...$inputs);
+               
+               $result = Model::createMany(...$inputs); self::$resultArray[] = $result;
+               echo $result == true ? "\n\tSeed $table: successful" : "\n\tSeed $table: failed ";
+               self::$result = in_array(false, self::$resultArray) ? false : true ;
             
             }
          } catch(\Throwable $ex) {

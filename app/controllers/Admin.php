@@ -1,5 +1,7 @@
 <?php
 namespace Controllers;
+
+use Library\Database\Model;
 use Library\Http\Request;
 use Models\Invoice;
 use Models\OrganisationInfo;
@@ -201,7 +203,7 @@ class Admin
       $mou = $mou ?? '';
       $membership = $membership ?? '';
       $rewardsAndBenefits = $rewardsAndBenefits ?? '';
-      $tournamentAndLeagues = $tournamentAndLeagues ?? '';
+      $tournamentsAndLeagues = $tournamentsAndLeagues ?? '';
       $contactTelephone = $contactTelephone ?? '';
       $contactAddress = $contactAddress ?? '';
       $contactEmail = $contactEmail ?? '';
@@ -215,7 +217,7 @@ class Admin
       Validate::isNotEmpty('Memorandum of Understanding', $mou);
       Validate::isNotEmpty('Membership', $membership);
       Validate::isNotEmpty('Rewards and Benefits', $rewardsAndBenefits);
-      Validate::isNotEmpty('Tournament and Leagues', $tournamentAndLeagues);
+      Validate::isNotEmpty('Tournament and Leagues', $tournamentsAndLeagues);
       Validate::isNotEmpty('Contact Telephone', $contactTelephone);
       Validate::isNotEmpty('Contact Address', $contactAddress);
       Validate::isNotEmpty('Contact Email', $contactEmail);
@@ -228,7 +230,7 @@ class Admin
       Validate::hasMaxLength('Contact Email', $contactEmail, 100);
 
       if (Validate::$status == false) {
-         error('Info not updated', Validate::$error);
+         error('Info not updated', array_values(Validate::$error));
       }
 
       if (OrganisationInfo::update([
@@ -239,11 +241,11 @@ class Admin
          "mou" => $mou,
          "membership" => $membership,
          "rewards_and_benefits" => $rewardsAndBenefits,
-         "tournaments_and_leagues" => $tournamentAndLeagues,
+         "tournaments_and_leagues" => $tournamentsAndLeagues,
          "contact_telephone" => $contactTelephone,
          "contact_address" => $contactAddress,
          "contact_email" => $contactEmail,
-         "faq" => $faq,
+         "faq" => htmlentities($faq, ENT_QUOTES),
       ], "WHERE id = 1") == true) {
          success('Info is updated');
       } else {

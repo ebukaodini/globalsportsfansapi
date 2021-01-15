@@ -481,11 +481,11 @@ class Model extends Database
             
             self::$affected = $stmt->rowCount();
 
-            if ($stmt->rowCount() > 0) {
+            // if ($stmt->rowCount() > 0) {
                return true;
-            } else {
-               return false;
-            }
+            // } else {
+            //    return false;
+            // }
 
          }
 
