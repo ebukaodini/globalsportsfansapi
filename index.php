@@ -2,11 +2,11 @@
 
 namespace App;
 
+use Library\Http\Request;
+use Library\Http\Router;
 use Controllers\Admin;
 use Controllers\Member;
 use Controllers\UserController;
-use Library\Http\Request;
-use Library\Http\Router;
 use Middlewares\JWT;
 use Middlewares\Guard;
 use Models\OrganisationInfo;
@@ -24,6 +24,8 @@ $req = new Request();
 
 // Start Router
 Router::start($req);
+
+// Public Routes
 
 Router::get('/', function () {
    render('welcome.html', ['org_name' => APP_NAME]);
@@ -45,6 +47,10 @@ Router::get('/api/referrallevels', function(Request $req) {
    else success('success', $referrallevels);
 });
 
+Router::post('/api/contact', function(Request $req) {
+   Admin::contactSupport($req);
+});
+
 Router::post('/api/register', function(Request $req) {
    UserController::register($req);
 })->name('register');
@@ -54,6 +60,13 @@ Router::post('/api/login', function(Request $req) {
 })->name('login');
 
 // Authenticated Routes
+
+Router::post('/api/re-authenticate', function(Request $req) {
+   JWT::auth($req);
+   Guard::isAny(['member', 'admin']);
+   UserController::reAuthenticate($req);
+});
+
 
 Router::post('/api/sendtoken', function(Request $req) {
    JWT::auth($req);
@@ -95,6 +108,10 @@ Router::get('/api/profile', function(Request $req) {
    JWT::auth($req);
    Guard::isAny(['member', 'admin']);
    UserController::profile($req);
+});
+
+Router::post('/api/auto-choose-slot', function(Request $req) {
+   Member::chooseSlot($req);
 });
 
 Router::post('/api/choose-slot', function(Request $req) {

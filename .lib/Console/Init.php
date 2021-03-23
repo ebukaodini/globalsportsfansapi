@@ -23,7 +23,7 @@ class Init extends Database
    }
 
    public function handle(string $command, $component, array $args) {
-      $init = "./init";
+      $init = "php init";
       switch ($command) {
          case '--h':
          case 'help':
@@ -222,7 +222,7 @@ echo <<<cmd
 Usage: $init [command] [component] [args...]
 
 Error: Wrong command, find help
->_ $init help or --h
+$init help or --h
 
 cmd;
 
@@ -233,43 +233,43 @@ cmd;
 echo <<<CLI
 Usage: $init [command] [component] [args...]
 
->_ $init help or --h
+$init help or --h
 help
 
->_ $init new controller <controller>
+$init new controller <controller>
 creates a new controller in controllers/ directory
 
->_ $init new model <model> <database-table>
+$init new model <model> <database-table>
 creates a model for a database table in the models/ directory
 Example: '$init new model users user_tbl' creates a model class for the table users_tbl; now you can interact with the users_tbl by calling the users class (\$users)
 
->_ $init new view <view>
+$init new view <view>
 creates a new view in the public/views/ directory
 Example: '$init new view about-us' would create a view named about-us.html
 
->_ $init new migration "migration"
+$init new migration "migration"
 creates a new schema migration class in the app/migrations/ for creating and altering the database schema
 
->_ $init new middleware <middleware>
+$init new middleware <middleware>
 creates a middleware class in the app/middlewares/ directory to be used when routing
 
->_ $init new service <service>
+$init new service <service>
 creates a service class in the app/services/ directory to be used within the application
 
->_ $init new key
+$init new key
 creates a new key that you can use for your application
 
->_ $init run app
+$init run app
 starts your application
 Example: '$init run app' starts your application
 
->_ $init run migrations [--show-query]
+$init run migrations [--show-query]
 migrates schemas that have not been migrated
 
->_ $init run migration <migration> [--show-query]
+$init run migration <migration> [--show-query]
 migrates a specific migration class if it has not been migrated
 
->_ $init update snippet <model> <database-table>
+$init update snippet <model> <database-table>
 update the snippet for a specific model
 
 CLI;

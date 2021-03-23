@@ -10,6 +10,7 @@ use Services\JWT;
 use Services\User;
 use Services\Mail;
 use Services\Common;
+use Services\File;
 
 class UserController
 {
@@ -22,10 +23,6 @@ class UserController
       $cpassword = $cpassword ?? '';
       $referralcode = $referralcode ?? '';
       $slot = $slot ?? '';
-      $mou = $mou ?? false;
-
-      // stop user from registering if he/she refuse to agree to the mou
-      if ($mou == false) error('Accept the Memorandum of Understanding to continue', null, 200);
 
       // validate email
       Validate::isValidEmail('Email', $email);
@@ -36,13 +33,13 @@ class UserController
       if (empty($referralcode) == false) {
          Validate::hasExactLength('Referral code', $referralcode, 7);
       }
-      // validate slot id if it is sent as well
-      if (empty($slot) == false) {
-         Validate::isInteger('Slot', $slot);
-      }
       // verify validation
       if (Validate::$status == false) {
          error('Registeration failed', array_values(Validate::$error), 200);
+      }
+      // validate slot id if it is sent as well
+      if (!Validate::isInteger('Slot', intval($slot))) {
+         error('Registeration failed', ["Slot must be selected $slot"], 200);
       }
       if ($password != $cpassword) {
          error('Registeration failed', ['Password and confirm password must be the same'], 200);
@@ -53,7 +50,7 @@ class UserController
 
       // Check if user exists
       if (Users::exist("WHERE email = '$email'") == true) {
-         error('Registeration failed. Email already exists', null, 200);
+         error('Registeration failed.', ['Email already exists'], 200);
       }
 
       // if referral code is not empty
@@ -101,6 +98,12 @@ class UserController
             // this is going to be a recursive function
             Common::updateAllUplinks($referralcode);
          }
+
+         // Welcome User
+         Mail::asHTML("<h4>Hi $email,</h4><p>Welcome to <b>SPORTS FANS CLUB</b>.</p>")->send(ORG_EMAIL, $email, "Welcome to SPORTS FANS CLUB", ORG_EMAIL);
+
+         // choose slot for the user
+         // Member::chooseSlot($req);
 
          success('Registeration successful', 
             $slot == '' ? null : ['slot' => $slot]
@@ -231,7 +234,8 @@ class UserController
             // success response
             success('Login successful', [
                'token' => $token,
-               'role' => $user['role']
+               'role' => $user['role'],
+               'permissions' => $user['permissions']
             ]);
 
          } else {
@@ -241,6 +245,31 @@ class UserController
          error("Invalid Email / Password", null, 200);
       }
    }
+
+   public static function reAuthenticate(Request $req)
+   {
+      extract($req->body);
+      $email = $email ?? '';
+      $password = $password ?? '';
+      // validate email and password
+      if ( Validate::isValidEmail('Email', $email) == false || Validate::isValidPassword('Password', $password, true, true, true, false, 8) == false) {
+         error("failed");
+      }
+
+      // get user with this email
+      $user = Users::findOne("*", "WHERE email = '$email'");
+      if (!$user == false) {
+         // verify users password_get_info
+         if (Cipher::verifyPassword($password, $user['password']) == true) {
+            success('success');
+         } else {
+            error('failed');
+         }
+      } else {
+         error('failed');
+      }
+   }
+   
 
    public static function sendToken(Request $req)
    {
@@ -290,7 +319,7 @@ class UserController
    {
       $email = User::$email;
       // get the users profile details
-      $profile = Users::findOne("telephone, email, firstname, lastname, middlename, residential_address, occupation, profile_picture, mou, nextofkin_name, nextofkin_telephone, nextofkin_residential_address, accountnumber, accountname, bankname, favorite_sport, favorite_team, referral_code, member_id, verification_status, created_at", "WHERE email = '$email'");
+      $profile = Users::findOne("telephone, email, firstname, lastname, middlename, nationality, residential_address, occupation, profile_picture, mou, nextofkin_name, nextofkin_telephone, nextofkin_residential_address, accountnumber, accountname, bankname, favourite_sport, favourite_team, referral_code, member_id, verification_status, created_at", "WHERE email = '$email'");
 
       if ($profile == false) {
          error("No profile for this user", null, 200); // no obvious chance of this accuring
@@ -305,7 +334,6 @@ class UserController
       $opassword = $opassword ?? '';
       $npassword = $npassword ?? '';
       $cpassword = $cpassword ?? '';
-      // exit(json_encode($_POST));
 
       // Validate the password
       Validate::isValidPassword('New Password', $npassword, true, true, true, false, 8);
@@ -350,15 +378,19 @@ class UserController
       Upload::$field = 'Profile Picture';
       Upload::$unit = 'Mb';
       Upload::tmp('profile-picture', "profile_pictures/" . User::$id.".".date('ymdhis'), Upload::$imagefiles, null, 2);
-
+      
       if (Upload::$status == false) {
          error('Profile picture not updated', array_values(Upload::$error), 200);
       } else {
+         $previouspicture = Users::findOne('profile_picture', "WHERE email = '$email'")['profile_picture'];
          $pictureupdate = Users::update([
             "profile_picture" => Upload::$path,
          ], "WHERE email = '$email'");
-         if ($pictureupdate == true)
-         success("Profile picture updated successfully", ['path' => Upload::$path]);
+         if ($pictureupdate == true) {
+            // delete previous picture
+            @unlink(APP_BASEDIR . $previouspicture);
+            success("Profile picture updated successfully", ['path' => Upload::$path]);
+         }
          else
          error("Profile picture not updated", null, 200);
       }
@@ -371,6 +403,7 @@ class UserController
       $accountnumber = $accountnumber ?? '';
       $accountname = $accountname ?? '';
       $bankname = $bankname ?? '';
+      $password = $password ?? '';
 
       // validate the bank details
       if (Validate::mustContainNumberOnly("Account Number", $accountnumber) == false) {
@@ -380,8 +413,15 @@ class UserController
       if (empty($accountname) == true || empty($bankname) == true) {
          error("Bank details not updated", ['Account details cannot be empty'], 200);
       }
-
+      
+      // verify the password
       $email = User::$email;
+      
+      // get the password in the database or use ''
+      $dbpassword = Users::findOne("password", "WHERE email = '$email'")['password'] ?: '';
+      
+      // return error if password fails
+      if (Cipher::verifyPassword($password, $dbpassword) == false) error("Bank details not updated", ["Invalid Password"], 200);
 
       // update the user's bank details
       $bankdetailupdate = Users::update([
@@ -405,13 +445,14 @@ class UserController
       $firstname = $firstname ?? '';
       $lastname = $lastname ?? '';
       $middlename = $middlename ?? '';
+      $nationality = $nationality ?? '';
       $residential_address = $residential_address ?? '';
       $occupation = $occupation ?? '';
       $nextofkin_name = $nextofkin_name ?? '';
       $nextofkin_telephone = $nextofkin_telephone ?? '';
       $nextofkin_residential_address = $nextofkin_residential_address ?? '';
-      $favorite_sport = $favorite_sport ?? '';
-      $favorite_team = $favorite_team ?? '';
+      $favourite_sport = $favourite_sport ?? '';
+      $favourite_team = $favourite_team ?? '';
 
       // validation
       Validate::isNotEmpty("Telephone", $telephone);
@@ -423,6 +464,8 @@ class UserController
       Validate::hasMaxLength("Lastname", $lastname, 50);
       Validate::isNotEmpty("Middlename", $middlename);
       Validate::hasMaxLength("Middlename", $middlename, 50);
+      Validate::isNotEmpty("Nationality", $nationality);
+      Validate::hasMaxLength("Nationality", $nationality, 100);
       Validate::isNotEmpty("Residential Address", $residential_address);
       Validate::hasMaxLength("Residential Address", $residential_address, 200);
       Validate::isNotEmpty("Occupation", $occupation);
@@ -434,10 +477,10 @@ class UserController
       Validate::hasMaxLength("Next of Kin Telephone", $nextofkin_telephone, 20);
       Validate::isNotEmpty("Next of Kin Residential Address", $nextofkin_residential_address);
       Validate::hasMaxLength("Next of Kin Residential Address", $nextofkin_residential_address, 200);
-      Validate::isNotEmpty("Favorite Sport", $favorite_sport);
-      Validate::hasMaxLength("Favoite Sport", $favorite_sport, 50);
-      Validate::isNotEmpty("Favorite Team", $favorite_team);
-      Validate::hasMaxLength("Favoite Team", $favorite_team, 50);
+      Validate::isNotEmpty("Favourite Sport", $favourite_sport);
+      Validate::hasMaxLength("Favourite Sport", $favourite_sport, 50);
+      Validate::isNotEmpty("Favourite Team", $favourite_team);
+      Validate::hasMaxLength("Favourite Team", $favourite_team, 50);
 
       if (Validate::$status == false) {
          error("Profile not updated", Validate::$error, 200);
@@ -454,13 +497,14 @@ class UserController
          "firstname" => $firstname,
          "lastname" => $lastname,
          "middlename" => $middlename,
+         "nationality" => $nationality,
          "residential_address" => $residential_address,
          "occupation" => $occupation,
          "nextofkin_name" => $nextofkin_name,
          "nextofkin_telephone" => $nextofkin_telephone,
          "nextofkin_residential_address" => $nextofkin_residential_address,
-         "favorite_sport" => $favorite_sport,
-         "favorite_team" => $favorite_team
+         "favourite_sport" => $favourite_sport,
+         "favourite_team" => $favourite_team
       ], "WHERE email = '$email'");
       
       if ($updateprofile == true) {

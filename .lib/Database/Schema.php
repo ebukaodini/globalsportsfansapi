@@ -61,11 +61,11 @@ class Schema
 
                if ($_ENV['show_query'] == true && strpos($sql, 'schema_migration') == false) echo "\n" . $sql . "\n";
                
-               if (strpos($sql, 'schema_migration') == false) {
+               // if (strpos($sql, 'schema_migration') != false) {
                   $result = Model::query($sql); self::$resultArray[] = $result;
                   echo $result == true ? "\n\tCreate $table: successful" : "\n\tCreate $table: failed ";
                   self::$result = in_array(false, self::$resultArray) ? false : true ;
-               }
+               // }
 
                if (!is_null($model) && !empty($model))
                {

@@ -62,7 +62,7 @@ class Mail
       self::$mail->Subject = $subject;
       self::$mail->Body = self::$body ?? '';
       try {
-         if (self::$mail->Send()) {
+         if (@self::$mail->Send()) {
             return true;
          } else {
             throw new \Exception(self::$mail->ErrorInfo);
@@ -85,7 +85,7 @@ class Mail
       self::$mail->Subject = $subject;
       self::$mail->Body = self::$body ?? '';
       try {
-         if (self::$mail->Send()) {
+         if (@self::$mail->Send()) {
             return true;
          } else {
             throw new \Exception(self::$mail->ErrorInfo);

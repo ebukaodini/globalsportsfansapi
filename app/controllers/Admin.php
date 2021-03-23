@@ -16,6 +16,14 @@ use Services\Common;
 class Admin
 {
 
+   public static function contactSupport(Request $req)
+   {
+      extract($req->body);
+      
+      success('sent successfully');
+   }
+   
+
    public static function getAllInvoice(Request $req)
    {
       $allInvoice = Invoice::findAll("*");

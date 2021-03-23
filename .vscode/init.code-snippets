@@ -1017,5 +1017,50 @@
         "scope": "php",
         "prefix": "user_slots.",
         "body": "\". DB_PREFIX .\"user_slots.${1|id,user_id,slot_id,slot_program,referral_code,referrals_required,referrals_acquired,referredby,referral_level,rank,status,created_at,updated_at|}"
+    },
+    "Update_favorite_to_favourite create": {
+        "scope": "php",
+        "prefix": "Update_favorite_to_favourite::create",
+        "body": "Update_favorite_to_favourite::create([\r\t\"id\" => $1,\r\t\"created_at\" => $2,\r\t\"updated_at\" => $3\r]);"
+    },
+    "Update_favorite_to_favourite create many": {
+        "scope": "php",
+        "prefix": "Update_favorite_to_favourite::createMany",
+        "body": "Update_favorite_to_favourite::createMany([\r\t\"id\" => $1,\r\t\"created_at\" => $2,\r\t\"updated_at\" => $3\r],\r${4:[]}\r);"
+    },
+    "Update_favorite_to_favourite update": {
+        "scope": "php",
+        "prefix": "Update_favorite_to_favourite::update",
+        "body": "Update_favorite_to_favourite::update([\r\t\"id\" => $1,\r\t\"created_at\" => $2,\r\t\"updated_at\" => $3\r], \"WHERE ${4|id,created_at,updated_at|} = 1\");"
+    },
+    "Update_favorite_to_favourite delete": {
+        "scope": "php",
+        "prefix": "Update_favorite_to_favourite::delete",
+        "body": "Update_favorite_to_favourite::delete(\"WHERE ${1|id,created_at,updated_at|} = 1\");"
+    },
+    "Update_favorite_to_favourite exist": {
+        "scope": "php",
+        "prefix": "Update_favorite_to_favourite::exist",
+        "body": "Update_favorite_to_favourite::exist(\"WHERE ${1|id,created_at,updated_at|} = 1\");"
+    },
+    "Update_favorite_to_favourite findAll": {
+        "scope": "php",
+        "prefix": "Update_favorite_to_favourite::findAll",
+        "body": "Update_favorite_to_favourite::findAll(\"${1:id, created_at, updated_at}\", \"WHERE ${2|id,created_at,updated_at|} = 1\");"
+    },
+    "Update_favorite_to_favourite findOne": {
+        "scope": "php",
+        "prefix": "Update_favorite_to_favourite::findOne",
+        "body": "Update_favorite_to_favourite::findOne(\"${1:id, created_at, updated_at}\", \"WHERE ${2|id,created_at,updated_at|} = 1\");"
+    },
+    "Update_favorite_to_favourite findJoin": {
+        "scope": "php",
+        "prefix": "Update_favorite_to_favourite::findJoin",
+        "body": "\/\/ Note: When joining, specify fieldnames as tablename.fieldname;\r\/\/ Prefix the every tablename with DB_PREFIX\r\\$prefix = DB_PREFIX;\rUpdate_favorite_to_favourite::findJoin(${1:\"{\\$prefix\\}update_favorite_to_favourite.${2|id,created_at,updated_at|}\"}, \"WHERE ${3|id,created_at,updated_at|} = 1\")\r\t->${4|leftJoin,rightJoin,innerJoin,fullJoin|}(\"{\\$prefix\\}tablename\", \"{\\$prefix\\}update_favorite_to_favourite.${6|id,created_at,updated_at|} = {\\$prefix\\}tablename.field\")\r\t->join();"
+    },
+    "Update_favorite_to_favourite fields": {
+        "scope": "php",
+        "prefix": "update_favorite_to_favourite.",
+        "body": "\". DB_PREFIX .\"update_favorite_to_favourite.${1|id,created_at,updated_at|}"
     }
 }

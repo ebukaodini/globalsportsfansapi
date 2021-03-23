@@ -28,8 +28,9 @@ class Member
    public static function chooseSlot(Request $req)
    {
       extract($req->body);
-      $email = User::$email;
+      $email = User::$email ?: $email;
       $slotId = $slot ?? '';
+      User::$id = Users::findOne('id', "WHERE email = '$email'")['id'];
 
       Validate::isInteger('Slot Id', $slotId);
       if (Validate::$status == false) {
@@ -104,7 +105,7 @@ class Member
 
          if ($invoicecreation == false) {
             Users::rollback();
-            error("Slot was not created. Please try again", null, 200);
+            error("Slot was not created. Please try again 3", null, 200);
          }
 
          Users::commit();
@@ -195,7 +196,7 @@ class Member
    public static function getMySlots(Request $req)
    {
       $userId = User::$id;
-      $mySlots = UserSlots::findAll("slot_id, slot_program, initial_referrals_required, referrals_required, target_rank, referrals_acquired, rank, status, created_at, updated_at", "WHERE user_id = $userId");
+      $mySlots = UserSlots::findOne("slot_id, slot_program, initial_referrals_required, referrals_required, target_rank, referrals_acquired, rank, status, created_at, updated_at", "WHERE user_id = $userId");
 
       if ($mySlots != false) success('Your Slots', $mySlots); else error('No Slots', null, 200);
    }

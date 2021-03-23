@@ -320,7 +320,7 @@ class Model extends Database
       try {
 
          $query = "SELECT {$fields} FROM ". self::$table ." {$condition} LIMIT 1";
-
+         
          $stmt = self::$conn->prepare($query);
          
          $stmt->execute();
