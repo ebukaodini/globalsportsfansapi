@@ -1,4 +1,4 @@
 deployment:
   tasks:
-    -export DEPLOYPATH=/home2/initfram/public_html/globalsportsfans
+    -export DEPLOYPATH=/home2/sportsfa/public_html/api
     - /bin/cp -r * $DEPLOYPATH
