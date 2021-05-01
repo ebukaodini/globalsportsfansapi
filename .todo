@@ -16,7 +16,7 @@ Global Sports Fans:
     ☐ Add a user and register a slot for the organisation
     ☐ update organisation info @started(21-01-14 19:50)
     ☐ update slots, costs and benefits
-    ☐ update referral level benefits
+    ✔ update referral level benefits @done(21-04-03 00:30)
     ✔ get all admin @done(20-12-20 06:44)
     ✔ get all users @done(20-12-20 05:48)
     ✔ get all benefits @done(20-12-20 07:02)
@@ -30,6 +30,7 @@ Global Sports Fans:
     ✔ Get all unpaid invoices @done(20-12-20 06:27)
     ✔ Get all paid invoices @done(20-12-20 06:27)
     ☐ View all transactions
+    ☐ add date paid to the invoice table, and should be nullable only to be set when the status is 'paid'
  
  Member WorkFlow:
  
@@ -53,7 +54,7 @@ Global Sports Fans:
     ✔ membership id card is generated for the user @started(20-12-14 01:43) @done(20-12-14 02:42) @lasted(59m29s)
     ✔ user is given a referral code to share to users and invite them in @done(20-12-14 02:42)
     ✔ user monitors downlines @done(20-12-20 07:01)
-    ☐ user gets notified by new referrals
+    ✔ user gets notified by new referrals @done(21-04-03 00:30)
     ✔ add benefits for users as they attain new levels @done(20-12-19 17:18)
     ✔ user monitors his benefits @done(20-12-20 07:01)
     ☐ user can follow up on favourite team competitions and fixtures

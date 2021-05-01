@@ -1,4 +1,5 @@
 <?php
+
 namespace Services;
 
 class Sanitize
@@ -12,7 +13,10 @@ class Sanitize
    // string
    public static function string(string $value)
    {
-      return filter_var($value, FILTER_SANITIZE_STRING, [FILTER_FLAG_STRIP_HIGH]);
+      return htmlentities($value);
+      // return htmlentities($value, ENT_QUOTES);
+      // return filter_var($value, FILTER_SANITIZE_STRING);
+      // return filter_var($value, FILTER_SANITIZE_STRING, [FILTER_FLAG_STRIP_HIGH]);
    }
 
    // email
@@ -50,5 +54,4 @@ class Sanitize
    {
       return filter_var($value, FILTER_SANITIZE_URL);
    }
-
 }

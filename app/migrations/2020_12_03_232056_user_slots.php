@@ -21,7 +21,7 @@ class migration_2020_12_03_232056_user_slots {
          $schema->varchar('referredby', 10); // referral code of who referred you / referral code of organisation
          $schema->int('referral_level'); // level of the slot on the slot tree
          $schema->varchar('rank', 20)->default('Manager');
-         $schema->varchar('status', 10)->default('pending'); // activated, blocked, completed
+         $schema->varchar('status', 10)->default('pending'); // pending, activated, blocked, completed
          $schema->timestamp('created_at');
          $schema->datetime('updated_at')->attribute("ON UPDATE CURRENT_TIMESTAMP");
          $schema->foreign('user_id', 'users', 'id', 'ON DELETE RESTRICT', 'ON UPDATE CASCADE');

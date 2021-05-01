@@ -11,6 +11,7 @@ class Model extends Database
    private static $affected;
    public static $table;
 
+   private static $joinTable;
    private static $joinFields;
    private static $joinCondition;
    private static $joins = [];
@@ -31,7 +32,7 @@ class Model extends Database
     * @param array $inputs is an associative array of field name and the field value
     * @return bool to tell if the execution was successful or not
     */
-   public static function create(array $inputs) : bool
+   public static function create(array $inputs, bool $debug = false) : bool
    {
       self::instance();
       try {
@@ -42,6 +43,7 @@ class Model extends Database
          // the command query
          $query = "INSERT INTO ". self::$table ." ({$fields}) 
          VALUES ({$bindFieldsStr}) ";
+         if ($debug) exit($query);
 
          // prepare query
          $stmt = self::$conn->prepare($query);
@@ -105,7 +107,7 @@ class Model extends Database
          }
 
          // execute the query
-         if ($_ENV['show_query'] == true) echo "\n" . $query . "\n";
+         if (isset($_ENV['show_query']) && $_ENV['show_query'] == true) echo "\n" . $query . "\n";
          $stmt->execute();
 
          self::$affected = $stmt->rowCount();
@@ -158,7 +160,7 @@ class Model extends Database
     * @param array $updates is an associative array of field name and the field value
     * @return bool to tell if the execution was successful or not
     */
-   public static function update(array $updates, string $condition = "WHERE 1") : bool
+   public static function update(array $updates, string $condition = "WHERE 1", bool $debug = false) : bool
    {
       self::instance();
       try {
@@ -166,6 +168,7 @@ class Model extends Database
          $sets = self::bindUpdate($updates);
 
          $query = "UPDATE ". self::$table ." SET {$sets} {$condition}";
+         if ($debug) exit($query);
          
          $stmt = self::$conn->prepare($query);
    
@@ -209,12 +212,13 @@ class Model extends Database
     *
     * @return bool to tell if the execution was successful or not
     */
-   public static function delete(string $condition = "WHERE 1") : bool
+   public static function delete(string $condition = "WHERE 1", bool $debug = false) : bool
    {
       self::instance();
       try {
          
          $query = "DELETE FROM ". self::$table ." {$condition}";
+         if ($debug) exit($query);
    
          $stmt = self::$conn->prepare($query);
    
@@ -250,12 +254,13 @@ class Model extends Database
     * 
     * @return bool true is the condition is met
     */
-   public static function exist(string $condition = "WHERE 1") : bool
+   public static function exist(string $condition = "WHERE 1", bool $debug = false) : bool
    {
       self::instance();
       try {
 
          $query = "SELECT COUNT(*) AS count FROM ". self::$table ." {$condition}";
+         if ($debug) exit($query);
 
          $stmt = self::$conn->prepare($query);
          
@@ -284,12 +289,13 @@ class Model extends Database
     * @param string $fields is a string of fields delimited by commas(,)
     * @return array $response is an associative array: flag - a boolean to indicate if data was read; data - an associative array of the selected records OR the error message
     */
-   public static function findAll(string $fields = "*", string $condition = "WHERE 1")
+   public static function findAll(string $fields = "*", string $condition = "WHERE 1", bool $debug = false)
    {
       self::instance();
       try {
 
          $query = "SELECT {$fields} FROM ". self::$table ." {$condition}";
+         if ($debug) exit($query);
 
          $stmt = self::$conn->prepare($query);
          
@@ -314,12 +320,13 @@ class Model extends Database
     * @param string $fields is a string of fields delimited by commas(,)
     * @return array $response is an associative array: flag - a boolean to indicate if data was read; data - an associative array of the selected records OR the error message
     */
-   public static function findOne(string $fields = "*", string $condition = "WHERE 1")
+   public static function findOne(string $fields = "*", string $condition = "WHERE 1", $debug = false)
    {
       self::instance();
       try {
 
          $query = "SELECT {$fields} FROM ". self::$table ." {$condition} LIMIT 1";
+         if ($debug) exit($query);
          
          $stmt = self::$conn->prepare($query);
          
@@ -353,6 +360,7 @@ class Model extends Database
          // foreach ($fields as $field) {
          //    $arrFields[] = DB_PREFIX . "". self::$table .".{$field}";
          // }
+         self::$joinTable = self::$table;
          self::$joinFields = $fields;
          self::$joinCondition = $condition;
 
@@ -366,7 +374,7 @@ class Model extends Database
 
    public static function innerJoin(string $table, string $on) : Model
    {
-      self::instance();
+      // self::instance();
       try {
 
          self::$joins[] = "INNER JOIN {$table} ON {$on}";
@@ -381,7 +389,7 @@ class Model extends Database
 
    public static function leftJoin(string $table, string $on) : Model
    {
-      self::instance();
+      // self::instance();
       try {
 
          self::$joins[] = "LEFT JOIN {$table} ON {$on}";
@@ -396,7 +404,7 @@ class Model extends Database
 
    public static function rightJoin(string $table, string $on) : Model
    {
-      self::instance();
+      // self::instance();
       try {
 
          self::$joins[] = "RIGHT JOIN {$table} ON {$on}";
@@ -411,7 +419,7 @@ class Model extends Database
 
    public static function fullJoin(string $table, string $on) : Model
    {
-      self::instance();
+      // self::instance();
       try {
 
          self::$joins[] = "FULL OUTER JOIN {$table} ON {$on}";
@@ -424,14 +432,15 @@ class Model extends Database
       }
    }
 
-   public static function join()
+   public static function join(bool $debug = false)
    {
       self::instance();
       try {
 
          $joins = implode(" ", self::$joins);
 
-         $query = "SELECT ". self::$joinFields ." FROM ". self::$table ." {$joins} ". self::$joinCondition ."";
+         $query = "SELECT ". self::$joinFields ." FROM ". self::$joinTable ." {$joins} ". self::$joinCondition ."";
+         if ($debug) exit($query);
 
          $stmt = self::$conn->prepare($query);
          

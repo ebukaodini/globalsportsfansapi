@@ -53,7 +53,7 @@ class Mail
       return new Mail;
    }
 
-   public static function send(string $from, string $to, string $subject, string $reply = ':')
+   public static function send(string $from, string $to, string $subject, string $reply = ':') : bool
    {
       $sentfrom = explode(":",$from); $sentto = explode(":",$to); $reply = explode(":",$reply);
       self::$mail->SetFrom($sentfrom[0], $sentfrom[1] ?? '');
@@ -69,6 +69,7 @@ class Mail
             return false;
          }
       } catch (\Throwable $e) {
+         return false;
          trigger_error($e->getMessage());
       }
    }

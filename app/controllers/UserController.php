@@ -1,10 +1,13 @@
 <?php
+
 namespace Controllers;
+
 use Library\Http\Request;
+use Models\Notifications;
 use Services\Validate;
 use Services\Cipher;
 use Models\Users;
-use Models\UserSlots;
+use Models\UserPackage;
 use Services\Upload;
 use Services\JWT;
 use Services\User;
@@ -39,7 +42,7 @@ class UserController
       }
       // validate slot id if it is sent as well
       if (!Validate::isInteger('Slot', intval($slot))) {
-         error('Registeration failed', ["Slot must be selected $slot"], 200);
+         error('Registeration failed', ["Slot must be selected"], 200);
       }
       if ($password != $cpassword) {
          error('Registeration failed', ['Password and confirm password must be the same'], 200);
@@ -70,33 +73,43 @@ class UserController
          // NB: if the users whose referral code is being used has already gotten his initial_referrals_required
          // i.e referrals_acquired >= initial_referrals_required
          // then do not use his referral code, rather use the organisations code
-         if (UserSlots::exist("WHERE user_id = $referralCodeUserId AND referrals_acquired >= initial_referrals_required ") == true) $referralcode = ORG_REFERRAL_CODE;
+         if (UserPackage::exist("WHERE user_id = $referralCodeUserId AND rank <> 'Manager' ") == true) $referralcode = ORG_REFERRAL_CODE;
       }
 
-      // get the referral level of the user
-      $referrallevel = Users::findOne("referral_level", "WHERE referral_code = '$referralcode'")['referral_level'] ?? '1'; // 1 assuming that this is the topmost parent in the referral tree
-      if ($referrallevel == "1") $referralcode = ORG_REFERRAL_CODE; // i assume there should be no need for this as it has already been considered
-      // and increment by one to generate referrallevel for this user
-      $referrallevel = intval($referrallevel) + 1;
+      // get the node level of the user
+      $nodelevel = Users::findOne("node_level", "WHERE referral_code = '$referralcode'")['node_level'] ?? '1'; // 1 assuming that this is the topmost parent in the referral tree
+      if ($nodelevel == "1") $referralcode = ORG_REFERRAL_CODE; // i assume there should be no need for this as it has already been considered
+      // and increment by one to generate nodelevel for this user
+      $nodelevel = intval($nodelevel) + 1;
+
+      // generate referral code
+      $newreferralcode = Cipher::hash(7);
+      // check if exist everytime
+      while (Users::exist("WHERE referral_code = '$newreferralcode'") == true) {
+         $newreferralcode = Cipher::hash(7);
+      }
 
       if (Users::create([
          "email" => $email,
          "password" => $hpassword,
          "referredby" => $referralcode,
-         "referral_level" => $referrallevel
+         "referral_code" => $newreferralcode,
+         "node_level" => $nodelevel
       ]) == true) {
 
          // before returning success
          // increment the referrals acquired for the users slot whose referral code is used to register (i.e if referral code is not ORG_REFERRAL_CODE)
          if ($referralcode != ORG_REFERRAL_CODE) {
-            UserSlots::update([
-               "referrals_acquired" => intval((UserSlots::findOne("referrals_acquired", "WHERE user_id = $referralCodeUserId")['referrals_acquired'] ?: 0) + 1),
-            ], "WHERE user_id = $referralCodeUserId");
+            // UserPackage::update([
+            //    "referrals_acquired" => intval((UserPackage::findOne("referrals_acquired", "WHERE user_id = $referralCodeUserId")['referrals_acquired'] ?: 0) + 1),
+            // ], "WHERE user_id = $referralCodeUserId");
 
             // TODO: TEST
-            // update all uplinks with status still active
+            // update all uplinks with status still active 
+            // AND whose node level is greater than or equal to the referral cap level
             // this is going to be a recursive function
-            Common::updateAllUplinks($referralcode);
+            $nodeCapLevel = $nodelevel > 8 ? $nodelevel - 7 : 1; /* 1 is the node level of the ORGANISATION */
+            Common::updateReferralUplink($newreferralcode, $nodeCapLevel, $nodelevel);
          }
 
          // Welcome User
@@ -105,13 +118,10 @@ class UserController
          // choose slot for the user
          // Member::chooseSlot($req);
 
-         success('Registeration successful', 
-            $slot == '' ? null : ['slot' => $slot]
-         );
+         success('Registeration successful', ['slot' => $slot]);
       } else {
          error('Registeration failed, please try again', null, 200);
       }
-
    }
 
    // create a new admin
@@ -165,41 +175,50 @@ class UserController
          // NB: if the users whose referral code is being used has already gotten his initial_referrals_required
          // i.e referrals_acquired >= initial_referrals_required
          // then do not use his referral code, rather use the organisations code
-         if (UserSlots::exist("WHERE user_id = $referralCodeUserId AND referrals_acquired >= initial_referrals_required ") == true) $referralcode = ORG_REFERRAL_CODE;
+         if (UserPackage::exist("WHERE user_id = $referralCodeUserId AND referrals_acquired >= initial_referrals_required ") == true) $referralcode = ORG_REFERRAL_CODE;
       }
 
-      // get the referral level of the user
-      $referrallevel = Users::findOne("referral_level", "WHERE referral_code = '$referralcode'")['referral_level'] ?? '1'; // 1 assuming that this is the topmost parent in the referral tree
-      if ($referrallevel == "1") $referralcode = ORG_REFERRAL_CODE; // i assume there should be no need for this as it has already been considered
-      // and increment by one to generate referrallevel for this user
-      $referrallevel = intval($referrallevel) + 1;
+      // // get the node level of the user
+      // $nodelevel = Users::findOne("node_level", "WHERE referral_code = '$referralcode'")['node_level'] ?? '1'; // 1 assuming that this is the topmost parent in the referral tree
+      // if ($nodelevel == "1") $referralcode = ORG_REFERRAL_CODE; // i assume there should be no need for this as it has already been considered
+      // // and increment by one to generate nodelevel for this user
+      // $nodelevel = intval($nodelevel) + 1;
+
+      // generate referral code
+      $newreferralcode = Cipher::hash(7);
+      // check if exist everytime
+      while (Users::exist("WHERE referral_code = '$newreferralcode'") == true) {
+         $newreferralcode = Cipher::hash(7);
+      }
 
       if (Users::create([
          "email" => $email,
          "password" => $hpassword,
-         "referredby" => $referralcode,
-         "referral_level" => $referrallevel,
+         "referredby" => ORG_REFERRAL_CODE,
+         "referral_code" => $newreferralcode,
+         "node_level" => 2,
          "role" => "admin"
       ]) == true) {
 
          // before returning success
          // increment the referrals acquired for the users slot whose referral code is used to register (i.e if referral code is not ORG_REFERRAL_CODE)
          if ($referralcode != ORG_REFERRAL_CODE) {
-            UserSlots::update([
-               "referrals_acquired" => intval((UserSlots::findOne("referrals_acquired", "WHERE user_id = $referralCodeUserId")['referrals_acquired'] ?: 0) + 1),
-            ], "WHERE user_id = $referralCodeUserId");
+            // UserPackage::update([
+            //    "referrals_acquired" => intval((UserPackage::findOne("referrals_acquired", "WHERE user_id = $referralCodeUserId")['referrals_acquired'] ?: 0) + 1),
+            // ], "WHERE user_id = $referralCodeUserId");
 
             // TODO: TEST
-            // update all uplinks with status still active
+            // update all uplinks with status still active 
+            // AND whose node level is greater than or equal to the referral cap level
             // this is going to be a recursive function
-            Common::updateAllUplinks($referralcode);
+            $nodeCapLevel = $nodelevel > 8 ? $nodelevel - 7 : 1; /* 1 is the node level of the ORGANISATION */
+            Common::updateReferralUplink($newreferralcode, $nodeCapLevel, $nodelevel);
          }
 
          success('Admin created successfully');
       } else {
          error('Admin creation failed, please try again', null, 200);
       }
-
    }
 
    public static function login(Request $req)
@@ -208,7 +227,7 @@ class UserController
       $email = $email ?? '';
       $password = $password ?? '';
       // validate email and password
-      if ( Validate::isValidEmail('Email', $email) == false || Validate::isValidPassword('Password', $password, true, true, true, false, 8) == false) {
+      if (Validate::isValidEmail('Email', $email) == false || Validate::isValidPassword('Password', $password, true, true, true, false, 8) == false) {
          error("Invalid Email / Password", null, 200);
       }
 
@@ -237,9 +256,8 @@ class UserController
                'role' => $user['role'],
                'permissions' => $user['permissions']
             ]);
-
          } else {
-            error("Invalid Email / Password", null, 200);   
+            error("Invalid Email / Password", null, 200);
          }
       } else {
          error("Invalid Email / Password", null, 200);
@@ -252,7 +270,7 @@ class UserController
       $email = $email ?? '';
       $password = $password ?? '';
       // validate email and password
-      if ( Validate::isValidEmail('Email', $email) == false || Validate::isValidPassword('Password', $password, true, true, true, false, 8) == false) {
+      if (Validate::isValidEmail('Email', $email) == false || Validate::isValidPassword('Password', $password, true, true, true, false, 8) == false) {
          error("failed");
       }
 
@@ -269,7 +287,81 @@ class UserController
          error('failed');
       }
    }
-   
+
+   public static function forgotPassword(Request $req)
+   {
+      extract($req->body);
+
+      $token = Cipher::token(5); // generate token for user
+
+      // update the user's token
+      if (Users::update([
+         "token" => $token
+      ], "WHERE email = '$email'") == true) {
+
+         $sendMail = Mail::asText("
+            Your verification token is $token
+         ")->send(ORG_EMAIL, $email, 'Verification Token', 'reply');
+
+         if ($sendMail == true) {
+            success("A 5 digit token has been sent to $email");
+         } else {
+            error("Token was not sent. Please verify that your email is correct.", null, 200);
+         }
+      }
+   }
+
+   public static function verifyForgotToken(Request $req)
+   {
+      extract($req->body);
+      $token = $token ?? '';
+      $email = $email ?? '';
+
+      // validate the token
+      Validate::mustContainNumberOnly('Token', $token);
+      Validate::hasExactLength('Token', $token, 5);
+      if (Validate::$status == false) {
+         error("Invalid token", null, 200);
+      }
+
+      if (Users::exist("WHERE email = '$email' AND token = '$token' LIMIT 1")) {
+         success('Valid token. Account is verified');
+      } else {
+         error('Invalid token', null, 200);
+      }
+   }
+
+   public static function resetPassword(Request $req)
+   {
+      extract($req->body);
+      $email = $email ?? '';
+      $password = $password ?? '';
+      $cpassword = $cpassword ?? '';
+
+      // Validate the password
+      Validate::isValidPassword('New Password', $password, true, true, true, false, 8);
+      if (Validate::$status == false) {
+         error("Password update failed", array_values(Validate::$error), 200);
+      }
+
+      if ($password != $cpassword) {
+         error("Password update failed", ['Password and confirm password must be the same'], 200);
+      }
+
+      // hash the password
+      $hpassword = Cipher::hashPassword($password);
+
+      // update the user's password
+      $passwordUpdate = Users::update([
+         "password" => $hpassword,
+      ], "WHERE email = '$email'");
+
+      if ($passwordUpdate) {
+         success("Password updated successful");
+      } else {
+         error("Password update failed");
+      }
+   }
 
    public static function sendToken(Request $req)
    {
@@ -282,8 +374,8 @@ class UserController
       ], "WHERE email = '$email'");
 
       $sendMail = Mail::asText("
-      Your authentication token is $token
-      ")->send(ORG_EMAIL, $email, 'Authentication Token', 'reply');
+      Your verification token is $token
+      ")->send(ORG_EMAIL, $email, 'Verification Token', 'reply');
 
       if ($sendMail == true) {
          success("A 5 digit token has been sent to $email");
@@ -309,7 +401,8 @@ class UserController
          $statusupdate = Users::update([
             "verification_status" => "verified"
          ], "WHERE email = '$email'");
-         if ($statusupdate == true) success('Valid token. Account is verified'); else error("Account not verified", null, 200);
+         if ($statusupdate == true) success('Valid token. Account is verified', ['verification_status' => 'verified']);
+         else error("Account not verified", null, 200);
       } else {
          error('Invalid token', null, 200);
       }
@@ -318,8 +411,20 @@ class UserController
    public static function profile(Request $req)
    {
       $email = User::$email;
+      $userId = User::$id;
       // get the users profile details
-      $profile = Users::findOne("telephone, email, firstname, lastname, middlename, nationality, residential_address, occupation, profile_picture, mou, nextofkin_name, nextofkin_telephone, nextofkin_residential_address, accountnumber, accountname, bankname, favourite_sport, favourite_team, referral_code, member_id, verification_status, created_at", "WHERE email = '$email'");
+      $profile = Users::findOne("telephone, email, password, token, role, permissions, firstname, lastname, middlename, nationality, residential_address, occupation, profile_picture, nextofkin_name, nextofkin_telephone, nextofkin_residential_address, accountnumber, accountname, bankname, favourite_sport, favourite_team_local, favourite_team_foreign, favourite_team_international, favourite_team_continental, favourite_team_worldcup, favourite_team_olympic, referredby, referral_code, node_level, member_id, verification_status, created_at, updated_at", "WHERE email = '$email'");
+
+      $notifications = Notifications::findAll("id", "WHERE user_id = $userId AND status = 'unread'") ?: [];
+      $notificationCount = ['notifications' => count($notifications)];
+
+      $package = UserPackage::findOne("status, slot_program", "WHERE user_id = $userId");
+      $userpacakge = [
+         'payment_status' => $package['status'] ?? 'pending',
+         'slot_program' => $package['slot_program']
+      ];
+
+      $profile = array_merge($profile, $notificationCount, $userpacakge);
 
       if ($profile == false) {
          error("No profile for this user", null, 200); // no obvious chance of this accuring
@@ -348,10 +453,10 @@ class UserController
       // verify the old password
 
       $email = User::$email;
-      
+
       // get the password in the database or use ''
       $dbpassword = Users::findOne("password", "WHERE email = '$email'")['password'] ?: '';
-      
+
       // return error if password fails
       if (Cipher::verifyPassword($opassword, $dbpassword) == false) error("Password update failed", ["Invalid Password"], 200);
 
@@ -377,8 +482,8 @@ class UserController
 
       Upload::$field = 'Profile Picture';
       Upload::$unit = 'Mb';
-      Upload::tmp('profile-picture', "profile_pictures/" . User::$id.".".date('ymdhis'), Upload::$imagefiles, null, 2);
-      
+      Upload::tmp('profile-picture', "profile_pictures/" . User::$id . "." . date('ymdhis'), Upload::$imagefiles, null, 2);
+
       if (Upload::$status == false) {
          error('Profile picture not updated', array_values(Upload::$error), 200);
       } else {
@@ -390,11 +495,9 @@ class UserController
             // delete previous picture
             @unlink(APP_BASEDIR . $previouspicture);
             success("Profile picture updated successfully", ['path' => Upload::$path]);
-         }
-         else
-         error("Profile picture not updated", null, 200);
+         } else
+            error("Profile picture not updated", null, 200);
       }
-
    }
 
    public static function updateBankDetails(Request $req)
@@ -409,17 +512,17 @@ class UserController
       if (Validate::mustContainNumberOnly("Account Number", $accountnumber) == false) {
          error('Bank details not updated', ["Invalid Account Number"], 200);
       }
-      
+
       if (empty($accountname) == true || empty($bankname) == true) {
          error("Bank details not updated", ['Account details cannot be empty'], 200);
       }
-      
+
       // verify the password
       $email = User::$email;
-      
+
       // get the password in the database or use ''
       $dbpassword = Users::findOne("password", "WHERE email = '$email'")['password'] ?: '';
-      
+
       // return error if password fails
       if (Cipher::verifyPassword($password, $dbpassword) == false) error("Bank details not updated", ["Invalid Password"], 200);
 
@@ -440,7 +543,7 @@ class UserController
    public static function updateBio(Request $req)
    {
       extract($req->body);
-      
+
       $telephone = $telephone ?? '';
       $firstname = $firstname ?? '';
       $lastname = $lastname ?? '';
@@ -452,7 +555,12 @@ class UserController
       $nextofkin_telephone = $nextofkin_telephone ?? '';
       $nextofkin_residential_address = $nextofkin_residential_address ?? '';
       $favourite_sport = $favourite_sport ?? '';
-      $favourite_team = $favourite_team ?? '';
+      $favourite_team_local = $favourite_team_local ?? '';
+      $favourite_team_foreign = $favourite_team_foreign ?? '';
+      $favourite_team_international = $favourite_team_international ?? '';
+      $favourite_team_continental = $favourite_team_continental ?? '';
+      $favourite_team_worldcup = $favourite_team_worldcup ?? '';
+      $favourite_team_olympic = $favourite_team_olympic ?? '';
 
       // validation
       Validate::isNotEmpty("Telephone", $telephone);
@@ -479,8 +587,31 @@ class UserController
       Validate::hasMaxLength("Next of Kin Residential Address", $nextofkin_residential_address, 200);
       Validate::isNotEmpty("Favourite Sport", $favourite_sport);
       Validate::hasMaxLength("Favourite Sport", $favourite_sport, 50);
-      Validate::isNotEmpty("Favourite Team", $favourite_team);
-      Validate::hasMaxLength("Favourite Team", $favourite_team, 50);
+
+      if (!empty($favourite_team_local)) {
+         Validate::isNotEmpty("Favourite Local Team", $favourite_team_local);
+         Validate::hasMaxLength("Favourite Local Team", $favourite_team_local, 200);
+      }
+      if (!empty($favourite_team_foreign)) {
+         Validate::isNotEmpty("Favourite Foreign Team", $favourite_team_foreign);
+         Validate::hasMaxLength("Favourite Foreign Team", $favourite_team_foreign, 200);
+      }
+      if (!empty($favourite_team_international)) {
+         Validate::isNotEmpty("Favourite Olympic Team", $favourite_team_international);
+         Validate::hasMaxLength("Favourite Olympic Team", $favourite_team_international, 200);
+      }
+      if (!empty($favourite_team_continental)) {
+         Validate::isNotEmpty("Favourite Continental Team", $favourite_team_continental);
+         Validate::hasMaxLength("Favourite Continental Team", $favourite_team_continental, 200);
+      }
+      if (!empty($favourite_team_worldcup)) {
+         Validate::isNotEmpty("Favourite World Cup Team", $favourite_team_worldcup);
+         Validate::hasMaxLength("Favourite World Cup Team", $favourite_team_worldcup, 200);
+      }
+      if (!empty($favourite_team_olympic)) {
+         Validate::isNotEmpty("Favourite Olympic Team", $favourite_team_olympic);
+         Validate::hasMaxLength("Favourite Olympic Team", $favourite_team_olympic, 200);
+      }
 
       if (Validate::$status == false) {
          error("Profile not updated", Validate::$error, 200);
@@ -504,15 +635,18 @@ class UserController
          "nextofkin_telephone" => $nextofkin_telephone,
          "nextofkin_residential_address" => $nextofkin_residential_address,
          "favourite_sport" => $favourite_sport,
-         "favourite_team" => $favourite_team
+         "favourite_team_local" => $favourite_team_local,
+         "favourite_team_foreign" => $favourite_team_foreign,
+         "favourite_team_international" => $favourite_team_international,
+         "favourite_team_continental" => $favourite_team_continental,
+         "favourite_team_worldcup" => $favourite_team_worldcup,
+         "favourite_team_olympic" => $favourite_team_olympic,
       ], "WHERE email = '$email'");
-      
+
       if ($updateprofile == true) {
          success("Profile updated successfully");
       } else {
          error("Profile not updated", null, 200);
       }
-
    }
-
 }

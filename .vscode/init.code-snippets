@@ -10,7 +10,7 @@
     "Schema Create": {
         "scope": "php",
         "prefix": "Schema::create",
-        "body": "Schema::alter('${1:table}', function(Schema \\$schema) {\r\t\\$schema->int('id')->auto_increment()->primary();\r\t\\$schema->timestamp('created_at')->attribute();\r\t\\$schema->timestamp('updated_at')->attribute(\"ON UPDATE CURRENT_TIMESTAMP\");\r}, false, '${1:table}');\r"
+        "body": "Schema::create('${1:table}', function(Schema \\$schema) {\r\t\\$schema->int('id')->auto_increment()->primary();\r\t\\$schema->timestamp('created_at')->attribute();\r\t\\$schema->timestamp('updated_at')->default('CURRENT_TIMESTAMP')->attribute(\"ON UPDATE CURRENT_TIMESTAMP\");\r}, false, '${1:table}');\r"
     },
     "Schema Alter": {
         "scope": "php",
@@ -571,47 +571,47 @@
     "Users create": {
         "scope": "php",
         "prefix": "Users::create",
-        "body": "Users::create([\r\t\"id\" => $1,\r\t\"telephone\" => $2,\r\t\"email\" => $3,\r\t\"password\" => $4,\r\t\"token\" => $5,\r\t\"role\" => $6,\r\t\"permissions\" => $7,\r\t\"firstname\" => $8,\r\t\"lastname\" => $9,\r\t\"middlename\" => $10,\r\t\"residential_address\" => $11,\r\t\"occupation\" => $12,\r\t\"profile_picture\" => $13,\r\t\"mou\" => $14,\r\t\"nextofkin_name\" => $15,\r\t\"nextofkin_telephone\" => $16,\r\t\"nextofkin_residential_address\" => $17,\r\t\"accountnumber\" => $18,\r\t\"accountname\" => $19,\r\t\"bankname\" => $20,\r\t\"favorite_sport\" => $21,\r\t\"favorite_team\" => $22,\r\t\"referredby\" => $23,\r\t\"referral_code\" => $24,\r\t\"referral_level\" => $25,\r\t\"member_id\" => $26,\r\t\"verification_status\" => $27,\r\t\"created_at\" => $28,\r\t\"updated_at\" => $29\r]);"
+        "body": "Users::create([\r\t\"id\" => $1,\r\t\"telephone\" => $2,\r\t\"email\" => $3,\r\t\"password\" => $4,\r\t\"token\" => $5,\r\t\"role\" => $6,\r\t\"permissions\" => $7,\r\t\"firstname\" => $8,\r\t\"lastname\" => $9,\r\t\"middlename\" => $10,\r\t\"nationality\" => $11,\r\t\"residential_address\" => $12,\r\t\"occupation\" => $13,\r\t\"profile_picture\" => $14,\r\t\"nextofkin_name\" => $15,\r\t\"nextofkin_telephone\" => $16,\r\t\"nextofkin_residential_address\" => $17,\r\t\"accountnumber\" => $18,\r\t\"accountname\" => $19,\r\t\"bankname\" => $20,\r\t\"favourite_sport\" => $21,\r\t\"favourite_team_local\" => $22,\r\t\"favourite_team_foreign\" => $23,\r\t\"favourite_team_international\" => $24,\r\t\"favourite_team_continental\" => $25,\r\t\"favourite_team_worldcup\" => $26,\r\t\"favourite_team_olympic\" => $27,\r\t\"referredby\" => $28,\r\t\"referral_code\" => $29,\r\t\"node_level\" => $30,\r\t\"member_id\" => $31,\r\t\"verification_status\" => $32,\r\t\"created_at\" => $33,\r\t\"updated_at\" => $34\r]);"
     },
     "Users create many": {
         "scope": "php",
         "prefix": "Users::createMany",
-        "body": "Users::createMany([\r\t\"id\" => $1,\r\t\"telephone\" => $2,\r\t\"email\" => $3,\r\t\"password\" => $4,\r\t\"token\" => $5,\r\t\"role\" => $6,\r\t\"permissions\" => $7,\r\t\"firstname\" => $8,\r\t\"lastname\" => $9,\r\t\"middlename\" => $10,\r\t\"residential_address\" => $11,\r\t\"occupation\" => $12,\r\t\"profile_picture\" => $13,\r\t\"mou\" => $14,\r\t\"nextofkin_name\" => $15,\r\t\"nextofkin_telephone\" => $16,\r\t\"nextofkin_residential_address\" => $17,\r\t\"accountnumber\" => $18,\r\t\"accountname\" => $19,\r\t\"bankname\" => $20,\r\t\"favorite_sport\" => $21,\r\t\"favorite_team\" => $22,\r\t\"referredby\" => $23,\r\t\"referral_code\" => $24,\r\t\"referral_level\" => $25,\r\t\"member_id\" => $26,\r\t\"verification_status\" => $27,\r\t\"created_at\" => $28,\r\t\"updated_at\" => $29\r],\r${30:[]}\r);"
+        "body": "Users::createMany([\r\t\"id\" => $1,\r\t\"telephone\" => $2,\r\t\"email\" => $3,\r\t\"password\" => $4,\r\t\"token\" => $5,\r\t\"role\" => $6,\r\t\"permissions\" => $7,\r\t\"firstname\" => $8,\r\t\"lastname\" => $9,\r\t\"middlename\" => $10,\r\t\"nationality\" => $11,\r\t\"residential_address\" => $12,\r\t\"occupation\" => $13,\r\t\"profile_picture\" => $14,\r\t\"nextofkin_name\" => $15,\r\t\"nextofkin_telephone\" => $16,\r\t\"nextofkin_residential_address\" => $17,\r\t\"accountnumber\" => $18,\r\t\"accountname\" => $19,\r\t\"bankname\" => $20,\r\t\"favourite_sport\" => $21,\r\t\"favourite_team_local\" => $22,\r\t\"favourite_team_foreign\" => $23,\r\t\"favourite_team_international\" => $24,\r\t\"favourite_team_continental\" => $25,\r\t\"favourite_team_worldcup\" => $26,\r\t\"favourite_team_olympic\" => $27,\r\t\"referredby\" => $28,\r\t\"referral_code\" => $29,\r\t\"node_level\" => $30,\r\t\"member_id\" => $31,\r\t\"verification_status\" => $32,\r\t\"created_at\" => $33,\r\t\"updated_at\" => $34\r],\r${35:[]}\r);"
     },
     "Users update": {
         "scope": "php",
         "prefix": "Users::update",
-        "body": "Users::update([\r\t\"id\" => $1,\r\t\"telephone\" => $2,\r\t\"email\" => $3,\r\t\"password\" => $4,\r\t\"token\" => $5,\r\t\"role\" => $6,\r\t\"permissions\" => $7,\r\t\"firstname\" => $8,\r\t\"lastname\" => $9,\r\t\"middlename\" => $10,\r\t\"residential_address\" => $11,\r\t\"occupation\" => $12,\r\t\"profile_picture\" => $13,\r\t\"mou\" => $14,\r\t\"nextofkin_name\" => $15,\r\t\"nextofkin_telephone\" => $16,\r\t\"nextofkin_residential_address\" => $17,\r\t\"accountnumber\" => $18,\r\t\"accountname\" => $19,\r\t\"bankname\" => $20,\r\t\"favorite_sport\" => $21,\r\t\"favorite_team\" => $22,\r\t\"referredby\" => $23,\r\t\"referral_code\" => $24,\r\t\"referral_level\" => $25,\r\t\"member_id\" => $26,\r\t\"verification_status\" => $27,\r\t\"created_at\" => $28,\r\t\"updated_at\" => $29\r], \"WHERE ${30|id,telephone,email,password,token,role,permissions,firstname,lastname,middlename,residential_address,occupation,profile_picture,mou,nextofkin_name,nextofkin_telephone,nextofkin_residential_address,accountnumber,accountname,bankname,favorite_sport,favorite_team,referredby,referral_code,referral_level,member_id,verification_status,created_at,updated_at|} = 1\");"
+        "body": "Users::update([\r\t\"id\" => $1,\r\t\"telephone\" => $2,\r\t\"email\" => $3,\r\t\"password\" => $4,\r\t\"token\" => $5,\r\t\"role\" => $6,\r\t\"permissions\" => $7,\r\t\"firstname\" => $8,\r\t\"lastname\" => $9,\r\t\"middlename\" => $10,\r\t\"nationality\" => $11,\r\t\"residential_address\" => $12,\r\t\"occupation\" => $13,\r\t\"profile_picture\" => $14,\r\t\"nextofkin_name\" => $15,\r\t\"nextofkin_telephone\" => $16,\r\t\"nextofkin_residential_address\" => $17,\r\t\"accountnumber\" => $18,\r\t\"accountname\" => $19,\r\t\"bankname\" => $20,\r\t\"favourite_sport\" => $21,\r\t\"favourite_team_local\" => $22,\r\t\"favourite_team_foreign\" => $23,\r\t\"favourite_team_international\" => $24,\r\t\"favourite_team_continental\" => $25,\r\t\"favourite_team_worldcup\" => $26,\r\t\"favourite_team_olympic\" => $27,\r\t\"referredby\" => $28,\r\t\"referral_code\" => $29,\r\t\"node_level\" => $30,\r\t\"member_id\" => $31,\r\t\"verification_status\" => $32,\r\t\"created_at\" => $33,\r\t\"updated_at\" => $34\r], \"WHERE ${35|id,telephone,email,password,token,role,permissions,firstname,lastname,middlename,nationality,residential_address,occupation,profile_picture,nextofkin_name,nextofkin_telephone,nextofkin_residential_address,accountnumber,accountname,bankname,favourite_sport,favourite_team_local,favourite_team_foreign,favourite_team_international,favourite_team_continental,favourite_team_worldcup,favourite_team_olympic,referredby,referral_code,node_level,member_id,verification_status,created_at,updated_at|} = 1\");"
     },
     "Users delete": {
         "scope": "php",
         "prefix": "Users::delete",
-        "body": "Users::delete(\"WHERE ${1|id,telephone,email,password,token,role,permissions,firstname,lastname,middlename,residential_address,occupation,profile_picture,mou,nextofkin_name,nextofkin_telephone,nextofkin_residential_address,accountnumber,accountname,bankname,favorite_sport,favorite_team,referredby,referral_code,referral_level,member_id,verification_status,created_at,updated_at|} = 1\");"
+        "body": "Users::delete(\"WHERE ${1|id,telephone,email,password,token,role,permissions,firstname,lastname,middlename,nationality,residential_address,occupation,profile_picture,nextofkin_name,nextofkin_telephone,nextofkin_residential_address,accountnumber,accountname,bankname,favourite_sport,favourite_team_local,favourite_team_foreign,favourite_team_international,favourite_team_continental,favourite_team_worldcup,favourite_team_olympic,referredby,referral_code,node_level,member_id,verification_status,created_at,updated_at|} = 1\");"
     },
     "Users exist": {
         "scope": "php",
         "prefix": "Users::exist",
-        "body": "Users::exist(\"WHERE ${1|id,telephone,email,password,token,role,permissions,firstname,lastname,middlename,residential_address,occupation,profile_picture,mou,nextofkin_name,nextofkin_telephone,nextofkin_residential_address,accountnumber,accountname,bankname,favorite_sport,favorite_team,referredby,referral_code,referral_level,member_id,verification_status,created_at,updated_at|} = 1\");"
+        "body": "Users::exist(\"WHERE ${1|id,telephone,email,password,token,role,permissions,firstname,lastname,middlename,nationality,residential_address,occupation,profile_picture,nextofkin_name,nextofkin_telephone,nextofkin_residential_address,accountnumber,accountname,bankname,favourite_sport,favourite_team_local,favourite_team_foreign,favourite_team_international,favourite_team_continental,favourite_team_worldcup,favourite_team_olympic,referredby,referral_code,node_level,member_id,verification_status,created_at,updated_at|} = 1\");"
     },
     "Users findAll": {
         "scope": "php",
         "prefix": "Users::findAll",
-        "body": "Users::findAll(\"${1:id, telephone, email, password, token, role, permissions, firstname, lastname, middlename, residential_address, occupation, profile_picture, mou, nextofkin_name, nextofkin_telephone, nextofkin_residential_address, accountnumber, accountname, bankname, favorite_sport, favorite_team, referredby, referral_code, referral_level, member_id, verification_status, created_at, updated_at}\", \"WHERE ${2|id,telephone,email,password,token,role,permissions,firstname,lastname,middlename,residential_address,occupation,profile_picture,mou,nextofkin_name,nextofkin_telephone,nextofkin_residential_address,accountnumber,accountname,bankname,favorite_sport,favorite_team,referredby,referral_code,referral_level,member_id,verification_status,created_at,updated_at|} = 1\");"
+        "body": "Users::findAll(\"${1:id, telephone, email, password, token, role, permissions, firstname, lastname, middlename, nationality, residential_address, occupation, profile_picture, nextofkin_name, nextofkin_telephone, nextofkin_residential_address, accountnumber, accountname, bankname, favourite_sport, favourite_team_local, favourite_team_foreign, favourite_team_international, favourite_team_continental, favourite_team_worldcup, favourite_team_olympic, referredby, referral_code, node_level, member_id, verification_status, created_at, updated_at}\", \"WHERE ${2|id,telephone,email,password,token,role,permissions,firstname,lastname,middlename,nationality,residential_address,occupation,profile_picture,nextofkin_name,nextofkin_telephone,nextofkin_residential_address,accountnumber,accountname,bankname,favourite_sport,favourite_team_local,favourite_team_foreign,favourite_team_international,favourite_team_continental,favourite_team_worldcup,favourite_team_olympic,referredby,referral_code,node_level,member_id,verification_status,created_at,updated_at|} = 1\");"
     },
     "Users findOne": {
         "scope": "php",
         "prefix": "Users::findOne",
-        "body": "Users::findOne(\"${1:id, telephone, email, password, token, role, permissions, firstname, lastname, middlename, residential_address, occupation, profile_picture, mou, nextofkin_name, nextofkin_telephone, nextofkin_residential_address, accountnumber, accountname, bankname, favorite_sport, favorite_team, referredby, referral_code, referral_level, member_id, verification_status, created_at, updated_at}\", \"WHERE ${2|id,telephone,email,password,token,role,permissions,firstname,lastname,middlename,residential_address,occupation,profile_picture,mou,nextofkin_name,nextofkin_telephone,nextofkin_residential_address,accountnumber,accountname,bankname,favorite_sport,favorite_team,referredby,referral_code,referral_level,member_id,verification_status,created_at,updated_at|} = 1\");"
+        "body": "Users::findOne(\"${1:id, telephone, email, password, token, role, permissions, firstname, lastname, middlename, nationality, residential_address, occupation, profile_picture, nextofkin_name, nextofkin_telephone, nextofkin_residential_address, accountnumber, accountname, bankname, favourite_sport, favourite_team_local, favourite_team_foreign, favourite_team_international, favourite_team_continental, favourite_team_worldcup, favourite_team_olympic, referredby, referral_code, node_level, member_id, verification_status, created_at, updated_at}\", \"WHERE ${2|id,telephone,email,password,token,role,permissions,firstname,lastname,middlename,nationality,residential_address,occupation,profile_picture,nextofkin_name,nextofkin_telephone,nextofkin_residential_address,accountnumber,accountname,bankname,favourite_sport,favourite_team_local,favourite_team_foreign,favourite_team_international,favourite_team_continental,favourite_team_worldcup,favourite_team_olympic,referredby,referral_code,node_level,member_id,verification_status,created_at,updated_at|} = 1\");"
     },
     "Users findJoin": {
         "scope": "php",
         "prefix": "Users::findJoin",
-        "body": "\/\/ Note: When joining, specify fieldnames as tablename.fieldname;\r\/\/ Prefix the every tablename with DB_PREFIX\r\\$prefix = DB_PREFIX;\rUsers::findJoin(${1:\"{\\$prefix\\}users.${2|id,telephone,email,password,token,role,permissions,firstname,lastname,middlename,residential_address,occupation,profile_picture,mou,nextofkin_name,nextofkin_telephone,nextofkin_residential_address,accountnumber,accountname,bankname,favorite_sport,favorite_team,referredby,referral_code,referral_level,member_id,verification_status,created_at,updated_at|}\"}, \"WHERE ${3|id,telephone,email,password,token,role,permissions,firstname,lastname,middlename,residential_address,occupation,profile_picture,mou,nextofkin_name,nextofkin_telephone,nextofkin_residential_address,accountnumber,accountname,bankname,favorite_sport,favorite_team,referredby,referral_code,referral_level,member_id,verification_status,created_at,updated_at|} = 1\")\r\t->${4|leftJoin,rightJoin,innerJoin,fullJoin|}(\"{\\$prefix\\}tablename\", \"{\\$prefix\\}users.${6|id,telephone,email,password,token,role,permissions,firstname,lastname,middlename,residential_address,occupation,profile_picture,mou,nextofkin_name,nextofkin_telephone,nextofkin_residential_address,accountnumber,accountname,bankname,favorite_sport,favorite_team,referredby,referral_code,referral_level,member_id,verification_status,created_at,updated_at|} = {\\$prefix\\}tablename.field\")\r\t->join();"
+        "body": "\/\/ Note: When joining, specify fieldnames as tablename.fieldname;\r\/\/ Prefix the every tablename with DB_PREFIX\r\\$prefix = DB_PREFIX;\rUsers::findJoin(${1:\"{\\$prefix\\}users.${2|id,telephone,email,password,token,role,permissions,firstname,lastname,middlename,nationality,residential_address,occupation,profile_picture,nextofkin_name,nextofkin_telephone,nextofkin_residential_address,accountnumber,accountname,bankname,favourite_sport,favourite_team_local,favourite_team_foreign,favourite_team_international,favourite_team_continental,favourite_team_worldcup,favourite_team_olympic,referredby,referral_code,node_level,member_id,verification_status,created_at,updated_at|}\"}, \"WHERE ${3|id,telephone,email,password,token,role,permissions,firstname,lastname,middlename,nationality,residential_address,occupation,profile_picture,nextofkin_name,nextofkin_telephone,nextofkin_residential_address,accountnumber,accountname,bankname,favourite_sport,favourite_team_local,favourite_team_foreign,favourite_team_international,favourite_team_continental,favourite_team_worldcup,favourite_team_olympic,referredby,referral_code,node_level,member_id,verification_status,created_at,updated_at|} = 1\")\r\t->${4|leftJoin,rightJoin,innerJoin,fullJoin|}(\"{\\$prefix\\}tablename\", \"{\\$prefix\\}users.${6|id,telephone,email,password,token,role,permissions,firstname,lastname,middlename,nationality,residential_address,occupation,profile_picture,nextofkin_name,nextofkin_telephone,nextofkin_residential_address,accountnumber,accountname,bankname,favourite_sport,favourite_team_local,favourite_team_foreign,favourite_team_international,favourite_team_continental,favourite_team_worldcup,favourite_team_olympic,referredby,referral_code,node_level,member_id,verification_status,created_at,updated_at|} = {\\$prefix\\}tablename.field\")\r\t->join();"
     },
     "Users fields": {
         "scope": "php",
         "prefix": "users.",
-        "body": "\". DB_PREFIX .\"users.${1|id,telephone,email,password,token,role,permissions,firstname,lastname,middlename,residential_address,occupation,profile_picture,mou,nextofkin_name,nextofkin_telephone,nextofkin_residential_address,accountnumber,accountname,bankname,favorite_sport,favorite_team,referredby,referral_code,referral_level,member_id,verification_status,created_at,updated_at|}"
+        "body": "\". DB_PREFIX .\"users.${1|id,telephone,email,password,token,role,permissions,firstname,lastname,middlename,nationality,residential_address,occupation,profile_picture,nextofkin_name,nextofkin_telephone,nextofkin_residential_address,accountnumber,accountname,bankname,favourite_sport,favourite_team_local,favourite_team_foreign,favourite_team_international,favourite_team_continental,favourite_team_worldcup,favourite_team_olympic,referredby,referral_code,node_level,member_id,verification_status,created_at,updated_at|}"
     },
     "Slots create": {
         "scope": "php",
@@ -751,47 +751,47 @@
     "UserSlots create": {
         "scope": "php",
         "prefix": "UserSlots::create",
-        "body": "UserSlots::create([\r\t\"id\" => $1,\r\t\"user_id\" => $2,\r\t\"slot_id\" => $3,\r\t\"slot_program\" => $4,\r\t\"initial_referrals_required\" => $5,\r\t\"referrals_required\" => $6,\r\t\"target_rank\" => $7,\r\t\"referrals_acquired\" => $8,\r\t\"rank\" => $9,\r\t\"status\" => $10,\r\t\"created_at\" => $11,\r\t\"updated_at\" => $12\r]);"
+        "body": "UserSlots::create([\r\t\"id\" => $1,\r\t\"user_id\" => $2,\r\t\"user_package_id\" => $3,\r\t\"no_slots\" => $4,\r\t\"referral_code\" => $5,\r\t\"referral_level\" => $6,\r\t\"node_level\" => $7,\r\t\"referrals_required\" => $8,\r\t\"referrals_acquired\" => $9,\r\t\"update_uplink\" => $10,\r\t\"status\" => $11,\r\t\"created_at\" => $12,\r\t\"updated_at\" => $13\r]);"
     },
     "UserSlots create many": {
         "scope": "php",
         "prefix": "UserSlots::createMany",
-        "body": "UserSlots::createMany([\r\t\"id\" => $1,\r\t\"user_id\" => $2,\r\t\"slot_id\" => $3,\r\t\"slot_program\" => $4,\r\t\"initial_referrals_required\" => $5,\r\t\"referrals_required\" => $6,\r\t\"target_rank\" => $7,\r\t\"referrals_acquired\" => $8,\r\t\"rank\" => $9,\r\t\"status\" => $10,\r\t\"created_at\" => $11,\r\t\"updated_at\" => $12\r],\r${13:[]}\r);"
+        "body": "UserSlots::createMany([\r\t\"id\" => $1,\r\t\"user_id\" => $2,\r\t\"user_package_id\" => $3,\r\t\"no_slots\" => $4,\r\t\"referral_code\" => $5,\r\t\"referral_level\" => $6,\r\t\"node_level\" => $7,\r\t\"referrals_required\" => $8,\r\t\"referrals_acquired\" => $9,\r\t\"update_uplink\" => $10,\r\t\"status\" => $11,\r\t\"created_at\" => $12,\r\t\"updated_at\" => $13\r],\r${14:[]}\r);"
     },
     "UserSlots update": {
         "scope": "php",
         "prefix": "UserSlots::update",
-        "body": "UserSlots::update([\r\t\"id\" => $1,\r\t\"user_id\" => $2,\r\t\"slot_id\" => $3,\r\t\"slot_program\" => $4,\r\t\"initial_referrals_required\" => $5,\r\t\"referrals_required\" => $6,\r\t\"target_rank\" => $7,\r\t\"referrals_acquired\" => $8,\r\t\"rank\" => $9,\r\t\"status\" => $10,\r\t\"created_at\" => $11,\r\t\"updated_at\" => $12\r], \"WHERE ${13|id,user_id,slot_id,slot_program,initial_referrals_required,referrals_required,target_rank,referrals_acquired,rank,status,created_at,updated_at|} = 1\");"
+        "body": "UserSlots::update([\r\t\"id\" => $1,\r\t\"user_id\" => $2,\r\t\"user_package_id\" => $3,\r\t\"no_slots\" => $4,\r\t\"referral_code\" => $5,\r\t\"referral_level\" => $6,\r\t\"node_level\" => $7,\r\t\"referrals_required\" => $8,\r\t\"referrals_acquired\" => $9,\r\t\"update_uplink\" => $10,\r\t\"status\" => $11,\r\t\"created_at\" => $12,\r\t\"updated_at\" => $13\r], \"WHERE ${14|id,user_id,user_package_id,no_slots,referral_code,referral_level,node_level,referrals_required,referrals_acquired,update_uplink,status,created_at,updated_at|} = 1\");"
     },
     "UserSlots delete": {
         "scope": "php",
         "prefix": "UserSlots::delete",
-        "body": "UserSlots::delete(\"WHERE ${1|id,user_id,slot_id,slot_program,initial_referrals_required,referrals_required,target_rank,referrals_acquired,rank,status,created_at,updated_at|} = 1\");"
+        "body": "UserSlots::delete(\"WHERE ${1|id,user_id,user_package_id,no_slots,referral_code,referral_level,node_level,referrals_required,referrals_acquired,update_uplink,status,created_at,updated_at|} = 1\");"
     },
     "UserSlots exist": {
         "scope": "php",
         "prefix": "UserSlots::exist",
-        "body": "UserSlots::exist(\"WHERE ${1|id,user_id,slot_id,slot_program,initial_referrals_required,referrals_required,target_rank,referrals_acquired,rank,status,created_at,updated_at|} = 1\");"
+        "body": "UserSlots::exist(\"WHERE ${1|id,user_id,user_package_id,no_slots,referral_code,referral_level,node_level,referrals_required,referrals_acquired,update_uplink,status,created_at,updated_at|} = 1\");"
     },
     "UserSlots findAll": {
         "scope": "php",
         "prefix": "UserSlots::findAll",
-        "body": "UserSlots::findAll(\"${1:id, user_id, slot_id, slot_program, initial_referrals_required, referrals_required, target_rank, referrals_acquired, rank, status, created_at, updated_at}\", \"WHERE ${2|id,user_id,slot_id,slot_program,initial_referrals_required,referrals_required,target_rank,referrals_acquired,rank,status,created_at,updated_at|} = 1\");"
+        "body": "UserSlots::findAll(\"${1:id, user_id, user_package_id, no_slots, referral_code, referral_level, node_level, referrals_required, referrals_acquired, update_uplink, status, created_at, updated_at}\", \"WHERE ${2|id,user_id,user_package_id,no_slots,referral_code,referral_level,node_level,referrals_required,referrals_acquired,update_uplink,status,created_at,updated_at|} = 1\");"
     },
     "UserSlots findOne": {
         "scope": "php",
         "prefix": "UserSlots::findOne",
-        "body": "UserSlots::findOne(\"${1:id, user_id, slot_id, slot_program, initial_referrals_required, referrals_required, target_rank, referrals_acquired, rank, status, created_at, updated_at}\", \"WHERE ${2|id,user_id,slot_id,slot_program,initial_referrals_required,referrals_required,target_rank,referrals_acquired,rank,status,created_at,updated_at|} = 1\");"
+        "body": "UserSlots::findOne(\"${1:id, user_id, user_package_id, no_slots, referral_code, referral_level, node_level, referrals_required, referrals_acquired, update_uplink, status, created_at, updated_at}\", \"WHERE ${2|id,user_id,user_package_id,no_slots,referral_code,referral_level,node_level,referrals_required,referrals_acquired,update_uplink,status,created_at,updated_at|} = 1\");"
     },
     "UserSlots findJoin": {
         "scope": "php",
         "prefix": "UserSlots::findJoin",
-        "body": "\/\/ Note: When joining, specify fieldnames as tablename.fieldname;\r\/\/ Prefix the every tablename with DB_PREFIX\r\\$prefix = DB_PREFIX;\rUserSlots::findJoin(${1:\"{\\$prefix\\}user_slots.${2|id,user_id,slot_id,slot_program,initial_referrals_required,referrals_required,target_rank,referrals_acquired,rank,status,created_at,updated_at|}\"}, \"WHERE ${3|id,user_id,slot_id,slot_program,initial_referrals_required,referrals_required,target_rank,referrals_acquired,rank,status,created_at,updated_at|} = 1\")\r\t->${4|leftJoin,rightJoin,innerJoin,fullJoin|}(\"{\\$prefix\\}tablename\", \"{\\$prefix\\}user_slots.${6|id,user_id,slot_id,slot_program,initial_referrals_required,referrals_required,target_rank,referrals_acquired,rank,status,created_at,updated_at|} = {\\$prefix\\}tablename.field\")\r\t->join();"
+        "body": "\/\/ Note: When joining, specify fieldnames as tablename.fieldname;\r\/\/ Prefix the every tablename with DB_PREFIX\r\\$prefix = DB_PREFIX;\rUserSlots::findJoin(${1:\"{\\$prefix\\}user_slots.${2|id,user_id,user_package_id,no_slots,referral_code,referral_level,node_level,referrals_required,referrals_acquired,update_uplink,status,created_at,updated_at|}\"}, \"WHERE ${3|id,user_id,user_package_id,no_slots,referral_code,referral_level,node_level,referrals_required,referrals_acquired,update_uplink,status,created_at,updated_at|} = 1\")\r\t->${4|leftJoin,rightJoin,innerJoin,fullJoin|}(\"{\\$prefix\\}tablename\", \"{\\$prefix\\}user_slots.${6|id,user_id,user_package_id,no_slots,referral_code,referral_level,node_level,referrals_required,referrals_acquired,update_uplink,status,created_at,updated_at|} = {\\$prefix\\}tablename.field\")\r\t->join();"
     },
     "UserSlots fields": {
         "scope": "php",
         "prefix": "user_slots.",
-        "body": "\". DB_PREFIX .\"user_slots.${1|id,user_id,slot_id,slot_program,initial_referrals_required,referrals_required,target_rank,referrals_acquired,rank,status,created_at,updated_at|}"
+        "body": "\". DB_PREFIX .\"user_slots.${1|id,user_id,user_package_id,no_slots,referral_code,referral_level,node_level,referrals_required,referrals_acquired,update_uplink,status,created_at,updated_at|}"
     },
     "ReferralLevels create": {
         "scope": "php",
@@ -1062,5 +1062,275 @@
         "scope": "php",
         "prefix": "update_favorite_to_favourite.",
         "body": "\". DB_PREFIX .\"update_favorite_to_favourite.${1|id,created_at,updated_at|}"
+    },
+    "UserPackage create": {
+        "scope": "php",
+        "prefix": "UserPackage::create",
+        "body": "UserPackage::create([\r\t\"id\" => $1,\r\t\"user_id\" => $2,\r\t\"slot_id\" => $3,\r\t\"no_slots\" => $4,\r\t\"slot_program\" => $5,\r\t\"referral_code\" => $6,\r\t\"initial_referrals_required\" => $7,\r\t\"target_rank\" => $8,\r\t\"rank\" => $9,\r\t\"status\" => $10,\r\t\"created_at\" => $11,\r\t\"updated_at\" => $12\r]);"
+    },
+    "UserPackage create many": {
+        "scope": "php",
+        "prefix": "UserPackage::createMany",
+        "body": "UserPackage::createMany([\r\t\"id\" => $1,\r\t\"user_id\" => $2,\r\t\"slot_id\" => $3,\r\t\"no_slots\" => $4,\r\t\"slot_program\" => $5,\r\t\"referral_code\" => $6,\r\t\"initial_referrals_required\" => $7,\r\t\"target_rank\" => $8,\r\t\"rank\" => $9,\r\t\"status\" => $10,\r\t\"created_at\" => $11,\r\t\"updated_at\" => $12\r],\r${13:[]}\r);"
+    },
+    "UserPackage update": {
+        "scope": "php",
+        "prefix": "UserPackage::update",
+        "body": "UserPackage::update([\r\t\"id\" => $1,\r\t\"user_id\" => $2,\r\t\"slot_id\" => $3,\r\t\"no_slots\" => $4,\r\t\"slot_program\" => $5,\r\t\"referral_code\" => $6,\r\t\"initial_referrals_required\" => $7,\r\t\"target_rank\" => $8,\r\t\"rank\" => $9,\r\t\"status\" => $10,\r\t\"created_at\" => $11,\r\t\"updated_at\" => $12\r], \"WHERE ${13|id,user_id,slot_id,no_slots,slot_program,referral_code,initial_referrals_required,target_rank,rank,status,created_at,updated_at|} = 1\");"
+    },
+    "UserPackage delete": {
+        "scope": "php",
+        "prefix": "UserPackage::delete",
+        "body": "UserPackage::delete(\"WHERE ${1|id,user_id,slot_id,no_slots,slot_program,referral_code,initial_referrals_required,target_rank,rank,status,created_at,updated_at|} = 1\");"
+    },
+    "UserPackage exist": {
+        "scope": "php",
+        "prefix": "UserPackage::exist",
+        "body": "UserPackage::exist(\"WHERE ${1|id,user_id,slot_id,no_slots,slot_program,referral_code,initial_referrals_required,target_rank,rank,status,created_at,updated_at|} = 1\");"
+    },
+    "UserPackage findAll": {
+        "scope": "php",
+        "prefix": "UserPackage::findAll",
+        "body": "UserPackage::findAll(\"${1:id, user_id, slot_id, no_slots, slot_program, referral_code, initial_referrals_required, target_rank, rank, status, created_at, updated_at}\", \"WHERE ${2|id,user_id,slot_id,no_slots,slot_program,referral_code,initial_referrals_required,target_rank,rank,status,created_at,updated_at|} = 1\");"
+    },
+    "UserPackage findOne": {
+        "scope": "php",
+        "prefix": "UserPackage::findOne",
+        "body": "UserPackage::findOne(\"${1:id, user_id, slot_id, no_slots, slot_program, referral_code, initial_referrals_required, target_rank, rank, status, created_at, updated_at}\", \"WHERE ${2|id,user_id,slot_id,no_slots,slot_program,referral_code,initial_referrals_required,target_rank,rank,status,created_at,updated_at|} = 1\");"
+    },
+    "UserPackage findJoin": {
+        "scope": "php",
+        "prefix": "UserPackage::findJoin",
+        "body": "\/\/ Note: When joining, specify fieldnames as tablename.fieldname;\r\/\/ Prefix the every tablename with DB_PREFIX\r\\$prefix = DB_PREFIX;\rUserPackage::findJoin(${1:\"{\\$prefix\\}user_package.${2|id,user_id,slot_id,no_slots,slot_program,referral_code,initial_referrals_required,target_rank,rank,status,created_at,updated_at|}\"}, \"WHERE ${3|id,user_id,slot_id,no_slots,slot_program,referral_code,initial_referrals_required,target_rank,rank,status,created_at,updated_at|} = 1\")\r\t->${4|leftJoin,rightJoin,innerJoin,fullJoin|}(\"{\\$prefix\\}tablename\", \"{\\$prefix\\}user_package.${6|id,user_id,slot_id,no_slots,slot_program,referral_code,initial_referrals_required,target_rank,rank,status,created_at,updated_at|} = {\\$prefix\\}tablename.field\")\r\t->join();"
+    },
+    "UserPackage fields": {
+        "scope": "php",
+        "prefix": "user_package.",
+        "body": "\". DB_PREFIX .\"user_package.${1|id,user_id,slot_id,no_slots,slot_program,referral_code,initial_referrals_required,target_rank,rank,status,created_at,updated_at|}"
+    },
+    "Alter_referral_level_to_varchar_in_userslots create": {
+        "scope": "php",
+        "prefix": "Alter_referral_level_to_varchar_in_userslots::create",
+        "body": "Alter_referral_level_to_varchar_in_userslots::create([\r\t\"id\" => $1,\r\t\"created_at\" => $2,\r\t\"updated_at\" => $3\r]);"
+    },
+    "Alter_referral_level_to_varchar_in_userslots create many": {
+        "scope": "php",
+        "prefix": "Alter_referral_level_to_varchar_in_userslots::createMany",
+        "body": "Alter_referral_level_to_varchar_in_userslots::createMany([\r\t\"id\" => $1,\r\t\"created_at\" => $2,\r\t\"updated_at\" => $3\r],\r${4:[]}\r);"
+    },
+    "Alter_referral_level_to_varchar_in_userslots update": {
+        "scope": "php",
+        "prefix": "Alter_referral_level_to_varchar_in_userslots::update",
+        "body": "Alter_referral_level_to_varchar_in_userslots::update([\r\t\"id\" => $1,\r\t\"created_at\" => $2,\r\t\"updated_at\" => $3\r], \"WHERE ${4|id,created_at,updated_at|} = 1\");"
+    },
+    "Alter_referral_level_to_varchar_in_userslots delete": {
+        "scope": "php",
+        "prefix": "Alter_referral_level_to_varchar_in_userslots::delete",
+        "body": "Alter_referral_level_to_varchar_in_userslots::delete(\"WHERE ${1|id,created_at,updated_at|} = 1\");"
+    },
+    "Alter_referral_level_to_varchar_in_userslots exist": {
+        "scope": "php",
+        "prefix": "Alter_referral_level_to_varchar_in_userslots::exist",
+        "body": "Alter_referral_level_to_varchar_in_userslots::exist(\"WHERE ${1|id,created_at,updated_at|} = 1\");"
+    },
+    "Alter_referral_level_to_varchar_in_userslots findAll": {
+        "scope": "php",
+        "prefix": "Alter_referral_level_to_varchar_in_userslots::findAll",
+        "body": "Alter_referral_level_to_varchar_in_userslots::findAll(\"${1:id, created_at, updated_at}\", \"WHERE ${2|id,created_at,updated_at|} = 1\");"
+    },
+    "Alter_referral_level_to_varchar_in_userslots findOne": {
+        "scope": "php",
+        "prefix": "Alter_referral_level_to_varchar_in_userslots::findOne",
+        "body": "Alter_referral_level_to_varchar_in_userslots::findOne(\"${1:id, created_at, updated_at}\", \"WHERE ${2|id,created_at,updated_at|} = 1\");"
+    },
+    "Alter_referral_level_to_varchar_in_userslots findJoin": {
+        "scope": "php",
+        "prefix": "Alter_referral_level_to_varchar_in_userslots::findJoin",
+        "body": "\/\/ Note: When joining, specify fieldnames as tablename.fieldname;\r\/\/ Prefix the every tablename with DB_PREFIX\r\\$prefix = DB_PREFIX;\rAlter_referral_level_to_varchar_in_userslots::findJoin(${1:\"{\\$prefix\\}alter_referral_level_to_varchar_in_userslots.${2|id,created_at,updated_at|}\"}, \"WHERE ${3|id,created_at,updated_at|} = 1\")\r\t->${4|leftJoin,rightJoin,innerJoin,fullJoin|}(\"{\\$prefix\\}tablename\", \"{\\$prefix\\}alter_referral_level_to_varchar_in_userslots.${6|id,created_at,updated_at|} = {\\$prefix\\}tablename.field\")\r\t->join();"
+    },
+    "Alter_referral_level_to_varchar_in_userslots fields": {
+        "scope": "php",
+        "prefix": "alter_referral_level_to_varchar_in_userslots.",
+        "body": "\". DB_PREFIX .\"alter_referral_level_to_varchar_in_userslots.${1|id,created_at,updated_at|}"
+    },
+    "Add_referral_code_to_user_package create": {
+        "scope": "php",
+        "prefix": "Add_referral_code_to_user_package::create",
+        "body": "Add_referral_code_to_user_package::create([\r\t\"id\" => $1,\r\t\"created_at\" => $2,\r\t\"updated_at\" => $3\r]);"
+    },
+    "Add_referral_code_to_user_package create many": {
+        "scope": "php",
+        "prefix": "Add_referral_code_to_user_package::createMany",
+        "body": "Add_referral_code_to_user_package::createMany([\r\t\"id\" => $1,\r\t\"created_at\" => $2,\r\t\"updated_at\" => $3\r],\r${4:[]}\r);"
+    },
+    "Add_referral_code_to_user_package update": {
+        "scope": "php",
+        "prefix": "Add_referral_code_to_user_package::update",
+        "body": "Add_referral_code_to_user_package::update([\r\t\"id\" => $1,\r\t\"created_at\" => $2,\r\t\"updated_at\" => $3\r], \"WHERE ${4|id,created_at,updated_at|} = 1\");"
+    },
+    "Add_referral_code_to_user_package delete": {
+        "scope": "php",
+        "prefix": "Add_referral_code_to_user_package::delete",
+        "body": "Add_referral_code_to_user_package::delete(\"WHERE ${1|id,created_at,updated_at|} = 1\");"
+    },
+    "Add_referral_code_to_user_package exist": {
+        "scope": "php",
+        "prefix": "Add_referral_code_to_user_package::exist",
+        "body": "Add_referral_code_to_user_package::exist(\"WHERE ${1|id,created_at,updated_at|} = 1\");"
+    },
+    "Add_referral_code_to_user_package findAll": {
+        "scope": "php",
+        "prefix": "Add_referral_code_to_user_package::findAll",
+        "body": "Add_referral_code_to_user_package::findAll(\"${1:id, created_at, updated_at}\", \"WHERE ${2|id,created_at,updated_at|} = 1\");"
+    },
+    "Add_referral_code_to_user_package findOne": {
+        "scope": "php",
+        "prefix": "Add_referral_code_to_user_package::findOne",
+        "body": "Add_referral_code_to_user_package::findOne(\"${1:id, created_at, updated_at}\", \"WHERE ${2|id,created_at,updated_at|} = 1\");"
+    },
+    "Add_referral_code_to_user_package findJoin": {
+        "scope": "php",
+        "prefix": "Add_referral_code_to_user_package::findJoin",
+        "body": "\/\/ Note: When joining, specify fieldnames as tablename.fieldname;\r\/\/ Prefix the every tablename with DB_PREFIX\r\\$prefix = DB_PREFIX;\rAdd_referral_code_to_user_package::findJoin(${1:\"{\\$prefix\\}add_referral_code_to_user_package.${2|id,created_at,updated_at|}\"}, \"WHERE ${3|id,created_at,updated_at|} = 1\")\r\t->${4|leftJoin,rightJoin,innerJoin,fullJoin|}(\"{\\$prefix\\}tablename\", \"{\\$prefix\\}add_referral_code_to_user_package.${6|id,created_at,updated_at|} = {\\$prefix\\}tablename.field\")\r\t->join();"
+    },
+    "Add_referral_code_to_user_package fields": {
+        "scope": "php",
+        "prefix": "add_referral_code_to_user_package.",
+        "body": "\". DB_PREFIX .\"add_referral_code_to_user_package.${1|id,created_at,updated_at|}"
+    },
+    "CountryLeagues create": {
+        "scope": "php",
+        "prefix": "CountryLeagues::create",
+        "body": "CountryLeagues::create([\r\t\"id\" => $1,\r\t\"country\" => $2,\r\t\"continent\" => $3,\r\t\"major_football_competition\" => $4,\r\t\"football_qualified_teams\" => $5,\r\t\"created_at\" => $6,\r\t\"updated_at\" => $7\r]);"
+    },
+    "CountryLeagues create many": {
+        "scope": "php",
+        "prefix": "CountryLeagues::createMany",
+        "body": "CountryLeagues::createMany([\r\t\"id\" => $1,\r\t\"country\" => $2,\r\t\"continent\" => $3,\r\t\"major_football_competition\" => $4,\r\t\"football_qualified_teams\" => $5,\r\t\"created_at\" => $6,\r\t\"updated_at\" => $7\r],\r${8:[]}\r);"
+    },
+    "CountryLeagues update": {
+        "scope": "php",
+        "prefix": "CountryLeagues::update",
+        "body": "CountryLeagues::update([\r\t\"id\" => $1,\r\t\"country\" => $2,\r\t\"continent\" => $3,\r\t\"major_football_competition\" => $4,\r\t\"football_qualified_teams\" => $5,\r\t\"created_at\" => $6,\r\t\"updated_at\" => $7\r], \"WHERE ${8|id,country,continent,major_football_competition,football_qualified_teams,created_at,updated_at|} = 1\");"
+    },
+    "CountryLeagues delete": {
+        "scope": "php",
+        "prefix": "CountryLeagues::delete",
+        "body": "CountryLeagues::delete(\"WHERE ${1|id,country,continent,major_football_competition,football_qualified_teams,created_at,updated_at|} = 1\");"
+    },
+    "CountryLeagues exist": {
+        "scope": "php",
+        "prefix": "CountryLeagues::exist",
+        "body": "CountryLeagues::exist(\"WHERE ${1|id,country,continent,major_football_competition,football_qualified_teams,created_at,updated_at|} = 1\");"
+    },
+    "CountryLeagues findAll": {
+        "scope": "php",
+        "prefix": "CountryLeagues::findAll",
+        "body": "CountryLeagues::findAll(\"${1:id, country, continent, major_football_competition, football_qualified_teams, created_at, updated_at}\", \"WHERE ${2|id,country,continent,major_football_competition,football_qualified_teams,created_at,updated_at|} = 1\");"
+    },
+    "CountryLeagues findOne": {
+        "scope": "php",
+        "prefix": "CountryLeagues::findOne",
+        "body": "CountryLeagues::findOne(\"${1:id, country, continent, major_football_competition, football_qualified_teams, created_at, updated_at}\", \"WHERE ${2|id,country,continent,major_football_competition,football_qualified_teams,created_at,updated_at|} = 1\");"
+    },
+    "CountryLeagues findJoin": {
+        "scope": "php",
+        "prefix": "CountryLeagues::findJoin",
+        "body": "\/\/ Note: When joining, specify fieldnames as tablename.fieldname;\r\/\/ Prefix the every tablename with DB_PREFIX\r\\$prefix = DB_PREFIX;\rCountryLeagues::findJoin(${1:\"{\\$prefix\\}country_leagues.${2|id,country,continent,major_football_competition,football_qualified_teams,created_at,updated_at|}\"}, \"WHERE ${3|id,country,continent,major_football_competition,football_qualified_teams,created_at,updated_at|} = 1\")\r\t->${4|leftJoin,rightJoin,innerJoin,fullJoin|}(\"{\\$prefix\\}tablename\", \"{\\$prefix\\}country_leagues.${6|id,country,continent,major_football_competition,football_qualified_teams,created_at,updated_at|} = {\\$prefix\\}tablename.field\")\r\t->join();"
+    },
+    "CountryLeagues fields": {
+        "scope": "php",
+        "prefix": "country_leagues.",
+        "body": "\". DB_PREFIX .\"country_leagues.${1|id,country,continent,major_football_competition,football_qualified_teams,created_at,updated_at|}"
+    },
+    "Competitions create": {
+        "scope": "php",
+        "prefix": "Competitions::create",
+        "body": "Competitions::create([\r\t\"id\" => $1,\r\t\"slotpackage\" => $2,\r\t\"competition\" => $3,\r\t\"region\" => $4,\r\t\"sport\" => $5,\r\t\"qualified_teams\" => $6,\r\t\"created_at\" => $7,\r\t\"updated_at\" => $8\r]);"
+    },
+    "Competitions create many": {
+        "scope": "php",
+        "prefix": "Competitions::createMany",
+        "body": "Competitions::createMany([\r\t\"id\" => $1,\r\t\"slotpackage\" => $2,\r\t\"competition\" => $3,\r\t\"region\" => $4,\r\t\"sport\" => $5,\r\t\"qualified_teams\" => $6,\r\t\"created_at\" => $7,\r\t\"updated_at\" => $8\r],\r${9:[]}\r);"
+    },
+    "Competitions update": {
+        "scope": "php",
+        "prefix": "Competitions::update",
+        "body": "Competitions::update([\r\t\"id\" => $1,\r\t\"slotpackage\" => $2,\r\t\"competition\" => $3,\r\t\"region\" => $4,\r\t\"sport\" => $5,\r\t\"qualified_teams\" => $6,\r\t\"created_at\" => $7,\r\t\"updated_at\" => $8\r], \"WHERE ${9|id,slotpackage,competition,region,sport,qualified_teams,created_at,updated_at|} = 1\");"
+    },
+    "Competitions delete": {
+        "scope": "php",
+        "prefix": "Competitions::delete",
+        "body": "Competitions::delete(\"WHERE ${1|id,slotpackage,competition,region,sport,qualified_teams,created_at,updated_at|} = 1\");"
+    },
+    "Competitions exist": {
+        "scope": "php",
+        "prefix": "Competitions::exist",
+        "body": "Competitions::exist(\"WHERE ${1|id,slotpackage,competition,region,sport,qualified_teams,created_at,updated_at|} = 1\");"
+    },
+    "Competitions findAll": {
+        "scope": "php",
+        "prefix": "Competitions::findAll",
+        "body": "Competitions::findAll(\"${1:id, slotpackage, competition, region, sport, qualified_teams, created_at, updated_at}\", \"WHERE ${2|id,slotpackage,competition,region,sport,qualified_teams,created_at,updated_at|} = 1\");"
+    },
+    "Competitions findOne": {
+        "scope": "php",
+        "prefix": "Competitions::findOne",
+        "body": "Competitions::findOne(\"${1:id, slotpackage, competition, region, sport, qualified_teams, created_at, updated_at}\", \"WHERE ${2|id,slotpackage,competition,region,sport,qualified_teams,created_at,updated_at|} = 1\");"
+    },
+    "Competitions findJoin": {
+        "scope": "php",
+        "prefix": "Competitions::findJoin",
+        "body": "\/\/ Note: When joining, specify fieldnames as tablename.fieldname;\r\/\/ Prefix the every tablename with DB_PREFIX\r\\$prefix = DB_PREFIX;\rCompetitions::findJoin(${1:\"{\\$prefix\\}competitions.${2|id,slotpackage,competition,region,sport,qualified_teams,created_at,updated_at|}\"}, \"WHERE ${3|id,slotpackage,competition,region,sport,qualified_teams,created_at,updated_at|} = 1\")\r\t->${4|leftJoin,rightJoin,innerJoin,fullJoin|}(\"{\\$prefix\\}tablename\", \"{\\$prefix\\}competitions.${6|id,slotpackage,competition,region,sport,qualified_teams,created_at,updated_at|} = {\\$prefix\\}tablename.field\")\r\t->join();"
+    },
+    "Competitions fields": {
+        "scope": "php",
+        "prefix": "competitions.",
+        "body": "\". DB_PREFIX .\"competitions.${1|id,slotpackage,competition,region,sport,qualified_teams,created_at,updated_at|}"
+    },
+    "Payments create": {
+        "scope": "php",
+        "prefix": "Payments::create",
+        "body": "Payments::create([\r\t\"id\" => $1,\r\t\"invoice_number\" => $2,\r\t\"reference\" => $3,\r\t\"email\" => $4,\r\t\"domain\" => $5,\r\t\"amount_paid\" => $6,\r\t\"ip_address\" => $7,\r\t\"payment_service\" => $8,\r\t\"channel\" => $9,\r\t\"currency\" => $10,\r\t\"gateway_response\" => $11,\r\t\"status\" => $12,\r\t\"paid_at\" => $13,\r\t\"created_at\" => $14,\r\t\"updated_at\" => $15\r]);"
+    },
+    "Payments create many": {
+        "scope": "php",
+        "prefix": "Payments::createMany",
+        "body": "Payments::createMany([\r\t\"id\" => $1,\r\t\"invoice_number\" => $2,\r\t\"reference\" => $3,\r\t\"email\" => $4,\r\t\"domain\" => $5,\r\t\"amount_paid\" => $6,\r\t\"ip_address\" => $7,\r\t\"payment_service\" => $8,\r\t\"channel\" => $9,\r\t\"currency\" => $10,\r\t\"gateway_response\" => $11,\r\t\"status\" => $12,\r\t\"paid_at\" => $13,\r\t\"created_at\" => $14,\r\t\"updated_at\" => $15\r],\r${16:[]}\r);"
+    },
+    "Payments update": {
+        "scope": "php",
+        "prefix": "Payments::update",
+        "body": "Payments::update([\r\t\"id\" => $1,\r\t\"invoice_number\" => $2,\r\t\"reference\" => $3,\r\t\"email\" => $4,\r\t\"domain\" => $5,\r\t\"amount_paid\" => $6,\r\t\"ip_address\" => $7,\r\t\"payment_service\" => $8,\r\t\"channel\" => $9,\r\t\"currency\" => $10,\r\t\"gateway_response\" => $11,\r\t\"status\" => $12,\r\t\"paid_at\" => $13,\r\t\"created_at\" => $14,\r\t\"updated_at\" => $15\r], \"WHERE ${16|id,invoice_number,reference,email,domain,amount_paid,ip_address,payment_service,channel,currency,gateway_response,status,paid_at,created_at,updated_at|} = 1\");"
+    },
+    "Payments delete": {
+        "scope": "php",
+        "prefix": "Payments::delete",
+        "body": "Payments::delete(\"WHERE ${1|id,invoice_number,reference,email,domain,amount_paid,ip_address,payment_service,channel,currency,gateway_response,status,paid_at,created_at,updated_at|} = 1\");"
+    },
+    "Payments exist": {
+        "scope": "php",
+        "prefix": "Payments::exist",
+        "body": "Payments::exist(\"WHERE ${1|id,invoice_number,reference,email,domain,amount_paid,ip_address,payment_service,channel,currency,gateway_response,status,paid_at,created_at,updated_at|} = 1\");"
+    },
+    "Payments findAll": {
+        "scope": "php",
+        "prefix": "Payments::findAll",
+        "body": "Payments::findAll(\"${1:id, invoice_number, reference, email, domain, amount_paid, ip_address, payment_service, channel, currency, gateway_response, status, paid_at, created_at, updated_at}\", \"WHERE ${2|id,invoice_number,reference,email,domain,amount_paid,ip_address,payment_service,channel,currency,gateway_response,status,paid_at,created_at,updated_at|} = 1\");"
+    },
+    "Payments findOne": {
+        "scope": "php",
+        "prefix": "Payments::findOne",
+        "body": "Payments::findOne(\"${1:id, invoice_number, reference, email, domain, amount_paid, ip_address, payment_service, channel, currency, gateway_response, status, paid_at, created_at, updated_at}\", \"WHERE ${2|id,invoice_number,reference,email,domain,amount_paid,ip_address,payment_service,channel,currency,gateway_response,status,paid_at,created_at,updated_at|} = 1\");"
+    },
+    "Payments findJoin": {
+        "scope": "php",
+        "prefix": "Payments::findJoin",
+        "body": "\/\/ Note: When joining, specify fieldnames as tablename.fieldname;\r\/\/ Prefix the every tablename with DB_PREFIX\r\\$prefix = DB_PREFIX;\rPayments::findJoin(${1:\"{\\$prefix\\}payments.${2|id,invoice_number,reference,email,domain,amount_paid,ip_address,payment_service,channel,currency,gateway_response,status,paid_at,created_at,updated_at|}\"}, \"WHERE ${3|id,invoice_number,reference,email,domain,amount_paid,ip_address,payment_service,channel,currency,gateway_response,status,paid_at,created_at,updated_at|} = 1\")\r\t->${4|leftJoin,rightJoin,innerJoin,fullJoin|}(\"{\\$prefix\\}tablename\", \"{\\$prefix\\}payments.${6|id,invoice_number,reference,email,domain,amount_paid,ip_address,payment_service,channel,currency,gateway_response,status,paid_at,created_at,updated_at|} = {\\$prefix\\}tablename.field\")\r\t->join();"
+    },
+    "Payments fields": {
+        "scope": "php",
+        "prefix": "payments.",
+        "body": "\". DB_PREFIX .\"payments.${1|id,invoice_number,reference,email,domain,amount_paid,ip_address,payment_service,channel,currency,gateway_response,status,paid_at,created_at,updated_at|}"
     }
 }

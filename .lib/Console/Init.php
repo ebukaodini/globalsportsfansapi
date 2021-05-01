@@ -1,5 +1,7 @@
 <?php
+
 namespace Library\Console;
+
 use Library\Database\Schema;
 use Library\Database\Database;
 use PDO;
@@ -22,13 +24,14 @@ class Init extends Database
       }
    }
 
-   public function handle(string $command, $component, array $args) {
+   public function handle(string $command, $component, array $args)
+   {
       $init = "php init";
       switch ($command) {
          case '--h':
          case 'help':
             $this->_init_full_help($init);
-         break;
+            break;
 
          case 'new':
             // switch components
@@ -37,69 +40,69 @@ class Init extends Database
                case 'controller':
                   if (!preg_match("/([A-Z0-9a-z_\/])+/", $componentName)) exit("Invalid controller name ($componentName); only lower case, upper case, numbers and underscore allowed\n");
                   $this->_init_new_controller(ucfirst(str_replace(".php", "", $componentName)));
-               break;
+                  break;
 
                case 'model':
                   if (!preg_match("/([A-Z0-9a-z_\/])+/", $componentName)) exit("Invalid model name ($componentName); only lower case, upper case, numbers and underscore allowed\n");
                   $database_table = $args[1] ?? null;
                   if (is_null($database_table)) exit("Error: database table is required\n");
                   $this->_init_new_model(ucfirst(str_replace(".php", "", $componentName)), $database_table);
-               break;
+                  break;
 
                case 'view':
                   if (!preg_match("/([A-Z0-9a-z_\/])+/", $componentName)) exit("Invalid view name ($componentName); only lower case, upper case, numbers and underscore allowed\n");
                   $this->_init_new_view(str_replace(".html", "", $componentName));
-               break;
+                  break;
 
                case 'middleware':
                   if (!preg_match("/([A-Z0-9a-z_\/])+/", $componentName)) exit("Invalid middleware name ($componentName); only lower case, upper case, numbers and underscore allowed\n");
                   $this->_init_new_middleware(ucfirst(str_replace(".php", "", $componentName)));
-               break;
+                  break;
 
                case 'service':
                   if (!preg_match("/([A-Z0-9a-z_\/])+/", $componentName)) exit("Invalid service name ($componentName); only lower case, upper case, numbers and underscore allowed\n");
                   $this->_init_new_service(ucfirst(str_replace(".php", "", $componentName)));
-               break;
+                  break;
 
                case 'migration':
                   // TODO: replace any non-variable character with underscore
                   if (!preg_match("/([A-Z0-9a-z_\/])+/", $componentName)) exit("Invalid migration name ($componentName); only lower case, upper case, numbers and underscore allowed\n");
                   $this->_init_new_migration(str_replace(".php", "", preg_replace("/ +/", "_", $componentName)));
-               break;
+                  break;
 
                case 'key':
                   $this->_init_new_key();
-               break;
-               
+                  break;
+
                default:
                   $this->_init_help($init);
-               break;
+                  break;
             }
-         break;
-         
+            break;
+
          case 'run':
             // switch components
             switch ($component) {
                case 'app':
                   $this->_init_run_app();
-               break;
+                  break;
 
                case 'migrations':
                   $_ENV['show_query'] = isset($args[0]) && $args[0] == "--show-query";
                   $this->_init_run_migrations();
-               break;
+                  break;
 
                case 'migration':
                   $componentName = $args[0];
                   $_ENV['show_query'] = isset($args[1]) && $args[1] == "--show-query";
                   $this->_init_run_migration(str_replace(".php", "", preg_replace("/ +/", "_", $componentName)));
-               break;
-               
+                  break;
+
                default:
                   $this->_init_help($init);
-               break;
+                  break;
             }
-         break;
+            break;
 
          case 'update':
             // switch components
@@ -110,17 +113,17 @@ class Init extends Database
                   $database_table = $args[1] ?? null;
                   if (is_null($database_table)) exit("Error: database table is required\n");
                   $this->_init_model_snippet(ucfirst(str_replace(".php", "", $componentName)), $database_table);
-               break;
+                  break;
 
                default:
                   $this->_init_help($init);
-               break;
+                  break;
             }
-         break;
+            break;
 
          default:
             $this->_init_help($init);
-         break;
+            break;
       }
       exit;
    }
@@ -135,12 +138,12 @@ class Init extends Database
    private function _init_run_migrations()
    {
       // create the schema migration table is none exist
-      Schema::create("schema_migration", function(Schema $schema) {
+      Schema::create("schema_migration", function (Schema $schema) {
          $schema->int('id')->auto_increment()->primary();
          $schema->varchar('migration', 100);
          $schema->timestamp('migrated_at');
       }, false);
-      
+
       // get migration files
       $files = array_diff(scandir(APP_BASEDIR . "app/migrations/"), array('.', '..', '.gitignore'));
       $conn = parent::getInstance();
@@ -149,20 +152,22 @@ class Init extends Database
          // strip .php
          $migration = str_replace(".php", "", $file);
          // if migration does not exist
-         $stmt = $conn->prepare("SELECT * FROM " . DB_PREFIX . "schema_migration WHERE migration = '$migration'"); $stmt->execute();
+         $stmt = $conn->prepare("SELECT * FROM " . DB_PREFIX . "schema_migration WHERE migration = '$migration'");
+         $stmt->execute();
          if ($stmt->rowCount() > 0) continue;
          include_once APP_BASEDIR . "app/migrations/$file";
          $method = "migrate";
          $namespace = "\\Migrations\\";
-         $class = $namespace."migration_$migration";
-         if (method_exists($class, $method)){
+         $class = $namespace . "migration_$migration";
+         if (method_exists($class, $method)) {
             echo "$migration: ";
             (new $class())->$method();
 
             if (Schema::$result == true) {
                $migrated++;
                // add migration to db if all query executed successfully
-               $stmt = $conn->prepare("INSERT INTO " . DB_PREFIX . "schema_migration (migration) VALUES('$migration')"); $stmt->execute();
+               $stmt = $conn->prepare("INSERT INTO " . DB_PREFIX . "schema_migration (migration) VALUES('$migration')");
+               $stmt->execute();
                echo "\r\nmigrated successfully!\n";
             }
          } else {
@@ -176,12 +181,12 @@ class Init extends Database
    private function _init_run_migration($migrationname)
    {
       // create the schema migration table is none exist
-      Schema::create("schema_migration", function(Schema $schema) {
+      Schema::create("schema_migration", function (Schema $schema) {
          $schema->int('id')->auto_increment()->primary();
          $schema->varchar('migration', 100);
          $schema->timestamp('migrated_at');
       }, false);
-      
+
       // get migration files
       $files = array_diff(scandir(APP_BASEDIR . "app/migrations/"), array('.', '..', '.gitignore'));
       $conn = parent::getInstance();
@@ -192,20 +197,22 @@ class Init extends Database
          // strip .php
          $migration = str_replace(".php", "", $file);
          // if migration does not exist
-         $stmt = $conn->prepare("SELECT * FROM " . DB_PREFIX . "schema_migration WHERE migration = '$migration'"); $stmt->execute();
+         $stmt = $conn->prepare("SELECT * FROM " . DB_PREFIX . "schema_migration WHERE migration = '$migration'");
+         $stmt->execute();
          if ($stmt->rowCount() > 0) continue;
          include_once APP_BASEDIR . "app/migrations/$file";
          $method = "migrate";
          $namespace = "\\Migrations\\";
-         $class = $namespace."migration_$migration";
-         if (method_exists($class, $method)){
+         $class = $namespace . "migration_$migration";
+         if (method_exists($class, $method)) {
             echo "$migration: ";
             (new $class())->$method();
-            
+
             if (Schema::$result == true) {
                $migrated++;
                // add migration to db if all query executed successfully
-               $stmt = $conn->prepare("INSERT INTO " . DB_PREFIX . "schema_migration (migration) VALUES('$migration')"); $stmt->execute();
+               $stmt = $conn->prepare("INSERT INTO " . DB_PREFIX . "schema_migration (migration) VALUES('$migration')");
+               $stmt->execute();
                echo "\r\nmigrated successfully!\n";
             }
          } else {
@@ -218,19 +225,18 @@ class Init extends Database
 
    private function _init_help($init): void
    {
-echo <<<cmd
+      echo <<<cmd
 Usage: $init [command] [component] [args...]
 
 Error: Wrong command, find help
 $init help or --h
 
 cmd;
-
    }
 
    private function _init_full_help($init): void
    {
-echo <<<CLI
+      echo <<<CLI
 Usage: $init [command] [component] [args...]
 
 $init help or --h
@@ -281,10 +287,10 @@ CLI;
       exit("$hash\n");
    }
 
-   private function _init_new_view(string $view) : void
+   private function _init_new_view(string $view): void
    {
-      $code = 
-<<<HTML
+      $code =
+         <<<HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -319,10 +325,10 @@ HTML;
       }
    }
 
-   private function _init_new_service(string $service) : void
+   private function _init_new_service(string $service): void
    {
-      $code = 
-<<<PHP
+      $code =
+         <<<PHP
 <?php
 namespace Services;
 
@@ -349,10 +355,10 @@ PHP;
       }
    }
 
-   private function _init_new_middleware(string $middleware) : void
+   private function _init_new_middleware(string $middleware): void
    {
-      $code = 
-<<<PHP
+      $code =
+         <<<PHP
 <?php
 namespace Middlewares;
 use Library\Http\Request;
@@ -380,11 +386,11 @@ PHP;
       }
    }
 
-   private function _init_new_migration(string $migration) : void
+   private function _init_new_migration(string $migration): void
    {
       $prefix = date("Y_m_d_His_");
-      $code = 
-<<<PHP
+      $code =
+         <<<PHP
 <?php
 namespace Migrations;
 use Library\Database\Schema;
@@ -437,7 +443,7 @@ PHP;
       }
    }
 
-   public function _init_model_snippet(string $model, string $table) : void
+   public function _init_model_snippet(string $model, string $table): void
    {
       $codeSnippets = file_get_contents(APP_BASEDIR . "/.vscode/init.code-snippets");
       $snippet = json_decode($codeSnippets, true);
@@ -448,98 +454,98 @@ PHP;
          $stmt->execute();
          $stmt->setFetchMode(PDO::FETCH_ASSOC);
          $fields = $stmt->fetchAll();
-   
+
          $snippet["$model create"] = [
             "scope" => "php",
             "prefix" => "$model" . "::create"
          ];
-   
+
          $snippet["$model create many"] = [
             "scope" => "php",
             "prefix" => "$model" . "::createMany"
          ];
-   
+
          $snippet["$model update"] = [
             "scope" => "php",
             "prefix" => "$model" . "::update"
          ];
-   
+
          $snippet["$model delete"] = [
             "scope" => "php",
             "prefix" => "$model" . "::delete"
          ];
-   
+
          $snippet["$model exist"] = [
             "scope" => "php",
             "prefix" => "$model" . "::exist"
          ];
-   
+
          $snippet["$model findAll"] = [
             "scope" => "php",
             "prefix" => "$model" . "::findAll"
          ];
-   
+
          $snippet["$model findOne"] = [
             "scope" => "php",
             "prefix" => "$model" . "::findOne"
          ];
-   
+
          $snippet["$model findJoin"] = [
             "scope" => "php",
             "prefix" => "$model" . "::findJoin"
          ];
-   
+
          $snippet["$model fields"] = [
             "scope" => "php",
             "prefix" => "$table."
          ];
-   
+
          $count = 1;
-         foreach($fields as $field) {
+         foreach ($fields as $field) {
             // generate create, update, and condition
             $label = $field['Field'];
             $raw_labels[] = $label;
             $input_fields[] = "\r\t\"$label\" => $" . $count;
             $count++;
          }
-   
+
          // create body
          $input_fields = implode(",", $input_fields) . "\r";
          $snippet["$model create"]['body'] = $model . "::create" . "([" . $input_fields . "]);";
-   
+
          // create many body
-         $snippet["$model create many"]['body'] = $model . "::createMany" . "([" . $input_fields . "],\r$" . "{" . $count .":[]}\r);";
-   
+         $snippet["$model create many"]['body'] = $model . "::createMany" . "([" . $input_fields . "],\r$" . "{" . $count . ":[]}\r);";
+
          $raw_fields = implode(",", $raw_labels);
          $raw_fields_Str = implode(", ", $raw_labels);
-   
+
          // exist body
          $snippet["$model exist"]['body'] = $model . "::exist" . "(\"WHERE $" . "{1|" . $raw_fields . "|" . "} = 1\");";
-   
+
          // delete body
          $snippet["$model delete"]['body'] = $model . "::delete" . "(\"WHERE $" . "{1|" . $raw_fields . "|" . "} = 1\");";
-   
+
          // findOne body
          $snippet["$model findOne"]['body'] = $model . "::findOne" . "(\"$" . "{1:" . $raw_fields_Str . "}\", \"WHERE $" . "{2|" . $raw_fields . "|" . "} = 1\");";
-   
+
          // findAll body
          $snippet["$model findAll"]['body'] = $model . "::findAll" . "(\"$" . "{1:" . $raw_fields_Str . "}\", \"WHERE $" . "{2|" . $raw_fields . "|" . "} = 1\");";
-   
+
          // find body
          $array_fields = json_encode($raw_labels);
          $snippet["$model findJoin"]['body'] = "// Note: When joining, specify fieldnames as tablename.fieldname;\r// Prefix the every tablename with DB_PREFIX\r\\$" . "prefix = DB_PREFIX;\r" . $model . "::findJoin" . "($" . "{1:\"{\\$" . "prefix\\}" . $table . ".$" . "{2|" . $raw_fields . "|}\"}, \"WHERE $" . "{3|" . $raw_fields . "|" . "} = 1\")\r\t->$" . "{4|leftJoin,rightJoin,innerJoin,fullJoin|}(\"{\\$" . "prefix\\}tablename\", \"{\\$" . "prefix\\}" . $table . ".$" . "{6|" . $raw_fields . "|} = {\\$" . "prefix\\}tablename.field\")\r\t->join();";
-   
+
          // fields body
          $snippet["$model fields"]['body'] = "\". DB_PREFIX .\"" . $table . ".$" . "{1|" . $raw_fields . "|}";
-   
+
          // update body
          $snippet["$model update"]['body'] = $model . "::update" . "([" . $input_fields . "]";
          $snippet["$model update"]['body'] .= ", \"WHERE $" . "{" . $count . "|" . $raw_fields . "|" . "} = 1\");";
-   
+
          // update snippet file
          $ready_snippet = json_encode($snippet, JSON_PRETTY_PRINT);
          file_put_contents(APP_BASEDIR . "/.vscode/init.code-snippets", $ready_snippet);
-   
+
          echo "updated model snippet for $model.php!\n";
          return;
       } catch (\Throwable $th) {
@@ -550,8 +556,8 @@ PHP;
    public function _init_new_model(string $model, string $table): void
    {
       $model = ucfirst($model);
-      $code = 
-<<<PHP
+      $code =
+         <<<PHP
 <?php
 namespace Models;
 use Library\Database\Model;
@@ -582,11 +588,42 @@ PHP;
       }
    }
 
-
-   private function _init_new_controller(string $controller) : void
+   public function _init_rename_model(string $table, string $newtable, string $model, string $newmodel): void
    {
-      $code = 
-<<<PHP
+      $model = ucfirst($model);
+      $newmodel = ucfirst($newmodel);
+
+      $file = APP_BASEDIR . "app/models/$model.php";
+      $newfile = APP_BASEDIR . "app/models/$newmodel.php";
+      if (\file_exists($newfile)) {
+         echo "Error: $newmodel.php already exists!\n";
+         return;
+      } else {
+         // get the contents
+         $code = file_get_contents(APP_BASEDIR . "app/models/$model.php");
+         // open the file
+         $newfile = fopen($file, "w");
+         // replace model and table in contents
+         $newcode = str_replace($table, $newtable, $code);
+         $newcode = str_replace($model, $newmodel, $newcode);
+         // update the content of the file
+         fwrite($newfile, $newcode);
+         // close the file
+         fclose($newfile);
+         // rename the file
+         rename(APP_BASEDIR . "app/models/$model.php", APP_BASEDIR . "app/models/$newmodel.php");
+         echo "Success: $model.php renamed to $newmodel.php successfully!\n";
+         echo "Creating model snippet: ";
+         // creating the model snippets
+         @$this->_init_model_snippet($newmodel, $newtable);
+         return;
+      }
+   }
+
+   private function _init_new_controller(string $controller): void
+   {
+      $code =
+         <<<PHP
 <?php
 namespace Controllers;
 use Library\Http\Request;
@@ -647,5 +684,4 @@ PHP;
          return;
       }
    }
-
 }
