@@ -5,6 +5,10 @@
 
    RewriteEngine On
 
+   # Redirect Port 80 to 443
+   RewriteCond %{SERVER_PORT} 80
+   RewriteRule ^(.*)$ https://api.sportsfansng.com/$1 [R,L]
+
    # Redirect Trailing Slashes If Not A Folder...
    RewriteCond %{REQUEST_FILENAME} !-d
    RewriteCond %{REQUEST_URI} (.+)/$
