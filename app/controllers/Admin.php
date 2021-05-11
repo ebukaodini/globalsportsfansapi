@@ -35,7 +35,7 @@ class Admin
          Email: $email <br />
          </h4> <br />
          <p>$message</p>"
-      )->send(ORG_EMAIL, ORG_EMAIL, "$subject (Contact Us Form)", ORG_EMAIL);
+      )->send(ORG_EMAIL, "support@sportsfansng.com", "$subject (Contact Us Form)", $email);
 
       if ($messageSent) success('Sent successfully');
       else error('Not sent');
