@@ -298,10 +298,13 @@ class Member
       $fullname = $user['fullname'] ?? User::$email;
       $referralcode = $user['referral_code'];
       $inviteWasSent = Mail::asHTML(
-         "<h4>Good day,</h4>
-         <p>Your friend $fullname invites you to join Sports Fans Club by joining with his referral link https://initframework.com/register?referral=$referralcode</p> <br /><br />
+         "
+         <h4>Good day,</h4>
+
+         <p>Your friend $fullname invites you to join Sports Fans Club by joining with his referral link https://sportsfansng.com/register?referral=$referralcode</p>
+         
          <p><b>SPORT FANS CLUB (SFC)</b> is a property of <b>GLOBAL SPORTS FANS LIMITED</b>. SFC was created to satisfy the aspirations of millions of sports fans who are enthusiastic about different sports and exude passion in supporting their favourite teams during sporting competitions. <br />
-         SFC provides an opportunity for individuals to live out the reality of being a “true fan”. A true fan is someone who not only loves and cheer a team, but is a registered and recognized member of the team’s supporters base. SFC help registered members to achieve this dream. Depending on your ability and activity in the CLUB, SFC will provide you with your favourite club’s souvenirs and sponsor your trip to watch a live match/event involving your team.</p>
+         SFC provides an opportunity for individuals to become a “true fan”. A true fan is someone who not only loves and cheer a team, but is a registered and recognized member of the team’s supporters base. SFC help registered members to achieve this dream. Depending on your ability and activity in the CLUB, SFC will provide you with your favourite club’s souvenirs and sponsor your trip to watch a live match/event involving your team.</p>
          "
       )->send(ORG_EMAIL, $friendEmail, "Invitation to Sports Fans Club", ORG_EMAIL);
 

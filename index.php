@@ -264,7 +264,7 @@ Router::post('/api/admin/memberpackage', function (Request $req) {
    Admin::getMemberPackage($req);
 });
 
-Router::post('/api/admin/memberslots', function (Request $req) {
+Router::post('/api/admin/users/slots', function (Request $req) {
    JWT::auth($req);
    Guard::is('admin');
    Admin::getMemeberSlots($req);
