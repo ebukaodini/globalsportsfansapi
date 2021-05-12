@@ -340,9 +340,9 @@ class Admin
       Validate::mustContainNumberOnly('ID', $id);
       Validate::isNotEmpty('Referral Rank', $rank);
       Validate::mustContainLetters('Referral Rank', $rank);
-      Validate::isNotEmpty('Referrals required', $referrals_required);
+      // Validate::isNotEmpty('Referrals required', $referrals_required);
       Validate::mustContainNumberOnly('Referrals required', $referrals_required);
-      Validate::isNotEmpty('Cash benefit', $cash_benefit);
+      // Validate::isNotEmpty('Cash benefit', $cash_benefit);
       Validate::mustContainNumberOnly('Cash benefit', $cash_benefit);
       Validate::isNotEmpty('Souvenir benefit', $benefits);
 
