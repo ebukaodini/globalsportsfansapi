@@ -352,6 +352,21 @@ class Common
 
    public static function notify(int $userId, string $message, string $route = "")
    {
+
+      if ($userId == 0) {
+         $name = "Admin";
+         $email = ORG_EMAIL;
+      } else {
+         $user = Users::findOne("email, firstname", "WHERE id = $userId");
+         $name = $user['firstname'];
+         $email = $user['email'];
+      }
+
+      Mail::asHTML(
+         "<h4>Hi $name,</h4>
+         <p>$message</p>"
+      )->send(ORG_EMAIL, "$email", "Notification from Sports Fans Club", "support@sportsfansng.com");
+
       return Notifications::create([
          "user_id" => $userId,
          "message" => $message,
