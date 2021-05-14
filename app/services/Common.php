@@ -134,7 +134,7 @@ class Common
             // notify user of benefit
             self::notify($referralsUserId, "Congratulations!!! Your cash benefit of ₦{$benefits['cash_benefit']} is due for accrual for completing a slot in {$userActiveSlot['referral_level']} level.", '/member/benefits');
             // notify admin of benefit
-            self::notify(0, "Notice!, {$user['firstname']} {$user['lastname']} ({$user['email']}) has completed a slot at {$userActiveSlot['referral_level']} level and has been accrued a cash benefit of ₦{$benefits['cash_benefit']}.", '/member/benefits');
+            self::notify(0, "Notice! {$user['firstname']} {$user['lastname']} ({$user['email']}) has completed a slot at {$userActiveSlot['referral_level']} level and has been accrued a cash benefit of ₦{$benefits['cash_benefit']}.", '/member/benefits');
 
             // check if all slots have been completed
             $completedAllSlotsInThisLevel = count(UserSlots::findAll("id", "WHERE referral_code = '$referralsReferralCode' AND node_level = {$userActiveSlot['node_level']} AND referral_level = '{$userActiveSlot['referral_level']}' AND status = 'completed' ")) == intval($userPackage['no_slots']);
@@ -152,7 +152,7 @@ class Common
                // notify user of benefit
                self::notify($referralsUserId, "Congratulations!!! Your souvenir reward for completing all slots in {$userActiveSlot['referral_level']} is due.", '/member/benefits');
                // notify admin of benefit
-               self::notify(0, "Notice!, {$user['firstname']} {$user['lastname']} ({$user['email']}) has completed all slots at {$userActiveSlot['referral_level']} and has been accrued a souvenir reward.", '/member/benefits');
+               self::notify(0, "Notice! {$user['firstname']} {$user['lastname']} ({$user['email']}) has completed all slots at {$userActiveSlot['referral_level']} and has been accrued a souvenir reward.", '/member/benefits');
 
                // new node level
                $newNodeLevel = intval($userActiveSlot['node_level']) + 1;
@@ -241,7 +241,7 @@ class Common
                // notify user of benefit
                self::notify($referralsUserId, "Congratulations!!! Your cash benefit of ₦{$benefits['cash_benefit']} is due for accrual for completing a slot in {$userActiveSlot['referral_level']} level.", '/member/benefits');
                // notify admin of benefit
-               self::notify(0, "Notice!, {$user['firstname']} {$user['lastname']} ({$user['email']}) has completed a slot at {$userActiveSlot['referral_level']} level and has been accrued a cash benefit of ₦{$benefits['cash_benefit']}.", '/member/benefits');
+               self::notify(0, "Notice! {$user['firstname']} {$user['lastname']} ({$user['email']}) has completed a slot at {$userActiveSlot['referral_level']} level and has been accrued a cash benefit of ₦{$benefits['cash_benefit']}.", '/member/benefits');
             }
 
             // check if all slots have been completed
@@ -262,14 +262,14 @@ class Common
                   // notify user of benefit
                   self::notify($referralsUserId, "Congratulations!!! Your souvenir reward for completing all slots in {$userActiveSlot['referral_level']} is due.", '/member/benefits');
                   // notify admin of benefit
-                  self::notify(0, "Notice!, {$user['firstname']} {$user['lastname']} ({$user['email']}) has completed all slots at {$userActiveSlot['referral_level']} and has been accrued a souvenir reward.", '/member/benefits');
+                  self::notify(0, "Notice! {$user['firstname']} {$user['lastname']} ({$user['email']}) has completed all slots at {$userActiveSlot['referral_level']} and has been accrued a souvenir reward.", '/member/benefits');
                }
 
                // if the user package rank is the last rank on the referral levels. i.e Trophy
                if ($userPackage['rank'] == ReferralLevels::findOne("rank", "ORDER BY id DESC")['rank']) {
                   // TODO
                   // notify admin that this user have completed his program
-                  self::notify(0, "Notice!, {$user['firstname']} {$user['lastname']} ({$user['email']}) has completed all slots at all levels. 🎉🎉🎉", '/member/benefits');
+                  self::notify(0, "Notice! {$user['firstname']} {$user['lastname']} ({$user['email']}) has completed all slots at all levels. 🎉🎉🎉", '/member/benefits');
                   return;
                }
 
@@ -312,7 +312,7 @@ class Common
                      // notify user of benefit
                      self::notify($referralsUserId, "Congratulations!!! Your cash benefit of ₦{$newLevelBenefits['cash_benefit']} is due for accrual for completing a slot in {$slot['referral_level']} level.", '/member/benefits');
                      // notify admin of benefit
-                     self::notify(0, "Notice!, {$user['firstname']} {$user['lastname']} ({$user['email']}) has completed a slot at {$slot['referral_level']} level and has been accrued a cash benefit of ₦{$newLevelBenefits['cash_benefit']}.", '/member/benefits');
+                     self::notify(0, "Notice! {$user['firstname']} {$user['lastname']} ({$user['email']}) has completed a slot at {$slot['referral_level']} level and has been accrued a cash benefit of ₦{$newLevelBenefits['cash_benefit']}.", '/member/benefits');
                   } else {
                      // this slot is not completed
 
@@ -355,7 +355,7 @@ class Common
 
       if ($userId == 0) {
          $name = "Admin";
-         $email = ORG_EMAIL;
+         $email = "support@sportsfansng.com";
       } else {
          $user = Users::findOne("email, firstname", "WHERE id = $userId");
          $name = $user['firstname'];
