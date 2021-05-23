@@ -215,7 +215,7 @@ Router::get('/api/getcountries', function (Request $req) {
    JWT::auth($req);
    Guard::isAny(['admin', 'member']);
 
-   $countries = CountryLeagues::findAll("id, country, continent, updated_at");
+   $countries = CountryLeagues::findAll("id, country, continent, dial_code, country_code, updated_at");
    if ($countries) success('success', $countries); else error();
 });
 

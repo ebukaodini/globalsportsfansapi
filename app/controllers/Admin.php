@@ -72,7 +72,7 @@ class Admin
       // Note: When joining, specify fieldnames as tablename.fieldname;
       // Prefix the every tablename with DB_PREFIX
       $prefix = DB_PREFIX;
-      $allusers = Users::findJoin("{$prefix}users.*, {$prefix}user_package.slot_program, {$prefix}user_package.no_slots, {$prefix}user_package.rank", "ORDER BY {$prefix}users.id ASC")
+      $allusers = Users::findJoin("{$prefix}users.*, {$prefix}user_package.slot_program, {$prefix}user_package.no_slots, {$prefix}user_package.rank, {$prefix}user_package.status as payment_status", "ORDER BY {$prefix}users.id ASC")
          ->rightJoin("{$prefix}user_package", "{$prefix}users.id = {$prefix}user_package.user_id")
          ->join();
 

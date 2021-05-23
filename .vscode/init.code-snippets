@@ -1201,47 +1201,47 @@
     "CountryLeagues create": {
         "scope": "php",
         "prefix": "CountryLeagues::create",
-        "body": "CountryLeagues::create([\r\t\"id\" => $1,\r\t\"country\" => $2,\r\t\"continent\" => $3,\r\t\"major_football_competition\" => $4,\r\t\"football_qualified_teams\" => $5,\r\t\"created_at\" => $6,\r\t\"updated_at\" => $7\r]);"
+        "body": "CountryLeagues::create([\r\t\"id\" => $1,\r\t\"country\" => $2,\r\t\"continent\" => $3,\r\t\"dial_code\" => $4,\r\t\"country_code\" => $5,\r\t\"created_at\" => $6,\r\t\"updated_at\" => $7\r]);"
     },
     "CountryLeagues create many": {
         "scope": "php",
         "prefix": "CountryLeagues::createMany",
-        "body": "CountryLeagues::createMany([\r\t\"id\" => $1,\r\t\"country\" => $2,\r\t\"continent\" => $3,\r\t\"major_football_competition\" => $4,\r\t\"football_qualified_teams\" => $5,\r\t\"created_at\" => $6,\r\t\"updated_at\" => $7\r],\r${8:[]}\r);"
+        "body": "CountryLeagues::createMany([\r\t\"id\" => $1,\r\t\"country\" => $2,\r\t\"continent\" => $3,\r\t\"dial_code\" => $4,\r\t\"country_code\" => $5,\r\t\"created_at\" => $6,\r\t\"updated_at\" => $7\r],\r${8:[]}\r);"
     },
     "CountryLeagues update": {
         "scope": "php",
         "prefix": "CountryLeagues::update",
-        "body": "CountryLeagues::update([\r\t\"id\" => $1,\r\t\"country\" => $2,\r\t\"continent\" => $3,\r\t\"major_football_competition\" => $4,\r\t\"football_qualified_teams\" => $5,\r\t\"created_at\" => $6,\r\t\"updated_at\" => $7\r], \"WHERE ${8|id,country,continent,major_football_competition,football_qualified_teams,created_at,updated_at|} = 1\");"
+        "body": "CountryLeagues::update([\r\t\"id\" => $1,\r\t\"country\" => $2,\r\t\"continent\" => $3,\r\t\"dial_code\" => $4,\r\t\"country_code\" => $5,\r\t\"created_at\" => $6,\r\t\"updated_at\" => $7\r], \"WHERE ${8|id,country,continent,dial_code,country_code,created_at,updated_at|} = 1\");"
     },
     "CountryLeagues delete": {
         "scope": "php",
         "prefix": "CountryLeagues::delete",
-        "body": "CountryLeagues::delete(\"WHERE ${1|id,country,continent,major_football_competition,football_qualified_teams,created_at,updated_at|} = 1\");"
+        "body": "CountryLeagues::delete(\"WHERE ${1|id,country,continent,dial_code,country_code,created_at,updated_at|} = 1\");"
     },
     "CountryLeagues exist": {
         "scope": "php",
         "prefix": "CountryLeagues::exist",
-        "body": "CountryLeagues::exist(\"WHERE ${1|id,country,continent,major_football_competition,football_qualified_teams,created_at,updated_at|} = 1\");"
+        "body": "CountryLeagues::exist(\"WHERE ${1|id,country,continent,dial_code,country_code,created_at,updated_at|} = 1\");"
     },
     "CountryLeagues findAll": {
         "scope": "php",
         "prefix": "CountryLeagues::findAll",
-        "body": "CountryLeagues::findAll(\"${1:id, country, continent, major_football_competition, football_qualified_teams, created_at, updated_at}\", \"WHERE ${2|id,country,continent,major_football_competition,football_qualified_teams,created_at,updated_at|} = 1\");"
+        "body": "CountryLeagues::findAll(\"${1:id, country, continent, dial_code, country_code, created_at, updated_at}\", \"WHERE ${2|id,country,continent,dial_code,country_code,created_at,updated_at|} = 1\");"
     },
     "CountryLeagues findOne": {
         "scope": "php",
         "prefix": "CountryLeagues::findOne",
-        "body": "CountryLeagues::findOne(\"${1:id, country, continent, major_football_competition, football_qualified_teams, created_at, updated_at}\", \"WHERE ${2|id,country,continent,major_football_competition,football_qualified_teams,created_at,updated_at|} = 1\");"
+        "body": "CountryLeagues::findOne(\"${1:id, country, continent, dial_code, country_code, created_at, updated_at}\", \"WHERE ${2|id,country,continent,dial_code,country_code,created_at,updated_at|} = 1\");"
     },
     "CountryLeagues findJoin": {
         "scope": "php",
         "prefix": "CountryLeagues::findJoin",
-        "body": "\/\/ Note: When joining, specify fieldnames as tablename.fieldname;\r\/\/ Prefix the every tablename with DB_PREFIX\r\\$prefix = DB_PREFIX;\rCountryLeagues::findJoin(${1:\"{\\$prefix\\}country_leagues.${2|id,country,continent,major_football_competition,football_qualified_teams,created_at,updated_at|}\"}, \"WHERE ${3|id,country,continent,major_football_competition,football_qualified_teams,created_at,updated_at|} = 1\")\r\t->${4|leftJoin,rightJoin,innerJoin,fullJoin|}(\"{\\$prefix\\}tablename\", \"{\\$prefix\\}country_leagues.${6|id,country,continent,major_football_competition,football_qualified_teams,created_at,updated_at|} = {\\$prefix\\}tablename.field\")\r\t->join();"
+        "body": "\/\/ Note: When joining, specify fieldnames as tablename.fieldname;\r\/\/ Prefix the every tablename with DB_PREFIX\r\\$prefix = DB_PREFIX;\rCountryLeagues::findJoin(${1:\"{\\$prefix\\}country_leagues.${2|id,country,continent,dial_code,country_code,created_at,updated_at|}\"}, \"WHERE ${3|id,country,continent,dial_code,country_code,created_at,updated_at|} = 1\")\r\t->${4|leftJoin,rightJoin,innerJoin,fullJoin|}(\"{\\$prefix\\}tablename\", \"{\\$prefix\\}country_leagues.${6|id,country,continent,dial_code,country_code,created_at,updated_at|} = {\\$prefix\\}tablename.field\")\r\t->join();"
     },
     "CountryLeagues fields": {
         "scope": "php",
         "prefix": "country_leagues.",
-        "body": "\". DB_PREFIX .\"country_leagues.${1|id,country,continent,major_football_competition,football_qualified_teams,created_at,updated_at|}"
+        "body": "\". DB_PREFIX .\"country_leagues.${1|id,country,continent,dial_code,country_code,created_at,updated_at|}"
     },
     "Competitions create": {
         "scope": "php",

@@ -1,5 +1,7 @@
 <?php
+
 namespace Library\Http;
+
 use Library\Http\Cache;
 
 class Request
@@ -45,8 +47,8 @@ class Request
       // Start Session
       $lifetime = (AUTH_LIFETIME * 60);
       $path = '/';
-      $domain = ENV == 'dev' ? 'localhost' : SERVER ;
-      $secure = (isset($this->serverPort) && $this->serverPort == "443") ? true : false ;
+      $domain = ENV == 'dev' ? 'localhost' : SERVER;
+      $secure = (isset($this->serverPort) && $this->serverPort == "443") ? true : false;
       $httponly = true;
       session_start(
          [
@@ -66,7 +68,7 @@ class Request
       header("Access-Control-Allow-Headers: Content-Type, X-Custom-Header, AuthToken");
       header("Access-Control-Allow-Methods: OPTIONS, GET, POST, PUT, PATCH, DELETE");
       header("Accept: */*");
-      if ($this->requestMethod == 'OPTIONS') {
+      if (isset($this->requestMethod) && $this->requestMethod == 'OPTIONS') {
          http_response_code(200);
          exit();
       }
@@ -77,8 +79,7 @@ class Request
       // set the default content type
       $this->contentType = "text/html";
       // get server properties
-      foreach($_SERVER as $key => $value)
-      {
+      foreach ($_SERVER as $key => $value) {
          $this->{$this->toCamelCase($key)} = $value;
       }
       // request uri
@@ -88,8 +89,7 @@ class Request
       // request query
       $this->query = $_GET ?? [];
       // accomodating request methods from html forms (spoofing)
-      if ($this->requestMethod == "POST" && isset($this->body['HTTP_REQUEST_METHOD']) && in_array($this->body['HTTP_REQUEST_METHOD'], ["PUT", "PATCH", "DELETE"]))
-      {
+      if ($this->requestMethod == "POST" && isset($this->body['HTTP_REQUEST_METHOD']) && in_array($this->body['HTTP_REQUEST_METHOD'], ["PUT", "PATCH", "DELETE"])) {
          $this->requestMethod = $this->body['HTTP_REQUEST_METHOD'];
       }
       // request body
@@ -98,10 +98,16 @@ class Request
             // get the raw input
             $input = file_get_contents('php://input');
             // replace the spaces and newlines
-            $parsedInputs = 
-               str_replace(" ", "", 
-                  str_replace("\r", "", 
-                     str_replace("\n", "", $input)));
+            $parsedInputs =
+               str_replace(
+                  " ",
+                  "",
+                  str_replace(
+                     "\r",
+                     "",
+                     str_replace("\n", "", $input)
+                  )
+               );
             // convertinto an associative array as a post
             $this->body = json_decode($parsedInputs, true) ?? [];
          } else {
@@ -129,23 +135,21 @@ class Request
    public function toCamelCase($string)
    {
       $result = strtolower($string);
-         
+
       preg_match_all('/_[a-z]/', $result, $matches);
-   
-      foreach($matches[0] as $match)
-      {
+
+      foreach ($matches[0] as $match) {
          $c = str_replace('_', '', strtoupper($match));
          $result = str_replace($match, $c, $result);
       }
-   
+
       return $result;
    }
 
    public function __desctruct()
    {
-      foreach($this as $obj) {
+      foreach ($this as $obj) {
          unset($obj);
       }
    }
-
 }

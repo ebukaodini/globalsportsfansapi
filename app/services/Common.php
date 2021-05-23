@@ -40,8 +40,14 @@ class Common
       // whose status is verified
       // who has bought a slot
 
-      $aGeneration = Users::findAll("firstname, lastname, middlename, telephone, email, profile_picture, referredby, referral_code, node_level", "WHERE referredby = '$referralCode' AND node_level > $referralLevel");
-      // AND verification_status = 'verified'
+      // $aGeneration = Users::findAll("firstname, lastname, middlename, telephone, email, profile_picture, referredby, referral_code, node_level", "WHERE referredby = '$referralCode' AND node_level > $referralLevel AND verification_status = 'verified'");
+
+      // Refactor this to also check the user_package status
+      $aGeneration = Users::findJoin("users.firstname, users.lastname, users.middlename, users.telephone, users.email, users.profile_picture, users.referredby, users.referral_code, users.node_level", "WHERE users.referredby = '$referralCode' AND users.node_level > $referralLevel AND users.verification_status = 'verified'")
+         ->innerJoin("user_package", "users.id = user_package.user_id AND user_package.status = 'active'")
+         ->join();
+
+      // $aGeneration = Users::query("SELECT firstname, lastname, middlename, telephone, email, profile_picture, referredby, referral_code, node_level FROM users u, user_package p WHERE u.referredby = '$referralCode' AND u.node_level > $referralLevel AND u.verification_status = 'verified' AND u.id = p.user_id AND p.status = 'active' ");
       $downline = [];
 
       if ($aGeneration != false) {
@@ -374,6 +380,3 @@ class Common
       ]);
    }
 }
-
-// include '../../vendor/autoload.php';
-// Common::updateReferralUplink("1d17d50", 1, 4, false);

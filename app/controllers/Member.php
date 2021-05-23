@@ -388,11 +388,29 @@ class Member
                $service = $payment['payment_service'] ?: "Paystack";
                $updateInvoice = self::updateInvoice("paid", $invoicenumber, ($pay['amount'] / 100), "$service: {$pay['channel']}", "");
                if ($updateInvoice == true) {
+                  // It is at this point that the user should be allowed to update all his uplink
+
+                  $userId = User::$id;
+                  $user = Users::findOne('node_level, referral_code', "WHERE id = $userId");
+                  $nodelevel = $user['node_level'];
+                  $referralcode = $user['referral_code'];
+
+                  // before returning success
+                  // increment the referrals acquired for the users slot whose referral code is used to register (i.e if referral code is not ORG_REFERRAL_CODE)
+                  if ($referralcode != ORG_REFERRAL_CODE) {
+                     // TODO: TEST
+                     // update all uplinks with status still active 
+                     // AND whose node level is greater than or equal to the referral cap level
+                     // this is going to be a recursive function
+                     $nodeCapLevel = $nodelevel > 8 ? $nodelevel - 7 : 1; /* 1 is the node level of the ORGANISATION */
+                     Common::updateReferralUplink($referralcode, $nodeCapLevel, $nodelevel);
+                  }
+
                   success($resp['message']);
                } else {
                   error('Payment was not verified, contact admin');
                }
-            } else error('Payment is not verified.');
+            } else error('Payment was not verified.');
          } else error($resp['message']);
       }
    }
