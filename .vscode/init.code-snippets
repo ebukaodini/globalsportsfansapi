@@ -1332,5 +1332,95 @@
         "scope": "php",
         "prefix": "payments.",
         "body": "\". DB_PREFIX .\"payments.${1|id,invoice_number,reference,email,domain,amount_paid,ip_address,payment_service,channel,currency,gateway_response,status,paid_at,created_at,updated_at|}"
+    },
+    "ReferralBenefits create": {
+        "scope": "php",
+        "prefix": "ReferralBenefits::create",
+        "body": "ReferralBenefits::create([\r\t\"id\" => $1,\r\t\"referral_level_id\" => $2,\r\t\"slot_id\" => $3,\r\t\"cash\" => $4,\r\t\"souvenir\" => $5,\r\t\"created_at\" => $6,\r\t\"updated_at\" => $7\r]);"
+    },
+    "ReferralBenefits create many": {
+        "scope": "php",
+        "prefix": "ReferralBenefits::createMany",
+        "body": "ReferralBenefits::createMany([\r\t\"id\" => $1,\r\t\"referral_level_id\" => $2,\r\t\"slot_id\" => $3,\r\t\"cash\" => $4,\r\t\"souvenir\" => $5,\r\t\"created_at\" => $6,\r\t\"updated_at\" => $7\r],\r${8:[]}\r);"
+    },
+    "ReferralBenefits update": {
+        "scope": "php",
+        "prefix": "ReferralBenefits::update",
+        "body": "ReferralBenefits::update([\r\t\"id\" => $1,\r\t\"referral_level_id\" => $2,\r\t\"slot_id\" => $3,\r\t\"cash\" => $4,\r\t\"souvenir\" => $5,\r\t\"created_at\" => $6,\r\t\"updated_at\" => $7\r], \"WHERE ${8|id,referral_level_id,slot_id,cash,souvenir,created_at,updated_at|} = 1\");"
+    },
+    "ReferralBenefits delete": {
+        "scope": "php",
+        "prefix": "ReferralBenefits::delete",
+        "body": "ReferralBenefits::delete(\"WHERE ${1|id,referral_level_id,slot_id,cash,souvenir,created_at,updated_at|} = 1\");"
+    },
+    "ReferralBenefits exist": {
+        "scope": "php",
+        "prefix": "ReferralBenefits::exist",
+        "body": "ReferralBenefits::exist(\"WHERE ${1|id,referral_level_id,slot_id,cash,souvenir,created_at,updated_at|} = 1\");"
+    },
+    "ReferralBenefits findAll": {
+        "scope": "php",
+        "prefix": "ReferralBenefits::findAll",
+        "body": "ReferralBenefits::findAll(\"${1:id, referral_level_id, slot_id, cash, souvenir, created_at, updated_at}\", \"WHERE ${2|id,referral_level_id,slot_id,cash,souvenir,created_at,updated_at|} = 1\");"
+    },
+    "ReferralBenefits findOne": {
+        "scope": "php",
+        "prefix": "ReferralBenefits::findOne",
+        "body": "ReferralBenefits::findOne(\"${1:id, referral_level_id, slot_id, cash, souvenir, created_at, updated_at}\", \"WHERE ${2|id,referral_level_id,slot_id,cash,souvenir,created_at,updated_at|} = 1\");"
+    },
+    "ReferralBenefits findJoin": {
+        "scope": "php",
+        "prefix": "ReferralBenefits::findJoin",
+        "body": "\/\/ Note: When joining, specify fieldnames as tablename.fieldname;\r\/\/ Prefix the every tablename with DB_PREFIX\r\\$prefix = DB_PREFIX;\rReferral_benefits::findJoin(${1:\"{\\$prefix\\}referral_benefits.${2|id,referral_level_id,slot_id,cash,souvenir,created_at,updated_at|}\"}, \"WHERE ${3|id,referral_level_id,slot_id,cash,souvenir,created_at,updated_at|} = 1\")\r\t->${4|leftJoin,rightJoin,innerJoin,fullJoin|}(\"{\\$prefix\\}tablename\", \"{\\$prefix\\}referral_benefits.${6|id,referral_level_id,slot_id,cash,souvenir,created_at,updated_at|} = {\\$prefix\\}tablename.field\")\r\t->join();"
+    },
+    "ReferralBenefits fields": {
+        "scope": "php",
+        "prefix": "referral_benefits.",
+        "body": "\". DB_PREFIX .\"referral_benefits.${1|id,referral_level_id,slot_id,cash,souvenir,created_at,updated_at|}"
+    },
+    "Referral_benefits create": {
+        "scope": "php",
+        "prefix": "Referral_benefits::create",
+        "body": "Referral_benefits::create([\r\t\"id\" => $1,\r\t\"referral_level_id\" => $2,\r\t\"slot_id\" => $3,\r\t\"cash\" => $4,\r\t\"souvenir\" => $5,\r\t\"created_at\" => $6,\r\t\"updated_at\" => $7\r]);"
+    },
+    "Referral_benefits create many": {
+        "scope": "php",
+        "prefix": "Referral_benefits::createMany",
+        "body": "Referral_benefits::createMany([\r\t\"id\" => $1,\r\t\"referral_level_id\" => $2,\r\t\"slot_id\" => $3,\r\t\"cash\" => $4,\r\t\"souvenir\" => $5,\r\t\"created_at\" => $6,\r\t\"updated_at\" => $7\r],\r${8:[]}\r);"
+    },
+    "Referral_benefits update": {
+        "scope": "php",
+        "prefix": "Referral_benefits::update",
+        "body": "Referral_benefits::update([\r\t\"id\" => $1,\r\t\"referral_level_id\" => $2,\r\t\"slot_id\" => $3,\r\t\"cash\" => $4,\r\t\"souvenir\" => $5,\r\t\"created_at\" => $6,\r\t\"updated_at\" => $7\r], \"WHERE ${8|id,referral_level_id,slot_id,cash,souvenir,created_at,updated_at|} = 1\");"
+    },
+    "Referral_benefits delete": {
+        "scope": "php",
+        "prefix": "Referral_benefits::delete",
+        "body": "Referral_benefits::delete(\"WHERE ${1|id,referral_level_id,slot_id,cash,souvenir,created_at,updated_at|} = 1\");"
+    },
+    "Referral_benefits exist": {
+        "scope": "php",
+        "prefix": "Referral_benefits::exist",
+        "body": "Referral_benefits::exist(\"WHERE ${1|id,referral_level_id,slot_id,cash,souvenir,created_at,updated_at|} = 1\");"
+    },
+    "Referral_benefits findAll": {
+        "scope": "php",
+        "prefix": "Referral_benefits::findAll",
+        "body": "Referral_benefits::findAll(\"${1:id, referral_level_id, slot_id, cash, souvenir, created_at, updated_at}\", \"WHERE ${2|id,referral_level_id,slot_id,cash,souvenir,created_at,updated_at|} = 1\");"
+    },
+    "Referral_benefits findOne": {
+        "scope": "php",
+        "prefix": "Referral_benefits::findOne",
+        "body": "Referral_benefits::findOne(\"${1:id, referral_level_id, slot_id, cash, souvenir, created_at, updated_at}\", \"WHERE ${2|id,referral_level_id,slot_id,cash,souvenir,created_at,updated_at|} = 1\");"
+    },
+    "Referral_benefits findJoin": {
+        "scope": "php",
+        "prefix": "Referral_benefits::findJoin",
+        "body": "\/\/ Note: When joining, specify fieldnames as tablename.fieldname;\r\/\/ Prefix the every tablename with DB_PREFIX\r\\$prefix = DB_PREFIX;\rReferral_benefits::findJoin(${1:\"{\\$prefix\\}referral_benefits.${2|id,referral_level_id,slot_id,cash,souvenir,created_at,updated_at|}\"}, \"WHERE ${3|id,referral_level_id,slot_id,cash,souvenir,created_at,updated_at|} = 1\")\r\t->${4|leftJoin,rightJoin,innerJoin,fullJoin|}(\"{\\$prefix\\}tablename\", \"{\\$prefix\\}referral_benefits.${6|id,referral_level_id,slot_id,cash,souvenir,created_at,updated_at|} = {\\$prefix\\}tablename.field\")\r\t->join();"
+    },
+    "Referral_benefits fields": {
+        "scope": "php",
+        "prefix": "referral_benefits.",
+        "body": "\". DB_PREFIX .\"referral_benefits.${1|id,referral_level_id,slot_id,cash,souvenir,created_at,updated_at|}"
     }
 }

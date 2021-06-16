@@ -12,6 +12,7 @@ use Middlewares\Guard;
 use Models\Competitions;
 use Models\CountryLeagues;
 use Models\OrganisationInfo;
+use Models\ReferralBenefits;
 use Models\ReferralLevels;
 use Models\Slots;
 use Services\Cipher;
@@ -44,9 +45,23 @@ Router::get('/api/slots', function (Request $req) {
 });
 
 Router::get('/api/referrallevels', function (Request $req) {
-   $referrallevels = ReferralLevels::findAll("id, referrals_required, rank, cash_benefit, benefits");
+   // $referrallevels = ReferralLevels::findAll("id, referrals_required, rank, cash_benefit, benefits");
+   // if ($referrallevels == false) error("No referral levels", null, 200);
+   // else success('success', $referrallevels);
+
+   // refactored
+   $referrallevels = ReferralLevels::findAll("id, rank, referrals_required, updated_at");
    if ($referrallevels == false) error("No referral levels", null, 200);
-   else success('success', $referrallevels);
+   else {
+      $count = 0;
+      foreach ($referrallevels as $level) {
+         // get the benefits for each level
+         $benefits = ReferralBenefits::findAll("id as benefit_id, cash, souvenir", "WHERE referral_level_id = {$level['id']} ORDER BY slot_id");
+         $referrallevels[$count]['benefits'] = $benefits ?: [];
+         $count++;
+      }
+      success('success', $referrallevels);
+   }
 });
 
 Router::post('/api/contactus', function (Request $req) {
@@ -216,7 +231,8 @@ Router::get('/api/getcountries', function (Request $req) {
    Guard::isAny(['admin', 'member']);
 
    $countries = CountryLeagues::findAll("id, country, continent, dial_code, country_code, updated_at");
-   if ($countries) success('success', $countries); else error();
+   if ($countries) success('success', $countries);
+   else error();
 });
 
 Router::get('/api/getcompetitions', function (Request $req) {
@@ -224,7 +240,8 @@ Router::get('/api/getcompetitions', function (Request $req) {
    Guard::isAny(['admin', 'member']);
 
    $competitions = Competitions::findAll();
-   if ($competitions) success('success', $competitions); else error();
+   if ($competitions) success('success', $competitions);
+   else error();
 });
 
 // Admin

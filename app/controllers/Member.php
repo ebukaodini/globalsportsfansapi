@@ -13,6 +13,7 @@ use Models\Users;
 use Models\Invoice;
 use Models\Notifications;
 use Models\Payments;
+use Models\ReferralBenefits;
 use Models\ReferralLevels;
 use Models\UserSlots;
 use Services\Cipher;
@@ -58,6 +59,10 @@ class Member
       $email = User::$email ?: $email;
       $slotId = $slot ?? '';
       User::$id = Users::findOne('id', "WHERE email = '$email'")['id'];
+
+      $constRanks = [
+         "", "Manager", "Coach", "Players", "Supporters", "Stadium", "Fans", "Trophy"
+      ];
 
       Validate::isInteger('Slot Id', $slotId);
       if (Validate::$status == false) {
@@ -450,12 +455,21 @@ class Member
             // TODO: give the user who made payment his accrued benefits
             $currentReferralLevel = 1;
 
-            $referralLevel = ReferralLevels::findOne("cash_benefit, benefits, rank", "WHERE id = $currentReferralLevel");
+            // $referralLevel = ReferralLevels::findOne("cash_benefit, benefits, rank", "WHERE id = $currentReferralLevel");
+
+            // refactored
+            $referralLevel = ReferralLevels::findOne("rank", "WHERE id = $currentReferralLevel");
+            $referralBenefit = ReferralBenefits::query("SELECT cash, souvenir FROM referral_benefits WHERE referral_level_id = $currentReferralLevel AND slot_id = (SELECT slot_id FROM user_package WHERE user_id = $memberUserId) LIMIT 1", true)[0];
+
             UserBenefits::create([
                "user_id" => $memberUserId,
                "achievement" => "Attained " . $referralLevel['rank'] . " Level.",
-               "cash" => $referralLevel['cash_benefit'],
-               "benefit" => $referralLevel['benefits']
+               // "cash" => $referralLevel['cash_benefit'],
+               // "benefit" => $referralLevel['benefits']
+
+               // refactored
+               "cash" => $referralBenefit['cash'],
+               "benefit" => $referralBenefit['souvenir']
             ]);
 
             // TODO: notify the user of his new benefits

@@ -9,6 +9,7 @@ use Models\Invoice;
 use Models\Notifications;
 use Models\OrganisationInfo;
 use Models\Payments;
+use Models\ReferralBenefits;
 use Models\Users;
 use Services\Cipher;
 use Services\User;
@@ -126,16 +127,22 @@ class Admin
             // TODO: give the user who made payment his accrued benefits
             $currentReferralLevel = 1;
 
-            $referralLevel = ReferralLevels::findOne("cash_benefit, benefits, rank", "WHERE id = $currentReferralLevel");
+            // refactored
+            $referralLevel = ReferralLevels::findOne("rank", "WHERE id = $currentReferralLevel");
+            $referralBenefit = ReferralBenefits::query("SELECT cash, souvenir FROM referral_benefits WHERE referral_level_id = $currentReferralLevel AND slot_id = (SELECT slot_id FROM user_package WHERE user_id = $memberUserId) LIMIT 1", true)[0];
+            
             UserBenefits::create([
                "user_id" => $memberUserId,
                "achievement" => "Attained " . $referralLevel['rank'] . " Level.",
-               "cash" => $referralLevel['cash_benefit'],
-               "benefit" => $referralLevel['benefits']
+               // "cash" => $referralLevel['cash_benefit'],
+               // "benefit" => $referralLevel['benefits']
+               
+               // refactored
+               "cash" => $referralBenefit['cash'],
+               "benefit" => $referralBenefit['souvenir']
             ]);
 
             // TODO: notify the user of his new benefits
-
          }
 
          // TODO: notify member
@@ -322,9 +329,23 @@ class Admin
 
    public static function getReferralLevels(Request $req)
    {
-      $referrallevels = ReferralLevels::findAll("*");
+      // $referrallevels = ReferralLevels::findAll("*");
+      // if ($referrallevels == false) error("No referral levels", null, 200);
+      // else success('success', $referrallevels);
+
+      // refactored code
+      $referrallevels = ReferralLevels::findAll("id, rank, referrals_required, updated_at");
       if ($referrallevels == false) error("No referral levels", null, 200);
-      else success('success', $referrallevels);
+      else {
+         $count = 0;
+         foreach ($referrallevels as $level) {
+            // get the benefits for each level
+            $benefits = ReferralBenefits::findAll("id as benefit_id, cash, souvenir", "WHERE referral_level_id = {$level['id']} ORDER BY slot_id");
+            $referrallevels[$count]['benefits'] = $benefits ?: [];
+            $count++;
+         }
+         success('success', $referrallevels);
+      }
    }
 
    public static function updateReferralLevels(Request $req)
@@ -343,18 +364,83 @@ class Admin
       // Validate::isNotEmpty('Referrals required', $referrals_required);
       Validate::mustContainNumberOnly('Referrals required', $referrals_required);
       // Validate::isNotEmpty('Cash benefit', $cash_benefit);
-      Validate::mustContainNumberOnly('Cash benefit', $cash_benefit);
-      Validate::isNotEmpty('Souvenir benefit', $benefits);
+      // Validate::mustContainNumberOnly('Cash benefit', $cash_benefit);
+      // Validate::isNotEmpty('Souvenir benefit', $benefits);
+
+      Validate::mustContainNumberOnly('Local Cash benefit', $local_cash);
+      Validate::isNotEmpty('Local Souvenir benefit', $local_souvenir);
+      Validate::mustContainNumberOnly('Foreign Cash benefit', $foreign_cash);
+      Validate::isNotEmpty('Foreign Souvenir benefit', $foreign_souvenir);
+      Validate::mustContainNumberOnly('International Cash benefit', $international_cash);
+      Validate::isNotEmpty('International Souvenir benefit', $international_souvenir);
+      Validate::mustContainNumberOnly('Continental Cash benefit', $continental_cash);
+      Validate::isNotEmpty('Continental Souvenir benefit', $continental_souvenir);
+      Validate::mustContainNumberOnly('World Cup Cash benefit', $worldcup_cash);
+      Validate::isNotEmpty('World Cup Souvenir benefit', $worldcup_souvenir);
+      Validate::mustContainNumberOnly('Olympic Cash benefit', $olympic_cash);
+      Validate::isNotEmpty('Olympic Souvenir benefit', $olympic_souvenir);
 
       if (Validate::$status == false) error("Referral level not updated.", array_values(Validate::$error));
 
-      if (ReferralLevels::update([
-         "referrals_required" => $referrals_required,
-         "rank" => $rank,
-         "cash_benefit" => $cash_benefit,
-         "benefits" => $benefits,
-      ], "WHERE id = $id") == true) success("Referral level updated successfully", ReferralLevels::findAll("*"));
-      else error("Referral level not updated");
+
+      // refactored code
+      // update the referral benefitindividually for each slot package
+      Model::transaction();
+
+      if (
+         ReferralLevels::update([
+            "referrals_required" => $referrals_required,
+            "rank" => $rank,
+            // "cash_benefit" => $cash_benefit,
+            // "benefits" => $benefits,
+         ], "WHERE id = $id") == true
+         ||
+         (ReferralBenefits::update([
+            "cash" => $local_cash,
+            "souvenir" => $local_souvenir
+         ], "WHERE id = $local_benefit_id") == true
+            ||
+            ReferralBenefits::update([
+               "cash" => $foreign_cash,
+               "souvenir" => $foreign_souvenir
+            ], "WHERE id = $foreign_benefit_id") == true
+            ||
+            ReferralBenefits::update([
+               "cash" => $international_cash,
+               "souvenir" => $international_souvenir
+            ], "WHERE id = $international_benefit_id") == true
+            ||
+            ReferralBenefits::update([
+               "cash" => $continental_cash,
+               "souvenir" => $continental_souvenir
+            ], "WHERE id = $continental_benefit_id") == true
+            ||
+            ReferralBenefits::update([
+               "cash" => $worldcup_cash,
+               "souvenir" => $worldcup_souvenir
+            ], "WHERE id = $worldcup_benefit_id") == true
+            ||
+            ReferralBenefits::update([
+               "cash" => $olympic_cash,
+               "souvenir" => $olympic_souvenir
+            ], "WHERE id = $olympic_benefit_id") == true)
+      ) {
+         Model::commit();
+
+         $referrallevels = ReferralLevels::findAll("id, rank, referrals_required, updated_at");
+         $count = 0;
+         foreach ($referrallevels as $level) {
+            // get the benefits for each level
+            $benefits = ReferralBenefits::findAll("id as benefit_id, cash, souvenir", "WHERE referral_level_id = {$level['id']} ORDER BY slot_id");
+            $referrallevels[$count]['benefits'] = $benefits ?: [];
+            $count++;
+         }
+
+         success("Referral level and benefits updated successfully", $referrallevels);
+      } else {
+         Model::rollback();
+         error("Referral level and benefits not updated");
+      }
    }
 
    public static function getSlotPackages(Request $req)
@@ -586,7 +672,7 @@ class Admin
       if ($benefits != false) success('Your accrued benefits', $benefits);
       else error('No accrued benefits', null, 200);
    }
-   
+
    public static function memberBenefits(Request $req)
    {
       extract($req->body);
