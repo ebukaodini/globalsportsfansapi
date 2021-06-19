@@ -2,6 +2,7 @@
 
 namespace Controllers;
 
+use Library\Database\Model;
 use Library\Http\Request;
 use Services\User;
 use Services\Validate;
@@ -31,9 +32,16 @@ class Member
 
       // UserSlots::findOne("id, user_id, user_package_id, no_slots, referral_code, referral_level, node_level, referrals_required, referrals_acquired, update_uplink, status, created_at, updated_at", "WHERE user_id = $userId AND status = 'active'");
 
-      $myActiveSlot = UserSlots::findJoin("user_slots.*, referral_levels.cash_benefit", "WHERE user_id = $userId AND status = 'active'")
-         ->leftJoin("referral_levels", "user_slots.referral_level = referral_levels.rank")
-         ->join();
+      // $myActiveSlot = UserSlots::findJoin("user_slots.*, referral_levels.cash_benefit", "WHERE user_id = $userId AND status = 'active'")
+      //    ->leftJoin("referral_levels", "user_slots.referral_level = referral_levels.rank")
+      //    ->join();
+
+      // $myActiveSlot = UserSlots::findJoin("user_slots.*, referral_benefits.cash", "WHERE user_id = $userId AND status = 'active'")
+      //    ->leftJoin("referral_levels", "user_slots.referral_level = referral_levels.id")
+      //    ->leftJoin("referral_benefits", "user_slots.no_slots = referral_benefits.slot_id")
+      //    ->join();
+
+      $myActiveSlot = Model::query("SELECT user_slots.*, referral_benefits.cash FROM user_slots, referral_benefits WHERE  user_id = $userId AND user_slots.status = 'active' AND referral_benefits.slot_id = user_slots.no_slots AND referral_benefits.referral_level_id = (SELECT id FROM referral_levels WHERE rank = user_slots.referral_level)", true);
 
       $recentUnreadNotifications = Notifications::findAll("id, user_id, message, route, status, created_at, updated_at", "WHERE user_id = $userId AND status = 'unread' ORDER BY created_at DESC LIMIT 5");
 
