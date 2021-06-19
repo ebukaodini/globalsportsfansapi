@@ -92,62 +92,88 @@ class Admin
    {
       extract($req->body);
       $invoicenumber = $invoicenumber ?? '';
-      $status = $status ?? '';
+      // $status = $status ?? '';
+      $reference = $reference ?? '';
 
       // Validate
       Validate::isNotEmpty('Invoice number', $invoicenumber);
       Validate::hasMaxLength('Invoice number', $invoicenumber, 10);
       Validate::mustContainNumberOnly('Invoice number', $invoicenumber);
-      Validate::isNotEmpty('Status', $status);
-      Validate::hasMaxLength('Status', $status, 20);
+      // Validate::isNotEmpty('Status', $status);
+      // Validate::hasMaxLength('Status', $status, 20);
+      Validate::mustContainNumber('Reference', $reference);
 
-      $updatestatus = Invoice::update([
-         "status" => $status
-      ], "WHERE invoice_number = '$invoicenumber'");
+      if (Validate::$status == false) error('Payment not verified');
 
-      if ($updatestatus) {
+      $curl = curl_init();
+      curl_setopt_array($curl, array(
+         CURLOPT_URL => "https://api.paystack.co/transaction/verify/$reference",
+         CURLOPT_RETURNTRANSFER => true,
+         CURLOPT_ENCODING => "",
+         CURLOPT_MAXREDIRS => 10,
+         CURLOPT_TIMEOUT => 30,
+         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+         CURLOPT_CUSTOMREQUEST => "GET",
+         CURLOPT_HTTPHEADER => array(
+            "Authorization: Bearer sk_test_23702d3d5e12e294594d4cfdf41a20a4a0b8bf8e",
+            "Cache-Control: no-cache",
+         ),
+      ));
 
-         if ($status == 'paid') {
-            // generate and update the members id
-            $memberId = Cipher::token(10);
+      $response = curl_exec($curl);
+      $err = curl_error($curl);
+      curl_close($curl);
 
-            while (Users::exist("WHERE member_id = '$memberId'") == true) {
-               $memberId = Cipher::token(10);
-            }
+      if ($err) {
+         error("cURL Error #:" . $err);
+      } else {
+         $resp = json_decode($response, true);
+         if ($resp['status'] == true) {
+            $pay = $resp['data'];
+            if (Payments::update([
+               "domain" => $pay['domain'],
+               "amount_paid" => $pay['amount'],
+               "ip_address" => $pay['ip_address'],
+               "channel" => $pay['channel'],
+               "currency" => $pay['currency'],
+               "gateway_response" => $pay['gateway_response'],
+               "status" => $pay['status'],
+               "paid_at" => $pay['paid_at'],
+            ], "WHERE reference = '$reference'") == true) {
 
-            // get the id of the member whose invoice was updated
-            $memberUserId = Invoice::findOne("user_id", "WHERE invoice_number = '$invoicenumber'")['user_id'];
-            // then update
-            if ($memberUserId != false) {
-               Users::update([
-                  "member_id" => $memberId
-               ], "WHERE id = $memberUserId");
-            }
+               $payment = Payments::findOne("invoice_number, payment_service", "WHERE reference = '$reference'");
 
-            // TODO: give the user who made payment his accrued benefits
-            $currentReferralLevel = 1;
+               $invoicenumber = $payment['invoice_number'] ?: $reference;
+               $service = $payment['payment_service'] ?: "Paystack";
+               $updateInvoice = Member::updateInvoice("paid", $invoicenumber, ($pay['amount'] / 100), "$service: {$pay['channel']}", "");
+               if ($updateInvoice == true) {
+                  // It is at this point that the user should be allowed to update all his uplink
 
-            // refactored
-            $referralLevel = ReferralLevels::findOne("rank", "WHERE id = $currentReferralLevel");
-            $referralBenefit = ReferralBenefits::query("SELECT cash, souvenir FROM referral_benefits WHERE referral_level_id = $currentReferralLevel AND slot_id = (SELECT slot_id FROM user_package WHERE user_id = $memberUserId) LIMIT 1", true)[0];
-            
-            UserBenefits::create([
-               "user_id" => $memberUserId,
-               "achievement" => "Attained " . $referralLevel['rank'] . " Level.",
-               // "cash" => $referralLevel['cash_benefit'],
-               // "benefit" => $referralLevel['benefits']
-               
-               // refactored
-               "cash" => $referralBenefit['cash'],
-               "benefit" => $referralBenefit['souvenir']
-            ]);
+                  // $userId = User::$id;
+                  $userId = Invoice::findOne("user_id", "WHERE invoice_number = '$invoicenumber'")['user_id'];
+                  $user = Users::findOne('node_level, referral_code', "WHERE id = $userId");
+                  $nodelevel = $user['node_level'];
+                  $referralcode = $user['referral_code'];
 
-            // TODO: notify the user of his new benefits
-         }
+                  // before returning success
+                  // increment the referrals acquired for the users slot whose referral code is used to register (i.e if referral code is not ORG_REFERRAL_CODE)
+                  if ($referralcode != ORG_REFERRAL_CODE) {
+                     // TODO: TEST
+                     // update all uplinks with status still active 
+                     // AND whose node level is greater than or equal to the referral cap level
+                     // this is going to be a recursive function
+                     $nodeCapLevel = $nodelevel > 8 ? $nodelevel - 7 : 1; /* 1 is the node level of the ORGANISATION */
+                     Common::updateReferralUplink($referralcode, $nodeCapLevel, $nodelevel);
+                  }
 
-         // TODO: notify member
-         success('Invoice status updated successfully');
-      } else error('Invoice status not updated', null, 200);
+                  success($resp['message']);
+               } else {
+                  error('Payment was not verified, contact admin');
+               }
+            } else error('Payment was not verified.');
+         } else error($resp['message']);
+      }
+
    }
 
    public static function updateUserStatus(Request $req)

@@ -74,12 +74,12 @@ class Common
       $ownerEmail = $owner['email'];
       $referralsReferralCode = $owner['referredby'] ?: null;
 
+      // if referred by the organisation
+      if ($referralsReferralCode == ORG_REFERRAL_CODE || is_null($referralsReferralCode)) return;
+
       // get his id
       $user = Users::findOne('*', "WHERE referral_code = '$referralsReferralCode'");
       $referralsUserId = $user['id'];
-
-      // if referred by the organisation
-      if ($referralsReferralCode == ORG_REFERRAL_CODE || is_null($referralsReferralCode)) return;
 
       // restrict access to members beyond node cap level
       // if the node level of the user that referred me is less than to the referral cap level
@@ -107,7 +107,6 @@ class Common
 
          // increment the referrals_acquired
          $referralsAcq++;
-
          UserSlots::update([
             "referrals_acquired" => $referralsAcq,
          ], "WHERE id = {$userActiveSlot['id']}");
@@ -390,10 +389,11 @@ class Common
          <p>$message</p>"
       )->send(ORG_EMAIL, "$email", "Notification from Sports Fans Club", "support@sportsfansng.com");
 
+      // echo "$userId, $message, $route";
       return Notifications::create([
-         "user_id" => $userId,
-         "message" => $message,
-         "route" => $route
+         "user_id" => utf8_encode($userId),
+         "message" => utf8_encode($message),
+         "route" => utf8_encode($route)
       ]);
    }
 

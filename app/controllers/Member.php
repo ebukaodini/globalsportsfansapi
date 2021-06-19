@@ -428,7 +428,7 @@ class Member
       }
    }
 
-   private static function updateInvoice($status, $invoicenumber, $amountpaid, $paymethod, $payevidence)
+   public static function updateInvoice($status, $invoicenumber, $amountpaid, $paymethod, $payevidence)
    {
       $updatestatus = Invoice::update([
          "amount_paid" => $amountpaid,
