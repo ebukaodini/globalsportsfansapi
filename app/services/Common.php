@@ -114,6 +114,23 @@ class Common
          // notify the user that his referral acquired increased
          self::notify($referralsUserId, "$ownerEmail has joined Sports Fans Club with your referral code and is now part of your downline.", '/member/downlines');
 
+         // NOTE: because of the new design
+         // there are needs for extra referrals on top of the regular referral required for members at coach level
+         // Those extra referrals are needed by the organization to increase membership
+         // Now every extra referral is registered under the organization and not under the referral
+         // Hence we compare this user's referrals_required, referrals_acquired 
+         // with the base requirement for the coach level, which is 5
+         // If acquired is greater than the base, then the referred user is an extra_referral
+         // Hence, his/her referred_by should be the organization's referral code which is SPORTFANS
+
+         $baseReferralLevel = ReferralLevels::findOne("referrals_required", "WHERE rank = 'Coach'")['referrals_required'];
+
+         if ($referralsAcq > $baseReferralLevel) {
+            Users::update([
+               "referredby" => ORG_REFERRAL_CODE,
+            ], "WHERE email = '$ownerEmail'");
+         }
+
          // check for completed slots
          if ($referralsAcq == $referralsReq) {
             // update the status to completed
@@ -396,6 +413,24 @@ class Common
          "route" => utf8_encode($route)
       ]);
    }
+
+   public static $extraReferrals = [
+      "Local" => 0,
+      "Foreign" => 1,
+      "International" => 2,
+      "Continental" => 3,
+      "World Cup" => 4,
+      "Olympic" => 5
+   ];
+
+   public static $totalReferrals = [
+      "Local" => 5,
+      "Foreign" => 6,
+      "International" => 7,
+      "Continental" => 8,
+      "World Cup" => 9,
+      "Olympic" => 10
+   ];
 
    // function to get the referral benefits of a user
    public static function getUserReferralBenefit($userId, $referralLevel)

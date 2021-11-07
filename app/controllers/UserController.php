@@ -97,18 +97,6 @@ class UserController
          "node_level" => $nodelevel
       ]) == true) {
 
-         // This should be done when the user's email has been verified and when user have completed payment
-         // // before returning success
-         // // increment the referrals acquired for the users slot whose referral code is used to register (i.e if referral code is not ORG_REFERRAL_CODE)
-         // if ($referralcode != ORG_REFERRAL_CODE) {
-         //    // TODO: TEST
-         //    // update all uplinks with status still active 
-         //    // AND whose node level is greater than or equal to the referral cap level
-         //    // this is going to be a recursive function
-         //    $nodeCapLevel = $nodelevel > 8 ? $nodelevel - 7 : 1; /* 1 is the node level of the ORGANISATION */
-         //    Common::updateReferralUplink($newreferralcode, $nodeCapLevel, $nodelevel);
-         // }
-
          // Welcome User
          Mail::asHTML("<h4>Hi $email,</h4><p>Welcome to <b>SPORTS FANS CLUB</b>.</p>")->send(ORG_EMAIL, $email, "Welcome to SPORTS FANS CLUB", ORG_EMAIL);
 
@@ -190,18 +178,6 @@ class UserController
          "node_level" => 2,
          "role" => "admin"
       ]) == true) {
-
-         // // before returning success
-         // // increment the referrals acquired for the users slot whose referral code is used to register (i.e if referral code is not ORG_REFERRAL_CODE)
-         // if ($referralcode != ORG_REFERRAL_CODE) {
-         //    // TODO: TEST
-         //    // update all uplinks with status still active 
-         //    // AND whose node level is greater than or equal to the referral cap level
-         //    // this is going to be a recursive function
-         //    $nodeCapLevel = $nodelevel > 8 ? $nodelevel - 7 : 1; /* 1 is the node level of the ORGANISATION */
-         //    Common::updateReferralUplink($newreferralcode, $nodeCapLevel, $nodelevel);
-         // }
-
          success('Admin created successfully');
       } else {
          error('Admin creation failed, please try again', null, 200);

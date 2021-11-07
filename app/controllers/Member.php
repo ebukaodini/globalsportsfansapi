@@ -133,7 +133,17 @@ class Member
                   "referral_code" => $referralcode,
                   "referral_level" => $level['rank'],
                   "node_level" => $nnodeLevel,
-                  "referrals_required" => intval($level['referrals_required']),
+                  // NOTE: now according to the new design, 
+                  // only one slot is required for every level
+                  // and the base level comes with 5 referrals required
+                  // but then, the user is to bring in an extra referral at the base level
+                  // the number of extra referral depends on the selected package
+                  // and starts at 0 and increases by 1.
+                  // Hence, if this is the first level, add the extra referral to the referrals required.
+
+                  "referrals_required" => $levelCount == 0
+                     ? (intval($level['referrals_required']) + Common::$extraReferrals[$slot['program']])
+                     : intval($level['referrals_required']),
                   "referrals_acquired" => 0,
                   "update_uplink" => $i == 0 ? true : false,
                   "status" => $i == 0 && $levelCount == 0 ? 'active' : 'pending' // set the very first slot of Coach level to active
@@ -148,7 +158,7 @@ class Member
             Users::rollback();
             error("Slot was not created. Please try again", null, 200);
          } else {
-            // TODO: Notify user
+            // Notify user
             $totalSlots = $noslots * 6;
             Common::notify(User::$id, "Congratulations, $totalSlots slots have been created for you, with $noslots slot(s) at each level.", '/member/slots');
          }
@@ -177,12 +187,12 @@ class Member
 
          Users::commit();
 
-         // send email to the member to let him/her know sha has an invoice
+         // send email to the member to let him/her know he/she has an invoice
          Mail::asHTML("<h4>Good day,</h4><p>A payment invoice has been created for you.<br>Slot Package: {$slot['program']}</br>Number of Slots: $noslots</br>Invoice number: $invoicenumber</p>")->send(ORG_EMAIL, User::$email, "Payment Invoice [#$invoicenumber]", ORG_EMAIL);
 
-         // TODO: Notify user of new invoice
+         // Notify user of new invoice
          Common::notify(User::$id, "A payment invoice have been created for you for the acquisition of your {$slot['program']} package. Invoice Number: #$invoicenumber", '/member/invoice');
-         // TODO: Notify admin of new invoice
+         // Notify admin of new invoice
          Common::notify(0, "A payment invoice have been created for " . $email . " for the acquisition of your {$slot['program']} package. Invoice Number: #$invoicenumber", '/member/invoice');
 
          // send back response
