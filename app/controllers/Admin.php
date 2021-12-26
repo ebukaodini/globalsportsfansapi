@@ -616,7 +616,7 @@ class Admin
    {
       extract($req->body);
 
-      Common::notify($userId, "Complete your registeration by paying for your Slot Package so you can start getting your accrued benefits.", '/member/invoice');
+      Common::notify($userId, "Complete your registeration by paying for your Slot Package so you can start getting your accrued benefits.", '/pay-invoice');
       success();
    }
 
@@ -647,7 +647,7 @@ class Admin
       if (UserBenefits::update([
          "status" => "given"
       ], "WHERE id = $benefitId") == true) {
-         Common::notify($userId, "Your accrued benefit have been delivered to you and have been marked as given.", '/member/benefits');
+         Common::notify($userId, "Your accrued benefit have been delivered to you and have been marked as given.", '/benefits');
          success();
       } else {
          error();
@@ -661,7 +661,7 @@ class Admin
       if (UserBenefits::update([
          "status" => "cancelled"
       ], "WHERE id = $benefitId") == true) {
-         Common::notify($userId, "Your accrued benefit have been marked as cancelled.", '/member/benefits');
+         Common::notify($userId, "Your accrued benefit have been marked as cancelled.", '/benefits');
          success();
       } else {
          error();

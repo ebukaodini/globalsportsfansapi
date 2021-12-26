@@ -160,7 +160,7 @@ class Member
          } else {
             // Notify user
             $totalSlots = $noslots * 6;
-            Common::notify(User::$id, "Congratulations, $totalSlots slots have been created for you, with $noslots slot(s) at each level.", '/member/slots');
+            Common::notify(User::$id, "Congratulations, $totalSlots slots have been created for you, with $noslots slot(s) at each level.", '/slots');
          }
 
          // generate invoice for the slot
@@ -191,9 +191,9 @@ class Member
          Mail::asHTML("<h4>Good day,</h4><p>A payment invoice has been created for you.<br>Slot Package: {$slot['program']}</br>Number of Slots: $noslots</br>Invoice number: $invoicenumber</p>")->send(ORG_EMAIL, User::$email, "Payment Invoice [#$invoicenumber]", ORG_EMAIL);
 
          // Notify user of new invoice
-         Common::notify(User::$id, "A payment invoice have been created for you for the acquisition of your {$slot['program']} package. Invoice Number: #$invoicenumber", '/member/invoice');
+         Common::notify(User::$id, "A payment invoice have been created for you for the acquisition of your {$slot['program']} package. Invoice Number: #$invoicenumber", '/pay-invoice');
          // Notify admin of new invoice
-         Common::notify(0, "A payment invoice have been created for " . $email . " for the acquisition of your {$slot['program']} package. Invoice Number: #$invoicenumber", '/member/invoice');
+         Common::notify(0, "A payment invoice have been created for " . $email . " for the acquisition of your {$slot['program']} package. Invoice Number: #$invoicenumber", '/pay-invoice');
 
          // send back response
          success('Slot has been created for the user');
@@ -337,7 +337,7 @@ class Member
 
    public static function queryAccruedBenefit(Request $req)
    {
-      Common::notify(0, "This member (" . User::$email . ") is querying his benefits", '/member/benefits');
+      Common::notify(0, "This member (" . User::$email . ") is querying his benefits", '/benefits');
       success();
    }
 
@@ -490,15 +490,15 @@ class Member
                "benefit" => $referralBenefit['souvenir']
             ]);
 
-            // TODO: notify the user of his new benefits
-            Common::notify($memberUserId, "Congratulations!!! Your benefit is due for accrual for Attaining {$referralLevel['rank']} level.", '/member/benefits');
+            // notify the user of his new benefits
+            Common::notify($memberUserId, "Congratulations!!! Your benefit is due for accrual for Attaining {$referralLevel['rank']} level.", '/benefits');
 
             $email = Users::findOne("email", "WHERE id = $memberUserId")['email'] ?? 'A customer';
             // Notify admin
-            Common::notify(0, "Notice!, $email has a benefit that is due for Attaining {$referralLevel['rank']} level.", '/member/benefits');
+            Common::notify(0, "Notice!, $email has a benefit that is due for Attaining {$referralLevel['rank']} level.", '/benefits');
          }
 
-         // TODO: notify member
+         // notify member
          return true;
       } else return false;
    }
