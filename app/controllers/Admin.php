@@ -616,7 +616,7 @@ class Admin
    {
       extract($req->body);
 
-      Common::notify($userId, "Complete your registeration by paying for your Slot Package so you can start getting your accrued benefits.", '/pay-invoice');
+      Common::notify($userId, "Complete your registeration by paying for your Slot Package so you can start getting your accrued benefits.", '/payment-invoice');
       success();
    }
 

@@ -191,9 +191,9 @@ class Member
          Mail::asHTML("<h4>Good day,</h4><p>A payment invoice has been created for you.<br>Slot Package: {$slot['program']}</br>Number of Slots: $noslots</br>Invoice number: $invoicenumber</p>")->send(ORG_EMAIL, User::$email, "Payment Invoice [#$invoicenumber]", ORG_EMAIL);
 
          // Notify user of new invoice
-         Common::notify(User::$id, "A payment invoice have been created for you for the acquisition of your {$slot['program']} package. Invoice Number: #$invoicenumber", '/pay-invoice');
+         Common::notify(User::$id, "A payment invoice have been created for you for the acquisition of your {$slot['program']} package. Invoice Number: #$invoicenumber", '/payment-invoice');
          // Notify admin of new invoice
-         Common::notify(0, "A payment invoice have been created for " . $email . " for the acquisition of your {$slot['program']} package. Invoice Number: #$invoicenumber", '/pay-invoice');
+         Common::notify(0, "A payment invoice have been created for " . $email . " for the acquisition of your {$slot['program']} package. Invoice Number: #$invoicenumber", '/payment-invoice');
 
          // send back response
          success('Slot has been created for the user');
